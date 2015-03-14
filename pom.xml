@@ -17,6 +17,10 @@
                 <role>developer</role>
             </roles>
         </developer>
+        <developer>
+            <name>Maciej Kłys</name>
+            <id>mkx</id>
+        </developer>
     </developers>
 
     <properties>
