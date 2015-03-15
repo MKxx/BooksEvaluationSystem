@@ -14,10 +14,6 @@
 		    <name>Robert Mielczarek</name>
             <id>rmiel</id>
         </developer>
-        <developer>
-		    <name>Jakub Kępa</name>
-            <id>kepak</id>
-        </developer>
     </developers>
 
     <properties>
