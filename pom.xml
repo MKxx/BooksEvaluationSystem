@@ -11,11 +11,8 @@
 
     <developers>
         <developer>
+		    <name>Robert Mielczarek</name>
             <id>rmiel</id>
-            <email>180640@edu.p.lodz.pl</email>
-            <roles>
-                <role>developer</role>
-            </roles>
         </developer>
         <developer>
             <name>Maciej Kłys</name>
