@@ -18,6 +18,10 @@
             <name>Maciej Kłys</name>
             <id>mkx</id>
         </developer>
+         <developer>
+		    <name>Jakub Kępa</name>
+            <id>kepak</id>
+        </developer>
     </developers>
 
     <properties>
