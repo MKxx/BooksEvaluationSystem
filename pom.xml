@@ -22,6 +22,11 @@
             <name>Jakub Kępa</name>
             <id>kepak</id>
         </developer>
+        <developer>
+            <name>Marta Chmielecka</name>
+            <email>180513@edu.p.lodz.pl</email>
+            <id>mchmielecka</id>
+        </developer>
     </developers>
 
     <properties>
