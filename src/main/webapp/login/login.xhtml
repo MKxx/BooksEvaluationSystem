@@ -4,7 +4,7 @@
         <title>Strona Logowania</title>
     </h:head>
     <h:body>
-        <form method="post" action="j_security_check">
+        <form method="POST" action="j_security_check">
                 <h:outputLabel for="j_username" value="Username" />
                 <input type="text" name="j_username" />
                 <br></br>
@@ -12,9 +12,7 @@
                 <input type="password" name="j_password" />
                 <br></br>
                 <h:outputText value="" />
-                    <input type="submit" name="submit" value="Zaloguj" />
-                    <h:button outcome="index" value="Cancel" />
+                <input type="submit" name="submit" value="Zaloguj" />
         </form>
     </h:body>
 </html>
-
