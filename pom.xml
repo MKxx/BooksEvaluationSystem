@@ -4,7 +4,7 @@
 
     <groupId>pl.lodz.p.it.ssbd2015</groupId>
     <artifactId>ssbd05</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.4-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>ssbd05</name>
@@ -13,6 +13,7 @@
         <developer>
             <name>Robert Mielczarek</name>
             <id>rmiel</id>
+            <email>180640@edu.p.lodz.pl</email>
         </developer>
         <developer>
             <name>Maciej Kłys</name>
