@@ -6,9 +6,7 @@
 package pl.lodz.ssbd.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -51,11 +48,9 @@ public class PoziomDostepu implements Serializable {
     @NotNull
     @Column(name = "wersja_encji")
     private long wersjaEncji;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUzytkownik")
-    private List<PoziomDostepu> poziomDostepuList;
-    @JoinColumn(name = "id_uzytkownik", referencedColumnName = "id_poziom_dostepu")
+    @JoinColumn(name = "id_uzytkownik", referencedColumnName = "id_uzytkownik")
     @ManyToOne(optional = false)
-    private PoziomDostepu idUzytkownik;
+    private Uzytkownik idUzytkownik;
 
     public PoziomDostepu() {
     }
@@ -103,19 +98,11 @@ public class PoziomDostepu implements Serializable {
         this.wersjaEncji = wersjaEncji;
     }
 
-    public List<PoziomDostepu> getPoziomDostepuList() {
-        return poziomDostepuList;
-    }
-
-    public void setPoziomDostepuList(List<PoziomDostepu> poziomDostepuList) {
-        this.poziomDostepuList = poziomDostepuList;
-    }
-
-    public PoziomDostepu getIdUzytkownik() {
+    public Uzytkownik getIdUzytkownik() {
         return idUzytkownik;
     }
 
-    public void setIdUzytkownik(PoziomDostepu idUzytkownik) {
+    public void setIdUzytkownik(Uzytkownik idUzytkownik) {
         this.idUzytkownik = idUzytkownik;
     }
 

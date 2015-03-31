@@ -96,6 +96,8 @@ public class Uzytkownik implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUzytkownik")
     private List<PoprzednieHaslo> poprzednieHasloList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUzytkownik")
+    private List<PoziomDostepu> poziomDostepuList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUzytkownik")
     private List<Ocena> ocenaList;
 
     public Uzytkownik() {
@@ -228,6 +230,14 @@ public class Uzytkownik implements Serializable {
 
     public void setPoprzednieHasloList(List<PoprzednieHaslo> poprzednieHasloList) {
         this.poprzednieHasloList = poprzednieHasloList;
+    }
+
+    public List<PoziomDostepu> getPoziomDostepuList() {
+        return poziomDostepuList;
+    }
+
+    public void setPoziomDostepuList(List<PoziomDostepu> poziomDostepuList) {
+        this.poziomDostepuList = poziomDostepuList;
     }
 
     public List<Ocena> getOcenaList() {
