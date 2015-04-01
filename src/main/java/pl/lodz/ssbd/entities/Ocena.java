@@ -9,15 +9,11 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.TableGenerator;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -26,8 +22,6 @@ import javax.validation.constraints.NotNull;
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Entity
-@Table(name = "ocena")
-@TableGenerator(name="OcenaIdGen", table="generator", pkColumnName="class_name", valueColumnName="id_range", pkColumnValue="Ocena")
 @NamedQueries({
     @NamedQuery(name = "Ocena.findAll", query = "SELECT o FROM Ocena o"),
     @NamedQuery(name = "Ocena.findByIdOcena", query = "SELECT o FROM Ocena o WHERE o.idOcena = :idOcena"),
@@ -39,20 +33,17 @@ public class Ocena implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_ocena", unique = true, updatable = false, nullable = false)
-    @GeneratedValue(strategy= GenerationType.TABLE, generator="OcenaIdGen")
+    @Column(name = "id_ocena")
     private Long idOcena;
     @Basic(optional = false)
     @NotNull
-    @Column(nullable = false)
     private int ocena;
     @Basic(optional = false)
     @NotNull
-    @Column(nullable = false)
     private boolean ulubiona;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "wersja_encji", nullable = false)
+    @Column(name = "wersja_encji")
     @Version
     private long wersjaEncji;
     @JoinColumn(name = "id_ksiazka", referencedColumnName = "id_ksiazka", nullable = false)
