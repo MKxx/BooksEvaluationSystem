@@ -33,7 +33,7 @@ public class Ocena implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_ocena")
+    @Column(name = "id_ocena", unique = true, updatable = false)
     private Long idOcena;
     @Basic(optional = false)
     @NotNull

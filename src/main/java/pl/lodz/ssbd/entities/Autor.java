@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -43,7 +44,7 @@ public class Autor implements Serializable {
     private Long idAutor;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 2, max = 50)
     private String imie;
     @Basic(optional = false)
     @NotNull
@@ -52,14 +53,14 @@ public class Autor implements Serializable {
     @Column(name = "rok_ur")
     private Integer rokUr;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "sr_ocena", insertable = false, precision = 1, scale = 4)
+    @Column(name = "sr_ocena", insertable = false, precision = 5, scale = 4)
     private BigDecimal srOcena;
     @Basic(optional = false)
     @NotNull
     @Column(name = "wersja_encji")
     @Version
     private long wersjaEncji;
-    @ManyToMany(mappedBy = "autorList")
+    @ManyToMany(mappedBy = "autorList", cascade = CascadeType.ALL)
     private List<Ksiazka> ksiazkaList;
 
     public Autor() {

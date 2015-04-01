@@ -36,7 +36,7 @@ public class PoziomDostepu implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_poziom_dostepu")
+    @Column(name = "id_poziom_dostepu", unique = true, updatable = false)
     private Long idPoziomDostepu;
     @Basic(optional = false)
     @NotNull

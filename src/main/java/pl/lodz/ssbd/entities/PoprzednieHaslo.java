@@ -35,7 +35,7 @@ public class PoprzednieHaslo implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_poprzedniege_haslo")
+    @Column(name = "id_poprzedniege_haslo", unique = true, updatable = false)
     private Long idPoprzedniegeHaslo;
     @Basic(optional = false)
     @NotNull

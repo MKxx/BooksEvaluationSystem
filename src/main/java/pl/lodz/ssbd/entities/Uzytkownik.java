@@ -47,7 +47,7 @@ public class Uzytkownik implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_uzytkownik")
+    @Column(name = "id_uzytkownik", unique = true, updatable = false)
     private Long idUzytkownik;
     @Basic(optional = false)
     @NotNull
@@ -77,7 +77,7 @@ public class Uzytkownik implements Serializable {
     private Date czasNPopZal;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 32)
+    @Size(min = 32, max = 32)
     @Column(name = "haslo_md5")
     private String hasloMd5;
     @Basic(optional = false)

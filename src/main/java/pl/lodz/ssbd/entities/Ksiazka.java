@@ -42,7 +42,7 @@ public class Ksiazka implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_ksiazka")
+    @Column(name = "id_ksiazka", unique = true, updatable = false)
     private Long idKsiazka;
     @Basic(optional = false)
     @NotNull
@@ -51,7 +51,7 @@ public class Ksiazka implements Serializable {
     @Column(name = "rok_pierwszego_wydania")
     private Integer rokPierwszegoWydania;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "srednia_ocen",insertable = false, precision = 1, scale = 4)
+    @Column(name = "srednia_ocen",insertable = false, precision = 5, scale = 4)
     private BigDecimal sredniaOcen;
     @Basic(optional = false)
     @NotNull
@@ -64,11 +64,11 @@ public class Ksiazka implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ilosc_autorow", updatable = false, nullable = false)
-    private int iloscAutorow;
+    private Integer iloscAutorow;
     @JoinTable(name = "ksiazka_autor", joinColumns = {
     @JoinColumn(name = "id_ksiazka", referencedColumnName = "id_ksiazka")}, inverseJoinColumns = {
     @JoinColumn(name = "id_autor", referencedColumnName = "id_autor")})
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Autor> autorList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idKsiazka")
     private List<Ocena> ocenaList;
