@@ -35,16 +35,16 @@ public class PoprzednieHaslo implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_poprzedniege_haslo", unique = true, updatable = false, nullable = false)
+    @Column(name = "id_poprzedniege_haslo")
     private Long idPoprzedniegeHaslo;
     @Basic(optional = false)
     @NotNull
     @Size(min = 32, max = 32)
-    @Column(name = "stare_haslo_md5", updatable = false, nullable = false, length = 32)
+    @Column(name = "stare_haslo_md5", updatable = false, nullable = false)
     private String stareHasloMd5;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "wersja_encji", nullable = false)
+    @Column(name = "wersja_encji")
     @Version
     private long wersjaEncji;
     @JoinColumn(name = "id_uzytkownik", referencedColumnName = "id_uzytkownik", nullable = false, updatable = false)

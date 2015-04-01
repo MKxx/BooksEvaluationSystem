@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -36,20 +36,18 @@ public class PoziomDostepu implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_poziom_dostepu", unique = true, updatable = false, nullable = false)
+    @Column(name = "id_poziom_dostepu")
     private Long idPoziomDostepu;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
-    @Column(nullable = false, length = 50)
     private String nazwa;
     @Basic(optional = false)
     @NotNull
-    @Column(nullable = false)
     private boolean aktywny;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "wersja_encji", nullable = false)
+    @Column(name = "wersja_encji")
     @Version
     private long wersjaEncji;
     @JoinColumn(name = "id_uzytkownik", referencedColumnName = "id_uzytkownik", nullable = false)

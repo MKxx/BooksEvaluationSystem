@@ -42,35 +42,33 @@ public class Ksiazka implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_ksiazka", unique = true, updatable = false, nullable = false)
+    @Column(name = "id_ksiazka")
     private Long idKsiazka;
     @Basic(optional = false)
     @NotNull
     @Size(min = 2, max = 100)
-    @Column(nullable = false, length = 100)
     private String tytul;
     @Column(name = "rok_pierwszego_wydania")
     private Integer rokPierwszegoWydania;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "srednia_ocen",insertable = false, precision = 5, scale = 4)
+    @Column(name = "srednia_ocen",insertable = false, precision = 1, scale = 4)
     private BigDecimal sredniaOcen;
     @Basic(optional = false)
     @NotNull
-    @Column(nullable = false)
     private boolean aktywne;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "wersja_encji", nullable = false)
+    @Column(name = "wersja_encji")
     @Version
     private long wersjaEncji;
     @Basic(optional = false)
     @NotNull
     @Column(name = "ilosc_autorow", updatable = false, nullable = false)
-    private Integer iloscAutorow;
+    private int iloscAutorow;
     @JoinTable(name = "ksiazka_autor", joinColumns = {
     @JoinColumn(name = "id_ksiazka", referencedColumnName = "id_ksiazka")}, inverseJoinColumns = {
     @JoinColumn(name = "id_autor", referencedColumnName = "id_autor")})
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     private List<Autor> autorList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idKsiazka")
     private List<Ocena> ocenaList;
