@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -9,12 +9,15 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -25,6 +28,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "poziom_dostepu")
+@TableGenerator(name="PoziomDostepuIdGen", table="generator", pkColumnName="class_name", valueColumnName="id_range", pkColumnValue="PoziomDostepu")
 @NamedQueries({
     @NamedQuery(name = "PoziomDostepu.findAll", query = "SELECT p FROM PoziomDostepu p"),
     @NamedQuery(name = "PoziomDostepu.findByIdPoziomDostepu", query = "SELECT p FROM PoziomDostepu p WHERE p.idPoziomDostepu = :idPoziomDostepu"),
@@ -36,18 +40,21 @@ public class PoziomDostepu implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_poziom_dostepu")
+    @Column(name = "id_poziom_dostepu", unique = true, updatable = false, nullable = false)
+    @GeneratedValue(strategy= GenerationType.TABLE, generator="PoziomDostepuIdGen")
     private Long idPoziomDostepu;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
+    @Column(nullable = false, length = 50)
     private String nazwa;
     @Basic(optional = false)
     @NotNull
+    @Column(nullable = false)
     private boolean aktywny;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "wersja_encji")
+    @Column(name = "wersja_encji", nullable = false)
     @Version
     private long wersjaEncji;
     @JoinColumn(name = "id_uzytkownik", referencedColumnName = "id_uzytkownik", nullable = false)
