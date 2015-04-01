@@ -38,7 +38,7 @@ public class Autor implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_autor")
+    @Column(name = "id_autor", unique = true, updatable = false)
     private Long idAutor;
     @Basic(optional = false)
     @NotNull
@@ -46,21 +46,18 @@ public class Autor implements Serializable {
     private String imie;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 70)
+    @Size(min = 2, max = 70)
     private String nazwisko;
     @Column(name = "rok_ur")
     private Integer rokUr;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "sr_ocena")
+    @Column(name = "sr_ocena", insertable = false, precision = 1, scale = 4)
     private BigDecimal srOcena;
     @Basic(optional = false)
     @NotNull
     @Column(name = "wersja_encji")
     private long wersjaEncji;
-    @JoinTable(name = "ksiazka_autor", joinColumns = {
-        @JoinColumn(name = "id_autor", referencedColumnName = "id_autor")}, inverseJoinColumns = {
-        @JoinColumn(name = "id_ksiazka", referencedColumnName = "id_ksiazka")})
-    @ManyToMany
+    @ManyToMany(mappedBy = "autorList")
     private List<Ksiazka> ksiazkaList;
 
     public Autor() {

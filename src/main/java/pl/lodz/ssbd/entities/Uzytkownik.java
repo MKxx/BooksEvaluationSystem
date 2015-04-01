@@ -50,11 +50,11 @@ public class Uzytkownik implements Serializable {
     private Long idUzytkownik;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 2, max = 50)
     private String imie;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 70)
+    @Size(min = 2, max = 70)
     private String nazwisko;
     @Basic(optional = false)
     @NotNull
@@ -65,13 +65,13 @@ public class Uzytkownik implements Serializable {
     @NotNull
     @Size(min = 1, max = 50)
     private String email;
-    @Column(name = "czas_pop_zal")
+    @Column(name = "czas_pop_zal", insertable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date czasPopZal;
     @Size(max = 15)
-    @Column(name = "ip_pop_zal")
+    @Column(name = "ip_pop_zal", insertable = false)
     private String ipPopZal;
-    @Column(name = "czas_n_pop_zal")
+    @Column(name = "czas_n_pop_zal", insertable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date czasNPopZal;
     @Basic(optional = false)

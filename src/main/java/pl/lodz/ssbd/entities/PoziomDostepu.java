@@ -48,7 +48,7 @@ public class PoziomDostepu implements Serializable {
     @NotNull
     @Column(name = "wersja_encji")
     private long wersjaEncji;
-    @JoinColumn(name = "id_uzytkownik", referencedColumnName = "id_uzytkownik")
+    @JoinColumn(name = "id_uzytkownik", referencedColumnName = "id_uzytkownik", nullable = false)
     @ManyToOne(optional = false)
     private Uzytkownik idUzytkownik;
 

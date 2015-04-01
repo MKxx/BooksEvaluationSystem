@@ -36,7 +36,7 @@ public class Ocena implements Serializable {
     private Long idOcena;
     @Basic(optional = false)
     @NotNull
-    private float ocena;
+    private int ocena;
     @Basic(optional = false)
     @NotNull
     private boolean ulubiona;
@@ -44,10 +44,10 @@ public class Ocena implements Serializable {
     @NotNull
     @Column(name = "wersja_encji")
     private long wersjaEncji;
-    @JoinColumn(name = "id_ksiazka", referencedColumnName = "id_ksiazka")
+    @JoinColumn(name = "id_ksiazka", referencedColumnName = "id_ksiazka", nullable = false)
     @ManyToOne(optional = false)
     private Ksiazka idKsiazka;
-    @JoinColumn(name = "id_uzytkownik", referencedColumnName = "id_uzytkownik")
+    @JoinColumn(name = "id_uzytkownik", referencedColumnName = "id_uzytkownik", nullable = false)
     @ManyToOne(optional = false)
     private Uzytkownik idUzytkownik;
 
@@ -58,7 +58,7 @@ public class Ocena implements Serializable {
         this.idOcena = idOcena;
     }
 
-    public Ocena(Long idOcena, float ocena, boolean ulubiona, long wersjaEncji) {
+    public Ocena(Long idOcena, int ocena, boolean ulubiona, long wersjaEncji) {
         this.idOcena = idOcena;
         this.ocena = ocena;
         this.ulubiona = ulubiona;
@@ -73,11 +73,11 @@ public class Ocena implements Serializable {
         this.idOcena = idOcena;
     }
 
-    public float getOcena() {
+    public int getOcena() {
         return ocena;
     }
 
-    public void setOcena(float ocena) {
+    public void setOcena(int ocena) {
         this.ocena = ocena;
     }
 

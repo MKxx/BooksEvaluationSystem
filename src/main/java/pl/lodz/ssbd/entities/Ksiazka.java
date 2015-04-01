@@ -13,6 +13,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -43,12 +45,12 @@ public class Ksiazka implements Serializable {
     private Long idKsiazka;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 2, max = 100)
     private String tytul;
     @Column(name = "rok_pierwszego_wydania")
     private Integer rokPierwszegoWydania;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "srednia_ocen")
+    @Column(name = "srednia_ocen",insertable = false, precision = 1, scale = 4)
     private BigDecimal sredniaOcen;
     @Basic(optional = false)
     @NotNull
@@ -59,9 +61,12 @@ public class Ksiazka implements Serializable {
     private long wersjaEncji;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ilosc_autorow")
+    @Column(name = "ilosc_autorow", updatable = false, nullable = false)
     private int iloscAutorow;
-    @ManyToMany(mappedBy = "ksiazkaList")
+    @JoinTable(name = "ksiazka_autor", joinColumns = {
+    @JoinColumn(name = "id_ksiazka", referencedColumnName = "id_ksiazka")}, inverseJoinColumns = {
+    @JoinColumn(name = "id_autor", referencedColumnName = "id_autor")})
+    @ManyToMany
     private List<Autor> autorList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idKsiazka")
     private List<Ocena> ocenaList;
