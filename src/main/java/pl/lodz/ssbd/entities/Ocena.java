@@ -33,17 +33,19 @@ public class Ocena implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_ocena")
+    @Column(name = "id_ocena", unique = true, updatable = false, nullable = false)
     private Long idOcena;
     @Basic(optional = false)
     @NotNull
+    @Column(nullable = false)
     private int ocena;
     @Basic(optional = false)
     @NotNull
+    @Column(nullable = false)
     private boolean ulubiona;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "wersja_encji")
+    @Column(name = "wersja_encji", nullable = false)
     @Version
     private long wersjaEncji;
     @JoinColumn(name = "id_ksiazka", referencedColumnName = "id_ksiazka", nullable = false)

@@ -47,53 +47,59 @@ public class Uzytkownik implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_uzytkownik")
+    @Column(name = "id_uzytkownik", unique = true, updatable = false, nullable = false)
     private Long idUzytkownik;
     @Basic(optional = false)
     @NotNull
     @Size(min = 2, max = 50)
+    @Column(nullable = false, length = 50)
     private String imie;
     @Basic(optional = false)
     @NotNull
     @Size(min = 2, max = 70)
+    @Column(nullable = false, length = 70)
     private String nazwisko;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
+    @Column(nullable = false, length = 50)
     private String login;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
+    @Column(nullable = false, length = 50)
     private String email;
     @Column(name = "czas_pop_zal", insertable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date czasPopZal;
     @Size(max = 15)
-    @Column(name = "ip_pop_zal", insertable = false)
+    @Column(name = "ip_pop_zal", insertable = false, length = 15)
     private String ipPopZal;
-    @Column(name = "czas_n_pop_zal", insertable = false)
+    @Column(name = "czas_n_pop_zal", insertable = false, length = 15)
     @Temporal(TemporalType.TIMESTAMP)
     private Date czasNPopZal;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 32)
-    @Column(name = "haslo_md5")
+    @Size(min = 32, max = 32)
+    @Column(name = "haslo_md5", length = 32)
     private String hasloMd5;
     @Basic(optional = false)
     @NotNull
+    @Column(nullable = false)
     private boolean aktywny;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "wersja_encji")
+    @Column(name = "wersja_encji", nullable = false)
     @Version
     private long wersjaEncji;
     @Basic(optional = false)
     @NotNull
+    @Column(nullable = false)
     private boolean potwierdzony;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ilosc_n_pop_zal")
+    @Column(name = "ilosc_n_pop_zal", nullable = false)
     private int iloscNPopZal;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUzytkownik")
     private List<PoprzednieHaslo> poprzednieHasloList;
