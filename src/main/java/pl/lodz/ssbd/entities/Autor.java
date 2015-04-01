@@ -17,6 +17,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -56,6 +57,7 @@ public class Autor implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "wersja_encji")
+    @Version
     private long wersjaEncji;
     @ManyToMany(mappedBy = "autorList")
     private List<Ksiazka> ksiazkaList;

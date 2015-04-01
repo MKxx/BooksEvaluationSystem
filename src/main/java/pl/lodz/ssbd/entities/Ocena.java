@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -43,6 +44,7 @@ public class Ocena implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "wersja_encji")
+    @Version
     private long wersjaEncji;
     @JoinColumn(name = "id_ksiazka", referencedColumnName = "id_ksiazka", nullable = false)
     @ManyToOne(optional = false)
