@@ -9,12 +9,15 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -25,6 +28,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "poprzednie_haslo")
+@TableGenerator(name="PoprzednieHasloIdGen", table="generator", pkColumnName="class_name", valueColumnName="id_range", pkColumnValue="PoprzednieHaslo")
 @NamedQueries({
     @NamedQuery(name = "PoprzednieHaslo.findAll", query = "SELECT p FROM PoprzednieHaslo p"),
     @NamedQuery(name = "PoprzednieHaslo.findByIdPoprzedniegeHaslo", query = "SELECT p FROM PoprzednieHaslo p WHERE p.idPoprzedniegeHaslo = :idPoprzedniegeHaslo"),
@@ -35,16 +39,17 @@ public class PoprzednieHaslo implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_poprzedniege_haslo")
+    @Column(name = "id_poprzedniege_haslo", unique = true, updatable = false, nullable = false)
+    @GeneratedValue(strategy= GenerationType.TABLE, generator="PoprzednieHasloIdGen")
     private Long idPoprzedniegeHaslo;
     @Basic(optional = false)
     @NotNull
     @Size(min = 32, max = 32)
-    @Column(name = "stare_haslo_md5", updatable = false, nullable = false)
+    @Column(name = "stare_haslo_md5", updatable = false, nullable = false, length = 32)
     private String stareHasloMd5;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "wersja_encji")
+    @Column(name = "wersja_encji", nullable = false)
     @Version
     private long wersjaEncji;
     @JoinColumn(name = "id_uzytkownik", referencedColumnName = "id_uzytkownik", nullable = false, updatable = false)
