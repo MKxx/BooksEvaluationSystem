@@ -99,11 +99,7 @@ public class Ocena implements Serializable {
         this.ulubiona = ulubiona;
     }
 
-    public long getWersjaEncji() {
-        return wersjaEncji;
-    }
-
-    public void setWersjaEncji(long wersjaEncji) {
+    private void setWersjaEncji(long wersjaEncji) {
         this.wersjaEncji = wersjaEncji;
     }
 
