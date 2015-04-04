@@ -26,7 +26,10 @@ import javax.validation.constraints.NotNull;
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Entity
-@Table(name = "ocena")
+@Table(name = "ocena", 
+uniqueConstraints = {
+    @UniqueConstraint(columnNames = "id_ksiazka"),
+    @UniqueConstraint(columnNames = "id_uzytkownik")})
 @TableGenerator(name="OcenaIdGen", table="generator", pkColumnName="class_name", valueColumnName="id_range", pkColumnValue="Ocena")
 @NamedQueries({
     @NamedQuery(name = "Ocena.findAll", query = "SELECT o FROM Ocena o"),
