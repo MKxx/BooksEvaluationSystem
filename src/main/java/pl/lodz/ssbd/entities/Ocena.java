@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.lodz.ssbd.entities;
 
 import java.io.Serializable;
@@ -18,6 +13,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -26,7 +22,10 @@ import javax.validation.constraints.NotNull;
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Entity
-@Table(name = "ocena")
+@Table(name = "ocena", 
+uniqueConstraints = {
+    @UniqueConstraint(columnNames = "id_ksiazka"),
+    @UniqueConstraint(columnNames = "id_uzytkownik")})
 @TableGenerator(name="OcenaIdGen", table="generator", pkColumnName="class_name", valueColumnName="id_range", pkColumnValue="Ocena")
 @NamedQueries({
     @NamedQuery(name = "Ocena.findAll", query = "SELECT o FROM Ocena o"),
