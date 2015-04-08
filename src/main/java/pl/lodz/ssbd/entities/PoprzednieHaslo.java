@@ -7,6 +7,7 @@ package pl.lodz.ssbd.entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -53,7 +54,7 @@ public class PoprzednieHaslo implements Serializable {
     @Version
     private long wersjaEncji;
     @JoinColumn(name = "id_uzytkownik", referencedColumnName = "id_uzytkownik", nullable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private Uzytkownik idUzytkownik;
 
     public PoprzednieHaslo() {

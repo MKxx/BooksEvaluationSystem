@@ -2,6 +2,7 @@ package pl.lodz.ssbd.entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -55,10 +56,10 @@ public class Ocena implements Serializable {
     @Version
     private long wersjaEncji;
     @JoinColumn(name = "id_ksiazka", referencedColumnName = "id_ksiazka", nullable = false)
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private Ksiazka idKsiazka;
     @JoinColumn(name = "id_uzytkownik", referencedColumnName = "id_uzytkownik", nullable = false)
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private Uzytkownik idUzytkownik;
 
     public Ocena() {
