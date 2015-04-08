@@ -7,6 +7,7 @@ package pl.lodz.ssbd.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -70,7 +71,7 @@ public class Autor implements Serializable {
     @Version
     private long wersjaEncji;
     @ManyToMany(mappedBy = "autorList", cascade = CascadeType.ALL)
-    private List<Ksiazka> ksiazkaList;
+    private List<Ksiazka> ksiazkaList = new ArrayList<>();
 
     public Autor() {
     }
