@@ -6,6 +6,7 @@
 package pl.lodz.ssbd.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -109,11 +110,11 @@ public class Uzytkownik implements Serializable {
     @Column(name = "ilosc_n_pop_zal", nullable = false)
     private int iloscNPopZal;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUzytkownik")
-    private List<PoprzednieHaslo> poprzednieHasloList;
+    private List<PoprzednieHaslo> poprzednieHasloList = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUzytkownik")
-    private List<PoziomDostepu> poziomDostepuList;
+    private List<PoziomDostepu> poziomDostepuList = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUzytkownik")
-    private List<Ocena> ocenaList;
+    private List<Ocena> ocenaList = new ArrayList<>();
 
     public Uzytkownik() {
     }

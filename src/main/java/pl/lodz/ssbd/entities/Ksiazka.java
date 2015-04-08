@@ -7,6 +7,7 @@ package pl.lodz.ssbd.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -78,9 +79,9 @@ public class Ksiazka implements Serializable {
     @JoinColumn(name = "id_ksiazka", referencedColumnName = "id_ksiazka")}, inverseJoinColumns = {
     @JoinColumn(name = "id_autor", referencedColumnName = "id_autor")})
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<Autor> autorList;
+    private List<Autor> autorList = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idKsiazka")
-    private List<Ocena> ocenaList;
+    private List<Ocena> ocenaList = new ArrayList<>();
 
     public Ksiazka() {
     }
