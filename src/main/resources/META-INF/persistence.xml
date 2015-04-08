@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="ssbd05adminPU" transaction-type="JTA">
+  <persistence-unit name="ssbd05admin" transaction-type="JTA">
     <jta-data-source>jdbc/ssbd05adminDatasource</jta-data-source>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
@@ -8,7 +8,7 @@
       <property name="eclipselink.logging.level" value="FINE"/>
     </properties>
   </persistence-unit>
-  <persistence-unit name="ssbd05mokPU" transaction-type="RESOURCE_LOCAL">
+  <persistence-unit name="ssbd05mok" transaction-type="RESOURCE_LOCAL">
     <non-jta-data-source>jdbc/ssbd05mok</non-jta-data-source>
     <class>pl.lodz.ssbd.entities.PoprzednieHaslo</class>
     <class>pl.lodz.ssbd.entities.PoziomDostepu</class>
