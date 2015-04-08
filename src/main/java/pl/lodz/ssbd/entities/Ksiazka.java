@@ -137,11 +137,7 @@ public class Ksiazka implements Serializable {
         this.aktywne = aktywne;
     }
 
-    public long getWersjaEncji() {
-        return wersjaEncji;
-    }
-
-    public void setWersjaEncji(long wersjaEncji) {
+    private void setWersjaEncji(long wersjaEncji) {
         this.wersjaEncji = wersjaEncji;
     }
 
