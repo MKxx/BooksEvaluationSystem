@@ -29,7 +29,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "poprzednie_haslo")
-@TableGenerator(name="PoprzednieHasloIdGen", table="generator", pkColumnName="class_name", valueColumnName="id_range", pkColumnValue="poprzednie_haslo")
+@TableGenerator(name="PoprzednieHasloIdGen", table="generator", pkColumnName="nazwa_klasy", valueColumnName="ost_id", pkColumnValue="poprzednie_haslo")
 @NamedQueries({
     @NamedQuery(name = "PoprzednieHaslo.findAll", query = "SELECT p FROM PoprzednieHaslo p"),
     @NamedQuery(name = "PoprzednieHaslo.findByIdPoprzedniegeHaslo", query = "SELECT p FROM PoprzednieHaslo p WHERE p.idPoprzedniegeHaslo = :idPoprzedniegeHaslo"),
