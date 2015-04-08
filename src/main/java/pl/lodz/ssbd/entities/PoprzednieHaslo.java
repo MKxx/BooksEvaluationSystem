@@ -40,7 +40,7 @@ public class PoprzednieHaslo implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "id_poprzedniege_haslo", unique = true, updatable = false, nullable = false)
+    @Column(name = "id_poprzednie_haslo", unique = true, updatable = false, nullable = false)
     @GeneratedValue(strategy= GenerationType.TABLE, generator="PoprzednieHasloIdGen")
     private Long idPoprzedniegeHaslo;
     @Basic(optional = false)
