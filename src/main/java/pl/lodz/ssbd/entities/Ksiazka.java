@@ -33,7 +33,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "ksiazka")
-@TableGenerator(name="KsiazkaIdGen", table="generator", pkColumnName="class_name", valueColumnName="id_range", pkColumnValue="Ksiazka")
+@TableGenerator(name="KsiazkaIdGen", table="generator", pkColumnName="class_name", valueColumnName="id_range", pkColumnValue="ksiazka")
 @NamedQueries({
     @NamedQuery(name = "Ksiazka.findAll", query = "SELECT k FROM Ksiazka k"),
     @NamedQuery(name = "Ksiazka.findByIdKsiazka", query = "SELECT k FROM Ksiazka k WHERE k.idKsiazka = :idKsiazka"),

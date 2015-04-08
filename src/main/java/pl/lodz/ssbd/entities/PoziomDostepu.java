@@ -31,7 +31,7 @@ import javax.validation.constraints.Size;
 @Table(name = "poziom_dostepu", uniqueConstraints = {
     @UniqueConstraint(columnNames = "nazwa"),
     @UniqueConstraint(columnNames = "id_uzytkownik")})
-@TableGenerator(name="PoziomDostepuIdGen", table="generator", pkColumnName="class_name", valueColumnName="id_range", pkColumnValue="PoziomDostepu")
+@TableGenerator(name="PoziomDostepuIdGen", table="generator", pkColumnName="class_name", valueColumnName="id_range", pkColumnValue="poziom_dostepu")
 @NamedQueries({
     @NamedQuery(name = "PoziomDostepu.findAll", query = "SELECT p FROM PoziomDostepu p"),
     @NamedQuery(name = "PoziomDostepu.findByIdPoziomDostepu", query = "SELECT p FROM PoziomDostepu p WHERE p.idPoziomDostepu = :idPoziomDostepu"),
