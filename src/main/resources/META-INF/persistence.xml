@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="ssbd05admin" transaction-type="JTA">
+    <jta-data-source>jdbc/ssbd05adminDatasource</jta-data-source>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <property name="eclipselink.canonicalmodel.subpackage" value="ssbd05adminPU"/>
+      <property name="eclipselink.logging.level" value="FINE"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="ssbd05mok" transaction-type="RESOURCE_LOCAL">
+    <non-jta-data-source>jdbc/ssbd05mok</non-jta-data-source>
+    <class>pl.lodz.ssbd.entities.PoprzednieHaslo</class>
+    <class>pl.lodz.ssbd.entities.PoziomDostepu</class>
+    <class>pl.lodz.ssbd.entities.Uzytkownik</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <shared-cache-mode>NONE</shared-cache-mode>
+    <properties>
+      <property name="eclipselink.canonicalmodel.subpackage" value="ssbd05mok"/>
+      <property name="eclipselink.logging.level" value="FINE"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="ssbd05moo" transaction-type="RESOURCE_LOCAL">
+    <non-jta-data-source>jdbc/ssbd05moo</non-jta-data-source>
+    <class>pl.lodz.ssbd.entities.Autor</class>
+    <class>pl.lodz.ssbd.entities.Ksiazka</class>
+    <class>pl.lodz.ssbd.entities.Ocena</class>
+    <class>pl.lodz.ssbd.entities.Uzytkownik</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <shared-cache-mode>NONE</shared-cache-mode>
+    <properties>
+      <property name="eclipselink.canonicalmodel.subpackage" value="ssbd05moo"/>
+      <property name="eclipselink.logging.level" value="FINE"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="ssbd05moa" transaction-type="RESOURCE_LOCAL">
+    <non-jta-data-source>jdbc/ssbd05moa</non-jta-data-source>
+    <class>pl.lodz.ssbd.entities.Autor</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <shared-cache-mode>NONE</shared-cache-mode>
+    <properties>
+      <property name="eclipselink.canonicalmodel.subpackage" value="ssbd5moa"/>
+      <property name="eclipselink.logging.level" value="FINE"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="ssbd05moks" transaction-type="RESOURCE_LOCAL">
+    <non-jta-data-source>jdbc/ssbd05moks</non-jta-data-source>
+    <class>pl.lodz.ssbd.entities.Autor</class>
+    <class>pl.lodz.ssbd.entities.Ksiazka</class>
+    <class>pl.lodz.ssbd.entities.Ocena</class>
+    <class>pl.lodz.ssbd.entities.Uzytkownik</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <shared-cache-mode>NONE</shared-cache-mode>
+    <properties>
+      <property name="eclipselink.canonicalmodel.subpackage" value="ssbd05moks"/>
+      <property name="eclipselink.logging.level" value="FINE"/>
+    </properties>
+  </persistence-unit>
+</persistence>
