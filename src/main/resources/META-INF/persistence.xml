@@ -10,9 +10,6 @@
   </persistence-unit>
   <persistence-unit name="ssbd05mok" transaction-type="RESOURCE_LOCAL">
     <non-jta-data-source>jdbc/ssbd05mok</non-jta-data-source>
-    <class>pl.lodz.ssbd.entities.PoprzednieHaslo</class>
-    <class>pl.lodz.ssbd.entities.PoziomDostepu</class>
-    <class>pl.lodz.ssbd.entities.Uzytkownik</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
@@ -22,10 +19,6 @@
   </persistence-unit>
   <persistence-unit name="ssbd05moo" transaction-type="RESOURCE_LOCAL">
     <non-jta-data-source>jdbc/ssbd05moo</non-jta-data-source>
-    <class>pl.lodz.ssbd.entities.Autor</class>
-    <class>pl.lodz.ssbd.entities.Ksiazka</class>
-    <class>pl.lodz.ssbd.entities.Ocena</class>
-    <class>pl.lodz.ssbd.entities.Uzytkownik</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
@@ -35,7 +28,6 @@
   </persistence-unit>
   <persistence-unit name="ssbd05moa" transaction-type="RESOURCE_LOCAL">
     <non-jta-data-source>jdbc/ssbd05moa</non-jta-data-source>
-    <class>pl.lodz.ssbd.entities.Autor</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
@@ -45,10 +37,6 @@
   </persistence-unit>
   <persistence-unit name="ssbd05moks" transaction-type="RESOURCE_LOCAL">
     <non-jta-data-source>jdbc/ssbd05moks</non-jta-data-source>
-    <class>pl.lodz.ssbd.entities.Autor</class>
-    <class>pl.lodz.ssbd.entities.Ksiazka</class>
-    <class>pl.lodz.ssbd.entities.Ocena</class>
-    <class>pl.lodz.ssbd.entities.Uzytkownik</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
