@@ -8,8 +8,8 @@
       <property name="eclipselink.logging.level" value="FINE"/>
     </properties>
   </persistence-unit>
-  <persistence-unit name="ssbd05mok" transaction-type="RESOURCE_LOCAL">
-    <non-jta-data-source>jdbc/ssbd05mok</non-jta-data-source>
+  <persistence-unit name="ssbd05mok" transaction-type="JTA">
+    <jta-data-source>jdbc/ssbd05mokDatasource</jta-data-source>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
@@ -17,8 +17,8 @@
       <property name="eclipselink.logging.level" value="FINE"/>
     </properties>
   </persistence-unit>
-  <persistence-unit name="ssbd05moo" transaction-type="RESOURCE_LOCAL">
-    <non-jta-data-source>jdbc/ssbd05moo</non-jta-data-source>
+  <persistence-unit name="ssbd05moo" transaction-type="JTA">
+    <jta-data-source>jdbc/ssbd05mooDatasource</jta-data-source>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
@@ -26,8 +26,8 @@
       <property name="eclipselink.logging.level" value="FINE"/>
     </properties>
   </persistence-unit>
-  <persistence-unit name="ssbd05moa" transaction-type="RESOURCE_LOCAL">
-    <non-jta-data-source>jdbc/ssbd05moa</non-jta-data-source>
+  <persistence-unit name="ssbd05moa" transaction-type="JTA">
+    <jta-data-source>jdbc/ssbd05moaDatasource</jta-data-source>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
@@ -35,8 +35,8 @@
       <property name="eclipselink.logging.level" value="FINE"/>
     </properties>
   </persistence-unit>
-  <persistence-unit name="ssbd05moks" transaction-type="RESOURCE_LOCAL">
-    <non-jta-data-source>jdbc/ssbd05moks</non-jta-data-source>
+  <persistence-unit name="ssbd05moks" transaction-type="JTA">
+    <jta-data-source>jdbc/ssbd05moksDatasource</jta-data-source>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
