@@ -216,10 +216,6 @@ public class Uzytkownik implements Serializable {
         this.aktywny = aktywny;
     }
 
-    private void setWersjaEncji(long wersjaEncji) {
-        this.wersjaEncji = wersjaEncji;
-    }
-
     public boolean getPotwierdzony() {
         return potwierdzony;
     }

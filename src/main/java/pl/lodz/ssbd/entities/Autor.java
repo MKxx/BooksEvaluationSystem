@@ -127,10 +127,6 @@ public class Autor implements Serializable {
         this.srOcena = srOcena;
     }
 
-    private void setWersjaEncji(long wersjaEncji) {
-        this.wersjaEncji = wersjaEncji;
-    }
-
     public List<Ksiazka> getKsiazkaList() {
         return ksiazkaList;
     }
