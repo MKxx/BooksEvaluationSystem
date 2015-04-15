@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+    <jdbc-resource enabled="true" jndi-name="jdbc/ssbd05mokDatasource" object-type="user" pool-name="ssbd05mokPool">
+        <description/>
+    </jdbc-resource>
+    <jdbc-connection-pool allow-non-component-callers="false" associate-with-thread="false" connection-creation-retry-attempts="0" connection-creation-retry-interval-in-seconds="10" connection-leak-reclaim="false" connection-leak-timeout-in-seconds="0" connection-validation-method="auto-commit" datasource-classname="org.postgresql.ds.PGSimpleDataSource" fail-all-connections="false" idle-timeout-in-seconds="300" is-connection-validation-required="false" is-isolation-level-guaranteed="true" lazy-connection-association="false" lazy-connection-enlistment="false" match-connections="false" max-connection-usage-count="0" max-pool-size="32" max-wait-time-in-millis="60000" name="ssbd05mokPool" non-transactional-connections="false" ping="false" pool-resize-quantity="2" pooling="true" res-type="javax.sql.DataSource" statement-cache-size="0" statement-leak-reclaim="false" statement-leak-timeout-in-seconds="0" statement-timeout-in-seconds="-1" steady-pool-size="8"  transaction-isolation-level="read-committed" validate-atmost-once-period-in-seconds="0" wrap-jdbc-objects="false">
+        <property name="User" value="ssbd05mok"/>
+        <property name="Password" value="ssbd"/>
+        <property name="serverName" value="studdev.zsk.p.lodz.pl"/>
+        <property name="portNumber" value="5432"/>
+        <property name="databaseName" value="ssbd05"/>
+    </jdbc-connection-pool>
+    <jdbc-resource enabled="true" jndi-name="jdbc/ssbd05moaDatasource" object-type="user" pool-name="ssbd05moaPool">
+        <description/>
+    </jdbc-resource>
+    <jdbc-connection-pool allow-non-component-callers="false" associate-with-thread="false" connection-creation-retry-attempts="0" connection-creation-retry-interval-in-seconds="10" connection-leak-reclaim="false" connection-leak-timeout-in-seconds="0" connection-validation-method="auto-commit" datasource-classname="org.postgresql.ds.PGSimpleDataSource" fail-all-connections="false" idle-timeout-in-seconds="300" is-connection-validation-required="false" is-isolation-level-guaranteed="true" lazy-connection-association="false" lazy-connection-enlistment="false" match-connections="false" max-connection-usage-count="0" max-pool-size="32" max-wait-time-in-millis="60000" name="ssbd05moaPool" non-transactional-connections="false" ping="false" pool-resize-quantity="2" pooling="true" res-type="javax.sql.DataSource" statement-cache-size="0" statement-leak-reclaim="false" statement-leak-timeout-in-seconds="0" statement-timeout-in-seconds="-1" steady-pool-size="8" transaction-isolation-level="read-committed" validate-atmost-once-period-in-seconds="0" wrap-jdbc-objects="false">
+        <property name="User" value="ssbd05moa"/>
+        <property name="Password" value="ssbd"/>
+        <property name="serverName" value="studdev.zsk.p.lodz.pl"/>
+        <property name="portNumber" value="5432"/>
+        <property name="databaseName" value="ssbd05"/>
+    </jdbc-connection-pool>
+    <jdbc-resource enabled="true" jndi-name="jdbc/ssbd05mooDatasource" object-type="user" pool-name="ssbd05mooPool">
+        <description/>
+    </jdbc-resource>
+    <jdbc-connection-pool allow-non-component-callers="false" associate-with-thread="false" connection-creation-retry-attempts="0" connection-creation-retry-interval-in-seconds="10" connection-leak-reclaim="false" connection-leak-timeout-in-seconds="0" connection-validation-method="auto-commit" datasource-classname="org.postgresql.ds.PGSimpleDataSource" fail-all-connections="false" idle-timeout-in-seconds="300" is-connection-validation-required="false" is-isolation-level-guaranteed="true" lazy-connection-association="false" lazy-connection-enlistment="false" match-connections="false" max-connection-usage-count="0" max-pool-size="32" max-wait-time-in-millis="60000" name="ssbd05mooPool" non-transactional-connections="false" ping="false" pool-resize-quantity="2" pooling="true" res-type="javax.sql.DataSource" statement-cache-size="0" statement-leak-reclaim="false" statement-leak-timeout-in-seconds="0" statement-timeout-in-seconds="-1" steady-pool-size="8" transaction-isolation-level="serializable" validate-atmost-once-period-in-seconds="0" wrap-jdbc-objects="false">
+        <property name="User" value="ssbd05moo"/>
+        <property name="Password" value="ssbd"/>
+        <property name="serverName" value="studdev.zsk.p.lodz.pl"/>
+        <property name="portNumber" value="5432"/>
+        <property name="databaseName" value="ssbd05"/>
+    </jdbc-connection-pool>
+    <jdbc-resource enabled="true" jndi-name="jdbc/ssbd05moksDatasource" object-type="user" pool-name="ssbd05moksPool">
+        <description/>
+    </jdbc-resource>
+    <jdbc-connection-pool allow-non-component-callers="false" associate-with-thread="false" connection-creation-retry-attempts="0" connection-creation-retry-interval-in-seconds="10" connection-leak-reclaim="false" connection-leak-timeout-in-seconds="0" connection-validation-method="auto-commit" datasource-classname="org.postgresql.ds.PGSimpleDataSource" fail-all-connections="false" idle-timeout-in-seconds="300" is-connection-validation-required="false" is-isolation-level-guaranteed="true" lazy-connection-association="false" lazy-connection-enlistment="false" match-connections="false" max-connection-usage-count="0" max-pool-size="32" max-wait-time-in-millis="60000" name="ssbd05moksPool" non-transactional-connections="false" ping="false" pool-resize-quantity="2" pooling="true" res-type="javax.sql.DataSource" statement-cache-size="0" statement-leak-reclaim="false" statement-leak-timeout-in-seconds="0" statement-timeout-in-seconds="-1" steady-pool-size="8" transaction-isolation-level="read-committed" validate-atmost-once-period-in-seconds="0" wrap-jdbc-objects="false">
+        <property name="User" value="ssbd05moks"/>
+        <property name="Password" value="ssbd"/>
+        <property name="serverName" value="studdev.zsk.p.lodz.pl"/>
+        <property name="portNumber" value="5432"/>
+        <property name="databaseName" value="ssbd05"/>
+    </jdbc-connection-pool>
+</resources>
