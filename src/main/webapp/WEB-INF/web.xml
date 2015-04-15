@@ -78,7 +78,6 @@
         <auth-constraint>
             <description/>
             <role-name>UZYTKOWNIK</role-name>
-            <role-name>ADMINISTRATOR</role-name>
         </auth-constraint>
         <user-data-constraint>
             <description/>
