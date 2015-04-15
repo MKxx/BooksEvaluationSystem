@@ -27,7 +27,7 @@ import javax.validation.constraints.NotNull;
 uniqueConstraints = {
     @UniqueConstraint(columnNames = "id_ksiazka"),
     @UniqueConstraint(columnNames = "id_uzytkownik")})
-@TableGenerator(name="OcenaIdGen", table="generator", pkColumnName="class_name", valueColumnName="id_range", pkColumnValue="ocena")
+@TableGenerator(name="OcenaIdGen", table="generator", pkColumnName="nazwa_klasy", valueColumnName="ost_id", pkColumnValue="ocena", initialValue = 18)
 @NamedQueries({
     @NamedQuery(name = "Ocena.findAll", query = "SELECT o FROM Ocena o"),
     @NamedQuery(name = "Ocena.findByIdOcena", query = "SELECT o FROM Ocena o WHERE o.idOcena = :idOcena"),
