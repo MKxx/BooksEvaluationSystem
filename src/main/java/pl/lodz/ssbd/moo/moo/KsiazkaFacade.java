@@ -3,20 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.lodz.ssbd.moo;
+package pl.lodz.ssbd.moo.moo;
 
+import pl.lodz.ssbd.moo.*;
 import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import pl.lodz.ssbd.entities.Uzytkownik;
+import pl.lodz.ssbd.entities.Ksiazka;
 
 /**
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Stateless
-public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements UzytkownikFacadeLocal {
+public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFacadeLocal {
     @PersistenceContext(unitName = "ssbd05moo")
     private EntityManager em;
 
@@ -25,8 +26,8 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
         return em;
     }
 
-    public UzytkownikFacade() {
-        super(Uzytkownik.class);
+    public KsiazkaFacade() {
+        super(Ksiazka.class);
     }
     
 }

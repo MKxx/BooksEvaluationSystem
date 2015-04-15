@@ -3,31 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.lodz.ssbd.moo;
+package pl.lodz.ssbd.moo.moo;
 
+import pl.lodz.ssbd.moo.*;
 import pl.lodz.ssbd.facades.*;
 import java.util.List;
 import javax.ejb.Local;
-import pl.lodz.ssbd.entities.Ksiazka;
+import pl.lodz.ssbd.entities.Uzytkownik;
 
 /**
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Local
-public interface KsiazkaFacadeLocal {
+public interface UzytkownikFacadeLocal {
 
-    void create(Ksiazka ksiazka);
+    void create(Uzytkownik uzytkownik);
 
-    void edit(Ksiazka ksiazka);
+    void edit(Uzytkownik uzytkownik);
 
-    void remove(Ksiazka ksiazka);
+    void remove(Uzytkownik uzytkownik);
 
-    Ksiazka find(Object id);
+    Uzytkownik find(Object id);
 
-    List<Ksiazka> findAll();
+    List<Uzytkownik> findAll();
 
-    List<Ksiazka> findRange(int[] range);
+    List<Uzytkownik> findRange(int[] range);
 
     int count();
     

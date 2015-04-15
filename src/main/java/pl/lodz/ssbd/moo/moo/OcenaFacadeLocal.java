@@ -3,31 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.lodz.ssbd.moo;
+package pl.lodz.ssbd.moo.moo;
 
+import pl.lodz.ssbd.moo.*;
 import pl.lodz.ssbd.facades.*;
 import java.util.List;
 import javax.ejb.Local;
-import pl.lodz.ssbd.entities.Uzytkownik;
+import pl.lodz.ssbd.entities.Ocena;
 
 /**
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Local
-public interface UzytkownikFacadeLocal {
+public interface OcenaFacadeLocal {
 
-    void create(Uzytkownik uzytkownik);
+    void create(Ocena ocena);
 
-    void edit(Uzytkownik uzytkownik);
+    void edit(Ocena ocena);
 
-    void remove(Uzytkownik uzytkownik);
+    void remove(Ocena ocena);
 
-    Uzytkownik find(Object id);
+    Ocena find(Object id);
 
-    List<Uzytkownik> findAll();
+    List<Ocena> findAll();
 
-    List<Uzytkownik> findRange(int[] range);
+    List<Ocena> findRange(int[] range);
 
     int count();
     

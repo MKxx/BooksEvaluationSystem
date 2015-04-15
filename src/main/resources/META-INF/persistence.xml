@@ -9,10 +9,7 @@
     </properties>
   </persistence-unit>
   <persistence-unit name="ssbd05mok" transaction-type="JTA">
-    <jta-data-source>jdbc/ssbd05mok</jta-data-source>
-    <class>pl.lodz.ssbd.entities.PoprzednieHaslo</class>
-    <class>pl.lodz.ssbd.entities.PoziomDostepu</class>
-    <class>pl.lodz.ssbd.entities.Uzytkownik</class>
+    <jta-data-source>jdbc/ssbd05mokDatasource</jta-data-source>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
@@ -21,11 +18,7 @@
     </properties>
   </persistence-unit>
   <persistence-unit name="ssbd05moo" transaction-type="JTA">
-    <jta-data-source>jdbc/ssbd05moo</jta-data-source>
-    <class>pl.lodz.ssbd.entities.Autor</class>
-    <class>pl.lodz.ssbd.entities.Ksiazka</class>
-    <class>pl.lodz.ssbd.entities.Ocena</class>
-    <class>pl.lodz.ssbd.entities.Uzytkownik</class>
+    <jta-data-source>jdbc/ssbd05mooDatasource</jta-data-source>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
@@ -33,9 +26,17 @@
       <property name="eclipselink.logging.level" value="FINE"/>
     </properties>
   </persistence-unit>
+  <persistence-unit name="ssbd05moo2" transaction-type="JTA">
+    <jta-data-source>jdbc/ssbd05moo2Datasource</jta-data-source>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <shared-cache-mode>NONE</shared-cache-mode>
+    <properties>
+      <property name="eclipselink.canonicalmodel.subpackage" value="ssbd05moo2"/>
+      <property name="eclipselink.logging.level" value="FINE"/>
+    </properties>
+  </persistence-unit>
   <persistence-unit name="ssbd05moa" transaction-type="JTA">
-    <jta-data-source>jdbc/ssbd05moa</jta-data-source>
-    <class>pl.lodz.ssbd.entities.Autor</class>
+    <jta-data-source>jdbc/ssbd05moaDatasource</jta-data-source>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
@@ -44,11 +45,7 @@
     </properties>
   </persistence-unit>
   <persistence-unit name="ssbd05moks" transaction-type="JTA">
-    <jta-data-source>jdbc/ssbd05moks</jta-data-source>
-    <class>pl.lodz.ssbd.entities.Autor</class>
-    <class>pl.lodz.ssbd.entities.Ksiazka</class>
-    <class>pl.lodz.ssbd.entities.Ocena</class>
-    <class>pl.lodz.ssbd.entities.Uzytkownik</class>
+    <jta-data-source>jdbc/ssbd05moksDatasource</jta-data-source>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
