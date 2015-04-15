@@ -138,10 +138,6 @@ public class Ksiazka implements Serializable {
         this.aktywne = aktywne;
     }
 
-    private void setWersjaEncji(long wersjaEncji) {
-        this.wersjaEncji = wersjaEncji;
-    }
-
     public int getIloscAutorow() {
         return iloscAutorow;
     }

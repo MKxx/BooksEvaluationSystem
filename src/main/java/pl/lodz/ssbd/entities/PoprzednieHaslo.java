@@ -86,10 +86,6 @@ public class PoprzednieHaslo implements Serializable {
         this.stareHasloMd5 = stareHasloMd5;
     }
 
-    private void setWersjaEncji(long wersjaEncji) {
-        this.wersjaEncji = wersjaEncji;
-    }
-
     public Uzytkownik getIdUzytkownik() {
         return idUzytkownik;
     }

@@ -103,10 +103,6 @@ public class PoziomDostepu implements Serializable {
         this.aktywny = aktywny;
     }
 
-    private void setWersjaEncji(long wersjaEncji) {
-        this.wersjaEncji = wersjaEncji;
-    }
-
     public Uzytkownik getIdUzytkownik() {
         return idUzytkownik;
     }

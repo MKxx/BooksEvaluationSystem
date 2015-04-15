@@ -100,10 +100,6 @@ public class Ocena implements Serializable {
         this.ulubiona = ulubiona;
     }
 
-    private void setWersjaEncji(long wersjaEncji) {
-        this.wersjaEncji = wersjaEncji;
-    }
-
     public Ksiazka getIdKsiazka() {
         return idKsiazka;
     }
