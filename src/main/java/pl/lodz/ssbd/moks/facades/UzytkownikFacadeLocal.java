@@ -15,7 +15,7 @@ import pl.lodz.ssbd.entities.Uzytkownik;
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
-//@Local
+@Local
 public interface UzytkownikFacadeLocal {
 
     void create(Uzytkownik uzytkownik);

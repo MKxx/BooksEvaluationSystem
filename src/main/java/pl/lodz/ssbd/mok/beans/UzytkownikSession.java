@@ -5,9 +5,9 @@
  */
 package pl.lodz.ssbd.mok.beans;
 
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.mok.endpoints.MOKEndpointLocal;
@@ -43,6 +43,10 @@ public class UzytkownikSession implements Serializable {
         nowyUzytkownik.setEmail(uzytkownik.getEmail());
 
         MOKEndpoint.rejestrujUzytkownika(nowyUzytkownik);
+    }
+    
+    public List<Uzytkownik> pobierzWszystkichUzytkownikow(){
+        return MOKEndpoint.pobierzWszystkichUzytkownikow();
     }
 
 }

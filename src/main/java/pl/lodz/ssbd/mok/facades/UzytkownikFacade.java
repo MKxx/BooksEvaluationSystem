@@ -16,7 +16,7 @@ import pl.lodz.ssbd.entities.Uzytkownik;
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
-@Stateless(name = "UzytkownikFacadeMOK")
+@Stateless(name="mokU")
 public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements UzytkownikFacadeLocal {
     @PersistenceContext(unitName = "ssbd05mok")
     private EntityManager em;

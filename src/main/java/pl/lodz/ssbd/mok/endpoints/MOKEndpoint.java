@@ -5,12 +5,9 @@
  */
 package pl.lodz.ssbd.mok.endpoints;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
 import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.mok.facades.PoziomDostepuFacadeLocal;
@@ -23,9 +20,9 @@ import pl.lodz.ssbd.mok.facades.UzytkownikFacadeLocal;
 @Stateful
 public class MOKEndpoint implements MOKEndpointLocal {
 
-    @EJB
+    @EJB(beanName="mokU")
     private UzytkownikFacadeLocal uzytkownikFacade;
-    @EJB
+    @EJB(beanName="mokPD")
     private PoziomDostepuFacadeLocal poziomDostepuFacade;
     
     @Override
@@ -49,6 +46,11 @@ public class MOKEndpoint implements MOKEndpointLocal {
         poziomDostepuFacade.create(moderator);
         poziomDostepuFacade.create(uzytkownik);
         uzytkownikFacade.create(nowyUzytkownik);
+    }
+    
+    @Override
+    public List<Uzytkownik> pobierzWszystkichUzytkownikow() {
+        return uzytkownikFacade.findAll();
     }
 
 }
