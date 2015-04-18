@@ -7,13 +7,13 @@ package pl.lodz.ssbd.mok.beans;
 
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 import pl.lodz.ssbd.entities.Uzytkownik;
+import pl.lodz.ssbd.utils.UzytkownikComparator;
 
 /**
  *
@@ -45,6 +45,12 @@ public class ListPageBean {
     @PostConstruct
     private void initModel() {
         uzytkownicy = uzytkownikSession.pobierzWszystkichUzytkownikow();
+        uzytkownicy.sort(new UzytkownikComparator());
         uzytkownikDataModel = new ListDataModel<Uzytkownik>(uzytkownicy);
+    }
+    
+    public void potwierdzKonto(){
+        uzytkownikSession.potwierdzKonto(uzytkownikDataModel.getRowData());
+        initModel();
     }
 }

@@ -18,4 +18,5 @@ public interface MOKEndpointLocal {
 
     public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik);
     public List<Uzytkownik> pobierzWszystkichUzytkownikow();
+    public void potwierdzUzytkownika(Uzytkownik uzytkownik);
 }
