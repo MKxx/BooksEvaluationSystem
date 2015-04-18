@@ -7,13 +7,13 @@
         <!-- <meta http-equiv="Refresh" content="0;url=#{facesContext.externalContext.requestContextPath}/login/login.xhtml" /> -->
     </h:head>
     <h:body>
-        <a href="#{facesContext.externalContext.requestContextPath}/login/login.xhtml" >Zaloguj</a>
+        <h:link outcome="/login/login.xhtml" value="Zaloguj" />
         <br></br>
-        <a href="#{facesContext.externalContext.requestContextPath}/admin/adminpanel.xhtml">Panel Admina</a>
+        <h:link outcome="/admin/adminpanel.xhtml" value="Panel ADMINA" />
         <br></br>
-        <a href="#{facesContext.externalContext.requestContextPath}/moderator/dodajksiazke.xhtml">Dodaj nowa ksiazke </a>
+        <h:link outcome="/moderator/dodajksiazke.xhtml" value="Dodaj Nowa ksiazke" />
         <br></br>
-        <a href="#{facesContext.externalContext.requestContextPath}/uzytkownik/ocenksiazke.xhtml">Ocen ksiazke</a>
+        <h:link outcome="/uzytkownik/ocenksiazke.xhtml" value="Ocen ksiazke" />
         <br></br>
         #{request.userPrincipal.name}
         <br></br>
