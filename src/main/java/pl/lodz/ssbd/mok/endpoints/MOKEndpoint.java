@@ -58,5 +58,17 @@ public class MOKEndpoint implements MOKEndpointLocal {
         Uzytkownik u = uzytkownikFacade.find(uzytkownik.getIdUzytkownik());
         u.setPotwierdzony(true);
     }
+    
+    @Override
+    public void zablokujUzytkownika(Uzytkownik uzytkownik){
+        Uzytkownik u = uzytkownikFacade.find(uzytkownik.getIdUzytkownik());
+        u.setAktywny(false);
+    }
+    
+    @Override
+    public void odblokujUzytkownika(Uzytkownik uzytkownik){
+        Uzytkownik u = uzytkownikFacade.find(uzytkownik.getIdUzytkownik());
+        u.setAktywny(true);
+    }
 
 }
