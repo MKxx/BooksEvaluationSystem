@@ -1,13 +1,50 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+        <title>Panel administratora</title>
     </h:head>
     <h:body>
-        tutaj robimy panel admina czyli listę/tabele kont.
-    </h:body>
-    
-</html>
+        Lista kont<br />
+                <h:form id="listaUzytkownikowForm">
+            
+            <h:dataTable id="listaUzytkownikow" var="row" value="#{listPageBean.uzytkownikDataModel}">
+                <h:column id="login">
+                    <f:facet name="header">login</f:facet>
+                    <h:outputText value="#{row.login}" />
+                </h:column>
+                <h:column id="imie">
+                    <f:facet name="header">imię</f:facet>
+                    <h:outputText value="#{row.imie}" />
+                </h:column>
+                <h:column id="nazwisko">
+                    <f:facet name="header">nazwisko</f:facet>
+                    <h:outputText value="#{row.nazwisko}" />
+                </h:column>
+                <h:column id="email">
+                    <f:facet name="header">email</f:facet>
+                    <h:outputText value="#{row.email}" />
+                </h:column>
+                
+                <h:column id="stan">
+                    <f:facet name="header">stan</f:facet>
+                    <h:panelGrid columns="2">
+                        <h:selectBooleanCheckbox id="potwierdzone" value="#{row.potwierdzony}" disabled="true"/>    
+                        <h:outputLabel for="potwierdzone" value="potwierdzone" />    
+                        <h:selectBooleanCheckbox id="aktywne" value="#{row.aktywny}" disabled="true"/>    
+                        <h:outputLabel for="aktywne" value="aktywne" />    
+                    </h:panelGrid>
+                </h:column>
+            </h:dataTable>
+                    <h:commandButton value="Powróć" action="cancel" />
+        </h:form>
 
+    </h:body>
+</html>
