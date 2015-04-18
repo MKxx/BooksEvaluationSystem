@@ -38,7 +38,7 @@
         <web-resource-collection>
             <web-resource-name>Strony administratora</web-resource-name>
             <description/>
-            <url-pattern>/admin/*</url-pattern>
+            <url-pattern>/faces/admin/*</url-pattern>
         </web-resource-collection> 
         <auth-constraint>
             <description/>
@@ -55,7 +55,7 @@
         <web-resource-collection>
             <web-resource-name>Strony moderatora</web-resource-name>
             <description/>
-            <url-pattern>/moderator/*</url-pattern>
+            <url-pattern>/faces/moderator/*</url-pattern>
         </web-resource-collection> 
         <auth-constraint>
             <description/>
@@ -73,7 +73,7 @@
         <web-resource-collection>
             <web-resource-name>Strony uzytkownik</web-resource-name>
             <description/>
-            <url-pattern>/uzytkownik/*</url-pattern>
+            <url-pattern>/faces/uzytkownik/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
@@ -90,7 +90,7 @@
         <web-resource-collection>
             <web-resource-name>Strony logowania</web-resource-name>
             <description/>
-            <url-pattern>/login/*</url-pattern>
+            <url-pattern>/faces/login/*</url-pattern>
         </web-resource-collection>
         <user-data-constraint>
             <description/>
@@ -102,8 +102,8 @@
         <auth-method>FORM</auth-method>
         <realm-name>ssbd05realm</realm-name>
         <form-login-config>
-            <form-login-page>/login/login.xhtml</form-login-page>
-            <form-error-page>/login/blad.xhtml</form-error-page>
+            <form-login-page>/faces/login/login.xhtml</form-login-page>
+            <form-error-page>/faces/login/blad.xhtml</form-error-page>
         </form-login-config>
     </login-config>
 </web-app>
