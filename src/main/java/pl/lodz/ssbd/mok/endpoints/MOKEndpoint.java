@@ -33,7 +33,7 @@ public class MOKEndpoint implements MOKEndpointLocal {
         moderator.setIdUzytkownik(nowyUzytkownik);
         moderator.setNazwa("MODERATOR");
         PoziomDostepu uzytkownik = new PoziomDostepu();
-        uzytkownik.setAktywny(false);
+        uzytkownik.setAktywny(true);
         uzytkownik.setIdUzytkownik(nowyUzytkownik);
         uzytkownik.setNazwa("UZYTKOWNIK");
         nowyUzytkownik.getPoziomDostepuList().add(admin);
