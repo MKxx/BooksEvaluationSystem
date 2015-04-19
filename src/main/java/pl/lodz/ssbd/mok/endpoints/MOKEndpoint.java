@@ -39,6 +39,7 @@ public class MOKEndpoint implements MOKEndpointLocal {
         nowyUzytkownik.getPoziomDostepuList().add(admin);
         nowyUzytkownik.getPoziomDostepuList().add(moderator);
         nowyUzytkownik.getPoziomDostepuList().add(uzytkownik);
+        nowyUzytkownik.setAktywny(true);
         uzytkownikFacade.create(nowyUzytkownik);
     }
     
