@@ -5,6 +5,7 @@
  */
 package pl.lodz.ssbd.mok.endpoints;
 
+import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Uzytkownik;
 
@@ -16,5 +17,8 @@ import pl.lodz.ssbd.entities.Uzytkownik;
 public interface MOKEndpointLocal {
 
     public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik);
-    
+    public List<Uzytkownik> pobierzWszystkichUzytkownikow();
+    public void potwierdzUzytkownika(Uzytkownik uzytkownik);
+    public void zablokujUzytkownika(Uzytkownik uzytkownik);
+    public void odblokujUzytkownika(Uzytkownik uzytkownik);
 }

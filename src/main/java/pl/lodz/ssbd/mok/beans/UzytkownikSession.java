@@ -5,9 +5,9 @@
  */
 package pl.lodz.ssbd.mok.beans;
 
-import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.mok.endpoints.MOKEndpointLocal;
@@ -34,7 +34,7 @@ public class UzytkownikSession implements Serializable {
     public Uzytkownik getUzytkownikEdycja() {
         return uzytkownikEdycja;
     }
-    void rejestrujUzytkownika(Uzytkownik uzytkownik) {
+    public void rejestrujUzytkownika(Uzytkownik uzytkownik) {
         Uzytkownik nowyUzytkownik = new Uzytkownik();
         nowyUzytkownik.setLogin(uzytkownik.getLogin());
         nowyUzytkownik.setHasloMd5(MD5.hash(uzytkownik.getHasloMd5()));
@@ -43,6 +43,22 @@ public class UzytkownikSession implements Serializable {
         nowyUzytkownik.setEmail(uzytkownik.getEmail());
 
         MOKEndpoint.rejestrujUzytkownika(nowyUzytkownik);
+    }
+    
+    public List<Uzytkownik> pobierzWszystkichUzytkownikow(){
+        return MOKEndpoint.pobierzWszystkichUzytkownikow();
+    }
+    
+    public void potwierdzKonto(Uzytkownik uzytkownik){
+        MOKEndpoint.potwierdzUzytkownika(uzytkownik);
+    }
+    
+    public void zablokujKonto(Uzytkownik uzytkownik){
+        MOKEndpoint.zablokujUzytkownika(uzytkownik);
+    }
+        
+    public void odblokujKonto(Uzytkownik uzytkownik){
+        MOKEndpoint.odblokujUzytkownika(uzytkownik);
     }
 
 }

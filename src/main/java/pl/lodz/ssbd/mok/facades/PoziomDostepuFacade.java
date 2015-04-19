@@ -16,7 +16,7 @@ import pl.lodz.ssbd.entities.PoziomDostepu;
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
-@Stateless
+@Stateless(name="mokPD")
 public class PoziomDostepuFacade extends AbstractFacade<PoziomDostepu> implements PoziomDostepuFacadeLocal {
     @PersistenceContext(unitName = "ssbd05mok")
     private EntityManager em;

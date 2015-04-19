@@ -5,11 +5,11 @@
  */
 package pl.lodz.ssbd.mok.endpoints;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
-import pl.lodz.ssbd.mok.facades.PoziomDostepuFacadeLocal;
 import pl.lodz.ssbd.mok.facades.UzytkownikFacadeLocal;
 
 /**
@@ -19,10 +19,8 @@ import pl.lodz.ssbd.mok.facades.UzytkownikFacadeLocal;
 @Stateful
 public class MOKEndpoint implements MOKEndpointLocal {
 
-    @EJB
+    @EJB(beanName="mokU")
     private UzytkownikFacadeLocal uzytkownikFacade;
-    @EJB
-    private PoziomDostepuFacadeLocal poziomDostepuFacade;
     
     @Override
     public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik) {
@@ -42,6 +40,29 @@ public class MOKEndpoint implements MOKEndpointLocal {
         nowyUzytkownik.getPoziomDostepuList().add(moderator);
         nowyUzytkownik.getPoziomDostepuList().add(uzytkownik);
         uzytkownikFacade.create(nowyUzytkownik);
+    }
+    
+    @Override
+    public List<Uzytkownik> pobierzWszystkichUzytkownikow() {
+        return uzytkownikFacade.findAll();
+    }
+    
+    @Override
+    public void potwierdzUzytkownika(Uzytkownik uzytkownik){
+        Uzytkownik u = uzytkownikFacade.find(uzytkownik.getIdUzytkownik());
+        u.setPotwierdzony(true);
+    }
+    
+    @Override
+    public void zablokujUzytkownika(Uzytkownik uzytkownik){
+        Uzytkownik u = uzytkownikFacade.find(uzytkownik.getIdUzytkownik());
+        u.setAktywny(false);
+    }
+    
+    @Override
+    public void odblokujUzytkownika(Uzytkownik uzytkownik){
+        Uzytkownik u = uzytkownikFacade.find(uzytkownik.getIdUzytkownik());
+        u.setAktywny(true);
     }
 
 }
