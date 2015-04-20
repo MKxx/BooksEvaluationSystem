@@ -48,5 +48,9 @@ public class UzytkownikSession implements Serializable {
     public List<Uzytkownik> pobierzWszystkichUzytkownikow(){
         return MOKEndpoint.pobierzWszystkichUzytkownikow();
     }
+    
+    public void potwierdzKonto(Uzytkownik uzytkownik){
+        MOKEndpoint.potwierdzUzytkownika(uzytkownik);
+    }
 
 }

@@ -42,6 +42,10 @@ and open the template in the editor.
                         <h:outputLabel for="aktywne" value="aktywne" />    
                     </h:panelGrid>
                 </h:column>
+                <h:column id="akcje">
+                    <f:facet name="header">akcje</f:facet>
+                    <h:commandButton action="#{listPageBean.potwierdzKonto}" value="Autoryzuj" rendered="#{not row.potwierdzony}"/>
+                </h:column>
             </h:dataTable>
                     <h:commandButton value="Powróć" action="cancel" />
         </h:form>

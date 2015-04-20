@@ -52,5 +52,11 @@ public class MOKEndpoint implements MOKEndpointLocal {
     public List<Uzytkownik> pobierzWszystkichUzytkownikow() {
         return uzytkownikFacade.findAll();
     }
+    
+    @Override
+    public void potwierdzUzytkownika(Uzytkownik uzytkownik){
+        Uzytkownik u = uzytkownikFacade.find(uzytkownik.getIdUzytkownik());
+        u.setPotwierdzony(true);
+    }
 
 }
