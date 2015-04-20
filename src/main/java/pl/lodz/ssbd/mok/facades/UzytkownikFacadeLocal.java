@@ -31,5 +31,7 @@ public interface UzytkownikFacadeLocal {
     List<Uzytkownik> findRange(int[] range);
 
     int count();
+
+    public Uzytkownik findByLogin(String username);
     
 }

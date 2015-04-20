@@ -61,4 +61,8 @@ public class UzytkownikSession implements Serializable {
         MOKEndpoint.odblokujUzytkownika(uzytkownik);
     }
 
+    public boolean zaloguj(String username, String password, String IP) {
+        return MOKEndpoint.zaloguj(username,password,IP);
+    }
+
 }

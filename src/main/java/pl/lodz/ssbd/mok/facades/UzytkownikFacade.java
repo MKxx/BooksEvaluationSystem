@@ -9,15 +9,18 @@ import pl.lodz.ssbd.mok.*;
 import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import pl.lodz.ssbd.entities.Uzytkownik;
 
 /**
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
-@Stateless(name="mokU")
+@Stateless(name = "mokU")
 public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements UzytkownikFacadeLocal {
+
     @PersistenceContext(unitName = "ssbd05mok")
     private EntityManager em;
 
@@ -29,5 +32,16 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
     public UzytkownikFacade() {
         super(Uzytkownik.class);
     }
-    
+
+    @Override
+    public Uzytkownik findByLogin(String login) {
+        Query q = em.createNamedQuery("Uzytkownik.findByLogin");
+        q.setParameter("login", login);
+        try {
+            return (Uzytkownik) q.getSingleResult();
+        } catch (NoResultException ex) {
+            return null;
+        }
+    }
+
 }
