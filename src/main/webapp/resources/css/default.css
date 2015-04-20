@@ -1,0 +1,17 @@
+body {
+    background-color: #6B89D1;
+    font-size: 12px;
+    font-family: Verdana, "Verdana CE";
+    color: white;  
+    margin: 10px;
+}
+a:link, a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+a:link:hover, a:visited:hover  {
+  color: black;
+  font-weight : bold;
+  font-weight: bold;
+}

@@ -1,9 +1,17 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Strona Logowania</title>
-    </h:head>
-    <h:body>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns="http://www.w3.org/1999/xhtml"
+      template="./../templates/Template.xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    
+    <ui:define name="top">
+        <p>Strona główna</p>
+    </ui:define>
+
+    <ui:define name="left">
+        <ui:include src="./../templates/Menu.xhtml" />
+    </ui:define>
+
+    <ui:define name="content">
         <form method="POST" action="j_security_check">
                 <h:outputLabel for="j_username" value="Username" />
                 <input type="text" name="j_username" />
@@ -14,5 +22,5 @@
                 <h:outputText value="" />
                 <input type="submit" name="submit" value="Zaloguj" />
         </form>
-    </h:body>
-</html>
+    </ui:define>
+</ui:composition>
