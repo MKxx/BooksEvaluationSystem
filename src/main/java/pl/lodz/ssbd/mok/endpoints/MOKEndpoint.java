@@ -10,7 +10,6 @@ import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
-import pl.lodz.ssbd.mok.facades.PoziomDostepuFacadeLocal;
 import pl.lodz.ssbd.mok.facades.UzytkownikFacadeLocal;
 
 /**
@@ -22,8 +21,6 @@ public class MOKEndpoint implements MOKEndpointLocal {
 
     @EJB(beanName="mokU")
     private UzytkownikFacadeLocal uzytkownikFacade;
-    @EJB(beanName="mokPD")
-    private PoziomDostepuFacadeLocal poziomDostepuFacade;
     
     @Override
     public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik) {
@@ -36,15 +33,13 @@ public class MOKEndpoint implements MOKEndpointLocal {
         moderator.setIdUzytkownik(nowyUzytkownik);
         moderator.setNazwa("MODERATOR");
         PoziomDostepu uzytkownik = new PoziomDostepu();
-        uzytkownik.setAktywny(false);
+        uzytkownik.setAktywny(true);
         uzytkownik.setIdUzytkownik(nowyUzytkownik);
         uzytkownik.setNazwa("UZYTKOWNIK");
         nowyUzytkownik.getPoziomDostepuList().add(admin);
         nowyUzytkownik.getPoziomDostepuList().add(moderator);
         nowyUzytkownik.getPoziomDostepuList().add(uzytkownik);
-        poziomDostepuFacade.create(admin);
-        poziomDostepuFacade.create(moderator);
-        poziomDostepuFacade.create(uzytkownik);
+        nowyUzytkownik.setAktywny(true);
         uzytkownikFacade.create(nowyUzytkownik);
     }
     

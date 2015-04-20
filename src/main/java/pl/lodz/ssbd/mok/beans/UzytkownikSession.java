@@ -34,7 +34,7 @@ public class UzytkownikSession implements Serializable {
     public Uzytkownik getUzytkownikEdycja() {
         return uzytkownikEdycja;
     }
-    void rejestrujUzytkownika(Uzytkownik uzytkownik) {
+    public void rejestrujUzytkownika(Uzytkownik uzytkownik) {
         Uzytkownik nowyUzytkownik = new Uzytkownik();
         nowyUzytkownik.setLogin(uzytkownik.getLogin());
         nowyUzytkownik.setHasloMd5(MD5.hash(uzytkownik.getHasloMd5()));

@@ -36,6 +36,6 @@ public class RejestracjaPageBean {
     public String rejestrujUzytkownika() {
         System.out.println(uzytkownik);
         uzytkownikSession.rejestrujUzytkownika(uzytkownik);
-        return "success";
+        return "sukces";
     }
 }
