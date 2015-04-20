@@ -11,7 +11,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import pl.lodz.ssbd.entities.Uzytkownik;
-
+import pl.lodz.ssbd.facades.AbstractFacade;
 /**
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
