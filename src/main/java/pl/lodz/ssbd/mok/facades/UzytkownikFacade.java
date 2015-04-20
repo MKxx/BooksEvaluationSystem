@@ -5,8 +5,6 @@
  */
 package pl.lodz.ssbd.mok.facades;
 
-import pl.lodz.ssbd.mok.*;
-import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;

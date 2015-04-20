@@ -70,9 +70,6 @@ public class MOKEndpoint implements MOKEndpointLocal {
 
     @Override
     public boolean zaloguj(String username, String password, String IP) {
-        System.out.println(username);
-        System.out.println(password);
-        System.out.println(IP);
         Uzytkownik uzytkownik = uzytkownikFacade.findByLogin(username);
         if (uzytkownik == null) {
             return false;
@@ -80,14 +77,21 @@ public class MOKEndpoint implements MOKEndpointLocal {
         if (!uzytkownik.getHasloMd5().equals(MD5.hash(password))) {
             uzytkownik.setCzasNPopZal(new Date());
             if (uzytkownik.getIloscNPopZal() == 2) {
+                uzytkownik.setIloscNPopZal(uzytkownik.getIloscNPopZal() + 1);
                 uzytkownik.setAktywny(false);
             }
-            uzytkownik.setIloscNPopZal(uzytkownik.getIloscNPopZal() + 1);
+            else{
+                uzytkownik.setIloscNPopZal(uzytkownik.getIloscNPopZal() + 1);
+            }
             return false;
         }
+        else {
         uzytkownik.setCzasPopZal(new Date());
         uzytkownik.setIpPopZal(IP);
+        if(uzytkownik.getAktywny()){
         uzytkownik.setIloscNPopZal(0);
+        }
         return true;
+        }
     }
 }
