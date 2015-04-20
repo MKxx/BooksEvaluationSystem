@@ -52,5 +52,13 @@ public class UzytkownikSession implements Serializable {
     public void potwierdzKonto(Uzytkownik uzytkownik){
         MOKEndpoint.potwierdzUzytkownika(uzytkownik);
     }
+    
+    public void zablokujKonto(Uzytkownik uzytkownik){
+        MOKEndpoint.zablokujUzytkownika(uzytkownik);
+    }
+        
+    public void odblokujKonto(Uzytkownik uzytkownik){
+        MOKEndpoint.odblokujUzytkownika(uzytkownik);
+    }
 
 }

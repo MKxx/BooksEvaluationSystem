@@ -5,15 +5,22 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns="http://www.w3.org/1999/xhtml"
+      template="./../templates/Template.xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
-<h:head>
-        <title>Panel administratora</title>
-    </h:head>
-    <h:body>
-        Lista kont<br />
-                <h:form id="listaUzytkownikowForm">
+    <ui:define name="top">
+        <p>Strona główna</p>
+    </ui:define>
+
+    <ui:define name="left">
+        <ui:include src="./../templates/Menu.xhtml" />
+    </ui:define>
+
+    <ui:define name="content">
+        <h2>Lista kont</h2>
+            <h:form id="listaUzytkownikowForm">
             
             <h:dataTable id="listaUzytkownikow" var="row" value="#{listPageBean.uzytkownikDataModel}">
                 <h:column id="login">
@@ -45,10 +52,12 @@ and open the template in the editor.
                 <h:column id="akcje">
                     <f:facet name="header">akcje</f:facet>
                     <h:commandButton action="#{listPageBean.potwierdzKonto}" value="Autoryzuj" rendered="#{not row.potwierdzony}"/>
+                    <h:commandButton action="#{listPageBean.zablokujKonto}" value="Zablokuj" rendered="#{row.aktywny}"/>
+                    <h:commandButton action="#{listPageBean.odblokujKonto}" value="Odblokuj" rendered="#{not row.aktywny}"/>
                 </h:column>
             </h:dataTable>
                     <h:commandButton value="Powróć" action="cancel" />
         </h:form>
 
-    </h:body>
-</html>
+    </ui:define>
+</ui:composition>

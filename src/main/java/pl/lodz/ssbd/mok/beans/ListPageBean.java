@@ -53,4 +53,14 @@ public class ListPageBean {
         uzytkownikSession.potwierdzKonto(uzytkownikDataModel.getRowData());
         initModel();
     }
+    
+    public void zablokujKonto(){
+        uzytkownikSession.zablokujKonto(uzytkownikDataModel.getRowData());
+        initModel();
+    }
+    
+    public void odblokujKonto(){
+        uzytkownikSession.odblokujKonto(uzytkownikDataModel.getRowData());
+        initModel();
+    }
 }

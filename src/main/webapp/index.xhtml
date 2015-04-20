@@ -1,32 +1,18 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-        <!-- <meta http-equiv="Refresh" content="0;url=#{facesContext.externalContext.requestContextPath}/login/login.xhtml" /> -->
-    </h:head>
-    <h:body>
-        <h:link outcome="/login/login.xhtml" value="Zaloguj" />
-        <br></br>
-        <h:link outcome="/admin/adminpanel.xhtml" value="Panel ADMINA" />
-        <br></br>
-        <h:link outcome="/moderator/dodajksiazke.xhtml" value="Dodaj Nowa ksiazke" />
-        <br></br>
-        <h:link outcome="/uzytkownik/ocenksiazke.xhtml" value="Ocen ksiazke" />
-        <br></br>
-        <h:link outcome="/rejestracja.xhtml" value="Rejestracja" />
-        <br></br>
-        #{request.userPrincipal.name}
-        <br></br>
-        #{request.remoteUser}
-        <br></br>
-        ADMINISTRATOR: #{request.isUserInRole("ADMINISTRATOR")} <br></br>
-        <br></br>
-        MODERATOR: #{request.isUserInRole("MODERATOR")} <br></br>
-        <br></br>
-        UZYTKOWNIK: #{request.isUserInRole("UZYTKOWNIK")}   <br></br>
-        <br></br>
-    </h:body>
-</html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns="http://www.w3.org/1999/xhtml"
+      template="./templates/Template.xhtml">
+    <ui:define name="top">
+        <p>Strona główna</p>
+    </ui:define>
+
+    <ui:define name="left">
+        <ui:include src="./templates/Menu.xhtml" />
+    </ui:define>
+
+    <ui:define name="content">
+        <p>Witaj na stronie projektu SSBD05 - System oceny książek i autorów!</p>
+    </ui:define>
+</ui:composition>
 
