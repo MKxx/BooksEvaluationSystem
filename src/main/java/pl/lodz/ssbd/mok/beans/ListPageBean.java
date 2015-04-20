@@ -49,18 +49,18 @@ public class ListPageBean {
         uzytkownikDataModel = new ListDataModel<Uzytkownik>(uzytkownicy);
     }
     
-    public void potwierdzKonto(){
-        uzytkownikSession.potwierdzKonto(uzytkownikDataModel.getRowData());
+    public void potwierdzUzytkownika(){
+        uzytkownikSession.potwierdzUzytkownika(uzytkownikDataModel.getRowData());
         initModel();
     }
     
-    public void zablokujKonto(){
-        uzytkownikSession.zablokujKonto(uzytkownikDataModel.getRowData());
+    public void zablokujUzytkownika(){
+        uzytkownikSession.zablokujUzytkownika(uzytkownikDataModel.getRowData());
         initModel();
     }
     
-    public void odblokujKonto(){
-        uzytkownikSession.odblokujKonto(uzytkownikDataModel.getRowData());
+    public void odblokujUzytkownika(){
+        uzytkownikSession.odblokujUzytkownika(uzytkownikDataModel.getRowData());
         initModel();
     }
 }

@@ -51,9 +51,9 @@ and open the template in the editor.
                 </h:column>
                 <h:column id="akcje">
                     <f:facet name="header">akcje</f:facet>
-                    <h:commandButton action="#{listPageBean.potwierdzKonto}" value="Autoryzuj" rendered="#{not row.potwierdzony}"/>
-                    <h:commandButton action="#{listPageBean.zablokujKonto}" value="Zablokuj" rendered="#{row.aktywny}"/>
-                    <h:commandButton action="#{listPageBean.odblokujKonto}" value="Odblokuj" rendered="#{not row.aktywny}"/>
+                    <h:commandButton action="#{listPageBean.potwierdzUzytkownika}" value="Autoryzuj" rendered="#{not row.potwierdzony}"/>
+                    <h:commandButton action="#{listPageBean.zablokujUzytkownika}" value="Zablokuj" rendered="#{row.aktywny}"/>
+                    <h:commandButton action="#{listPageBean.odblokujUzytkownika}" value="Odblokuj" rendered="#{not row.aktywny}"/>
                 </h:column>
             </h:dataTable>
                     <h:commandButton value="Powróć" action="cancel" />

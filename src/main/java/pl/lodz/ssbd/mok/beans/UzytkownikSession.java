@@ -49,15 +49,15 @@ public class UzytkownikSession implements Serializable {
         return MOKEndpoint.pobierzWszystkichUzytkownikow();
     }
     
-    public void potwierdzKonto(Uzytkownik uzytkownik){
+    public void potwierdzUzytkownika(Uzytkownik uzytkownik){
         MOKEndpoint.potwierdzUzytkownika(uzytkownik);
     }
     
-    public void zablokujKonto(Uzytkownik uzytkownik){
+    public void zablokujUzytkownika(Uzytkownik uzytkownik){
         MOKEndpoint.zablokujUzytkownika(uzytkownik);
     }
         
-    public void odblokujKonto(Uzytkownik uzytkownik){
+    public void odblokujUzytkownika(Uzytkownik uzytkownik){
         MOKEndpoint.odblokujUzytkownika(uzytkownik);
     }
 
