@@ -25,6 +25,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 /**
@@ -72,7 +73,7 @@ public class Uzytkownik implements Serializable {
     @Size(min = 1, max = 50)
     @Column(unique = true, nullable = false, length = 50)
     private String login;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -89,7 +90,7 @@ public class Uzytkownik implements Serializable {
     private Date czasNPopZal;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 32, max = 32)
+    @Size(min = 6, max = 32)
     @Column(name = "haslo_md5", length = 32)
     private String hasloMd5;
     @Basic(optional = false)

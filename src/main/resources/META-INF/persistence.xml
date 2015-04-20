@@ -10,7 +10,7 @@
   </persistence-unit>
   <persistence-unit name="ssbd05mok" transaction-type="JTA">
     <jta-data-source>jdbc/ssbd05mokDatasource</jta-data-source>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
       <property name="eclipselink.canonicalmodel.subpackage" value="ssbd05mok"/>
@@ -19,7 +19,7 @@
   </persistence-unit>
   <persistence-unit name="ssbd05moo" transaction-type="JTA">
     <jta-data-source>jdbc/ssbd05mooDatasource</jta-data-source>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
       <property name="eclipselink.canonicalmodel.subpackage" value="ssbd05moo"/>
@@ -28,7 +28,7 @@
   </persistence-unit>
   <persistence-unit name="ssbd05moo2" transaction-type="JTA">
     <jta-data-source>jdbc/ssbd05moo2Datasource</jta-data-source>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
       <property name="eclipselink.canonicalmodel.subpackage" value="ssbd05moo2"/>
@@ -37,7 +37,7 @@
   </persistence-unit>
   <persistence-unit name="ssbd05moa" transaction-type="JTA">
     <jta-data-source>jdbc/ssbd05moaDatasource</jta-data-source>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
       <property name="eclipselink.canonicalmodel.subpackage" value="ssbd5moa"/>
@@ -46,7 +46,7 @@
   </persistence-unit>
   <persistence-unit name="ssbd05moks" transaction-type="JTA">
     <jta-data-source>jdbc/ssbd05moksDatasource</jta-data-source>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
       <property name="eclipselink.canonicalmodel.subpackage" value="ssbd05moks"/>
