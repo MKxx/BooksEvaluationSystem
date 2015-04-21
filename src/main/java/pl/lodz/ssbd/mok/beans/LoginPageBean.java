@@ -64,13 +64,11 @@ public class LoginPageBean {
     public String zaloguj(){
         try {
             getRequest().login(username, password);
-        } catch (ServletException ex) {
-            Logger.getLogger(LoginPageBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if(uzytkownikSession.zaloguj(username, password, IP)){
+            uzytkownikSession.zalogujPoprawneUwierzytelnienie(username, password, IP);
             return "sukces";
-        }
-        else{
+        } catch (ServletException ex) {
+            uzytkownikSession.zalogujNiepoprawneUwierzytenienie(username, password, IP);
+            Logger.getLogger(LoginPageBean.class.getName()).log(Level.SEVERE, null, ex);
             return "porazka";
         }
     }

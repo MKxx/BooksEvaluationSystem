@@ -70,29 +70,32 @@ public class MOKEndpoint implements MOKEndpointLocal {
 
     @Override
     public boolean zaloguj(String username, String password, String IP) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void zalogujPoprawneUwierzytelnienie(String username, String password, String IP) {
         Uzytkownik uzytkownik = uzytkownikFacade.findByLogin(username);
-        if (uzytkownik == null) {
-            return false;
-        }
-        int ilosc_niepoprawnych_zalogowan = uzytkownik.getIloscNPopZal();
-        if (!uzytkownik.getHasloMd5().equals(MD5.hash(password))) {
-            uzytkownik.setCzasNPopZal(new Date());
-            if (ilosc_niepoprawnych_zalogowan == 2) {
-                uzytkownik.setIloscNPopZal(ilosc_niepoprawnych_zalogowan + 1);
-                uzytkownik.setAktywny(false);
-            }
-            else{
-                uzytkownik.setIloscNPopZal(ilosc_niepoprawnych_zalogowan + 1);
-            }
-            return false;
-        }
-        else {
         uzytkownik.setCzasPopZal(new Date());
         uzytkownik.setIpPopZal(IP);
-        if(uzytkownik.getAktywny()){
-        uzytkownik.setIloscNPopZal(0);
+        if (uzytkownik.getAktywny()) {
+            uzytkownik.setIloscNPopZal(0);
         }
-        return true;
+    }
+
+    @Override
+    public void zalogujNiepoprawneUwierzytenienie(String username, String password, String IP) {
+        Uzytkownik uzytkownik = uzytkownikFacade.findByLogin(username);
+        if (uzytkownik == null) {
+            return;
+        }
+        int ilosc_niepoprawnych_zalogowan = uzytkownik.getIloscNPopZal();
+        uzytkownik.setCzasNPopZal(new Date());
+        if (ilosc_niepoprawnych_zalogowan == 2) {
+            uzytkownik.setIloscNPopZal(ilosc_niepoprawnych_zalogowan + 1);
+            uzytkownik.setAktywny(false);
+        } else {
+            uzytkownik.setIloscNPopZal(ilosc_niepoprawnych_zalogowan + 1);
         }
     }
 }
