@@ -74,14 +74,15 @@ public class MOKEndpoint implements MOKEndpointLocal {
         if (uzytkownik == null) {
             return false;
         }
+        int ilosc_niepoprawnych_zalogowan = uzytkownik.getIloscNPopZal();
         if (!uzytkownik.getHasloMd5().equals(MD5.hash(password))) {
             uzytkownik.setCzasNPopZal(new Date());
-            if (uzytkownik.getIloscNPopZal() == 2) {
-                uzytkownik.setIloscNPopZal(uzytkownik.getIloscNPopZal() + 1);
+            if (ilosc_niepoprawnych_zalogowan == 2) {
+                uzytkownik.setIloscNPopZal(ilosc_niepoprawnych_zalogowan + 1);
                 uzytkownik.setAktywny(false);
             }
             else{
-                uzytkownik.setIloscNPopZal(uzytkownik.getIloscNPopZal() + 1);
+                uzytkownik.setIloscNPopZal(ilosc_niepoprawnych_zalogowan + 1);
             }
             return false;
         }
