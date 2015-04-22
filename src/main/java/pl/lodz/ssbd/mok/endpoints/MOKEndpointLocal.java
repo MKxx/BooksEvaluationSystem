@@ -21,4 +21,10 @@ public interface MOKEndpointLocal {
     public void potwierdzUzytkownika(Uzytkownik uzytkownik);
     public void zablokujUzytkownika(Uzytkownik uzytkownik);
     public void odblokujUzytkownika(Uzytkownik uzytkownik);
+
+    public boolean zaloguj(String username, String password, String IP);
+
+    public void zalogujPoprawneUwierzytelnienie(String username, String password, String IP);
+
+    public void zalogujNiepoprawneUwierzytenienie(String username, String password, String IP);
 }

@@ -5,8 +5,6 @@
  */
 package pl.lodz.ssbd.mok.facades;
 
-import pl.lodz.ssbd.mok.*;
-import pl.lodz.ssbd.facades.*;
 import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Uzytkownik;
@@ -31,5 +29,7 @@ public interface UzytkownikFacadeLocal {
     List<Uzytkownik> findRange(int[] range);
 
     int count();
+
+    public Uzytkownik findByLogin(String username);
     
 }
