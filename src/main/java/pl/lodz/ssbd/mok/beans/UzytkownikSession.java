@@ -73,4 +73,12 @@ public class UzytkownikSession implements Serializable {
          MOKEndpoint.zalogujNiepoprawneUwierzytenienie(username,password,IP);
     }
 
+    void zapiszUzytkownikaPoEdycji() {
+        MOKEndpoint.zapiszKontoPoEdycji(uzytkownikEdycja);
+    }
+    
+    public void pobierzUzytkownikaDoEdycji(Uzytkownik uzytkownik) {
+        uzytkownikEdycja = MOKEndpoint.pobierzUzytkownikaDoEdycji(uzytkownik.getLogin());
+    }
+
 }

@@ -15,3 +15,8 @@ a:link:hover, a:visited:hover  {
   font-weight : bold;
   font-weight: bold;
 }
+
+
+.blad {
+    color: red;
+}

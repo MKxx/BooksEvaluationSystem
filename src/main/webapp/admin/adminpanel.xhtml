@@ -54,6 +54,7 @@ and open the template in the editor.
                     <h:commandButton action="#{listPageBean.potwierdzUzytkownika}" value="Autoryzuj" rendered="#{not row.potwierdzony}"/>
                     <h:commandButton action="#{listPageBean.zablokujUzytkownika}" value="Zablokuj" rendered="#{row.aktywny}"/>
                     <h:commandButton action="#{listPageBean.odblokujUzytkownika}" value="Odblokuj" rendered="#{not row.aktywny}"/>
+                    <h:commandButton action="#{listPageBean.edytujUzytkownika()}" value="Edytuj"/>
                 </h:column>
             </h:dataTable>
                     <h:commandButton value="Powróć" action="cancel" />

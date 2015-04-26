@@ -63,4 +63,9 @@ public class ListPageBean {
         uzytkownikSession.odblokujUzytkownika(uzytkownikDataModel.getRowData());
         initModel();
     }
+    
+    public String edytujUzytkownika(){
+        uzytkownikSession.pobierzUzytkownikaDoEdycji(uzytkownikDataModel.getRowData());
+        return "edycja";
+    }
 }

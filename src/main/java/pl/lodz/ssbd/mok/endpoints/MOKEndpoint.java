@@ -9,11 +9,10 @@ import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
+import pl.lodz.ssbd.entities.PoprzednieHaslo;
 import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.mok.facades.UzytkownikFacadeLocal;
-import pl.lodz.ssbd.utils.MD5;
-
 /**
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
@@ -23,6 +22,8 @@ public class MOKEndpoint implements MOKEndpointLocal {
 
     @EJB(beanName = "mokU")
     private UzytkownikFacadeLocal uzytkownikFacade;
+    private Uzytkownik uzytkownikEdycja;
+    private String hasloPrzedEdycja;
 
     @Override
     public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik) {
@@ -97,5 +98,31 @@ public class MOKEndpoint implements MOKEndpointLocal {
         } else {
             uzytkownik.setIloscNPopZal(ilosc_niepoprawnych_zalogowan + 1);
         }
+    }
+    
+    @Override
+    public Uzytkownik pobierzUzytkownikaDoEdycji(String login){
+        uzytkownikEdycja = uzytkownikFacade.findByLogin(login);
+        hasloPrzedEdycja = uzytkownikEdycja.getHasloMd5();
+        System.out.println(uzytkownikEdycja.getImie());
+        return uzytkownikEdycja;
+    }
+
+    @Override
+    public void zapiszKontoPoEdycji(Uzytkownik uzytkownik) {
+        if (null == uzytkownikEdycja) {
+            throw new IllegalArgumentException("Brak wczytanego uzytkownika do modyfikacji");
+        }
+        if (!uzytkownikEdycja.equals(uzytkownik)) {
+            throw new IllegalArgumentException("Modyfikowany uzytkownik niezgodny z wczytanym");
+        }
+        if(!hasloPrzedEdycja.equals(uzytkownikEdycja.getHasloMd5())){
+            PoprzednieHaslo popHaslo = new PoprzednieHaslo();
+            popHaslo.setIdUzytkownik(uzytkownik);
+            popHaslo.setStareHasloMd5(hasloPrzedEdycja);
+            uzytkownik.getPoprzednieHasloList().add(popHaslo);
+        }
+        uzytkownikFacade.edit(uzytkownikEdycja);
+        uzytkownikEdycja = null;
     }
 }
