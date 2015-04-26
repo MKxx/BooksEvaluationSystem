@@ -9,6 +9,7 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.mok.endpoints.MOKEndpointLocal;
 import pl.lodz.ssbd.utils.MD5;
@@ -79,6 +80,14 @@ public class UzytkownikSession implements Serializable {
     
     public void pobierzUzytkownikaDoEdycji(Uzytkownik uzytkownik) {
         uzytkownikEdycja = MOKEndpoint.pobierzUzytkownikaDoEdycji(uzytkownik.getLogin());
+    }
+
+    void nadajPoziom(PoziomDostepu poziom) {
+        MOKEndpoint.nadajPoziom(poziom);
+    }
+
+    void odbierzPoziom(PoziomDostepu poziom) {
+        MOKEndpoint.odbierzPoziom(poziom);
     }
 
 }

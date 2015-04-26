@@ -7,6 +7,7 @@ package pl.lodz.ssbd.mok.endpoints;
 
 import java.util.List;
 import javax.ejb.Local;
+import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
 
 /**
@@ -31,4 +32,8 @@ public interface MOKEndpointLocal {
     public void zapiszKontoPoEdycji(Uzytkownik uzytkownikEdycja);
 
     public Uzytkownik pobierzUzytkownikaDoEdycji(String login);
+
+    public void nadajPoziom(PoziomDostepu poziom);
+
+    public void odbierzPoziom(PoziomDostepu poziom);
 }

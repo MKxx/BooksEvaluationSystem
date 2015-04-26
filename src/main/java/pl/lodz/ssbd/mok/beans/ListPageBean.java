@@ -68,4 +68,9 @@ public class ListPageBean {
         uzytkownikSession.pobierzUzytkownikaDoEdycji(uzytkownikDataModel.getRowData());
         return "edycja";
     }
+    
+    public String edytujPoziomyDostepu(){
+        uzytkownikSession.pobierzUzytkownikaDoEdycji(uzytkownikDataModel.getRowData());
+        return "edycjaPoziomow";
+    }
 }
