@@ -4,24 +4,14 @@
  * and open the template in the editor.
  */
 package pl.lodz.ssbd.mok.beans;
-import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
-import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import javax.mail.internet.MimeMessage.RecipientType;
-import javax.mail.util.ByteArrayDataSource;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
@@ -49,7 +39,6 @@ public class mailer {
 
 
   MimeMessage wiadomosc = new MimeMessage(sesja);
-  //wiadomosc.setFrom(new InternetAddress(this));
   wiadomosc.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
   wiadomosc.setSubject(temat);
   wiadomosc.setText(tresc);
