@@ -98,4 +98,9 @@ public class MOKEndpoint implements MOKEndpointLocal {
             uzytkownik.setIloscNPopZal(ilosc_niepoprawnych_zalogowan + 1);
         }
     }
+
+    @Override
+    public Uzytkownik pobierzUzytkownika(String login) {
+        return uzytkownikFacade.findByLogin(login);
+    }
 }

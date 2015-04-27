@@ -30,6 +30,11 @@ public class UzytkownikSession implements Serializable {
     private MOKEndpointLocal MOKEndpoint;
 
     private Uzytkownik uzytkownikEdycja;
+    private Uzytkownik uzytkownikMenu;
+
+    public Uzytkownik getUzytkownikMenu() {
+        return uzytkownikMenu;
+    }
 
     public Uzytkownik getUzytkownikEdycja() {
         return uzytkownikEdycja;
@@ -71,6 +76,10 @@ public class UzytkownikSession implements Serializable {
 
     public void zalogujNiepoprawneUwierzytenienie(String username, String password, String IP) {
          MOKEndpoint.zalogujNiepoprawneUwierzytenienie(username,password,IP);
+    }
+    
+    public void pobierzUzytkownikMenu(String login){
+        uzytkownikMenu = MOKEndpoint.pobierzUzytkownika(login);
     }
 
 }

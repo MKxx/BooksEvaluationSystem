@@ -27,4 +27,6 @@ public interface MOKEndpointLocal {
     public void zalogujPoprawneUwierzytelnienie(String username, String password, String IP);
 
     public void zalogujNiepoprawneUwierzytenienie(String username, String password, String IP);
+
+    public Uzytkownik pobierzUzytkownika(String login);
 }
