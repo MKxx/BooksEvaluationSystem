@@ -55,7 +55,7 @@ public class ListPageBean {
     // Dzieki adnotacji @PostConstruct jest wykonywana automatycznie po zaladowaniu strony,
     // ponadto odwoluja sie do niej inne metody tego ziarna
     @PostConstruct
-    public void initModel() {
+    private void initModel() {
         uzytkownicy = uzytkownikSession.pobierzWszystkichUzytkownikow(wartosc);
         uzytkownicy.sort(new UzytkownikComparator());
         uzytkownikDataModel = new ListDataModel<Uzytkownik>(uzytkownicy);
@@ -84,5 +84,8 @@ public class ListPageBean {
     public String edytujPoziomyDostepu(){
         uzytkownikSession.pobierzUzytkownikaDoEdycji(uzytkownikDataModel.getRowData());
         return "edycjaPoziomow";
+    }
+    public void odswiez(){
+        initModel();
     }
 }
