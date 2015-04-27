@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns="http://www.w3.org/1999/xhtml"
+      template="./../templates/Template.xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:define name="top">
+        <p>Strona główna</p>
+    </ui:define>
+
+    <ui:define name="left">
+        <ui:include src="./../templates/Menu.xhtml" />
+    </ui:define>
+
+    <ui:define name="content">
+        Edycja poziomów dostępu użytkownika: <h:outputLabel value="#{edycjaPoziomowPageBean.uzytkownikEdycja.login}" />
+        <h:form id="poziomyDostepuForm">
+        <h:dataTable id="listaUzytkownikow" var="poziom" value="#{edycjaPoziomowPageBean.poziomyDataModel}">
+            <h:column>
+                <f:facet name="header">Poziom:</f:facet>
+                <h:panelGrid columns="2">
+                    <h:selectBooleanCheckbox id="aktywny" value="#{poziom.aktywny}" disabled="true"/>    
+                    <h:outputLabel for="aktywny" value="#{poziom.nazwa}" />      
+                </h:panelGrid>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Akcja:</f:facet>
+                <h:commandButton action="#{edycjaPoziomowPageBean.nadajPoziom()}" value="Nadaj" rendered="#{not poziom.aktywny}"/>
+                <h:commandButton action="#{edycjaPoziomowPageBean.odbierzPoziom()}" value="Odbierz" rendered="#{poziom.aktywny}"/>
+            </h:column>
+        </h:dataTable>
+        <h:commandButton value="Powróć" action="panelAdm" />
+        </h:form>
+    </ui:define>
+</ui:composition>

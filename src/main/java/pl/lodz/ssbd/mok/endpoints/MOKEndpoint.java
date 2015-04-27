@@ -12,6 +12,7 @@ import javax.ejb.Stateful;
 import pl.lodz.ssbd.entities.PoprzednieHaslo;
 import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
+import pl.lodz.ssbd.mok.facades.PoziomDostepuFacadeLocal;
 import pl.lodz.ssbd.mok.facades.UzytkownikFacadeLocal;
 /**
  *
@@ -22,6 +23,8 @@ public class MOKEndpoint implements MOKEndpointLocal {
 
     @EJB(beanName = "mokU")
     private UzytkownikFacadeLocal uzytkownikFacade;
+    @EJB(beanName = "mokPD")
+    private PoziomDostepuFacadeLocal poziomDostepuFacade;
     private Uzytkownik uzytkownikEdycja;
     private String hasloPrzedEdycja;
 
@@ -124,5 +127,18 @@ public class MOKEndpoint implements MOKEndpointLocal {
         }
         uzytkownikFacade.edit(uzytkownikEdycja);
         uzytkownikEdycja = null;
+    }
+
+    @Override
+    public void nadajPoziom(PoziomDostepu poziom) {
+        poziom.setAktywny(true);
+        poziomDostepuFacade.edit(poziom);
+        
+    }
+
+    @Override
+    public void odbierzPoziom(PoziomDostepu poziom) {
+        poziom.setAktywny(false);
+        poziomDostepuFacade.edit(poziom);
     }
 }

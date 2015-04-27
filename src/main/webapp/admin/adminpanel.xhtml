@@ -67,6 +67,7 @@ and open the template in the editor.
                     <h:commandButton action="#{listPageBean.zablokujUzytkownika}" value="Zablokuj" rendered="#{row.aktywny}"/>
                     <h:commandButton action="#{listPageBean.odblokujUzytkownika}" value="Odblokuj" rendered="#{not row.aktywny}"/>
                     <h:commandButton action="#{listPageBean.edytujUzytkownika()}" value="Edytuj"/>
+                    <h:commandButton action="#{listPageBean.edytujPoziomyDostepu()}" value="Edytuj Poziomy"/>
                 </h:column>
             </h:dataTable>
                     <h:commandButton value="Powróć" action="cancel" />
