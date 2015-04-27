@@ -21,7 +21,8 @@ and open the template in the editor.
     <ui:define name="content">
         <h2>Lista kont</h2>
             <h:form id="listaUzytkownikowForm">
-            
+            <h:inputText value="#{listPageBean.wartosc}" ></h:inputText>
+            <h:commandButton action="#{listPageBean.initModel()}" ></h:commandButton>
             <h:dataTable id="listaUzytkownikow" var="row" value="#{listPageBean.uzytkownikDataModel}">
                 <h:column id="login">
                     <f:facet name="header">login</f:facet>

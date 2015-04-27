@@ -26,6 +26,17 @@ public class ListPageBean {
     public ListPageBean() {
     }
     
+    private String wartosc;
+
+    public String getWartosc() {
+        return wartosc;
+    }
+
+    public void setWartosc(String wartosc) {
+        this.wartosc = wartosc;
+    }
+    
+    
     
     @Inject  
     private UzytkownikSession uzytkownikSession;
@@ -44,8 +55,8 @@ public class ListPageBean {
     // Dzieki adnotacji @PostConstruct jest wykonywana automatycznie po zaladowaniu strony,
     // ponadto odwoluja sie do niej inne metody tego ziarna
     @PostConstruct
-    private void initModel() {
-        uzytkownicy = uzytkownikSession.pobierzWszystkichUzytkownikow();
+    public void initModel() {
+        uzytkownicy = uzytkownikSession.pobierzWszystkichUzytkownikow(wartosc);
         uzytkownicy.sort(new UzytkownikComparator());
         uzytkownikDataModel = new ListDataModel<Uzytkownik>(uzytkownicy);
     }

@@ -52,8 +52,8 @@ public class UzytkownikSession implements Serializable {
         MOKEndpoint.rejestrujUzytkownika(nowyUzytkownik);
     }
     
-    public List<Uzytkownik> pobierzWszystkichUzytkownikow(){
-        return MOKEndpoint.pobierzWszystkichUzytkownikow();
+    public List<Uzytkownik> pobierzWszystkichUzytkownikow(String wartosc){
+        return MOKEndpoint.pobierzWszystkichUzytkownikow(wartosc);
     }
     
     public void potwierdzUzytkownika(Uzytkownik uzytkownik){
@@ -68,16 +68,12 @@ public class UzytkownikSession implements Serializable {
         MOKEndpoint.odblokujUzytkownika(uzytkownik);
     }
 
-    public boolean zaloguj(String username, String password, String IP) {
-        return MOKEndpoint.zaloguj(username,password,IP);
-    }
-
     public void zalogujPoprawneUwierzytelnienie(String username, String password, String IP) {
-        MOKEndpoint.zalogujPoprawneUwierzytelnienie(username,password,IP);
+        MOKEndpoint.zalogujPoprawneUwierzytelnienie(username, IP);
     }
 
     public void zalogujNiepoprawneUwierzytenienie(String username, String password, String IP) {
-         MOKEndpoint.zalogujNiepoprawneUwierzytenienie(username,password,IP);
+         MOKEndpoint.zalogujNiepoprawneUwierzytenienie(username, IP);
     }
     
     public void pobierzUzytkownikMenu(String login){
