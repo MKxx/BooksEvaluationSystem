@@ -20,7 +20,7 @@
             <h:outputLabel for="j_password" value="Password" />
             <h:inputSecret value="#{loginPageBean.password}" id="j_password" />
             <br></br>
-            <h:commandButton action="#{loginPageBean.zaloguj()}" >
+            <h:commandButton action="#{loginPageBean.zaloguj()}" value="Zaloguj" >
                 <f:setPropertyActionListener target="#{loginPageBean.IP}" value="#{request.remoteAddr}" />
             </h:commandButton>
         </h:form>
