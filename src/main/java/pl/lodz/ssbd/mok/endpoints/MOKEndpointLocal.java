@@ -36,4 +36,5 @@ public interface MOKEndpointLocal {
     public void nadajPoziom(PoziomDostepu poziom);
 
     public void odbierzPoziom(PoziomDostepu poziom);
+    public Uzytkownik pobierzUzytkownika(String login);
 }

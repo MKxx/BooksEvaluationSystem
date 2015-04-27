@@ -2,15 +2,25 @@
 <!DOCTYPE html>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html">
 
-    <ul>
-        <li><h:link outcome="/login/login.xhtml" value="Zaloguj" /></li>
-        <li><h:link outcome="/admin/adminpanel.xhtml" value="Panel ADMINA" /></li>
-        <li><h:link outcome="/moderator/dodajksiazke.xhtml" value="Dodaj Nowa ksiazke" /></li>
-        <li><h:link outcome="/uzytkownik/ocenksiazke.xhtml" value="Ocen ksiazke" /></li>
-        <li><h:link outcome="/rejestracja.xhtml" value="Rejestracja" /></li>
-    </ul>
+    <h:panelGrid id="WSZYSCY">
+        <h:link outcome="/rejestracja.xhtml" value="Rejestracja" />
+        <h:link outcome="/login/login.xhtml" value="Zaloguj" />
+        <h:link outcome="/listaksiazek.xhtml" value="Wyswietl liste książek" />
+        <h:link outcome="/listauatorow.xhtml" value="Wyswietl liste autorów" />
+    </h:panelGrid>
+    <h:panelGrid id="ADMINISTRATOR" rendered="#{menuPageBean.isAdmin}">
+        <h:link outcome="/admin/adminpanel.xhtml" value="Panel ADMINA"/>
+    </h:panelGrid>
+    <h:panelGrid id="MODERATOR" rendered="#{menuPageBean.isModerator or menuPageBean.isAdmin}">
+        <h:link outcome="/moderator/dodajksiazke.xhtml" value="Dodaj nową książkę" />
+        <h:link outcome="/moderator/dodajksiazke.xhtml" value="Dodaj nowego autora" />
+    </h:panelGrid>
+    <h:panelGrid id="UZYTKOWNIK" rendered="#{menuPageBean.isUzytkownik}">
+        <h:link outcome="/uzytkownik/ocenksiazke.xhtml" value="Dodaj ksiazke do ulubionych" />
+        <h:link outcome="/uzytkownik/ocenksiazke.xhtml" value="Ocen ksiazke" />
+    </h:panelGrid>
+    
 
 </ui:composition>
