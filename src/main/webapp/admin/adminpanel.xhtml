@@ -39,7 +39,15 @@ and open the template in the editor.
                     <f:facet name="header">email</f:facet>
                     <h:outputText value="#{row.email}" />
                 </h:column>
-                
+                <h:column id="info">
+                    <f:facet name="header">info</f:facet>
+                    <h:panelGrid columns="2">
+                        <h:outputText id="IP" value="Adres IP: " />
+                        <h:outputLabel for="IP" value="#{row.ipPopZal}" />
+                        <h:outputText id="data" value="Data: " />
+                        <h:outputLabel for="data" value="#{row.czasPopZal}" />
+                    </h:panelGrid>
+                </h:column>
                 <h:column id="stan">
                     <f:facet name="header">stan</f:facet>
                     <h:panelGrid columns="2">
