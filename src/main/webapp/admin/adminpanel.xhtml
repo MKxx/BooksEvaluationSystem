@@ -49,6 +49,18 @@ and open the template in the editor.
                         <h:outputLabel for="aktywne" value="aktywne" />    
                     </h:panelGrid>
                 </h:column>
+                <h:column id="poziomy">
+                    <f:facet name="header">poziomy</f:facet>
+                    <h:panelGrid columns="2">
+                        <h:dataTable id="listaPoziomowDostepu" var="poziom" value="#{row.poziomDostepuList}">
+                            <h:column>
+                                <f:facet name="header"></f:facet>
+                                <h:selectBooleanCheckbox id="poziomAktywny" value="#{poziom.aktywny}" disabled="true"/>    
+                                <h:outputLabel for="poziomAktywny" value="#{poziom.nazwa}" />   
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGrid>
+                </h:column>
                 <h:column id="akcje">
                     <f:facet name="header">akcje</f:facet>
                     <h:commandButton action="#{listPageBean.potwierdzUzytkownika}" value="Autoryzuj" rendered="#{not row.potwierdzony}"/>
