@@ -140,6 +140,7 @@ public class MOKEndpoint implements MOKEndpointLocal {
     public void odbierzPoziom(PoziomDostepu poziom) {
         poziom.setAktywny(false);
         poziomDostepuFacade.edit(poziom);
+    }
 
     @Override
     public Uzytkownik pobierzUzytkownika(String login) {
