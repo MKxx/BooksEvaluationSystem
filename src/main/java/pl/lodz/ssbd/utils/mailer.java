@@ -24,6 +24,7 @@ public final class mailer {
 
     private static void wyslij(String email, String temat, String tresc) {
         try {
+            
             InitialContext ctx = new InitialContext();
             Session sesja;
             sesja = (Session) ctx.lookup("mail/mailer");
@@ -45,19 +46,19 @@ public final class mailer {
 
     public static void wyslijPoZarejestrowaniu(String email, String login, String haslo) {
         String temat = "Potwierdzenie rejestracji w naszym przecudnym serwisie";
-        String tresc = "Dziekujemy za rejestracje! \nTwoje konto musi zostać potwierdzone przez administratora \nJak na razie twój login to: " + login + "\nA twoje haslo to: " + haslo + "\nŻyczymy miłego dnia (chociaż, nim administrator potwierdzi twoje konto to warto już życzyć  co najmniej szczęśliwego nowego roku).";
+        String tresc = "Dziekujemy za rejestracje! "+System.lineSeparator()+"Twoje konto musi zostać potwierdzone przez administratora"+System.lineSeparator()+"Jak na razie twój login to: " + login +System.lineSeparator() +"A twoje haslo to: " + haslo + System.lineSeparator()+"Życzymy miłego dnia (chociaż, nim administrator potwierdzi twoje konto to warto już życzyć  co najmniej szczęśliwego nowego roku).";
         wyslij(email, temat, tresc);
     }
 
     public static void wyslijPoAktywacji(String email, String login) {
         String temat = "Twoje konto jest już aktywne";
-        String tresc = "Twoje konto zostało własnie aktywowane!\nMożesz już się zalogować za pomocą loginu " + login + " oraz hasla które podałeś podczas rejestracji";
+        String tresc = "Twoje konto zostało własnie aktywowane!"+System.lineSeparator()+"Możesz już się zalogować za pomocą loginu " + login + " oraz hasla które podałeś podczas rejestracji";
         wyslij(email, temat, tresc);
     }
 
     public static void wyslijPoZablokowaniu(String email, String login) {
         String temat = "Twoje konto jest zablokowane";
-        String tresc = "Twoje konto zostało właśnie zablokowane\nSkontaktuj się z nami jeśli nie wiesz o co chodzi";
+        String tresc = "Twoje konto zostało właśnie zablokowane"+System.lineSeparator()+"Skontaktuj się z nami jeśli nie wiesz o co chodzi";
         wyslij(email, temat, tresc);
     }
 
