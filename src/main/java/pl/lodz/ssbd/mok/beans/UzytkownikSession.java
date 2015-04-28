@@ -12,6 +12,8 @@ import javax.ejb.EJB;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.mok.endpoints.MOKEndpointLocal;
 import pl.lodz.ssbd.utils.MD5;
+import pl.lodz.ssbd.utils.mailer;
+
 
 /**
  *
@@ -41,8 +43,7 @@ public class UzytkownikSession implements Serializable {
         nowyUzytkownik.setImie(uzytkownik.getImie());
         nowyUzytkownik.setNazwisko(uzytkownik.getNazwisko());
         nowyUzytkownik.setEmail(uzytkownik.getEmail());
-        mailer mail=new mailer();
-        mail.wyslijPoZarejestrowaniu(uzytkownik.getEmail(), uzytkownik.getLogin(), uzytkownik.getHasloMd5());
+        mailer.wyslijPoZarejestrowaniu(uzytkownik.getEmail(), uzytkownik.getLogin(), uzytkownik.getHasloMd5());
         MOKEndpoint.rejestrujUzytkownika(nowyUzytkownik);
     }
     

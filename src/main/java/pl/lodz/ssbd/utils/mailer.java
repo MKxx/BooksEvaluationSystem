@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package pl.lodz.ssbd.utils;
-import java.util.Properties;
-import javax.mail.Authenticator;
+import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -13,63 +12,65 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
 
 
 /**
  *
  * @author Jakub Kępa 180582
  */
+
 public class mailer {
 
- private String adresNad = "ssbd05@gmail.com";
- private String hasloNad="ssbdglupcze1";
- 
- 
- 
- public mailer (){
-     
- }
- public mailer (String adresNad, String haslo){
-     this.adresNad=adresNad;
-     this.hasloNad=haslo;
- }
+      
 
- public void wyslij(String email, String temat, String tresc)
- {
+
+
+
+ public static void wyslij(String email, String temat, String tresc)
+ {   
   try{
-  Properties ustawienia = System.getProperties();
-  ustawienia.put("mail.smtp.host", "smtp.gmail.com");
-  ustawienia.put("mail.smtp.auth", "true");
-  ustawienia.put("mail.smtp.port", "465");
-  ustawienia.put("mail.smtp.socketFactory.port", "465");
-  ustawienia.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-  ustawienia.put("mail.smtp.socketFactory.fallback", "false");
-  Authenticator autoryzacja = new autoryzacjaSMTP(adresNad, hasloNad);
-  Session sesja = Session.getInstance(ustawienia, autoryzacja);
+   InitialContext ctx = new InitialContext();
+   Session sesja;
+   sesja = (Session) ctx.lookup("mail/mailer");
+
+
 
   MimeMessage wiadomosc = new MimeMessage(sesja);
-  wiadomosc.setFrom(new InternetAddress(this.adresNad));
   wiadomosc.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
   wiadomosc.setSubject(temat);
   wiadomosc.setText(tresc);
   Transport.send(wiadomosc);
   }
   catch(AddressException a){
-      System.out.println("Bład adresu");
+      Logger.getLogger("Bład adresu");
   }
   catch(MessagingException a){
-      System.out.println("Bład wysyłania");
-  }
+      Logger.getLogger("Bład wysyłania");
+  }  
+  catch (NamingException ex) {
+      Logger.getLogger("Bład NamingException");
+     }
+  Logger.getLogger("Wysłano");
  }
- public void wyslijPoZarejestrowaniu(String email, String login, String haslo){
+ public static void wyslijPoZarejestrowaniu(String email, String login, String haslo){
      String temat="Potwierdzenie rejestracji w naszym przecudnym serwisie";
      String tresc="Dziekujemy za rejestracje! \nTwoje konto musi zostać potwierdzone przez administratora \nJak na razie twój login to: "+login+"\nA twoje haslo to: "+ haslo+"\nŻyczymy miłego dnia (chociaż, nim administrator potwierdzi twoje konto to warto już życzyć  co najmniej szczęśliwego nowego roku).";
      wyslij(email, temat, tresc);
  }
- public void wyslijPrzykladowegoMaila(){
-        wyslijPoZarejestrowaniu("kubakepa@wp.pl","aaa", "aaa");
-
+ public static void wyslijPoAktywacji(String email, String login){
+     String temat="Twoje konto jest już aktywne";
+     String tresc="Twoje konto zostało własnie aktywowane!\nMożesz już się zalogować za pomocą loginu "+login+" oraz hasla które podałeś podczas rejestracji";
+     wyslij(email, temat, tresc);
  }
+  public static void wyslijPoZablokowaniu(String email, String login){
+     String temat="Twoje konto jest zablokowane";
+     String tresc="Twoje konto zostało właśnie zablokowane\nSkontaktuj się z nami jeśli nie wiesz o co chodzi";
+     wyslij(email, temat, tresc);
+ }
+ 
 }
 
  
