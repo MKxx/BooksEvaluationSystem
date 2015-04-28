@@ -22,7 +22,7 @@ import javax.naming.NamingException;
  * @author Jakub Kępa 180582
  */
 
-public class mailer {
+public final class mailer {
 
       
 
