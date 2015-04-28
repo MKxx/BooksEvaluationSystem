@@ -15,6 +15,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import java.util.logging.Level;
 
 /**
  *
@@ -35,13 +36,12 @@ public final class Mailer {
             wiadomosc.setText(tresc);
             Transport.send(wiadomosc);
         } catch (AddressException a) {
-            Logger.getLogger("Bład adresu");
+        Logger.getLogger(Mailer.class.getName()).log(Level.WARNING, null, a);   
         } catch (MessagingException a) {
-            Logger.getLogger("Bład wysyłania");
-        } catch (NamingException ex) {
-            Logger.getLogger("Bład NamingException");
+        Logger.getLogger(Mailer.class.getName()).log(Level.WARNING, null, a);   
         }
-        Logger.getLogger("Wysłano");
+         catch (NamingException ex) {
+        Logger.getLogger(Mailer.class.getName()).log(Level.WARNING, null, ex);        }
     }
 
     public static void wyslijPoZarejestrowaniu(String email, String login, String haslo) {
