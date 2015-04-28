@@ -14,6 +14,7 @@ import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.mok.facades.PoziomDostepuFacadeLocal;
 import pl.lodz.ssbd.mok.facades.UzytkownikFacadeLocal;
+
 /**
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
@@ -102,9 +103,9 @@ public class MOKEndpoint implements MOKEndpointLocal {
             uzytkownik.setIloscNPopZal(ilosc_niepoprawnych_zalogowan + 1);
         }
     }
-    
+
     @Override
-    public Uzytkownik pobierzUzytkownikaDoEdycji(String login){
+    public Uzytkownik pobierzUzytkownikaDoEdycji(String login) {
         uzytkownikEdycja = uzytkownikFacade.findByLogin(login);
         hasloPrzedEdycja = uzytkownikEdycja.getHasloMd5();
         System.out.println(uzytkownikEdycja.getImie());
@@ -119,12 +120,18 @@ public class MOKEndpoint implements MOKEndpointLocal {
         if (!uzytkownikEdycja.equals(uzytkownik)) {
             throw new IllegalArgumentException("Modyfikowany uzytkownik niezgodny z wczytanym");
         }
-        if(!hasloPrzedEdycja.equals(uzytkownikEdycja.getHasloMd5())){
-            PoprzednieHaslo popHaslo = new PoprzednieHaslo();
-            popHaslo.setIdUzytkownik(uzytkownik);
-            popHaslo.setStareHasloMd5(hasloPrzedEdycja);
-            uzytkownik.getPoprzednieHasloList().add(popHaslo);
+        if (hasloPrzedEdycja.equals(uzytkownikEdycja.getHasloMd5())) {
+            throw new IllegalArgumentException("Haslo jest zmieniane na takie samo");
         }
+        for(PoprzednieHaslo poprzednieHaslo: uzytkownikEdycja.getPoprzednieHasloList()){
+            if(uzytkownikEdycja.getHasloMd5().equals(poprzednieHaslo.getStareHasloMd5())){
+                throw new IllegalArgumentException("Haslo to juz bylo wykorzystywane");
+            }
+        }
+        PoprzednieHaslo popHaslo = new PoprzednieHaslo();
+        popHaslo.setIdUzytkownik(uzytkownik);
+        popHaslo.setStareHasloMd5(hasloPrzedEdycja);
+        uzytkownik.getPoprzednieHasloList().add(popHaslo);
         uzytkownikFacade.edit(uzytkownikEdycja);
         uzytkownikEdycja = null;
     }
@@ -133,7 +140,7 @@ public class MOKEndpoint implements MOKEndpointLocal {
     public void nadajPoziom(PoziomDostepu poziom) {
         poziom.setAktywny(true);
         poziomDostepuFacade.edit(poziom);
-        
+
     }
 
     @Override
