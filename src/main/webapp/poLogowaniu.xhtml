@@ -16,7 +16,8 @@
     <ui:define name="content">
         Logowanie zakonczone sukcesem<br/>
         Ostatnie udane logowanie 
-        z adresu ip ... <br/>
+        
+        z adresu ip <h:outputText value="#{curruzytkownikPageBean.getIsAdmin()}" id="ip" /> <br/>
         Ostatnie nie udane logowanie ... z adresu ip ... <br/>
         ...nieudanych logowań <br/>
         <h:link value="Powrót do strony głównej" outcome="index.xhtml" />
