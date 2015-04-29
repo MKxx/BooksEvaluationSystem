@@ -16,9 +16,11 @@ import javax.ejb.SessionSynchronization;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import pl.lodz.ssbd.entities.PoprzednieHaslo;
 import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
+import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 import pl.lodz.ssbd.mok.facades.PoziomDostepuFacadeLocal;
 import pl.lodz.ssbd.mok.facades.UzytkownikFacadeLocal;
 
@@ -27,6 +29,7 @@ import pl.lodz.ssbd.mok.facades.UzytkownikFacadeLocal;
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Stateful
+@Interceptors({DziennikZdarzenInterceptor.class})
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
 
@@ -61,8 +64,8 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     }
 
     @Override
-    public List<Uzytkownik> pobierzWszystkichUzytkownikow(String wartosc) {
-        return uzytkownikFacade.findByImieiNazwisko(wartosc);
+    public List<Uzytkownik> pobierzWszystkichUzytkownikow() {
+        return uzytkownikFacade.findAll();
     }
 
     @Override
@@ -176,5 +179,20 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     @Override
     public void afterCompletion(boolean committed) throws EJBException, RemoteException {
         loger.log(Level.INFO, "Transakcja o ID: " + IDTransakcji + " zostala zakonczona przez: " + (committed ? "zatwierdzenie" : "wycofanie"));
+    }
+    
+    @Override
+    public String pobierzIPOstatniegoPopZalogowania() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Date pobierzCzasOstatniegoPopZalogowania() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int pobierzIloscNPopZal() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

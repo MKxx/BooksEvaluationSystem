@@ -46,7 +46,7 @@ public class UzytkownikSession implements Serializable {
         return uzytkownikEdycja;
     }
 
-    public void rejestrujUzytkownika(Uzytkownik uzytkownik) {
+    public void rejestrujUzytkownika(Uzytkownik uzytkownik, String powtorzHaslo) {
         Uzytkownik nowyUzytkownik = new Uzytkownik();
         nowyUzytkownik.setLogin(uzytkownik.getLogin());
           if(!powtorzHaslo.equals(uzytkownik.getHasloMd5())){
@@ -59,7 +59,7 @@ public class UzytkownikSession implements Serializable {
         nowyUzytkownik.setImie(uzytkownik.getImie());
         nowyUzytkownik.setNazwisko(uzytkownik.getNazwisko());
         nowyUzytkownik.setEmail(uzytkownik.getEmail());
-        mailer mail = new mailer();
+        Mailer mail = new Mailer();
         mail.wyslijPoZarejestrowaniu(uzytkownik.getEmail(), uzytkownik.getLogin(), uzytkownik.getHasloMd5());
         MOKEndpoint.rejestrujUzytkownika(nowyUzytkownik);
         Mailer.wyslijPoZarejestrowaniu(uzytkownik.getEmail(), uzytkownik.getLogin(), uzytkownik.getHasloMd5());

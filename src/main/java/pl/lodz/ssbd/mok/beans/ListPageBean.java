@@ -26,18 +26,6 @@ public class ListPageBean {
     public ListPageBean() {
     }
     
-    private String wartosc;
-
-    public String getWartosc() {
-        return wartosc;
-    }
-
-    public void setWartosc(String wartosc) {
-        this.wartosc = wartosc;
-    }
-    
-    
-    
     @Inject  
     private UzytkownikSession uzytkownikSession;
 
@@ -56,7 +44,7 @@ public class ListPageBean {
     // ponadto odwoluja sie do niej inne metody tego ziarna
     @PostConstruct
     private void initModel() {
-        uzytkownicy = uzytkownikSession.pobierzWszystkichUzytkownikow(wartosc);
+        uzytkownicy = uzytkownikSession.pobierzWszystkichUzytkownikow();
         uzytkownicy.sort(new UzytkownikComparator());
         uzytkownikDataModel = new ListDataModel<Uzytkownik>(uzytkownicy);
     }
