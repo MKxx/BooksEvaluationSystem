@@ -8,6 +8,8 @@ package pl.lodz.ssbd.mok.facades;
 import pl.lodz.ssbd.mok.*;
 import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pl.lodz.ssbd.entities.PoprzednieHaslo;
@@ -17,6 +19,7 @@ import pl.lodz.ssbd.entities.PoprzednieHaslo;
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Stateless
+@TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class PoprzednieHasloFacade extends AbstractFacade<PoprzednieHaslo> implements PoprzednieHasloFacadeLocal {
     @PersistenceContext(unitName = "ssbd05mok")
     private EntityManager em;
