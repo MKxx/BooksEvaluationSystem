@@ -41,6 +41,9 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     private Uzytkownik uzytkownikEdycja;
     private String hasloPrzedEdycja;
     private long IDTransakcji;
+    private String IPOstPopZal;
+    private Date CzasOstPopZal;
+    private int IloscNPopZal;
 
     @Override
     public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik) {
@@ -89,6 +92,9 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     @Override
     public void zalogujPoprawneUwierzytelnienie(String username, String IP) {
         Uzytkownik uzytkownik = uzytkownikFacade.findByLogin(username);
+        this.IPOstPopZal=uzytkownik.getIpPopZal();
+        this.CzasOstPopZal=uzytkownik.getCzasPopZal();
+        this.IloscNPopZal=uzytkownik.getIloscNPopZal();
         uzytkownik.setCzasPopZal(new Date());
         uzytkownik.setIpPopZal(IP);
         if (uzytkownik.getAktywny()) {
@@ -182,17 +188,15 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     }
     
     @Override
-    public String pobierzIPOstatniegoPopZalogowania() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String pobierzIPOstatniegoPopZalogowania(){
+        return this.IPOstPopZal;
     }
-
-    @Override
-    public Date pobierzCzasOstatniegoPopZalogowania() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        @Override
+    public Date pobierzCzasOstatniegoPopZalogowania(){
+        return this.CzasOstPopZal;
     }
-
     @Override
-    public int pobierzIloscNPopZal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int pobierzIloscNPopZal(){
+        return this.IloscNPopZal;
     }
 }
