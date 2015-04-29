@@ -5,9 +5,14 @@
  */
 package pl.lodz.ssbd.mok.endpoints;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.ejb.SessionSynchronization;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -24,13 +29,16 @@ import pl.lodz.ssbd.mok.facades.UzytkownikFacadeLocal;
 @Stateful
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class MOKEndpoint implements MOKEndpointLocal {
+public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
 
+    private static final Logger loger = Logger.getLogger(MOKEndpoint.class.getName());
     @EJB(beanName = "mokU")
     private UzytkownikFacadeLocal uzytkownikFacade;
     @EJB(beanName = "mokPD")
     private PoziomDostepuFacadeLocal poziomDostepuFacade;
     private Uzytkownik uzytkownikEdycja;
     private String hasloPrzedEdycja;
+    private long IDTransakcji;
 
     @Override
     public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik) {
@@ -118,8 +126,11 @@ public class MOKEndpoint implements MOKEndpointLocal {
         if (!uzytkownikEdycja.equals(uzytkownik)) {
             throw new IllegalArgumentException("Modyfikowany uzytkownik niezgodny z wczytanym");
         }
-        if (hasloPrzedEdycja.equals(uzytkownikEdycja.getHasloMd5())) {
-            throw new IllegalArgumentException("Haslo jest zmieniane na takie samo");
+        if (!hasloPrzedEdycja.equals(uzytkownikEdycja.getHasloMd5())) {
+            PoprzednieHaslo popHaslo = new PoprzednieHaslo();
+            popHaslo.setIdUzytkownik(uzytkownik);
+            popHaslo.setStareHasloMd5(hasloPrzedEdycja);
+            uzytkownik.getPoprzednieHasloList().add(popHaslo);
         }
         for(PoprzednieHaslo poprzednieHaslo: uzytkownikEdycja.getPoprzednieHasloList()){
             if(uzytkownikEdycja.getHasloMd5().equals(poprzednieHaslo.getStareHasloMd5())){
@@ -150,5 +161,21 @@ public class MOKEndpoint implements MOKEndpointLocal {
     @Override
     public Uzytkownik pobierzUzytkownika(String login) {
         return uzytkownikFacade.findByLogin(login);
+    }
+
+    @Override
+    public void afterBegin() throws EJBException, RemoteException {
+        IDTransakcji = System.currentTimeMillis();
+        loger.log(Level.INFO, "Transakcja o ID: " + IDTransakcji + " zostala rozpoczeta");
+    }
+
+    @Override
+    public void beforeCompletion() throws EJBException, RemoteException {
+        loger.log(Level.INFO, "Transakcja o ID: " + IDTransakcji + " przed zakonczeniem");
+    }
+
+    @Override
+    public void afterCompletion(boolean committed) throws EJBException, RemoteException {
+        loger.log(Level.INFO, "Transakcja o ID: " + IDTransakcji + " zostala zakonczona przez: " + (committed ? "zatwierdzenie" : "wycofanie"));
     }
 }
