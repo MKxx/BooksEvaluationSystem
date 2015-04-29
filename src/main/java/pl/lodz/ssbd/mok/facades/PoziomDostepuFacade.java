@@ -8,15 +8,18 @@ package pl.lodz.ssbd.mok.facades;
 import pl.lodz.ssbd.mok.*;
 import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pl.lodz.ssbd.entities.PoziomDostepu;
+import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 
 /**
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Stateless(name="mokPD")
+@Interceptors({DziennikZdarzenInterceptor.class})
 public class PoziomDostepuFacade extends AbstractFacade<PoziomDostepu> implements PoziomDostepuFacadeLocal {
     @PersistenceContext(unitName = "ssbd05mok")
     private EntityManager em;

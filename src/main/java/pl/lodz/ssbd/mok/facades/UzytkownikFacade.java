@@ -6,17 +6,20 @@
 package pl.lodz.ssbd.mok.facades;
 
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.facades.AbstractFacade;
+import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 /**
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Stateless(name = "mokU")
+@Interceptors({DziennikZdarzenInterceptor.class})
 public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements UzytkownikFacadeLocal {
 
     @PersistenceContext(unitName = "ssbd05mok")
