@@ -18,16 +18,14 @@ import pl.lodz.ssbd.entities.Uzytkownik;
 public interface MOKEndpointLocal {
 
     public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik);
-    public List<Uzytkownik> pobierzWszystkichUzytkownikow();
+    public List<Uzytkownik> pobierzWszystkichUzytkownikow(String wartosc);
     public void potwierdzUzytkownika(Uzytkownik uzytkownik);
     public void zablokujUzytkownika(Uzytkownik uzytkownik);
     public void odblokujUzytkownika(Uzytkownik uzytkownik);
 
-    public boolean zaloguj(String username, String password, String IP);
+    public void zalogujPoprawneUwierzytelnienie(String username, String IP);
 
-    public void zalogujPoprawneUwierzytelnienie(String username, String password, String IP);
-
-    public void zalogujNiepoprawneUwierzytenienie(String username, String password, String IP);
+    public void zalogujNiepoprawneUwierzytenienie(String username,String IP);
 
     public void zapiszKontoPoEdycji(Uzytkownik uzytkownikEdycja);
 

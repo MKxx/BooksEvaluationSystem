@@ -32,4 +32,5 @@ public interface UzytkownikFacadeLocal {
 
     public Uzytkownik findByLogin(String username);
     
+    public List<Uzytkownik> findByImieiNazwisko(String wartosc);
 }

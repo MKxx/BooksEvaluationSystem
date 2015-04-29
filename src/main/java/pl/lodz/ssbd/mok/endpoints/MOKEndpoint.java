@@ -50,8 +50,8 @@ public class MOKEndpoint implements MOKEndpointLocal {
     }
 
     @Override
-    public List<Uzytkownik> pobierzWszystkichUzytkownikow() {
-        return uzytkownikFacade.findAll();
+    public List<Uzytkownik> pobierzWszystkichUzytkownikow(String wartosc) {
+        return uzytkownikFacade.findByImieiNazwisko(wartosc);
     }
 
     @Override
@@ -73,12 +73,7 @@ public class MOKEndpoint implements MOKEndpointLocal {
     }
 
     @Override
-    public boolean zaloguj(String username, String password, String IP) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void zalogujPoprawneUwierzytelnienie(String username, String password, String IP) {
+    public void zalogujPoprawneUwierzytelnienie(String username, String IP) {
         Uzytkownik uzytkownik = uzytkownikFacade.findByLogin(username);
         uzytkownik.setCzasPopZal(new Date());
         uzytkownik.setIpPopZal(IP);
@@ -88,7 +83,7 @@ public class MOKEndpoint implements MOKEndpointLocal {
     }
 
     @Override
-    public void zalogujNiepoprawneUwierzytenienie(String username, String password, String IP) {
+    public void zalogujNiepoprawneUwierzytenienie(String username, String IP) {
         Uzytkownik uzytkownik = uzytkownikFacade.findByLogin(username);
         if (uzytkownik == null) {
             return;

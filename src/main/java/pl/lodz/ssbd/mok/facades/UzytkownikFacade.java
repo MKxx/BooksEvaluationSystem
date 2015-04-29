@@ -5,6 +5,7 @@
  */
 package pl.lodz.ssbd.mok.facades;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -12,6 +13,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.facades.AbstractFacade;
+
 /**
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
@@ -42,4 +44,13 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
         }
     }
 
+    @Override
+    public List<Uzytkownik> findByImieiNazwisko(String wartosc) {
+        if (wartosc == null || "".equals(wartosc)) {
+            return findAll();
+        }
+        Query q = em.createQuery("SELECT u FROM Uzytkownik u WHERE LOWER(u.imie) LIKE :wartosc OR LOWER(u.nazwisko) LIKE :wartosc ");
+        q.setParameter("wartosc", "%"+wartosc.toLowerCase()+"%");
+        return q.getResultList();
+    }
 }
