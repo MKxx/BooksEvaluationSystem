@@ -5,9 +5,14 @@
  */
 package pl.lodz.ssbd.mok.endpoints;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.ejb.SessionSynchronization;
 import javax.ejb.Stateful;
 import pl.lodz.ssbd.entities.PoprzednieHaslo;
 import pl.lodz.ssbd.entities.PoziomDostepu;
@@ -19,14 +24,15 @@ import pl.lodz.ssbd.mok.facades.UzytkownikFacadeLocal;
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Stateful
-public class MOKEndpoint implements MOKEndpointLocal {
-
+public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
+        private static final Logger loger = Logger.getLogger(MOKEndpoint.class.getName());
     @EJB(beanName = "mokU")
     private UzytkownikFacadeLocal uzytkownikFacade;
     @EJB(beanName = "mokPD")
     private PoziomDostepuFacadeLocal poziomDostepuFacade;
     private Uzytkownik uzytkownikEdycja;
     private String hasloPrzedEdycja;
+    private long IDTransakcji;
 
     @Override
     public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik) {
@@ -145,5 +151,20 @@ public class MOKEndpoint implements MOKEndpointLocal {
     @Override
     public Uzytkownik pobierzUzytkownika(String login) {
         return uzytkownikFacade.findByLogin(login);
+    }
+     @Override
+      public void afterBegin() throws EJBException, RemoteException {
+        IDTransakcji = System.currentTimeMillis();
+        loger.log(Level.INFO, "Transakcja o ID: " + IDTransakcji + " zostala rozpoczeta");
+    }
+
+    @Override
+    public void beforeCompletion() throws EJBException, RemoteException {
+        loger.log(Level.INFO, "Transakcja o ID: " + IDTransakcji + " przed zakonczeniem");
+    }
+
+    @Override
+    public void afterCompletion(boolean committed) throws EJBException, RemoteException {
+        loger.log(Level.INFO, "Transakcja o ID: " + IDTransakcji + " zostala zakonczona przez: " + (committed?"zatwierdzenie":"wycofanie"));
     }
 }
