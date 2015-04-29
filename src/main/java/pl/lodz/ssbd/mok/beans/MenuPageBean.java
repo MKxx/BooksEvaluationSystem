@@ -40,6 +40,7 @@ public class MenuPageBean {
         return isRole("MODERATOR");
     }
     
+    
     private boolean isRole(String role){
         String login;
         login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();

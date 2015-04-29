@@ -5,6 +5,11 @@
  */
 package pl.lodz.ssbd.mok.beans;
 
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -20,18 +25,36 @@ import pl.lodz.ssbd.entities.Uzytkownik;
 @RequestScoped
 public class CurrUzytkownikPageBean {
     @Inject
+ 
     UzytkownikSession uzytkownikSession;
-    
-    
-   // Uzytkownik uzyt= uzytkownikSession.getUzytkownikMenu();
+   
+
      public CurrUzytkownikPageBean() {
     }
     
-    public String getIsAdmin(){
-        String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-                uzytkownikSession.pobierzUzytkownikMenu(login);
-                 Uzytkownik user=uzytkownikSession.getUzytkownikMenu();
-                 return user.getIpPopZal();
+      public String pobierzIPPopZal(){
+        //  List <Uzytkownik> uzytkownicy=uzytkownikSession.pobierzWszystkichUzytkownikow();
+        //  String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+          //Uzytkownik user=uzytkownikSession.getUzytkownikMenu();
+          return uzytkownikSession.pobierzIPOstatniegoPopZalogowania();
+            
     }
+      public String pobierzCzasPopZal(){
+          Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+           String s = formatter.format(uzytkownikSession.pobierzCzasOstatniegoPopZalogowania());
+           return s;
+      }
+      
+      public int pobierzIloscNPopZal(){
+          return uzytkownikSession.pobierzIloscNPopZal();
+      }
+      public String pobierzCzasNPopZal(){
+           String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+    uzytkownikSession.pobierzUzytkownikMenu(login);
+    Uzytkownik uzyt=uzytkownikSession.getUzytkownikMenu();
+     Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+     String s = formatter.format(uzyt.getCzasNPopZal());
+    return s;
+      }
     
 }

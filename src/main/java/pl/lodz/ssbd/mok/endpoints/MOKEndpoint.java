@@ -27,6 +27,10 @@ public class MOKEndpoint implements MOKEndpointLocal {
     private PoziomDostepuFacadeLocal poziomDostepuFacade;
     private Uzytkownik uzytkownikEdycja;
     private String hasloPrzedEdycja;
+    private String IPOstPopZal;
+    private Date CzasOstPopZal;
+    private int IloscNPopZal;
+
 
     @Override
     public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik) {
@@ -80,6 +84,9 @@ public class MOKEndpoint implements MOKEndpointLocal {
     @Override
     public void zalogujPoprawneUwierzytelnienie(String username, String password, String IP) {
         Uzytkownik uzytkownik = uzytkownikFacade.findByLogin(username);
+        this.IPOstPopZal=uzytkownik.getIpPopZal();
+        this.CzasOstPopZal=uzytkownik.getCzasPopZal();
+        this.IloscNPopZal=uzytkownik.getIloscNPopZal();
         uzytkownik.setCzasPopZal(new Date());
         uzytkownik.setIpPopZal(IP);
         if (uzytkownik.getAktywny()) {
@@ -101,6 +108,18 @@ public class MOKEndpoint implements MOKEndpointLocal {
         } else {
             uzytkownik.setIloscNPopZal(ilosc_niepoprawnych_zalogowan + 1);
         }
+    }
+    @Override
+    public String pobierzIPOstatniegoPopZalogowania(){
+        return this.IPOstPopZal;
+    }
+        @Override
+    public Date pobierzCzasOstatniegoPopZalogowania(){
+        return this.CzasOstPopZal;
+    }
+    @Override
+    public int pobierzIloscNPopZal(){
+        return this.IloscNPopZal;
     }
     
     @Override

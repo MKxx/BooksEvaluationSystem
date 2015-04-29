@@ -7,6 +7,7 @@ package pl.lodz.ssbd.mok.beans;
 
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import pl.lodz.ssbd.entities.PoziomDostepu;
@@ -79,7 +80,18 @@ public class UzytkownikSession implements Serializable {
     public void zalogujNiepoprawneUwierzytenienie(String username, String password, String IP) {
          MOKEndpoint.zalogujNiepoprawneUwierzytenienie(username,password,IP);
     }
-    
+    public String pobierzIPOstatniegoPopZalogowania(){
+        return MOKEndpoint.pobierzIPOstatniegoPopZalogowania();
+    }
+    public Date pobierzCzasOstatniegoPopZalogowania()
+    {
+        return MOKEndpoint.pobierzCzasOstatniegoPopZalogowania();
+    }
+    public int pobierzIloscNPopZal()
+    {
+        return MOKEndpoint.pobierzIloscNPopZal();
+    }
+
     public void pobierzUzytkownikMenu(String login){
         uzytkownikMenu = MOKEndpoint.pobierzUzytkownika(login);
     }

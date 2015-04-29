@@ -16,10 +16,13 @@
     <ui:define name="content">
         Logowanie zakonczone sukcesem<br/>
         Ostatnie udane logowanie 
-        
-        z adresu ip <h:outputText value="#{curruzytkownikPageBean.getIsAdmin()}" id="ip" /> <br/>
-        Ostatnie nie udane logowanie ... z adresu ip ... <br/>
-        ...nieudanych logowań <br/>
+        <h:outputText value="#{curruzytkownikPageBean.pobierzCzasPopZal()}" id="czasp" />
+        z adresu ip <h:outputText value="#{curruzytkownikPageBean.pobierzIPPopZal()}" id="ipp" /> <br/>
+        Ostatnie nie udane logowanie         
+        <h:outputText value="#{curruzytkownikPageBean.pobierzCzasNPopZal()}" id="iln" />
+ <br/>
+        <h:outputText value="#{curruzytkownikPageBean.pobierzIloscNPopZal()}" id="iln" />
+        nieudanych logowań <br/>
         <h:link value="Powrót do strony głównej" outcome="index.xhtml" />
     </ui:define>
 </ui:composition>
