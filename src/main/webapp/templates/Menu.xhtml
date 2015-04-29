@@ -5,21 +5,21 @@
                 xmlns:h="http://java.sun.com/jsf/html">
 
     <h:panelGrid id="WSZYSCY">
-        <h:link outcome="/rejestracja.xhtml" value="Rejestracja" />
-        <h:link outcome="/login/login.xhtml" value="Zaloguj" />
-        <h:link outcome="/listaksiazek.xhtml" value="Wyswietl liste książek" />
-        <h:link outcome="/listauatorow.xhtml" value="Wyswietl liste autorów" />
+        <h:link outcome="/rejestracja.xhtml" value="#{msg['menu.rejestracja']}" />
+        <h:link outcome="/login/login.xhtml" value="#{msg['menu.zaloguj']}" />
+        <h:link outcome="/listaksiazek.xhtml" value="#{msg['menu.listaksiazek']}" />
+        <h:link outcome="/listauatorow.xhtml" value="#{msg['menu.listaautorow']}" />
     </h:panelGrid>
     <h:panelGrid id="ADMINISTRATOR" rendered="#{menuPageBean.isAdmin}">
-        <h:link outcome="/admin/adminpanel.xhtml" value="Panel ADMINA"/>
+        <h:link outcome="/admin/adminpanel.xhtml" value="#{msg['menu.adminpanel']}"/>
     </h:panelGrid>
     <h:panelGrid id="MODERATOR" rendered="#{menuPageBean.isModerator or menuPageBean.isAdmin}">
-        <h:link outcome="/moderator/dodajksiazke.xhtml" value="Dodaj nową książkę" />
-        <h:link outcome="/moderator/dodajksiazke.xhtml" value="Dodaj nowego autora" />
+        <h:link outcome="/moderator/dodajksiazke.xhtml" value="#{msg['menu.dodajksiazke']}" />
+        <h:link outcome="/moderator/dodajksiazke.xhtml" value="#{msg['menu.dodajautora']}" />
     </h:panelGrid>
     <h:panelGrid id="UZYTKOWNIK" rendered="#{menuPageBean.isUzytkownik}">
-        <h:link outcome="/uzytkownik/ocenksiazke.xhtml" value="Dodaj ksiazke do ulubionych" />
-        <h:link outcome="/uzytkownik/ocenksiazke.xhtml" value="Ocen ksiazke" />
+        <h:link outcome="/uzytkownik/ocenksiazke.xhtml" value="#{msg['menu.ocenksiazke']}" />
+        <h:link outcome="/uzytkownik/ocenksiazke.xhtml" value="#{msg['menu.ulubiona']}" />
     </h:panelGrid>
     
 

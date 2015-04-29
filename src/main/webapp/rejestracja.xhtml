@@ -17,31 +17,31 @@
         <h:form id="rejestracja" >
             <h:panelGrid columns="2">
                 <h:panelGroup>
-                    (*) Imie: <br></br>
+                    (*) #{msg["form.imie"]}<br></br>
                     <h:inputText value="#{rejestracjaPageBean.uzytkownik.imie}" />
                 </h:panelGroup>
                 <h:panelGroup>
-                    (*) Nazwisko:<br></br>
+                    (*) #{msg["form.nazwisko"]}<br></br>
                     <h:inputText value="#{rejestracjaPageBean.uzytkownik.nazwisko}" />
                 </h:panelGroup>
                 <h:panelGroup>
-                    (*) Login:<br></br>
+                    (*) #{msg["form.login"]}<br></br>
                     <h:inputText value="#{rejestracjaPageBean.uzytkownik.login}" />
                 </h:panelGroup>
                 <h:panelGroup>
-                    (*) Email: <br></br>
+                    (*) #{msg["form.email"]}<br></br>
                     <h:inputText value="#{rejestracjaPageBean.uzytkownik.email}" />
                 </h:panelGroup>
                 <h:panelGroup>
-                    (*) Haslo: <br></br>
+                    (*) #{msg["form.haslo"]}<br></br>
                     <h:inputSecret value="#{rejestracjaPageBean.uzytkownik.hasloMd5}" /> 
                 </h:panelGroup>
                 <h:panelGroup>
-                    (*) Powtórz Haslo: <br></br>
+                    (*) #{msg["form.powt_haslo"]} <br></br>
                     <h:inputSecret value="#{rejestracjaPageBean.powtorzHaslo}" /> 
                 </h:panelGroup>
             </h:panelGrid>
-            <h:commandButton action="#{rejestracjaPageBean.rejestrujUzytkownika()}" value="Zarejestruj" />
+            <h:commandButton action="#{rejestracjaPageBean.rejestrujUzytkownika()}" value="${msg['reg.zarejestruj']}" />
         </h:form>
     </ui:define>
 </ui:composition>

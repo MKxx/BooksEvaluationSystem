@@ -15,13 +15,13 @@
     <ui:define name="content">
         <p>Edytuj konto</p>
         <h:form>
-            Imię: <h:inputText value="#{edycjaCudzegoPageBean.uzytkownikEdycja.imie}"/><br />
-            Nazwisko: <h:inputText value="#{edycjaCudzegoPageBean.uzytkownikEdycja.nazwisko}"/><br />
-            Email: <h:inputText value="#{edycjaCudzegoPageBean.uzytkownikEdycja.email}"/><br />
-            Nowe hasło: <h:inputSecret value="#{edycjaCudzegoPageBean.noweHaslo}"/><br />
-            Powtórz hasło: <h:inputSecret value="#{edycjaCudzegoPageBean.powtorzHaslo}"/><h:message for="" class="blad"/><br />
-            <h:commandButton action="#{edycjaCudzegoPageBean.edytujUzytkownika()}" value="Zmień" />
-            <h:commandButton value="Powróć" action="panelAdm" />
+            #{msg["form.imie"]} <h:inputText value="#{edycjaCudzegoPageBean.uzytkownikEdycja.imie}"/><br />
+            #{msg["form.nazwisko"]} <h:inputText value="#{edycjaCudzegoPageBean.uzytkownikEdycja.nazwisko}"/><br />
+            #{msg["form.email"]} <h:inputText value="#{edycjaCudzegoPageBean.uzytkownikEdycja.email}"/><br />
+            #{msg["form.haslo"]} <h:inputSecret value="#{edycjaCudzegoPageBean.noweHaslo}"/><br />
+            #{msg["form.powt_haslo"]} <h:inputSecret value="#{edycjaCudzegoPageBean.powtorzHaslo}"/><h:message for="" class="blad"/><br />
+            <h:commandButton action="#{edycjaCudzegoPageBean.edytujUzytkownika()}" value="#{msg['edit.zmien']}" />
+            <h:commandButton value="#{msg['powroc']}" action="panelAdm" />
         </h:form>
     </ui:define>
 </ui:composition>

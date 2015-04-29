@@ -14,10 +14,10 @@
 
     <ui:define name="content">
         <h:form id="login" >
-            <h:outputLabel for="j_username" value="Username" />
+            <h:outputLabel for="j_username" value="${msg['log.login']}" />
             <h:inputText value="#{loginPageBean.username}" id="j_username" />
             <br></br>
-            <h:outputLabel for="j_password" value="Password" />
+            <h:outputLabel for="j_password" value="${msg['log.haslo']}" />
             <h:inputSecret value="#{loginPageBean.password}" id="j_password" />
             <br></br>
             <h:commandButton action="#{loginPageBean.zaloguj()}" value="Zaloguj" >

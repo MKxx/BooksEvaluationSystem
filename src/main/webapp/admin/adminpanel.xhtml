@@ -19,37 +19,37 @@ and open the template in the editor.
     </ui:define>
 
     <ui:define name="content">
-        <h2>Lista kont</h2>
+        <h2>#{msg["pa.lista"]}</h2>
             <h:form id="listaUzytkownikowForm">
             
             <h:dataTable id="listaUzytkownikow" var="row" value="#{listPageBean.uzytkownikDataModel}">
                 <h:column id="login">
-                    <f:facet name="header">login</f:facet>
+                    <f:facet name="header">#{msg["form.login"]}</f:facet>
                     <h:outputText value="#{row.login}" />
                 </h:column>
                 <h:column id="imie">
-                    <f:facet name="header">imię</f:facet>
+                    <f:facet name="header">#{msg["form.imie"]}</f:facet>
                     <h:outputText value="#{row.imie}" />
                 </h:column>
                 <h:column id="nazwisko">
-                    <f:facet name="header">nazwisko</f:facet>
+                    <f:facet name="header">#{msg["form.nazwisko"]}</f:facet>
                     <h:outputText value="#{row.nazwisko}" />
                 </h:column>
                 <h:column id="email">
-                    <f:facet name="header">email</f:facet>
+                    <f:facet name="header">#{msg["form.email"]}</f:facet>
                     <h:outputText value="#{row.email}" />
                 </h:column>
                 <h:column id="info">
                     <f:facet name="header">info</f:facet>
                     <h:panelGrid columns="2">
-                        <h:outputText id="IP" value="Adres IP: " />
+                        <h:outputText id="IP" value="${msg['pa.ip']} " />
                         <h:outputLabel for="IP" value="#{row.ipPopZal}" />
-                        <h:outputText id="data" value="Data: " />
+                        <h:outputText id="data" value="${msg['pa.data']} " />
                         <h:outputLabel for="data" value="#{row.czasPopZal}" />
                     </h:panelGrid>
                 </h:column>
                 <h:column id="stan">
-                    <f:facet name="header">stan</f:facet>
+                    <f:facet name="header">#{msg["pa.stan"]}</f:facet>
                     <h:panelGrid columns="2">
                         <h:selectBooleanCheckbox id="potwierdzone" value="#{row.potwierdzony}" disabled="true"/>    
                         <h:outputLabel for="potwierdzone" value="potwierdzone" />    
@@ -58,7 +58,7 @@ and open the template in the editor.
                     </h:panelGrid>
                 </h:column>
                 <h:column id="poziomy">
-                    <f:facet name="header">poziomy</f:facet>
+                    <f:facet name="header">#{msg["pa.poziomy"]}</f:facet>
                     <h:panelGrid columns="2">
                         <h:dataTable id="listaPoziomowDostepu" var="poziom" value="#{row.poziomDostepuList}">
                             <h:column>
@@ -70,15 +70,15 @@ and open the template in the editor.
                     </h:panelGrid>
                 </h:column>
                 <h:column id="akcje">
-                    <f:facet name="header">akcje</f:facet>
-                    <h:commandButton action="#{listPageBean.potwierdzUzytkownika}" value="Autoryzuj" rendered="#{not row.potwierdzony}"/>
-                    <h:commandButton action="#{listPageBean.zablokujUzytkownika}" value="Zablokuj" rendered="#{row.aktywny}"/>
-                    <h:commandButton action="#{listPageBean.odblokujUzytkownika}" value="Odblokuj" rendered="#{not row.aktywny}"/>
-                    <h:commandButton action="#{listPageBean.edytujUzytkownika()}" value="Edytuj"/>
-                    <h:commandButton action="#{listPageBean.edytujPoziomyDostepu()}" value="Edytuj Poziomy"/>
+                    <f:facet name="header">#{msg["pa.akcje"]}</f:facet>
+                    <h:commandButton action="#{listPageBean.potwierdzUzytkownika}" value="${msg['pa.autoryzuj']}" rendered="#{not row.potwierdzony}"/>
+                    <h:commandButton action="#{listPageBean.zablokujUzytkownika}" value="${msg['pa.zablokuj']}" rendered="#{row.aktywny}"/>
+                    <h:commandButton action="#{listPageBean.odblokujUzytkownika}" value="${msg['pa.odblokuj']}" rendered="#{not row.aktywny}"/>
+                    <h:commandButton action="#{listPageBean.edytujUzytkownika()}" value="${msg['pa.edytuj']}"/>
+                    <h:commandButton action="#{listPageBean.edytujPoziomyDostepu()}" value="${msg['pa.edytujp']}"/>
                 </h:column>
             </h:dataTable>
-                    <h:commandButton value="Powróć" action="cancel" />
+                    <h:commandButton value="#{msg['powroc']}" action="cancel" />
         </h:form>
 
     </ui:define>

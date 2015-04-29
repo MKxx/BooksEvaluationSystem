@@ -31,11 +31,11 @@ and open the template in the editor.
             </h:column>
             <h:column>
                 <f:facet name="header">Akcja:</f:facet>
-                <h:commandButton action="#{edycjaPoziomowPageBean.nadajPoziom()}" value="Nadaj" rendered="#{not poziom.aktywny}"/>
-                <h:commandButton action="#{edycjaPoziomowPageBean.odbierzPoziom()}" value="Odbierz" rendered="#{poziom.aktywny}"/>
+                <h:commandButton action="#{edycjaPoziomowPageBean.nadajPoziom()}" value="#{msg['poz.nadaj']}" rendered="#{not poziom.aktywny}"/>
+                <h:commandButton action="#{edycjaPoziomowPageBean.odbierzPoziom()}" value="#{msg['poz.odbierz']}" rendered="#{poziom.aktywny}"/>
             </h:column>
         </h:dataTable>
-        <h:commandButton value="Powróć" action="panelAdm" />
+        <h:commandButton value="#{msg['powroc']}" action="panelAdm" />
         </h:form>
     </ui:define>
 </ui:composition>
