@@ -20,8 +20,8 @@ and open the template in the editor.
 
     <ui:define name="content">
         <h2>#{msg["pa.lista"]}</h2>
-<!--            <h:form id="listaUzytkownikowForm">
-            <h:inputText value="#{listPageBean.wartosc}" maxlength="70" >
+        <h:form id="listaUzytkownikowForm">
+<!--            <h:inputText value="#{listPageBean.wartosc}" maxlength="70" >
             </h:inputText>
             <h:commandButton value="Wyszukaj" action="#{listPageBean.odswiez()}" ></h:commandButton>-->
             <h:dataTable id="listaUzytkownikow" var="row" value="#{listPageBean.uzytkownikDataModel}">
