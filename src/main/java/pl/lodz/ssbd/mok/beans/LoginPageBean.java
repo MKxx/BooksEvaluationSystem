@@ -65,7 +65,7 @@ public class LoginPageBean {
         try {
             getRequest().login(username, password);
             uzytkownikSession.zalogujPoprawneUwierzytelnienie(username, password, IP);
-            return "sukces";
+            return "zalogowano";
         } catch (ServletException ex) {
             uzytkownikSession.zalogujNiepoprawneUwierzytenienie(username, password, IP);
             Logger.getLogger(LoginPageBean.class.getName()).log(Level.SEVERE, null, ex);

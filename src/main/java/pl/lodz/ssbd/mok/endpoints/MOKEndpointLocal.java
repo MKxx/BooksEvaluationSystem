@@ -5,6 +5,7 @@
  */
 package pl.lodz.ssbd.mok.endpoints;
 
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.PoziomDostepu;
@@ -28,7 +29,10 @@ public interface MOKEndpointLocal {
     public void zalogujNiepoprawneUwierzytenienie(String username,String IP);
 
     public void zapiszKontoPoEdycji(Uzytkownik uzytkownikEdycja);
-
+    
+    public String pobierzIPOstatniegoPopZalogowania();
+    public Date pobierzCzasOstatniegoPopZalogowania();
+    public int pobierzIloscNPopZal();
     public Uzytkownik pobierzUzytkownikaDoEdycji(String login);
 
     public void nadajPoziom(PoziomDostepu poziom);

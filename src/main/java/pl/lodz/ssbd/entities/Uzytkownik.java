@@ -33,8 +33,8 @@ import javax.validation.constraints.Size;
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Entity
-@Table(name="uzytkownik")
-@TableGenerator(name="UzytkownikIdGen", table="generator", pkColumnName="nazwa_klasy", valueColumnName="ost_id", pkColumnValue="uzytkownik")
+@Table(name = "uzytkownik")
+@TableGenerator(name = "UzytkownikIdGen", table = "generator", pkColumnName = "nazwa_klasy", valueColumnName = "ost_id", pkColumnValue = "uzytkownik")
 @NamedQueries({
     @NamedQuery(name = "Uzytkownik.findAll", query = "SELECT u FROM Uzytkownik u"),
     @NamedQuery(name = "Uzytkownik.findByIdUzytkownik", query = "SELECT u FROM Uzytkownik u WHERE u.idUzytkownik = :idUzytkownik"),
@@ -51,12 +51,13 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Uzytkownik.findByPotwierdzony", query = "SELECT u FROM Uzytkownik u WHERE u.potwierdzony = :potwierdzony"),
     @NamedQuery(name = "Uzytkownik.findByIloscNPopZal", query = "SELECT u FROM Uzytkownik u WHERE u.iloscNPopZal = :iloscNPopZal")})
 public class Uzytkownik implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_uzytkownik", unique = true, updatable = false, nullable = false)
-    @GeneratedValue(strategy= GenerationType.TABLE, generator="UzytkownikIdGen")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "UzytkownikIdGen")
     private Long idUzytkownik;
     @Basic(optional = false)
     @NotNull
@@ -73,7 +74,7 @@ public class Uzytkownik implements Serializable {
     @Size(min = 1, max = 50)
     @Column(unique = true, nullable = false, length = 50)
     private String login;
-    @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -281,5 +282,5 @@ public class Uzytkownik implements Serializable {
     public String toString() {
         return "pl.lodz.ssbd.entities.Uzytkownik[ idUzytkownik=" + idUzytkownik + " ]";
     }
-    
+
 }

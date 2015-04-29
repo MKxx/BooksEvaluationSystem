@@ -7,6 +7,7 @@ package pl.lodz.ssbd.mok.beans;
 
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -30,7 +31,7 @@ public class UzytkownikSession implements Serializable {
      */
     public UzytkownikSession() {
     }
-    
+
     @EJB
     private MOKEndpointLocal MOKEndpoint;
 
@@ -44,7 +45,8 @@ public class UzytkownikSession implements Serializable {
     public Uzytkownik getUzytkownikEdycja() {
         return uzytkownikEdycja;
     }
-    public void rejestrujUzytkownika(Uzytkownik uzytkownik, String powtorzHaslo) {
+
+    public void rejestrujUzytkownika(Uzytkownik uzytkownik) {
         Uzytkownik nowyUzytkownik = new Uzytkownik();
         nowyUzytkownik.setLogin(uzytkownik.getLogin());
           if(!powtorzHaslo.equals(uzytkownik.getHasloMd5())){
@@ -57,24 +59,26 @@ public class UzytkownikSession implements Serializable {
         nowyUzytkownik.setImie(uzytkownik.getImie());
         nowyUzytkownik.setNazwisko(uzytkownik.getNazwisko());
         nowyUzytkownik.setEmail(uzytkownik.getEmail());
+        mailer mail = new mailer();
+        mail.wyslijPoZarejestrowaniu(uzytkownik.getEmail(), uzytkownik.getLogin(), uzytkownik.getHasloMd5());
         MOKEndpoint.rejestrujUzytkownika(nowyUzytkownik);
         Mailer.wyslijPoZarejestrowaniu(uzytkownik.getEmail(), uzytkownik.getLogin(), uzytkownik.getHasloMd5());
 
     }
-    
-    public List<Uzytkownik> pobierzWszystkichUzytkownikow(String wartosc){
-        return MOKEndpoint.pobierzWszystkichUzytkownikow(wartosc);
+
+    public List<Uzytkownik> pobierzWszystkichUzytkownikow() {
+        return MOKEndpoint.pobierzWszystkichUzytkownikow();
     }
-    
-    public void potwierdzUzytkownika(Uzytkownik uzytkownik){
+
+    public void potwierdzUzytkownika(Uzytkownik uzytkownik) {
         MOKEndpoint.potwierdzUzytkownika(uzytkownik);
     }
-    
-    public void zablokujUzytkownika(Uzytkownik uzytkownik){
+
+    public void zablokujUzytkownika(Uzytkownik uzytkownik) {
         MOKEndpoint.zablokujUzytkownika(uzytkownik);
     }
-        
-    public void odblokujUzytkownika(Uzytkownik uzytkownik){
+
+    public void odblokujUzytkownika(Uzytkownik uzytkownik) {
         MOKEndpoint.odblokujUzytkownika(uzytkownik);
     }
 
@@ -85,15 +89,27 @@ public class UzytkownikSession implements Serializable {
     public void zalogujNiepoprawneUwierzytenienie(String username, String password, String IP) {
          MOKEndpoint.zalogujNiepoprawneUwierzytenienie(username, IP);
     }
-    
-    public void pobierzUzytkownikMenu(String login){
+
+    public String pobierzIPOstatniegoPopZalogowania() {
+        return MOKEndpoint.pobierzIPOstatniegoPopZalogowania();
+    }
+
+    public Date pobierzCzasOstatniegoPopZalogowania() {
+        return MOKEndpoint.pobierzCzasOstatniegoPopZalogowania();
+    }
+
+    public int pobierzIloscNPopZal() {
+        return MOKEndpoint.pobierzIloscNPopZal();
+    }
+
+    public void pobierzUzytkownikMenu(String login) {
         uzytkownikMenu = MOKEndpoint.pobierzUzytkownika(login);
     }
 
     void zapiszUzytkownikaPoEdycji() {
         MOKEndpoint.zapiszKontoPoEdycji(uzytkownikEdycja);
     }
-    
+
     public void pobierzUzytkownikaDoEdycji(Uzytkownik uzytkownik) {
         uzytkownikEdycja = MOKEndpoint.pobierzUzytkownikaDoEdycji(uzytkownik.getLogin());
     }
