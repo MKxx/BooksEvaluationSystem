@@ -6,6 +6,8 @@
 package pl.lodz.ssbd.mok.facades;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -17,6 +19,7 @@ import pl.lodz.ssbd.facades.AbstractFacade;
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Stateless(name = "mokU")
+@TransactionAttribute(TransactionAttributeType.MANDATORY)        
 public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements UzytkownikFacadeLocal {
 
     @PersistenceContext(unitName = "ssbd05mok")

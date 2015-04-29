@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import pl.lodz.ssbd.entities.PoprzednieHaslo;
 import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
@@ -19,6 +21,7 @@ import pl.lodz.ssbd.mok.facades.UzytkownikFacadeLocal;
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Stateful
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class MOKEndpoint implements MOKEndpointLocal {
 
     @EJB(beanName = "mokU")
