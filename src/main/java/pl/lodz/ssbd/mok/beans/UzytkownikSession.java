@@ -15,6 +15,8 @@ import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.mok.endpoints.MOKEndpointLocal;
 import pl.lodz.ssbd.utils.MD5;
+import pl.lodz.ssbd.utils.Mailer;
+
 
 /**
  *
@@ -55,9 +57,9 @@ public class UzytkownikSession implements Serializable {
         nowyUzytkownik.setImie(uzytkownik.getImie());
         nowyUzytkownik.setNazwisko(uzytkownik.getNazwisko());
         nowyUzytkownik.setEmail(uzytkownik.getEmail());
-        mailer mail=new mailer();
-        mail.wyslijPoZarejestrowaniu(uzytkownik.getEmail(), uzytkownik.getLogin(), uzytkownik.getHasloMd5());
         MOKEndpoint.rejestrujUzytkownika(nowyUzytkownik);
+        Mailer.wyslijPoZarejestrowaniu(uzytkownik.getEmail(), uzytkownik.getLogin(), uzytkownik.getHasloMd5());
+
     }
     
     public List<Uzytkownik> pobierzWszystkichUzytkownikow(String wartosc){
