@@ -10,9 +10,11 @@ import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pl.lodz.ssbd.entities.PoprzednieHaslo;
+import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 
 /**
  *
@@ -20,6 +22,7 @@ import pl.lodz.ssbd.entities.PoprzednieHaslo;
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
+@Interceptors({DziennikZdarzenInterceptor.class})
 public class PoprzednieHasloFacade extends AbstractFacade<PoprzednieHaslo> implements PoprzednieHasloFacadeLocal {
     @PersistenceContext(unitName = "ssbd05mok")
     private EntityManager em;
