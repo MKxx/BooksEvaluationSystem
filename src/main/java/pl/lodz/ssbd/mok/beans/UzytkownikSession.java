@@ -9,6 +9,8 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.mok.endpoints.MOKEndpointLocal;
@@ -40,9 +42,15 @@ public class UzytkownikSession implements Serializable {
     public Uzytkownik getUzytkownikEdycja() {
         return uzytkownikEdycja;
     }
-    public void rejestrujUzytkownika(Uzytkownik uzytkownik) {
+    public void rejestrujUzytkownika(Uzytkownik uzytkownik, String powtorzHaslo) {
         Uzytkownik nowyUzytkownik = new Uzytkownik();
         nowyUzytkownik.setLogin(uzytkownik.getLogin());
+          if(!powtorzHaslo.equals(uzytkownik.getHasloMd5())){
+            FacesContext fctx = FacesContext.getCurrentInstance();
+            FacesMessage fmsg = new FacesMessage("Hasła się nie zgadzają");
+            fctx.addMessage(null, fmsg);
+            throw new IllegalArgumentException();
+        }
         nowyUzytkownik.setHasloMd5(MD5.hash(uzytkownik.getHasloMd5()));
         nowyUzytkownik.setImie(uzytkownik.getImie());
         nowyUzytkownik.setNazwisko(uzytkownik.getNazwisko());

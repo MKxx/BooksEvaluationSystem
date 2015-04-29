@@ -18,6 +18,16 @@ import pl.lodz.ssbd.entities.Uzytkownik;
 @RequestScoped
 public class RejestracjaPageBean {
 
+    private String powtorzHaslo;
+
+    public void setPowtorzHaslo(String powtorzHaslo) {
+        this.powtorzHaslo = powtorzHaslo;
+    }
+
+    public String getPowtorzHaslo() {
+        return powtorzHaslo;
+    }
+    
     /**
      * Creates a new instance of RejestracjaPageBean
      */
@@ -35,7 +45,7 @@ public class RejestracjaPageBean {
 
     public String rejestrujUzytkownika() {
         System.out.println(uzytkownik);
-        uzytkownikSession.rejestrujUzytkownika(uzytkownik);
+        uzytkownikSession.rejestrujUzytkownika(uzytkownik, powtorzHaslo);
         return "sukces";
     }
 }

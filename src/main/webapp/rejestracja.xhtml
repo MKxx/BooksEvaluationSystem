@@ -36,6 +36,10 @@
                     (*) Haslo: <br></br>
                     <h:inputSecret value="#{rejestracjaPageBean.uzytkownik.hasloMd5}" /> 
                 </h:panelGroup>
+                <h:panelGroup>
+                    (*) Powtórz Haslo: <br></br>
+                    <h:inputSecret value="#{rejestracjaPageBean.powtorzHaslo}" /> 
+                </h:panelGroup>
             </h:panelGrid>
             <h:commandButton action="#{rejestracjaPageBean.rejestrujUzytkownika()}" value="Zarejestruj" />
         </h:form>
