@@ -19,13 +19,15 @@ import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.mok.facades.PoziomDostepuFacadeLocal;
 import pl.lodz.ssbd.mok.facades.UzytkownikFacadeLocal;
+
 /**
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Stateful
 public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
-        private static final Logger loger = Logger.getLogger(MOKEndpoint.class.getName());
+
+    private static final Logger loger = Logger.getLogger(MOKEndpoint.class.getName());
     @EJB(beanName = "mokU")
     private UzytkownikFacadeLocal uzytkownikFacade;
     @EJB(beanName = "mokPD")
@@ -108,9 +110,9 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
             uzytkownik.setIloscNPopZal(ilosc_niepoprawnych_zalogowan + 1);
         }
     }
-    
+
     @Override
-    public Uzytkownik pobierzUzytkownikaDoEdycji(String login){
+    public Uzytkownik pobierzUzytkownikaDoEdycji(String login) {
         uzytkownikEdycja = uzytkownikFacade.findByLogin(login);
         hasloPrzedEdycja = uzytkownikEdycja.getHasloMd5();
         System.out.println(uzytkownikEdycja.getImie());
@@ -125,7 +127,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
         if (!uzytkownikEdycja.equals(uzytkownik)) {
             throw new IllegalArgumentException("Modyfikowany uzytkownik niezgodny z wczytanym");
         }
-        if(!hasloPrzedEdycja.equals(uzytkownikEdycja.getHasloMd5())){
+        if (!hasloPrzedEdycja.equals(uzytkownikEdycja.getHasloMd5())) {
             PoprzednieHaslo popHaslo = new PoprzednieHaslo();
             popHaslo.setIdUzytkownik(uzytkownik);
             popHaslo.setStareHasloMd5(hasloPrzedEdycja);
@@ -139,7 +141,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     public void nadajPoziom(PoziomDostepu poziom) {
         poziom.setAktywny(true);
         poziomDostepuFacade.edit(poziom);
-        
+
     }
 
     @Override
@@ -152,8 +154,9 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     public Uzytkownik pobierzUzytkownika(String login) {
         return uzytkownikFacade.findByLogin(login);
     }
-     @Override
-      public void afterBegin() throws EJBException, RemoteException {
+
+    @Override
+    public void afterBegin() throws EJBException, RemoteException {
         IDTransakcji = System.currentTimeMillis();
         loger.log(Level.INFO, "Transakcja o ID: " + IDTransakcji + " zostala rozpoczeta");
     }
@@ -165,6 +168,6 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
 
     @Override
     public void afterCompletion(boolean committed) throws EJBException, RemoteException {
-        loger.log(Level.INFO, "Transakcja o ID: " + IDTransakcji + " zostala zakonczona przez: " + (committed?"zatwierdzenie":"wycofanie"));
+        loger.log(Level.INFO, "Transakcja o ID: " + IDTransakcji + " zostala zakonczona przez: " + (committed ? "zatwierdzenie" : "wycofanie"));
     }
 }
