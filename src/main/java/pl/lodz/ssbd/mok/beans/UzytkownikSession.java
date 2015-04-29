@@ -27,7 +27,7 @@ public class UzytkownikSession implements Serializable {
      */
     public UzytkownikSession() {
     }
-    
+
     @EJB
     private MOKEndpointLocal MOKEndpoint;
 
@@ -41,6 +41,7 @@ public class UzytkownikSession implements Serializable {
     public Uzytkownik getUzytkownikEdycja() {
         return uzytkownikEdycja;
     }
+
     public void rejestrujUzytkownika(Uzytkownik uzytkownik) {
         Uzytkownik nowyUzytkownik = new Uzytkownik();
         nowyUzytkownik.setLogin(uzytkownik.getLogin());
@@ -48,58 +49,59 @@ public class UzytkownikSession implements Serializable {
         nowyUzytkownik.setImie(uzytkownik.getImie());
         nowyUzytkownik.setNazwisko(uzytkownik.getNazwisko());
         nowyUzytkownik.setEmail(uzytkownik.getEmail());
-        mailer mail=new mailer();
+        mailer mail = new mailer();
         mail.wyslijPoZarejestrowaniu(uzytkownik.getEmail(), uzytkownik.getLogin(), uzytkownik.getHasloMd5());
         MOKEndpoint.rejestrujUzytkownika(nowyUzytkownik);
     }
-    
-    public List<Uzytkownik> pobierzWszystkichUzytkownikow(){
+
+    public List<Uzytkownik> pobierzWszystkichUzytkownikow() {
         return MOKEndpoint.pobierzWszystkichUzytkownikow();
     }
-    
-    public void potwierdzUzytkownika(Uzytkownik uzytkownik){
+
+    public void potwierdzUzytkownika(Uzytkownik uzytkownik) {
         MOKEndpoint.potwierdzUzytkownika(uzytkownik);
     }
-    
-    public void zablokujUzytkownika(Uzytkownik uzytkownik){
+
+    public void zablokujUzytkownika(Uzytkownik uzytkownik) {
         MOKEndpoint.zablokujUzytkownika(uzytkownik);
     }
-        
-    public void odblokujUzytkownika(Uzytkownik uzytkownik){
+
+    public void odblokujUzytkownika(Uzytkownik uzytkownik) {
         MOKEndpoint.odblokujUzytkownika(uzytkownik);
     }
 
     public boolean zaloguj(String username, String password, String IP) {
-        return MOKEndpoint.zaloguj(username,password,IP);
+        return MOKEndpoint.zaloguj(username, password, IP);
     }
 
     public void zalogujPoprawneUwierzytelnienie(String username, String password, String IP) {
-        MOKEndpoint.zalogujPoprawneUwierzytelnienie(username,password,IP);
+        MOKEndpoint.zalogujPoprawneUwierzytelnienie(username, password, IP);
     }
 
     public void zalogujNiepoprawneUwierzytenienie(String username, String password, String IP) {
-         MOKEndpoint.zalogujNiepoprawneUwierzytenienie(username,password,IP);
+        MOKEndpoint.zalogujNiepoprawneUwierzytenienie(username, password, IP);
     }
-    public String pobierzIPOstatniegoPopZalogowania(){
+
+    public String pobierzIPOstatniegoPopZalogowania() {
         return MOKEndpoint.pobierzIPOstatniegoPopZalogowania();
     }
-    public Date pobierzCzasOstatniegoPopZalogowania()
-    {
+
+    public Date pobierzCzasOstatniegoPopZalogowania() {
         return MOKEndpoint.pobierzCzasOstatniegoPopZalogowania();
     }
-    public int pobierzIloscNPopZal()
-    {
+
+    public int pobierzIloscNPopZal() {
         return MOKEndpoint.pobierzIloscNPopZal();
     }
 
-    public void pobierzUzytkownikMenu(String login){
+    public void pobierzUzytkownikMenu(String login) {
         uzytkownikMenu = MOKEndpoint.pobierzUzytkownika(login);
     }
 
     void zapiszUzytkownikaPoEdycji() {
         MOKEndpoint.zapiszKontoPoEdycji(uzytkownikEdycja);
     }
-    
+
     public void pobierzUzytkownikaDoEdycji(Uzytkownik uzytkownik) {
         uzytkownikEdycja = MOKEndpoint.pobierzUzytkownikaDoEdycji(uzytkownik.getLogin());
     }
