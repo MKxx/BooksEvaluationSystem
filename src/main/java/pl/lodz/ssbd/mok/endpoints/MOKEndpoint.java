@@ -28,7 +28,6 @@ import pl.lodz.ssbd.mok.facades.UzytkownikFacadeLocal;
  */
 @Stateful
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-public class MOKEndpoint implements MOKEndpointLocal {
 public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
 
     private static final Logger loger = Logger.getLogger(MOKEndpoint.class.getName());
