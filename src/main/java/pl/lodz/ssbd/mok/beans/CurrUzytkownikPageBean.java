@@ -5,11 +5,8 @@
  */
 package pl.lodz.ssbd.mok.beans;
 
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.text.Format;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -33,9 +30,6 @@ public class CurrUzytkownikPageBean {
     }
     
       public String pobierzIPPopZal(){
-        //  List <Uzytkownik> uzytkownicy=uzytkownikSession.pobierzWszystkichUzytkownikow();
-        //  String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-          //Uzytkownik user=uzytkownikSession.getUzytkownikMenu();
           return uzytkownikSession.pobierzIPOstatniegoPopZalogowania();
             
     }
