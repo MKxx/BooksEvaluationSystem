@@ -4,9 +4,11 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html">
 
-    <h:panelGrid id="WSZYSCY">
+    <h:panelGrid id="GOSC" rendered="#{menuPageBean.isGosc}">
         <h:link outcome="/rejestracja.xhtml" value="#{msg['menu.rejestracja']}" />
         <h:link outcome="/login/login.xhtml" value="#{msg['menu.zaloguj']}" />
+    </h:panelGrid>
+    <h:panelGrid id="WSZYSCY">
         <h:link outcome="/listaksiazek.xhtml" value="#{msg['menu.listaksiazek']}" />
         <h:link outcome="/listauatorow.xhtml" value="#{msg['menu.listaautorow']}" />
     </h:panelGrid>

@@ -8,8 +8,7 @@ package pl.lodz.ssbd.mok.beans;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import pl.lodz.ssbd.entities.PoziomDostepu;
+import pl.lodz.ssbd.utils.SprawdzaczRoli;
 
 /**
  *
@@ -18,43 +17,29 @@ import pl.lodz.ssbd.entities.PoziomDostepu;
 @Named(value = "menuPageBean")
 @RequestScoped
 public class MenuPageBean {
-
-    @Inject
-    UzytkownikSession uzytkownikSession;
-    
     /**
      * Creates a new instance of MenuPageBean
      */
     public MenuPageBean() {
     }
     
+    public boolean getIsGosc(){
+        if(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser() == null){
+            System.out.println("nie ma usera");
+            return true;
+        }
+        return false;
+    }
+    
     public boolean getIsAdmin(){
-        return isRole("ADMINISTRATOR");
+        return SprawdzaczRoli.sprawdzRole("ADMINISTRATOR");
     }
     
     public boolean getIsUzytkownik(){
-        return isRole("UZYTKOWNIK");
+        return SprawdzaczRoli.sprawdzRole("UZYTKOWNIK");
     }
     
     public boolean getIsModerator(){
-        return isRole("MODERATOR");
-    }
-    
-    
-    private boolean isRole(String role){
-        String login;
-        login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-        if(login == null) return false;
-        if(uzytkownikSession.getUzytkownikMenu() == null){
-            uzytkownikSession.pobierzUzytkownikMenu(login);
-        }
-        int index = 0;
-        for(PoziomDostepu pd : uzytkownikSession.getUzytkownikMenu().getPoziomDostepuList()){
-            if(pd.getNazwa().equals(role)){
-                index = uzytkownikSession.getUzytkownikMenu().getPoziomDostepuList().indexOf(pd);
-            }
-        }
-
-        return uzytkownikSession.getUzytkownikMenu().getPoziomDostepuList().get(index).getAktywny();
+        return SprawdzaczRoli.sprawdzRole("MODERATOR");
     }
 }
