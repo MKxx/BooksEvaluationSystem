@@ -67,8 +67,8 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     }
 
     @Override
-    public List<Uzytkownik> pobierzWszystkichUzytkownikow() {
-        return uzytkownikFacade.findAll();
+    public List<Uzytkownik> pobierzUzytkownikow(String wartosc) {
+        return uzytkownikFacade.findByImieiNazwisko(wartosc);
     }
 
     @Override
