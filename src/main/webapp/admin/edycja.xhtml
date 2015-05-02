@@ -3,7 +3,8 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns="http://www.w3.org/1999/xhtml"
       template="./../templates/Template.xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="top">
         <p>Strona główna</p>
     </ui:define>
@@ -15,11 +16,26 @@
     <ui:define name="content">
         <p>Edytuj konto</p>
         <h:form>
-            #{msg["form.imie"]} <h:inputText value="#{edycjaCudzegoPageBean.uzytkownikEdycja.imie}"/><br />
-            #{msg["form.nazwisko"]} <h:inputText value="#{edycjaCudzegoPageBean.uzytkownikEdycja.nazwisko}"/><br />
-            #{msg["form.email"]} <h:inputText value="#{edycjaCudzegoPageBean.uzytkownikEdycja.email}"/><br />
-            #{msg["form.haslo"]} <h:inputSecret value="#{edycjaCudzegoPageBean.noweHaslo}"/><br />
-            #{msg["form.powt_haslo"]} <h:inputSecret value="#{edycjaCudzegoPageBean.powtorzHaslo}"/><h:message for="" class="blad"/><br />
+            <p>#{msg["form.imie"]} <h:inputText id="imie" value="#{edycjaCudzegoPageBean.uzytkownikEdycja.imie}"/>
+                <h:message for="imie" class="blad"/>
+            </p>
+            <p>#{msg["form.nazwisko"]} <h:inputText id="nazwisko" value="#{edycjaCudzegoPageBean.uzytkownikEdycja.nazwisko}"/>
+                <h:message for="nazwisko" class="blad"/>
+            </p>
+            <p>#{msg["form.email"]} <h:inputText id="email" value="#{edycjaCudzegoPageBean.uzytkownikEdycja.email}"/>
+                <h:message for="email" class="blad"/>
+            </p>
+            <p>#{msg["form.haslo"]} <h:inputSecret id="haslo" value="#{edycjaCudzegoPageBean.noweHaslo}">
+                <f:validateRegex pattern="({0}|(?=.*[a-z]).{6,})" />
+                </h:inputSecret>
+                <h:message for="haslo" class="blad"/>
+            </p>
+            <p>#{msg["form.powt_haslo"]} <h:inputSecret id="hasloPowt" value="#{edycjaCudzegoPageBean.powtorzHaslo}">
+                <f:validateRegex pattern="({0}|(?=.*[a-z]).{6,})" />
+                </h:inputSecret>
+                <h:message for="hasloPowt" class="blad"/>
+                <h:message for="" class="blad"/>
+            </p>
             <h:commandButton action="#{edycjaCudzegoPageBean.edytujUzytkownika()}" value="#{msg['edit.zmien']}" />
             <h:commandButton value="#{msg['powroc']}" action="panelAdm" />
         </h:form>
