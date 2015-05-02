@@ -19,7 +19,7 @@ import pl.lodz.ssbd.entities.Uzytkownik;
 public interface MOKEndpointLocal {
 
     public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik);
-    public List<Uzytkownik> pobierzWszystkichUzytkownikow();
+    public List<Uzytkownik> pobierzUzytkownikow(String wartosc);
     public void potwierdzUzytkownika(Uzytkownik uzytkownik);
     public void zablokujUzytkownika(Uzytkownik uzytkownik);
     public void odblokujUzytkownika(Uzytkownik uzytkownik);

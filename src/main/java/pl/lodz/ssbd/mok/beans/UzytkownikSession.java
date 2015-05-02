@@ -66,8 +66,8 @@ public class UzytkownikSession implements Serializable {
 
     }
 
-    public List<Uzytkownik> pobierzWszystkichUzytkownikow() {
-        return MOKEndpoint.pobierzWszystkichUzytkownikow();
+    public List<Uzytkownik> pobierzUzytkownikow(String wartosc) {
+        return MOKEndpoint.pobierzUzytkownikow(wartosc);
     }
 
     public void potwierdzUzytkownika(Uzytkownik uzytkownik) {
@@ -106,7 +106,7 @@ public class UzytkownikSession implements Serializable {
         uzytkownikMenu = MOKEndpoint.pobierzUzytkownika(login);
     }
 
-    void zapiszUzytkownikaPoEdycji() {
+    public void zapiszUzytkownikaPoEdycji() {
         MOKEndpoint.zapiszKontoPoEdycji(uzytkownikEdycja);
     }
 
@@ -114,11 +114,11 @@ public class UzytkownikSession implements Serializable {
         uzytkownikEdycja = MOKEndpoint.pobierzUzytkownikaDoEdycji(uzytkownik.getLogin());
     }
 
-    void nadajPoziom(PoziomDostepu poziom) {
+    public void nadajPoziom(PoziomDostepu poziom) {
         MOKEndpoint.nadajPoziom(poziom);
     }
 
-    void odbierzPoziom(PoziomDostepu poziom) {
+    public void odbierzPoziom(PoziomDostepu poziom) {
         MOKEndpoint.odbierzPoziom(poziom);
     }
 
