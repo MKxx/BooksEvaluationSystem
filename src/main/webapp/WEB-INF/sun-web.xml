@@ -13,6 +13,28 @@
     <role-name>UZYTKOWNIK</role-name>
     <group-name>UZYTKOWNIK</group-name>
   </security-role-mapping>
+  <security-role-mapping>
+    <role-name>AutoryzacjaKonta</role-name>
+    <group-name>ADMINISTRATOR</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>BlokowanieOdblokowanieUzytkownia</role-name>
+    <group-name>ADMINISTRATOR</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>ModyfikowanieDanychSwojegoKonta</role-name>
+    <group-name>ADMINISTRATOR</group-name>
+    <group-name>MODERATOR</group-name>
+    <group-name>UZYTKOWNIK</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>NadanieOdebraniePoziomuDostepu</role-name>
+    <group-name>ADMINISTRATOR</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>WyszukiwanieUzytkownika</role-name>
+    <group-name>ADMINISTRATOR</group-name>
+  </security-role-mapping>
   <class-loader delegate="true"/>
   <jsp-config>
     <property name="keepgenerated" value="true">
