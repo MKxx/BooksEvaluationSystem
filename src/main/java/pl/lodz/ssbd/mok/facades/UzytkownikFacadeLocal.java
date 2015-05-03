@@ -6,6 +6,8 @@
 package pl.lodz.ssbd.mok.facades;
 
 import java.util.List;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Uzytkownik;
 
@@ -22,6 +24,7 @@ public interface UzytkownikFacadeLocal {
 
     void remove(Uzytkownik uzytkownik);
 
+    @RolesAllowed({"AutoryzacjaKonta","BlokowanieOdblokowanieUzytkownia"})
     Uzytkownik find(Object id);
 
     List<Uzytkownik> findAll();
@@ -30,6 +33,8 @@ public interface UzytkownikFacadeLocal {
 
     int count();
 
+    @PermitAll
+    @RolesAllowed({"ModyfikowanieDanychSwojegoKonta", "WyszukiwanieUzytkownika"})
     public Uzytkownik findByLogin(String username);
     
     public List<Uzytkownik> findByImieiNazwisko(String wartosc);

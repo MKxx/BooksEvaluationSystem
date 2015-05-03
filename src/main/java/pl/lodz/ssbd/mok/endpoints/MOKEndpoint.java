@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.ejb.SessionSynchronization;
@@ -46,6 +48,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     private int IloscNPopZal;
 
     @Override
+    @PermitAll
     public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik) {
         PoziomDostepu admin = new PoziomDostepu();
         admin.setAktywny(false);
@@ -72,24 +75,28 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     }
 
     @Override
+    @RolesAllowed("AutoryzacjaKonta")
     public void potwierdzUzytkownika(Uzytkownik uzytkownik) {
         Uzytkownik u = uzytkownikFacade.find(uzytkownik.getIdUzytkownik());
         u.setPotwierdzony(true);
     }
 
     @Override
+    @RolesAllowed("BlokowanieOdblokowanieUzytkownia")
     public void zablokujUzytkownika(Uzytkownik uzytkownik) {
         Uzytkownik u = uzytkownikFacade.find(uzytkownik.getIdUzytkownik());
         u.setAktywny(false);
     }
 
     @Override
+    @RolesAllowed("BlokowanieOdblokowanieUzytkownia")
     public void odblokujUzytkownika(Uzytkownik uzytkownik) {
         Uzytkownik u = uzytkownikFacade.find(uzytkownik.getIdUzytkownik());
         u.setAktywny(true);
     }
 
     @Override
+    @PermitAll
     public void zalogujPoprawneUwierzytelnienie(String username, String IP) {
         Uzytkownik uzytkownik = uzytkownikFacade.findByLogin(username);
         this.IPOstPopZal=uzytkownik.getIpPopZal();
@@ -103,6 +110,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     }
 
     @Override
+    @PermitAll
     public void zalogujNiepoprawneUwierzytenienie(String username, String IP) {
         Uzytkownik uzytkownik = uzytkownikFacade.findByLogin(username);
         if (uzytkownik == null) {
@@ -119,6 +127,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     }
 
     @Override
+    @RolesAllowed("ModyfikowanieDanychSwojegoKonta")
     public Uzytkownik pobierzUzytkownikaDoEdycji(String login) {
         uzytkownikEdycja = uzytkownikFacade.findByLogin(login);
         hasloPrzedEdycja = uzytkownikEdycja.getHasloMd5();
@@ -127,6 +136,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     }
 
     @Override
+    @RolesAllowed("ModyfikowanieDanychSwojegoKonta")
     public void zapiszKontoPoEdycji(Uzytkownik uzytkownik) {
         if (null == uzytkownikEdycja) {
             throw new IllegalArgumentException("Brak wczytanego uzytkownika do modyfikacji");
@@ -154,6 +164,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     }
 
     @Override
+    @RolesAllowed("NadanieOdebraniePoziomuDostepu")
     public void nadajPoziom(PoziomDostepu poziom) {
         poziom.setAktywny(true);
         poziomDostepuFacade.edit(poziom);
@@ -161,12 +172,14 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     }
 
     @Override
+    @RolesAllowed("NadanieOdebraniePoziomuDostepu")
     public void odbierzPoziom(PoziomDostepu poziom) {
         poziom.setAktywny(false);
         poziomDostepuFacade.edit(poziom);
     }
 
     @Override
+    @RolesAllowed("WyszukiwanieUzytkownika")
     public Uzytkownik pobierzUzytkownika(String login) {
         return uzytkownikFacade.findByLogin(login);
     }

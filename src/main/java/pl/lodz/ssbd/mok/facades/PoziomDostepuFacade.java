@@ -5,6 +5,7 @@
  */
 package pl.lodz.ssbd.mok.facades;
 
+import javax.annotation.security.RolesAllowed;
 import pl.lodz.ssbd.mok.*;
 import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
