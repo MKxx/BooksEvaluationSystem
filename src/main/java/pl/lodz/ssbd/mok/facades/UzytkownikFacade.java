@@ -23,7 +23,7 @@ import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
  */
 @Stateless(name = "mokU")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)        
-//@Interceptors({DziennikZdarzenInterceptor.class})
+@Interceptors({DziennikZdarzenInterceptor.class})
 public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements UzytkownikFacadeLocal {
 
     @PersistenceContext(unitName = "ssbd05mok")

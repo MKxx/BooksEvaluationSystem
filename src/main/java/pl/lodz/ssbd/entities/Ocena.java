@@ -23,11 +23,11 @@ import javax.validation.constraints.NotNull;
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Entity
-@Table(name = "ocena", 
-uniqueConstraints = {
-    @UniqueConstraint(columnNames = "id_ksiazka"),
-    @UniqueConstraint(columnNames = "id_uzytkownik")})
-@TableGenerator(name="OcenaIdGen", table="generator", pkColumnName="nazwa_klasy", valueColumnName="ost_id", pkColumnValue="ocena")
+@Table(name = "ocena",
+        uniqueConstraints = {
+            @UniqueConstraint(columnNames = "id_ksiazka"),
+            @UniqueConstraint(columnNames = "id_uzytkownik")})
+@TableGenerator(name = "OcenaIdGen", table = "generator", pkColumnName = "nazwa_klasy", valueColumnName = "ost_id", pkColumnValue = "ocena")
 @NamedQueries({
     @NamedQuery(name = "Ocena.findAll", query = "SELECT o FROM Ocena o"),
     @NamedQuery(name = "Ocena.findByIdOcena", query = "SELECT o FROM Ocena o WHERE o.idOcena = :idOcena"),
@@ -35,12 +35,13 @@ uniqueConstraints = {
     @NamedQuery(name = "Ocena.findByUlubiona", query = "SELECT o FROM Ocena o WHERE o.ulubiona = :ulubiona"),
     @NamedQuery(name = "Ocena.findByWersjaEncji", query = "SELECT o FROM Ocena o WHERE o.wersjaEncji = :wersjaEncji")})
 public class Ocena implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_ocena", unique = true, updatable = false, nullable = false)
-    @GeneratedValue(strategy= GenerationType.TABLE, generator="OcenaIdGen")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "OcenaIdGen")
     private Long idOcena;
     @Basic(optional = false)
     @NotNull
@@ -138,7 +139,7 @@ public class Ocena implements Serializable {
 
     @Override
     public String toString() {
-        return "pl.lodz.ssbd.entities.Ocena[ idOcena=" + idOcena + " ]";
+        return "pl.lodz.ssbd.entities.Ocena[ idOcena=" + idOcena + ", nr wersji: " + wersjaEncji + " ]";
     }
-    
+
 }

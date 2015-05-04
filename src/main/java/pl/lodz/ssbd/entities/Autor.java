@@ -33,7 +33,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "autor")
-@TableGenerator(name="AutorIdGen", table="generator", pkColumnName="nazwa_klasy", valueColumnName="ost_id", pkColumnValue="autor")
+@TableGenerator(name = "AutorIdGen", table = "generator", pkColumnName = "nazwa_klasy", valueColumnName = "ost_id", pkColumnValue = "autor")
 @NamedQueries({
     @NamedQuery(name = "Autor.findAll", query = "SELECT a FROM Autor a"),
     @NamedQuery(name = "Autor.findByIdAutor", query = "SELECT a FROM Autor a WHERE a.idAutor = :idAutor"),
@@ -43,12 +43,13 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Autor.findBySrOcena", query = "SELECT a FROM Autor a WHERE a.srOcena = :srOcena"),
     @NamedQuery(name = "Autor.findByWersjaEncji", query = "SELECT a FROM Autor a WHERE a.wersjaEncji = :wersjaEncji")})
 public class Autor implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_autor", unique = true, updatable = false, nullable = false)
-    @GeneratedValue(strategy= GenerationType.TABLE, generator="AutorIdGen")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "AutorIdGen")
     private Long idAutor;
     @Basic(optional = false)
     @NotNull
@@ -157,7 +158,7 @@ public class Autor implements Serializable {
 
     @Override
     public String toString() {
-        return "pl.lodz.ssbd.entities.Autor[ idAutor=" + idAutor + " ]";
+        return "pl.lodz.ssbd.entities.Autor[ idAutor=" + idAutor + ", nr wersji: " + wersjaEncji + " ]";
     }
-    
+
 }

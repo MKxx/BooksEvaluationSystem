@@ -22,7 +22,7 @@ import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
-//@Interceptors({DziennikZdarzenInterceptor.class})
+@Interceptors({DziennikZdarzenInterceptor.class})
 public class PoprzednieHasloFacade extends AbstractFacade<PoprzednieHaslo> implements PoprzednieHasloFacadeLocal {
     @PersistenceContext(unitName = "ssbd05mok")
     private EntityManager em;

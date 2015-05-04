@@ -31,7 +31,7 @@ import pl.lodz.ssbd.mok.facades.UzytkownikFacadeLocal;
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Stateful
-//@Interceptors({DziennikZdarzenInterceptor.class})
+@Interceptors({DziennikZdarzenInterceptor.class})
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
 
