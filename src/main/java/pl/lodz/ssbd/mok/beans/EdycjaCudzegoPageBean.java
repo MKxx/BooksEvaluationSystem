@@ -46,6 +46,7 @@ public class EdycjaCudzegoPageBean {
     }
 
     public String edytujUzytkownika() {
+        boolean zmianaHasla = false;
         if(!noweHaslo.equals(powtorzHaslo)){
             FacesContext fctx = FacesContext.getCurrentInstance();
             FacesMessage fmsg = new FacesMessage("Hasła się nie zgadzają");
@@ -54,8 +55,9 @@ public class EdycjaCudzegoPageBean {
         }
         if(!(noweHaslo.equals("") || noweHaslo == null)){
             uzytkownikSession.getUzytkownikEdycja().setHasloMd5(MD5.hash(noweHaslo));
+            zmianaHasla = true;
         }
-        uzytkownikSession.zapiszUzytkownikaPoEdycji();
+        uzytkownikSession.zapiszUzytkownikaPoEdycji(zmianaHasla);
         return "panelAdm";
     }
 }

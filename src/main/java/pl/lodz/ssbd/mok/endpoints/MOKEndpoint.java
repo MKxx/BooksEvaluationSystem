@@ -137,28 +137,29 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
 
     @Override
     @RolesAllowed("ModyfikowanieDanychSwojegoKonta")
-    public void zapiszKontoPoEdycji(Uzytkownik uzytkownik) {
+    public void zapiszKontoPoEdycji(Uzytkownik uzytkownik, boolean zmianaHasla) {
         if (null == uzytkownikEdycja) {
             throw new IllegalArgumentException("Brak wczytanego uzytkownika do modyfikacji");
         }
         if (!uzytkownikEdycja.equals(uzytkownik)) {
             throw new IllegalArgumentException("Modyfikowany uzytkownik niezgodny z wczytanym");
         }
-        if (!hasloPrzedEdycja.equals(uzytkownikEdycja.getHasloMd5())) {
-            PoprzednieHaslo popHaslo = new PoprzednieHaslo();
-            popHaslo.setIdUzytkownik(uzytkownik);
-            popHaslo.setStareHasloMd5(hasloPrzedEdycja);
-            uzytkownik.getPoprzednieHasloList().add(popHaslo);
-        }
-        for(PoprzednieHaslo poprzednieHaslo: uzytkownikEdycja.getPoprzednieHasloList()){
-            if(uzytkownikEdycja.getHasloMd5().equals(poprzednieHaslo.getStareHasloMd5())){
-                throw new IllegalArgumentException("Haslo to juz bylo wykorzystywane");
+        if(zmianaHasla){
+            if (!hasloPrzedEdycja.equals(uzytkownikEdycja.getHasloMd5())) {
+                for(PoprzednieHaslo poprzednieHaslo: uzytkownikEdycja.getPoprzednieHasloList()){
+                    if(uzytkownikEdycja.getHasloMd5().equals(poprzednieHaslo.getStareHasloMd5())){
+                        throw new IllegalArgumentException("Haslo to juz bylo wykorzystywane");
+                    }
+                }
+                PoprzednieHaslo popHaslo = new PoprzednieHaslo();
+                popHaslo.setIdUzytkownik(uzytkownik);
+                popHaslo.setStareHasloMd5(hasloPrzedEdycja);
+                uzytkownik.getPoprzednieHasloList().add(popHaslo);
+            } else {
+                throw new IllegalArgumentException("Zmiana na to samo hasło");
             }
         }
-        PoprzednieHaslo popHaslo = new PoprzednieHaslo();
-        popHaslo.setIdUzytkownik(uzytkownik);
-        popHaslo.setStareHasloMd5(hasloPrzedEdycja);
-        uzytkownik.getPoprzednieHasloList().add(popHaslo);
+        
         uzytkownikFacade.edit(uzytkownikEdycja);
         uzytkownikEdycja = null;
     }

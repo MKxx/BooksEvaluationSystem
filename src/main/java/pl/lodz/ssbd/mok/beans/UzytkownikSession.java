@@ -106,8 +106,8 @@ public class UzytkownikSession implements Serializable {
         uzytkownikMenu = MOKEndpoint.pobierzUzytkownika(login);
     }
 
-    public void zapiszUzytkownikaPoEdycji() {
-        MOKEndpoint.zapiszKontoPoEdycji(uzytkownikEdycja);
+    public void zapiszUzytkownikaPoEdycji(boolean zmianaHasla) {
+        MOKEndpoint.zapiszKontoPoEdycji(uzytkownikEdycja, zmianaHasla);
     }
 
     public void pobierzUzytkownikaDoEdycji(Uzytkownik uzytkownik) {

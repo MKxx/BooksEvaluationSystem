@@ -28,7 +28,7 @@ public interface MOKEndpointLocal {
 
     public void zalogujNiepoprawneUwierzytenienie(String username,String IP);
 
-    public void zapiszKontoPoEdycji(Uzytkownik uzytkownikEdycja);
+    public void zapiszKontoPoEdycji(Uzytkownik uzytkownikEdycja, boolean zmianaHasla);
     
     public String pobierzIPOstatniegoPopZalogowania();
     public Date pobierzCzasOstatniegoPopZalogowania();
