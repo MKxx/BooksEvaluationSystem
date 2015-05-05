@@ -32,7 +32,7 @@ import javax.validation.constraints.Size;
 @TableGenerator(name="PoprzednieHasloIdGen", table="generator", pkColumnName="nazwa_klasy", valueColumnName="ost_id", pkColumnValue="poprzednie_haslo")
 @NamedQueries({
     @NamedQuery(name = "PoprzednieHaslo.findAll", query = "SELECT p FROM PoprzednieHaslo p"),
-    @NamedQuery(name = "PoprzednieHaslo.findByIdPoprzedniegeHaslo", query = "SELECT p FROM PoprzednieHaslo p WHERE p.idPoprzedniegeHaslo = :idPoprzedniegeHaslo"),
+    @NamedQuery(name = "PoprzednieHaslo.findByIdPoprzednieHaslo", query = "SELECT p FROM PoprzednieHaslo p WHERE p.idPoprzednieHaslo = :idPoprzednieHaslo"),
     @NamedQuery(name = "PoprzednieHaslo.findByStareHasloMd5", query = "SELECT p FROM PoprzednieHaslo p WHERE p.stareHasloMd5 = :stareHasloMd5"),
     @NamedQuery(name = "PoprzednieHaslo.findByWersjaEncji", query = "SELECT p FROM PoprzednieHaslo p WHERE p.wersjaEncji = :wersjaEncji")})
 public class PoprzednieHaslo implements Serializable {
@@ -42,7 +42,7 @@ public class PoprzednieHaslo implements Serializable {
     @NotNull
     @Column(name = "id_poprzednie_haslo", unique = true, updatable = false, nullable = false)
     @GeneratedValue(strategy= GenerationType.TABLE, generator="PoprzednieHasloIdGen")
-    private Long idPoprzedniegeHaslo;
+    private Long idPoprzednieHaslo;
     @Basic(optional = false)
     @NotNull
     @Size(min = 32, max = 32)
@@ -60,22 +60,22 @@ public class PoprzednieHaslo implements Serializable {
     public PoprzednieHaslo() {
     }
 
-    public PoprzednieHaslo(Long idPoprzedniegeHaslo) {
-        this.idPoprzedniegeHaslo = idPoprzedniegeHaslo;
+    public PoprzednieHaslo(Long idPoprzednieHaslo) {
+        this.idPoprzednieHaslo = idPoprzednieHaslo;
     }
 
-    public PoprzednieHaslo(Long idPoprzedniegeHaslo, String stareHasloMd5, long wersjaEncji) {
-        this.idPoprzedniegeHaslo = idPoprzedniegeHaslo;
+    public PoprzednieHaslo(Long idPoprzednieHaslo, String stareHasloMd5, long wersjaEncji) {
+        this.idPoprzednieHaslo = idPoprzednieHaslo;
         this.stareHasloMd5 = stareHasloMd5;
         this.wersjaEncji = wersjaEncji;
     }
 
-    public Long getIdPoprzedniegeHaslo() {
-        return idPoprzedniegeHaslo;
+    public Long getidPoprzednieHaslo() {
+        return idPoprzednieHaslo;
     }
 
-    public void setIdPoprzedniegeHaslo(Long idPoprzedniegeHaslo) {
-        this.idPoprzedniegeHaslo = idPoprzedniegeHaslo;
+    public void setidPoprzednieHaslo(Long idPoprzednieHaslo) {
+        this.idPoprzednieHaslo = idPoprzednieHaslo;
     }
 
     public String getStareHasloMd5() {
@@ -97,7 +97,7 @@ public class PoprzednieHaslo implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idPoprzedniegeHaslo != null ? idPoprzedniegeHaslo.hashCode() : 0);
+        hash += (idPoprzednieHaslo != null ? idPoprzednieHaslo.hashCode() : 0);
         return hash;
     }
 
@@ -108,7 +108,7 @@ public class PoprzednieHaslo implements Serializable {
             return false;
         }
         PoprzednieHaslo other = (PoprzednieHaslo) object;
-        if ((this.idPoprzedniegeHaslo == null && other.idPoprzedniegeHaslo != null) || (this.idPoprzedniegeHaslo != null && !this.idPoprzedniegeHaslo.equals(other.idPoprzedniegeHaslo))) {
+        if ((this.idPoprzednieHaslo == null && other.idPoprzednieHaslo != null) || (this.idPoprzednieHaslo != null && !this.idPoprzednieHaslo.equals(other.idPoprzednieHaslo))) {
             return false;
         }
         return true;
@@ -116,7 +116,7 @@ public class PoprzednieHaslo implements Serializable {
 
     @Override
     public String toString() {
-        return "pl.lodz.ssbd.entities.PoprzednieHaslo[ idPoprzedniegeHaslo=" + idPoprzedniegeHaslo + " ]";
+        return "pl.lodz.ssbd.entities.PoprzednieHaslo[ idPoprzednieHaslo=" + idPoprzednieHaslo + " ]";
     }
     
 }
