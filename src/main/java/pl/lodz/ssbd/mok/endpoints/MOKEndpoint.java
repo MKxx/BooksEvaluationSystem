@@ -51,7 +51,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     private int IloscNPopZal;
     @Resource
     private SessionContext sessionContext;
-    SimpleDateFormat simpleDateHere = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss (Z)");
+    private SimpleDateFormat simpleDateHere = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss (Z)");
 
     @Override
     @PermitAll
