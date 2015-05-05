@@ -34,7 +34,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "ksiazka")
-@TableGenerator(name="KsiazkaIdGen", table="generator", pkColumnName="nazwa_klasy", valueColumnName="ost_id", pkColumnValue="ksiazka")
+@TableGenerator(name = "KsiazkaIdGen", table = "generator", pkColumnName = "nazwa_klasy", valueColumnName = "ost_id", pkColumnValue = "ksiazka")
 @NamedQueries({
     @NamedQuery(name = "Ksiazka.findAll", query = "SELECT k FROM Ksiazka k"),
     @NamedQuery(name = "Ksiazka.findByIdKsiazka", query = "SELECT k FROM Ksiazka k WHERE k.idKsiazka = :idKsiazka"),
@@ -45,12 +45,13 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Ksiazka.findByWersjaEncji", query = "SELECT k FROM Ksiazka k WHERE k.wersjaEncji = :wersjaEncji"),
     @NamedQuery(name = "Ksiazka.findByIloscAutorow", query = "SELECT k FROM Ksiazka k WHERE k.iloscAutorow = :iloscAutorow")})
 public class Ksiazka implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_ksiazka", unique = true, updatable = false, nullable = false)
-    @GeneratedValue(strategy= GenerationType.TABLE, generator="KsiazkaIdGen")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "KsiazkaIdGen")
     private Long idKsiazka;
     @Basic(optional = false)
     @NotNull
@@ -60,7 +61,7 @@ public class Ksiazka implements Serializable {
     @Column(name = "rok_pierwszego_wydania")
     private Integer rokPierwszegoWydania;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "srednia_ocen",insertable = false, precision = 5, scale = 4)
+    @Column(name = "srednia_ocen", insertable = false, precision = 5, scale = 4)
     private BigDecimal sredniaOcen;
     @Basic(optional = false)
     @NotNull
@@ -76,8 +77,8 @@ public class Ksiazka implements Serializable {
     @Column(name = "ilosc_autorow", updatable = false, nullable = false)
     private Integer iloscAutorow;
     @JoinTable(name = "ksiazka_autor", joinColumns = {
-    @JoinColumn(name = "id_ksiazka", referencedColumnName = "id_ksiazka")}, inverseJoinColumns = {
-    @JoinColumn(name = "id_autor", referencedColumnName = "id_autor")})
+        @JoinColumn(name = "id_ksiazka", referencedColumnName = "id_ksiazka")}, inverseJoinColumns = {
+        @JoinColumn(name = "id_autor", referencedColumnName = "id_autor")})
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Autor> autorList = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idKsiazka")
@@ -184,7 +185,7 @@ public class Ksiazka implements Serializable {
 
     @Override
     public String toString() {
-        return "pl.lodz.ssbd.entities.Ksiazka[ idKsiazka=" + idKsiazka + " ]";
+        return "pl.lodz.ssbd.entities.Ksiazka[ idKsiazka=" + idKsiazka + ", nr wersji: " + wersjaEncji + " ]";
     }
-    
+
 }

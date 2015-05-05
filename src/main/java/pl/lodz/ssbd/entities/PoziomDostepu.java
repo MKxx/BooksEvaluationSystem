@@ -32,7 +32,7 @@ import javax.validation.constraints.Size;
 @Table(name = "poziom_dostepu", uniqueConstraints = {
     @UniqueConstraint(columnNames = "nazwa"),
     @UniqueConstraint(columnNames = "id_uzytkownik")})
-@TableGenerator(name="PoziomDostepuIdGen", table="generator", pkColumnName="nazwa_klasy", valueColumnName="ost_id", pkColumnValue="poziom_dostepu")
+@TableGenerator(name = "PoziomDostepuIdGen", table = "generator", pkColumnName = "nazwa_klasy", valueColumnName = "ost_id", pkColumnValue = "poziom_dostepu")
 @NamedQueries({
     @NamedQuery(name = "PoziomDostepu.findAll", query = "SELECT p FROM PoziomDostepu p"),
     @NamedQuery(name = "PoziomDostepu.findByIdPoziomDostepu", query = "SELECT p FROM PoziomDostepu p WHERE p.idPoziomDostepu = :idPoziomDostepu"),
@@ -40,12 +40,13 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "PoziomDostepu.findByAktywny", query = "SELECT p FROM PoziomDostepu p WHERE p.aktywny = :aktywny"),
     @NamedQuery(name = "PoziomDostepu.findByWersjaEncji", query = "SELECT p FROM PoziomDostepu p WHERE p.wersjaEncji = :wersjaEncji")})
 public class PoziomDostepu implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "id_poziom_dostepu", unique = true, updatable = false, nullable = false)
-    @GeneratedValue(strategy= GenerationType.TABLE, generator="PoziomDostepuIdGen")
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "PoziomDostepuIdGen")
     private Long idPoziomDostepu;
     @Basic(optional = false)
     @NotNull
@@ -133,7 +134,7 @@ public class PoziomDostepu implements Serializable {
 
     @Override
     public String toString() {
-        return "pl.lodz.ssbd.entities.PoziomDostepu[ idPoziomDostepu=" + idPoziomDostepu + " ]";
+        return "pl.lodz.ssbd.entities.PoziomDostepu[ idPoziomDostepu=" + idPoziomDostepu + ", nr wersji: " + wersjaEncji + " ]";
     }
-    
+
 }

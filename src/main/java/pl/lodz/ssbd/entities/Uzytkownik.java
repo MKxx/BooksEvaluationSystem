@@ -280,7 +280,7 @@ public class Uzytkownik implements Serializable {
 
     @Override
     public String toString() {
-        return "pl.lodz.ssbd.entities.Uzytkownik[ idUzytkownik=" + idUzytkownik + " ]";
+        return "pl.lodz.ssbd.entities.Uzytkownik[ idUzytkownik=" + idUzytkownik + ", nr wersji: " + wersjaEncji + " ]";
     }
 
 }

@@ -116,7 +116,7 @@ public class PoprzednieHaslo implements Serializable {
 
     @Override
     public String toString() {
-        return "pl.lodz.ssbd.entities.PoprzednieHaslo[ idPoprzednieHaslo=" + idPoprzednieHaslo + " ]";
+        return "pl.lodz.ssbd.entities.PoprzednieHaslo[ idPoprzednieHaslo=" + idPoprzedniegeHaslo + ", nr wersji: " + wersjaEncji + " ]";
     }
     
 }

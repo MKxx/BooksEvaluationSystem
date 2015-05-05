@@ -24,7 +24,7 @@ import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
  */
 @Stateless(name="mokPD")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
-//@Interceptors({DziennikZdarzenInterceptor.class})
+@Interceptors({DziennikZdarzenInterceptor.class})
 public class PoziomDostepuFacade extends AbstractFacade<PoziomDostepu> implements PoziomDostepuFacadeLocal {
 
     @Override
