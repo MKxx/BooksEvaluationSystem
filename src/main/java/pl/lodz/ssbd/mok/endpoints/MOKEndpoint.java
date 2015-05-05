@@ -194,6 +194,15 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     public Uzytkownik pobierzUzytkownika(String login) {
         return uzytkownikFacade.findByLogin(login);
     }
+    
+    @Override
+    public Uzytkownik pobierzSiebieDoEdycji(){
+       String login = sessionContext.getCallerPrincipal().getName();
+       uzytkownikEdycja = uzytkownikFacade.findByLogin(login);
+       hasloPrzedEdycja=uzytkownikEdycja.getHasloMd5();
+       return uzytkownikEdycja;
+    }
+    
 
     @Override
     public void afterBegin() throws EJBException, RemoteException {

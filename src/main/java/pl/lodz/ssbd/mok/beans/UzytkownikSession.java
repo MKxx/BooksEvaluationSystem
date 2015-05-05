@@ -107,5 +107,9 @@ public class UzytkownikSession implements Serializable {
     public void odbierzPoziom(PoziomDostepu poziom) {
         MOKEndpoint.odbierzPoziom(poziom);
     }
+    
+    void pobierzSiebieDoEdycji() {
+        uzytkownikEdycja = MOKEndpoint.pobierzSiebieDoEdycji();
+    }
 
 }
