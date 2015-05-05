@@ -10,10 +10,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
+import javax.ejb.SessionContext;
 import javax.ejb.SessionSynchronization;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
@@ -46,6 +48,9 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     private String IPOstPopZal;
     private Date CzasOstPopZal;
     private int IloscNPopZal;
+    
+    @Resource
+    SessionContext sessionContext;
 
     @Override
     @PermitAll
@@ -183,6 +188,15 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     public Uzytkownik pobierzUzytkownika(String login) {
         return uzytkownikFacade.findByLogin(login);
     }
+    
+    @Override
+    public Uzytkownik pobierzSiebieDoEdycji(){
+       String login = sessionContext.getCallerPrincipal().getName();
+       uzytkownikEdycja = uzytkownikFacade.findByLogin(login);
+       hasloPrzedEdycja=uzytkownikEdycja.getHasloMd5();
+       return uzytkownikEdycja;
+    }
+    
 
     @Override
     public void afterBegin() throws EJBException, RemoteException {

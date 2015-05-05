@@ -17,6 +17,7 @@ import pl.lodz.ssbd.entities.Uzytkownik;
  */
 @Local
 public interface MOKEndpointLocal {
+    public Uzytkownik pobierzSiebieDoEdycji();
 
     public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik);
     public List<Uzytkownik> pobierzUzytkownikow(String wartosc);
@@ -39,4 +40,5 @@ public interface MOKEndpointLocal {
 
     public void odbierzPoziom(PoziomDostepu poziom);
     public Uzytkownik pobierzUzytkownika(String login);
+
 }
