@@ -1,5 +1,7 @@
 package pl.lodz.ssbd.interceptors;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
@@ -15,11 +17,13 @@ public class DziennikZdarzenInterceptor {
     @Resource
     private SessionContext sessionContext;
     private static final Logger logger = Logger.getLogger(DziennikZdarzenInterceptor.class.getName());
+    private SimpleDateFormat simpleDateHere = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss (Z)");
 
     @AroundInvoke
     public Object logujWywolanie(InvocationContext invocationContext) throws Exception {
         StringBuilder log = new StringBuilder();
-        log.append("Metoda: ");
+        log.append(simpleDateHere.format(new Date()));
+        log.append(" ||Metoda: ");
         log.append(invocationContext.getMethod().getName());
         log.append(" | Użytkownik: ");
         log.append(sessionContext.getCallerPrincipal().getName());
