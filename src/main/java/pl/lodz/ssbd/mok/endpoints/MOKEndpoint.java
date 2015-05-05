@@ -8,6 +8,7 @@ package pl.lodz.ssbd.mok.endpoints;
 import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.security.PermitAll;
@@ -46,25 +47,27 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     private String IPOstPopZal;
     private Date CzasOstPopZal;
     private int IloscNPopZal;
+    ResourceBundle rbl;
+    
+    public MOKEndpoint(){
+        rbl = ResourceBundle.getBundle("nazwy_rol.role");
+    }
 
     @Override
     @PermitAll
     public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik) {
-        PoziomDostepu admin = new PoziomDostepu();
-        admin.setAktywny(false);
-        admin.setIdUzytkownik(nowyUzytkownik);
-        admin.setNazwa("ADMINISTRATOR");
-        PoziomDostepu moderator = new PoziomDostepu();
-        moderator.setAktywny(false);
-        moderator.setIdUzytkownik(nowyUzytkownik);
-        moderator.setNazwa("MODERATOR");
-        PoziomDostepu uzytkownik = new PoziomDostepu();
-        uzytkownik.setAktywny(true);
-        uzytkownik.setIdUzytkownik(nowyUzytkownik);
-        uzytkownik.setNazwa("UZYTKOWNIK");
-        nowyUzytkownik.getPoziomDostepuList().add(admin);
-        nowyUzytkownik.getPoziomDostepuList().add(moderator);
-        nowyUzytkownik.getPoziomDostepuList().add(uzytkownik);
+        String[] role = {rbl.getString("rola.admin"), rbl.getString("rola.user"), rbl.getString("rola.moderator")};
+        for(String rola : role){
+            PoziomDostepu poziomDost = new PoziomDostepu();
+            if(rola.equals(rbl.getString("rola.user"))){
+                poziomDost.setAktywny(true);
+            } else {
+                poziomDost.setAktywny(false);
+            }
+            poziomDost.setIdUzytkownik(nowyUzytkownik);
+            poziomDost.setNazwa(rola);
+            nowyUzytkownik.getPoziomDostepuList().add(poziomDost);
+        }
         nowyUzytkownik.setAktywny(true);
         uzytkownikFacade.create(nowyUzytkownik);
     }

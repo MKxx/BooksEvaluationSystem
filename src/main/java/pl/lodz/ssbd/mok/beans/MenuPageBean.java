@@ -5,6 +5,7 @@
  */
 package pl.lodz.ssbd.mok.beans;
 
+import java.util.ResourceBundle;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -17,10 +18,14 @@ import pl.lodz.ssbd.utils.SprawdzaczRoli;
 @Named(value = "menuPageBean")
 @RequestScoped
 public class MenuPageBean {
+    
+    ResourceBundle rbl;
+    
     /**
      * Creates a new instance of MenuPageBean
      */
     public MenuPageBean() {
+        rbl = ResourceBundle.getBundle("nazwy_rol.role");
     }
     
     public boolean getIsGosc(){
@@ -32,14 +37,14 @@ public class MenuPageBean {
     }
     
     public boolean getIsAdmin(){
-        return SprawdzaczRoli.sprawdzRole("ADMINISTRATOR");
+        return SprawdzaczRoli.sprawdzRole(rbl.getString("rola.admin"));
     }
     
     public boolean getIsUzytkownik(){
-        return SprawdzaczRoli.sprawdzRole("UZYTKOWNIK");
+        return SprawdzaczRoli.sprawdzRole(rbl.getString("rola.user"));
     }
     
     public boolean getIsModerator(){
-        return SprawdzaczRoli.sprawdzRole("MODERATOR");
+        return SprawdzaczRoli.sprawdzRole(rbl.getString("rola.moderator"));
     }
 }
