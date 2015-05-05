@@ -12,6 +12,11 @@
         <h:link outcome="/listaksiazek.xhtml" value="#{msg['menu.listaksiazek']}" />
         <h:link outcome="/listauatorow.xhtml" value="#{msg['menu.listaautorow']}" />
     </h:panelGrid>
+    <h:form id="WYLOGUJ">
+    <h:panelGrid id="WSZYSCYPOZAGOSCIEM" rendered="#{menuPageBean.isUzytkownik or menuPageBean.isModerator or menuPageBean.isAdmin}">
+        <h:commandLink id="WYLOGUJ" value="#{msg['menu.wyloguj']}" action="#{menuPageBean.wyloguj()}" />
+    </h:panelGrid>
+    </h:form>
     <h:panelGrid id="ADMINISTRATOR" rendered="#{menuPageBean.isAdmin}">
         <h:link outcome="/admin/adminpanel.xhtml" value="#{msg['menu.adminpanel']}"/>
     </h:panelGrid>
@@ -23,6 +28,7 @@
         <h:link outcome="/uzytkownik/ocenksiazke.xhtml" value="#{msg['menu.ocenksiazke']}" />
         <h:link outcome="/uzytkownik/ocenksiazke.xhtml" value="#{msg['menu.ulubiona']}" />
     </h:panelGrid>
+    
     
 
 </ui:composition>
