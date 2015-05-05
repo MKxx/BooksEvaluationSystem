@@ -62,8 +62,7 @@ public class UzytkownikSession implements Serializable {
         Mailer mail = new Mailer();
         mail.wyslijPoZarejestrowaniu(uzytkownik.getEmail(), uzytkownik.getLogin(), uzytkownik.getHasloMd5());
         MOKEndpoint.rejestrujUzytkownika(nowyUzytkownik);
-        Mailer.wyslijPoZarejestrowaniu(uzytkownik.getEmail(), uzytkownik.getLogin(), uzytkownik.getHasloMd5());
-
+        Mailer.wyslijPoZarejestrowaniu(uzytkownik.getEmail(),uzytkownik.getLogin(),uzytkownik.getHasloMd5());
     }
 
     public List<Uzytkownik> pobierzUzytkownikow(String wartosc) {
@@ -72,10 +71,12 @@ public class UzytkownikSession implements Serializable {
 
     public void potwierdzUzytkownika(Uzytkownik uzytkownik) {
         MOKEndpoint.potwierdzUzytkownika(uzytkownik);
+        Mailer.wyslijPoAktywacji(uzytkownik.getEmail(),uzytkownik.getLogin());
     }
 
     public void zablokujUzytkownika(Uzytkownik uzytkownik) {
         MOKEndpoint.zablokujUzytkownika(uzytkownik);
+        Mailer.wyslijPoZablokowaniu(uzytkownik.getEmail(),uzytkownik.getLogin());
     }
 
     public void odblokujUzytkownika(Uzytkownik uzytkownik) {
