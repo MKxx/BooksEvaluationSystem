@@ -49,12 +49,6 @@ public class UzytkownikSession implements Serializable {
     public void rejestrujUzytkownika(Uzytkownik uzytkownik, String powtorzHaslo) {
         Uzytkownik nowyUzytkownik = new Uzytkownik();
         nowyUzytkownik.setLogin(uzytkownik.getLogin());
-          if(!powtorzHaslo.equals(uzytkownik.getHasloMd5())){
-            FacesContext fctx = FacesContext.getCurrentInstance();
-            FacesMessage fmsg = new FacesMessage("Hasła się nie zgadzają");
-            fctx.addMessage(null, fmsg);
-            throw new IllegalArgumentException();
-        }
         nowyUzytkownik.setHasloMd5(MD5.hash(uzytkownik.getHasloMd5()));
         nowyUzytkownik.setImie(uzytkownik.getImie());
         nowyUzytkownik.setNazwisko(uzytkownik.getNazwisko());
@@ -63,7 +57,6 @@ public class UzytkownikSession implements Serializable {
         mail.wyslijPoZarejestrowaniu(uzytkownik.getEmail(), uzytkownik.getLogin(), uzytkownik.getHasloMd5());
         MOKEndpoint.rejestrujUzytkownika(nowyUzytkownik);
         Mailer.wyslijPoZarejestrowaniu(uzytkownik.getEmail(), uzytkownik.getLogin(), uzytkownik.getHasloMd5());
-
     }
 
     public List<Uzytkownik> pobierzUzytkownikow(String wartosc) {
