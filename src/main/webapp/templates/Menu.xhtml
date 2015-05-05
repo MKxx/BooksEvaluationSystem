@@ -15,6 +15,7 @@
     <h:form id="WYLOGUJ">
     <h:panelGrid id="WSZYSCYPOZAGOSCIEM" rendered="#{menuPageBean.isUzytkownik or menuPageBean.isModerator or menuPageBean.isAdmin}">
         <h:commandLink id="WYLOGUJ" value="#{msg['menu.wyloguj']}" action="#{menuPageBean.wyloguj()}" />
+        <h:link outcome="/edycjaWlasnego.xhtml" value="#{msg['menu.edycjaWlasnego']}" />
     </h:panelGrid>
     </h:form>
     <h:panelGrid id="ADMINISTRATOR" rendered="#{menuPageBean.isAdmin}">
@@ -25,7 +26,6 @@
         <h:link outcome="/moderator/dodajksiazke.xhtml" value="#{msg['menu.dodajautora']}" />
     </h:panelGrid>
     <h:panelGrid id="UZYTKOWNIK" rendered="#{menuPageBean.isUzytkownik}">
-        <h:link outcome="/uzytkownik/edycjaWlasnego.xhtml" value="#{msg['menu.edycjaWlasnego']}" />
         <h:link outcome="/uzytkownik/ocenksiazke.xhtml" value="#{msg['menu.ocenksiazke']}" />
         <h:link outcome="/uzytkownik/ocenksiazke.xhtml" value="#{msg['menu.ulubiona']}" />
     </h:panelGrid>
