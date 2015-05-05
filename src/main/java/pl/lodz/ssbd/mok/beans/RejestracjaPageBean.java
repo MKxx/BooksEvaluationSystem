@@ -7,6 +7,8 @@ package pl.lodz.ssbd.mok.beans;
 
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import pl.lodz.ssbd.entities.Uzytkownik;
 
@@ -27,7 +29,7 @@ public class RejestracjaPageBean {
     public String getPowtorzHaslo() {
         return powtorzHaslo;
     }
-    
+
     /**
      * Creates a new instance of RejestracjaPageBean
      */
@@ -44,7 +46,12 @@ public class RejestracjaPageBean {
     }
 
     public String rejestrujUzytkownika() {
-        System.out.println(uzytkownik);
+        if (!powtorzHaslo.equals(uzytkownik.getHasloMd5())) {
+            FacesContext fctx = FacesContext.getCurrentInstance();
+            FacesMessage fmsg = new FacesMessage("Hasła się nie zgadzają");
+            fctx.addMessage(null, fmsg);
+            return null;
+        }
         uzytkownikSession.rejestrujUzytkownika(uzytkownik, powtorzHaslo);
         return "sukces";
     }
