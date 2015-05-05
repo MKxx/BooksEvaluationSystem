@@ -6,15 +6,18 @@
 package pl.lodz.ssbd.mok.endpoints;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
+import javax.ejb.SessionContext;
 import javax.ejb.SessionSynchronization;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
@@ -52,6 +55,9 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     public MOKEndpoint(){
         rbl = ResourceBundle.getBundle("nazwy_rol.role");
     }
+    @Resource
+    private SessionContext sessionContext;
+    private SimpleDateFormat simpleDateHere = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss (Z)");
 
     @Override
     @PermitAll
@@ -103,9 +109,9 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     @PermitAll
     public void zalogujPoprawneUwierzytelnienie(String username, String IP) {
         Uzytkownik uzytkownik = uzytkownikFacade.findByLogin(username);
-        this.IPOstPopZal=uzytkownik.getIpPopZal();
-        this.CzasOstPopZal=uzytkownik.getCzasPopZal();
-        this.IloscNPopZal=uzytkownik.getIloscNPopZal();
+        this.IPOstPopZal = uzytkownik.getIpPopZal();
+        this.CzasOstPopZal = uzytkownik.getCzasPopZal();
+        this.IloscNPopZal = uzytkownik.getIloscNPopZal();
         uzytkownik.setCzasPopZal(new Date());
         uzytkownik.setIpPopZal(IP);
         if (uzytkownik.getAktywny()) {
@@ -192,29 +198,37 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     @Override
     public void afterBegin() throws EJBException, RemoteException {
         IDTransakcji = System.currentTimeMillis();
-        loger.log(Level.INFO, "Transakcja o ID: " + IDTransakcji + " zostala rozpoczeta");
+        loger.log(Level.INFO, simpleDateHere.format(new Date()).toString()+" || Transakcja o ID: " 
+                + IDTransakcji + " zostala rozpoczeta ,przez użytkownika "
+                + sessionContext.getCallerPrincipal().getName());
     }
 
     @Override
     public void beforeCompletion() throws EJBException, RemoteException {
-        loger.log(Level.INFO, "Transakcja o ID: " + IDTransakcji + " przed zakonczeniem");
+        loger.log(Level.INFO, simpleDateHere.format(new Date()).toString()+" || Transakcja o ID: " + IDTransakcji 
+                + " przed zakonczeniem przez użytownka "
+                + sessionContext.getCallerPrincipal().getName());
     }
 
     @Override
     public void afterCompletion(boolean committed) throws EJBException, RemoteException {
-        loger.log(Level.INFO, "Transakcja o ID: " + IDTransakcji + " zostala zakonczona przez: " + (committed ? "zatwierdzenie" : "wycofanie"));
+        loger.log(Level.INFO, simpleDateHere.format(new Date()).toString()+" || Transakcja o ID: " + IDTransakcji 
+                + " zostala zakonczona przez: "
+                + (committed ? "zatwierdzenie" : "wycofanie") + " przez użytkownia");
     }
-    
+
     @Override
-    public String pobierzIPOstatniegoPopZalogowania(){
+    public String pobierzIPOstatniegoPopZalogowania() {
         return this.IPOstPopZal;
     }
-        @Override
-    public Date pobierzCzasOstatniegoPopZalogowania(){
+
+    @Override
+    public Date pobierzCzasOstatniegoPopZalogowania() {
         return this.CzasOstPopZal;
     }
+
     @Override
-    public int pobierzIloscNPopZal(){
+    public int pobierzIloscNPopZal() {
         return this.IloscNPopZal;
     }
 }
