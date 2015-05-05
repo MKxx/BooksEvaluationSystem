@@ -22,10 +22,8 @@
     <group-name>ADMINISTRATOR</group-name>
   </security-role-mapping>
   <security-role-mapping>
-    <role-name>ModyfikowanieDanychSwojegoKonta</role-name>
+    <role-name>ModyfikowanieDanychCudzegoKonta</role-name>
     <group-name>ADMINISTRATOR</group-name>
-    <group-name>MODERATOR</group-name>
-    <group-name>UZYTKOWNIK</group-name>
   </security-role-mapping>
   <security-role-mapping>
     <role-name>NadanieOdebraniePoziomuDostepu</role-name>
@@ -33,6 +31,10 @@
   </security-role-mapping>
   <security-role-mapping>
     <role-name>WyszukiwanieUzytkownika</role-name>
+    <group-name>ADMINISTRATOR</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>WyswietlaniePaneluAdmina</role-name>
     <group-name>ADMINISTRATOR</group-name>
   </security-role-mapping>
   <class-loader delegate="true"/>
