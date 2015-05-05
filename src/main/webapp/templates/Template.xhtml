@@ -15,6 +15,7 @@
         
         <div id="top">
             <ui:insert name="top">Top</ui:insert>
+            <p>Login: #{request.remoteUser}</p>
         </div>
         <div>
             <div id="left">
@@ -26,6 +27,7 @@
         </div>
         <div id="bottom">
              <p>SSBD05</p>
+             <p>Poziomy Dostępu: Uzytkownik: #{menuPageBean.isUzytkownik} | Moderator: #{menuPageBean.isModerator} | Administrator: #{menuPageBean.isAdmin} |</p>
         </div>
 
     </h:body>
