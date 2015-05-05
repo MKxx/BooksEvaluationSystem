@@ -17,7 +17,7 @@ public class DziennikZdarzenInterceptor {
     @Resource
     private SessionContext sessionContext;
     private static final Logger logger = Logger.getLogger(DziennikZdarzenInterceptor.class.getName());
-    SimpleDateFormat simpleDateHere = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss (Z)");
+    private SimpleDateFormat simpleDateHere = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss (Z)");
 
     @AroundInvoke
     public Object logujWywolanie(InvocationContext invocationContext) throws Exception {
