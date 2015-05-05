@@ -18,15 +18,12 @@ import pl.lodz.ssbd.entities.Uzytkownik;
 @Local
 public interface UzytkownikFacadeLocal {
 
-    @PermitAll
     void create(Uzytkownik uzytkownik);
 
-    @RolesAllowed("ModyfikowanieDanychCudzegoKonta")
     void edit(Uzytkownik uzytkownik);
 
     void remove(Uzytkownik uzytkownik);
 
-    @RolesAllowed({"AutoryzacjaKonta","BlokowanieOdblokowanieUzytkownia"})
     Uzytkownik find(Object id);
 
     List<Uzytkownik> findAll();
@@ -35,10 +32,7 @@ public interface UzytkownikFacadeLocal {
 
     int count();
 
-    @PermitAll
-    @RolesAllowed({"ModyfikowanieDanychCudzegoKonta", "WyszukiwanieUzytkownika"})
     public Uzytkownik findByLogin(String username);
-    
-    @RolesAllowed({"WyswietlaniePaneluAdmina", "WyszukiwanieUzytkownika"})
+
     public List<Uzytkownik> findByImieiNazwisko(String wartosc);
 }
