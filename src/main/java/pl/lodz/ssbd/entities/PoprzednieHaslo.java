@@ -19,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,7 +29,9 @@ import javax.validation.constraints.Size;
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Entity
-@Table(name = "poprzednie_haslo")
+@Table(name = "poprzednie_haslo", uniqueConstraints = {
+    @UniqueConstraint(columnNames = "id_uzytkownik"),
+    @UniqueConstraint(columnNames = "stare_haslo_md5")})
 @TableGenerator(name="PoprzednieHasloIdGen", table="generator", pkColumnName="nazwa_klasy", valueColumnName="ost_id", pkColumnValue="poprzednie_haslo")
 @NamedQueries({
     @NamedQuery(name = "PoprzednieHaslo.findAll", query = "SELECT p FROM PoprzednieHaslo p"),
