@@ -5,6 +5,7 @@
  */
 package pl.lodz.ssbd.mok.facades;
 
+import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import pl.lodz.ssbd.mok.*;
 import pl.lodz.ssbd.facades.*;
@@ -25,6 +26,42 @@ import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 //@Interceptors({DziennikZdarzenInterceptor.class})
 public class PoziomDostepuFacade extends AbstractFacade<PoziomDostepu> implements PoziomDostepuFacadeLocal {
+
+    @Override
+    public int count() {
+        return super.count(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<PoziomDostepu> findRange(int[] range) {
+        return super.findRange(range); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<PoziomDostepu> findAll() {
+        return super.findAll(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PoziomDostepu find(Object id) {
+        return super.find(id); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void remove(PoziomDostepu entity) {
+        super.remove(entity); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    @RolesAllowed("NadanieOdebraniePoziomuDostepu")
+    public void edit(PoziomDostepu entity) {
+        super.edit(entity); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void create(PoziomDostepu entity) {
+        super.create(entity); //To change body of generated methods, choose Tools | Templates.
+    }
     @PersistenceContext(unitName = "ssbd05mok")
     private EntityManager em;
 

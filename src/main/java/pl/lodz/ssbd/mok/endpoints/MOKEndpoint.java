@@ -70,6 +70,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     }
 
     @Override
+    @RolesAllowed("WyswietlaniePaneluAdmina")
     public List<Uzytkownik> pobierzUzytkownikow(String wartosc) {
         return uzytkownikFacade.findByImieiNazwisko(wartosc);
     }
@@ -127,7 +128,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     }
 
     @Override
-    @RolesAllowed("ModyfikowanieDanychSwojegoKonta")
+    @RolesAllowed("ModyfikowanieDanychCudzegoKonta")
     public Uzytkownik pobierzUzytkownikaDoEdycji(String login) {
         uzytkownikEdycja = uzytkownikFacade.findByLogin(login);
         hasloPrzedEdycja = uzytkownikEdycja.getHasloMd5();
@@ -136,7 +137,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     }
 
     @Override
-    @RolesAllowed("ModyfikowanieDanychSwojegoKonta")
+    @RolesAllowed("ModyfikowanieDanychCudzegoKonta")
     public void zapiszKontoPoEdycji(Uzytkownik uzytkownik, boolean zmianaHasla) {
         if (null == uzytkownikEdycja) {
             throw new IllegalArgumentException("Brak wczytanego uzytkownika do modyfikacji");

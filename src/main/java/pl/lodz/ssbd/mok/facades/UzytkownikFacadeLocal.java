@@ -24,7 +24,6 @@ public interface UzytkownikFacadeLocal {
 
     void remove(Uzytkownik uzytkownik);
 
-    @RolesAllowed({"AutoryzacjaKonta","BlokowanieOdblokowanieUzytkownia"})
     Uzytkownik find(Object id);
 
     List<Uzytkownik> findAll();
@@ -33,9 +32,7 @@ public interface UzytkownikFacadeLocal {
 
     int count();
 
-    @PermitAll
-    @RolesAllowed({"ModyfikowanieDanychSwojegoKonta", "WyszukiwanieUzytkownika"})
     public Uzytkownik findByLogin(String username);
-    
+
     public List<Uzytkownik> findByImieiNazwisko(String wartosc);
 }

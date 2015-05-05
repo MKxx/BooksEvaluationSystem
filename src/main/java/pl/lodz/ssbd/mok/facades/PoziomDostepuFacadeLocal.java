@@ -20,8 +20,7 @@ import pl.lodz.ssbd.entities.PoziomDostepu;
 public interface PoziomDostepuFacadeLocal {
 
     void create(PoziomDostepu poziomDostepu);
-
-    @RolesAllowed("NadanieOdebraniePoziomuDostepu")
+    
     void edit(PoziomDostepu poziomDostepu);
 
     void remove(PoziomDostepu poziomDostepu);

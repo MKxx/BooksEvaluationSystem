@@ -6,6 +6,8 @@
 package pl.lodz.ssbd.mok.facades;
 
 import java.util.List;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -26,6 +28,44 @@ import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 //@Interceptors({DziennikZdarzenInterceptor.class})
 public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements UzytkownikFacadeLocal {
 
+    @Override
+    public int count() {
+        return super.count(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Uzytkownik> findRange(int[] range) {
+        return super.findRange(range); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Uzytkownik> findAll() {
+        return super.findAll(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    @RolesAllowed({"AutoryzacjaKonta","BlokowanieOdblokowanieUzytkownia"})
+    public Uzytkownik find(Object id) {
+        return super.find(id); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void remove(Uzytkownik entity) {
+        super.remove(entity); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    @RolesAllowed("ModyfikowanieDanychCudzegoKonta")
+    public void edit(Uzytkownik entity) {
+        super.edit(entity); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    @PermitAll
+    public void create(Uzytkownik entity) {
+        super.create(entity); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @PersistenceContext(unitName = "ssbd05mok")
     private EntityManager em;
 
@@ -39,6 +79,7 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
     }
 
     @Override
+    @PermitAll
     public Uzytkownik findByLogin(String login) {
         Query q = em.createNamedQuery("Uzytkownik.findByLogin");
         q.setParameter("login", login);
@@ -50,6 +91,7 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
     }
 
     @Override
+    @RolesAllowed("WyswietlaniePaneluAdmina")
     public List<Uzytkownik> findByImieiNazwisko(String wartosc) {
         if (wartosc == null || "".equals(wartosc)) {
             return findAll();
