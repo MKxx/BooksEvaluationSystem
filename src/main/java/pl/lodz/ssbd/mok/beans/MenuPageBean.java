@@ -5,9 +5,13 @@
  */
 package pl.lodz.ssbd.mok.beans;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import pl.lodz.ssbd.utils.SprawdzaczRoli;
 
 /**
@@ -42,4 +46,18 @@ public class MenuPageBean {
     public boolean getIsModerator(){
         return SprawdzaczRoli.sprawdzRole("MODERATOR");
     }
+    
+    public String wyloguj(){
+        try {
+            getRequest().logout();
+        } catch (ServletException ex) {
+            Logger.getLogger(MenuPageBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        getRequest().getSession().invalidate();
+        return "wylogowano";
+    }
+    
+     private javax.servlet.http.HttpServletRequest getRequest(){
+        return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+     }
 }
