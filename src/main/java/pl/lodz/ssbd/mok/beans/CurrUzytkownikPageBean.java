@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package pl.lodz.ssbd.mok.beans;
-
+ 
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import javax.enterprise.context.RequestScoped;
@@ -12,7 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import pl.lodz.ssbd.entities.Uzytkownik;
-
+ 
 /**
  *
  * @author Kuba
@@ -20,36 +20,42 @@ import pl.lodz.ssbd.entities.Uzytkownik;
 @Named(value = "curruzytkownikPageBean")
 @RequestScoped
 public class CurrUzytkownikPageBean {
-
+ 
     @Inject
-
+ 
     UzytkownikSession uzytkownikSession;
-
+ 
     public CurrUzytkownikPageBean() {
     }
-
+ 
     public String pobierzIPPopZal() {
         return uzytkownikSession.pobierzIPOstatniegoPopZalogowania();
-
+ 
     }
-
+ 
     public String pobierzCzasPopZal() {
+        if (uzytkownikSession.pobierzCzasOstatniegoPopZalogowania()!= null){
         Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String s = formatter.format(uzytkownikSession.pobierzCzasOstatniegoPopZalogowania());
         return s;
+        }
+        return "Brak daty";
     }
-
+ 
     public int pobierzIloscNPopZal() {
         return uzytkownikSession.pobierzIloscNPopZal();
     }
-
+ 
     public String pobierzCzasNPopZal() {
         String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
         uzytkownikSession.pobierzUzytkownikMenu(login);
         Uzytkownik uzyt = uzytkownikSession.getUzytkownikMenu();
+        if (uzyt.getCzasNPopZal()!=null){
         Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String s = formatter.format(uzyt.getCzasNPopZal());
         return s;
+        }
+        return "Brak daty";
     }
-
+ 
 }
