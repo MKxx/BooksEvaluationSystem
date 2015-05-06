@@ -27,7 +27,11 @@
         </div>
         <div id="bottom">
              <p>SSBD05</p>
-             <p>Poziomy Dostępu: Uzytkownik: #{menuPageBean.isUzytkownik} | Moderator: #{menuPageBean.isModerator} | Administrator: #{menuPageBean.isAdmin} |</p>
+             <p>Poziomy Dostępu: 
+                #{role["rola.user"]}: #{menuPageBean.isUzytkownik} |
+                #{role["rola.moderator"]}: #{menuPageBean.isModerator} |
+                #{role["rola.admin"]}: #{menuPageBean.isAdmin} |
+             </p>
         </div>
 
     </h:body>
