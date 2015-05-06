@@ -84,6 +84,25 @@
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
+    <!--kontrola dostepu dla zasobow dostepnych dla uzytkownikow zalogowanych-->
+        <security-constraint>
+        <display-name>ZalogowaniConstr</display-name>
+        <web-resource-collection>
+            <web-resource-name>Strony dla zalogowanych</web-resource-name>
+            <description/>
+            <url-pattern>/faces/zalogowani/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>UZYTKOWNIK</role-name>
+            <role-name>MODERATOR</role-name>
+            <role-name>ADMINISTRATOR</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
     <!-- kontrola dostępu do stron logowania -->
     <security-constraint>
         <display-name>LoginConstr</display-name>
