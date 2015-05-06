@@ -195,7 +195,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     }
     
     @Override
-    @RolesAllowed("ModyfikowanieDanychCudzegoKonta")
+    @RolesAllowed("ModyfikowanieDanychSwojegoKonta")
     public Uzytkownik pobierzSiebieDoEdycji(){
        String login = sessionContext.getCallerPrincipal().getName();
        uzytkownikEdycja = uzytkownikFacade.findByLogin(login);
