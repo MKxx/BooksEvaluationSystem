@@ -55,7 +55,7 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
     }
 
     @Override
-    @RolesAllowed("ModyfikowanieDanychCudzegoKonta")
+    @RolesAllowed({"ModyfikowanieDanychSwojegoKonta","ModyfikowanieDanychCudzegoKonta"})
     public void edit(Uzytkownik entity) {
         super.edit(entity); //To change body of generated methods, choose Tools | Templates.
     }

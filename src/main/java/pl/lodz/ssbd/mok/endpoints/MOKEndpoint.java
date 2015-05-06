@@ -146,7 +146,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     }
 
     @Override
-    @RolesAllowed("ModyfikowanieDanychCudzegoKonta")
+    @RolesAllowed({"ModyfikowanieDanychSwojegoKonta","ModyfikowanieDanychCudzegoKonta"})
     public void zapiszKontoPoEdycji(Uzytkownik uzytkownik, boolean zmianaHasla) {
         if (null == uzytkownikEdycja) {
             throw new IllegalArgumentException("Brak wczytanego uzytkownika do modyfikacji");
@@ -169,7 +169,6 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
                 throw new IllegalArgumentException("Zmiana na to samo hasło");
             }
         }
-        
         uzytkownikFacade.edit(uzytkownikEdycja);
         uzytkownikEdycja = null;
     }
@@ -190,11 +189,13 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     }
 
     @Override
+    @RolesAllowed("Uwierzytelnianie")
     public Uzytkownik pobierzUzytkownika(String login) {
         return uzytkownikFacade.findByLogin(login);
     }
     
     @Override
+    @RolesAllowed("ModyfikowanieDanychCudzegoKonta")
     public Uzytkownik pobierzSiebieDoEdycji(){
        String login = sessionContext.getCallerPrincipal().getName();
        uzytkownikEdycja = uzytkownikFacade.findByLogin(login);
