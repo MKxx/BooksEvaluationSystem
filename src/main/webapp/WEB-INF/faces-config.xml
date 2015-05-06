@@ -14,6 +14,10 @@
             <base-name>internacjonalizacja.messages</base-name>
             <var>msg</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>nazwy_rol.role</base-name>
+            <var>role</var>
+        </resource-bundle>
         <message-bundle>internacjonalizacja.jsf_messages</message-bundle>
     </application>
     <navigation-rule>
