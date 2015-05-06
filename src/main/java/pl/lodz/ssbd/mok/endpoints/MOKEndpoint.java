@@ -222,7 +222,8 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     public void afterCompletion(boolean committed) throws EJBException, RemoteException {
         loger.log(Level.INFO, simpleDateHere.format(new Date()).toString()+" || Transakcja o ID: " + IDTransakcji 
                 + " zostala zakonczona przez: "
-                + (committed ? "zatwierdzenie" : "wycofanie") + " przez użytkownia");
+                + (committed ? "zatwierdzenie" : "wycofanie") + " przez użytkownia"
+                + sessionContext.getCallerPrincipal().getName());
     }
 
     @Override
