@@ -26,27 +26,28 @@
             <to-view-id>/sukces.xhtml</to-view-id>
             <redirect />
         </navigation-case>
-        <navigation-rule>
-            <navigation-case>
-                <from-outcome>porazka</from-outcome>
-                <to-view-id>/login/blad.xhtml</to-view-id>
-                <redirect />
-            </navigation-case>
-        </navigation-rule>
-         <navigation-rule>
-            <navigation-case>
-                <from-outcome>zalogowano</from-outcome>
-                <to-view-id>poLogowaniu.xhtml</to-view-id>
-                <redirect />
-            </navigation-case>
-        </navigation-rule>
-         <navigation-rule>
-            <navigation-case>
-                <from-outcome>wylogowano</from-outcome>
-                <to-view-id>index.xhtml</to-view-id>
-                <redirect />
-            </navigation-case>
-        </navigation-rule>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>porazka</from-outcome>
+			<to-view-id>/login/blad.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>zalogowano</from-outcome>
+			<to-view-id>poLogowaniu.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>wylogowano</from-outcome>
+			<to-view-id>index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
     <navigation-rule>
             <navigation-case>
                 <from-outcome>index</from-outcome>
@@ -68,7 +69,7 @@
             <redirect />
         </navigation-case>
     </navigation-rule>
-        <navigation-rule>
+    <navigation-rule>
         <navigation-case>
             <from-outcome>edycjaPoziomow</from-outcome>
             <to-view-id>/admin/poziomydostepu.xhtml</to-view-id>
