@@ -5,6 +5,7 @@
  */
 package pl.lodz.ssbd.mok.beans;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -13,6 +14,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.faces.view.ViewScoped;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.utils.UzytkownikComparator;
 
@@ -21,8 +23,8 @@ import pl.lodz.ssbd.utils.UzytkownikComparator;
  * @author Maciej
  */
 @Named
-@RequestScoped
-public class ListPageBean {
+@ViewScoped
+public class ListPageBean implements Serializable {
     public ListPageBean() {
     }
     
