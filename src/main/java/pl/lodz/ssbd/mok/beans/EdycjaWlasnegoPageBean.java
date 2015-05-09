@@ -6,33 +6,34 @@
 package pl.lodz.ssbd.mok.beans;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.utils.MD5;
+
+import java.io.Serializable;
 
 /**
  *
  * @author Marta Chmielecka
  */
 @Named(value = "edycjaWlasnegoPageBean")
-@RequestScoped
-public class EdycjaWlasnegoPageBean {
+@ViewScoped
+public class EdycjaWlasnegoPageBean implements Serializable {
 
     @Inject
     private UzytkownikSession uzytkownikSession;
     private String noweHaslo;
     private String powtorzHaslo;
-    
-    
-    public EdycjaWlasnegoPageBean(){
+
+    public EdycjaWlasnegoPageBean() {
     }
-    
+
     @PostConstruct
-    private void initPage(){
+    private void initPage() {
         uzytkownikSession.pobierzSiebieDoEdycji();
     }
 
@@ -52,23 +53,23 @@ public class EdycjaWlasnegoPageBean {
         this.powtorzHaslo = powtorzHaslo;
     }
 
-     public void setUzytkownikSession(UzytkownikSession uzytkownikSession) {
+    public void setUzytkownikSession(UzytkownikSession uzytkownikSession) {
         this.uzytkownikSession = uzytkownikSession;
     }
-    
+
     public Uzytkownik getUzytkownikEdycja() {
         return uzytkownikSession.getUzytkownikEdycja();
     }
 
     public String edytujSiebie() {
         boolean zmianaHasla = false;
-        if(!noweHaslo.equals(powtorzHaslo)){
+        if (!noweHaslo.equals(powtorzHaslo)) {
             FacesContext fctx = FacesContext.getCurrentInstance();
             FacesMessage fmsg = new FacesMessage("Hasła się nie zgadzają");
             fctx.addMessage(null, fmsg);
             return null;
         }
-        if(!(noweHaslo.equals("") || noweHaslo == null)){
+        if (!(noweHaslo.equals("") || noweHaslo == null)) {
             uzytkownikSession.getUzytkownikEdycja().setHasloMd5(MD5.hash(noweHaslo));
             zmianaHasla = true;
         }
