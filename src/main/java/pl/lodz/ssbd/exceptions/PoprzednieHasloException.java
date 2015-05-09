@@ -9,22 +9,22 @@ package pl.lodz.ssbd.exceptions;
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
-public class HasloJuzIstniejeException extends SSBD05Exception {
+public class PoprzednieHasloException extends SSBD05Exception {
 
     /**
-     * Creates a new instance of <code>HasloJuzIstniejeException</code> without
+     * Creates a new instance of <code>PoprzednieHasloException</code> without
      * detail message.
      */
-    public HasloJuzIstniejeException() {
+    public PoprzednieHasloException() {
     }
 
     /**
-     * Constructs an instance of <code>HasloJuzIstniejeException</code> with the
+     * Constructs an instance of <code>PoprzednieHasloException</code> with the
      * specified detail message.
      *
      * @param msg the detail message.
      */
-    public HasloJuzIstniejeException(String msg) {
+    public PoprzednieHasloException(String msg) {
         super(msg);
     }
 }

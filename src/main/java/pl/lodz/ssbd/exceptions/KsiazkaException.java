@@ -9,22 +9,22 @@ package pl.lodz.ssbd.exceptions;
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
-public class EmailIstniejeException extends SSBD05Exception {
+public class KsiazkaException extends SSBD05Exception {
 
     /**
-     * Creates a new instance of <code>EmailIstniejeException</code> without
-     * detail message.
+     * Creates a new instance of <code>KsiazkaException</code> without detail
+     * message.
      */
-    public EmailIstniejeException() {
+    public KsiazkaException() {
     }
 
     /**
-     * Constructs an instance of <code>EmailIstniejeException</code> with the
+     * Constructs an instance of <code>KsiazkaException</code> with the
      * specified detail message.
      *
      * @param msg the detail message.
      */
-    public EmailIstniejeException(String msg) {
+    public KsiazkaException(String msg) {
         super(msg);
     }
 }

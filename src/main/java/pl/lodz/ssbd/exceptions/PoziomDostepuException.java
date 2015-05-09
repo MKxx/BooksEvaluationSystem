@@ -9,22 +9,22 @@ package pl.lodz.ssbd.exceptions;
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
-public class NiezgodnyUzytkownikException extends SSBD05Exception {
+public class PoziomDostepuException extends SSBD05Exception {
 
     /**
-     * Creates a new instance of <code>NiezgodnyUzytkownikException</code>
-     * without detail message.
+     * Creates a new instance of <code>PoziomDostepuException</code> without
+     * detail message.
      */
-    public NiezgodnyUzytkownikException() {
+    public PoziomDostepuException() {
     }
 
     /**
-     * Constructs an instance of <code>NiezgodnyUzytkownikException</code> with
-     * the specified detail message.
+     * Constructs an instance of <code>PoziomDostepuException</code> with the
+     * specified detail message.
      *
      * @param msg the detail message.
      */
-    public NiezgodnyUzytkownikException(String msg) {
+    public PoziomDostepuException(String msg) {
         super(msg);
     }
 }

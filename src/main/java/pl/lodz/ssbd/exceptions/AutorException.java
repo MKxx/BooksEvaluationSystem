@@ -9,22 +9,22 @@ package pl.lodz.ssbd.exceptions;
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
-public class LoginIstniejeException extends SSBD05Exception {
+public class AutorException extends SSBD05Exception {
 
     /**
-     * Creates a new instance of <code>LoginIstniejeException</code> without
-     * detail message.
+     * Creates a new instance of <code>AutorException</code> without detail
+     * message.
      */
-    public LoginIstniejeException() {
+    public AutorException() {
     }
 
     /**
-     * Constructs an instance of <code>LoginIstniejeException</code> with the
-     * specified detail message.
+     * Constructs an instance of <code>AutorException</code> with the specified
+     * detail message.
      *
      * @param msg the detail message.
      */
-    public LoginIstniejeException(String msg) {
+    public AutorException(String msg) {
         super(msg);
     }
 }

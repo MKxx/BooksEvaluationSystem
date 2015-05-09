@@ -9,22 +9,22 @@ package pl.lodz.ssbd.exceptions;
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
-public class HasloTakieSamoException extends SSBD05Exception {
+public class OcenaException extends SSBD05Exception {
 
     /**
-     * Creates a new instance of <code>HasloTakieSamoException</code> without
-     * detail message.
+     * Creates a new instance of <code>OcenaException</code> without detail
+     * message.
      */
-    public HasloTakieSamoException() {
+    public OcenaException() {
     }
 
     /**
-     * Constructs an instance of <code>HasloTakieSamoException</code> with the
-     * specified detail message.
+     * Constructs an instance of <code>OcenaException</code> with the specified
+     * detail message.
      *
      * @param msg the detail message.
      */
-    public HasloTakieSamoException(String msg) {
+    public OcenaException(String msg) {
         super(msg);
     }
 }
