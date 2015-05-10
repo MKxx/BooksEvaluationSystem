@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
+import pl.lodz.ssbd.exceptions.PoprzednieHasloException;
 import pl.lodz.ssbd.exceptions.PoziomDostepuException;
 import pl.lodz.ssbd.exceptions.UzytkownikException;
 
@@ -31,7 +32,7 @@ public interface MOKEndpointLocal {
 
     public void zalogujNiepoprawneUwierzytenienie(String username,String IP);
 
-    public void zapiszKontoPoEdycji(Uzytkownik uzytkownikEdycja, boolean zmianaHasla) throws UzytkownikException;
+    public void zapiszKontoPoEdycji(Uzytkownik uzytkownikEdycja, boolean zmianaHasla) throws UzytkownikException, PoprzednieHasloException;
     
     public String pobierzIPOstatniegoPopZalogowania();
     public Date pobierzCzasOstatniegoPopZalogowania();

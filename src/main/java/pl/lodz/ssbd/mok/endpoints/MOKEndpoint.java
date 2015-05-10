@@ -26,6 +26,7 @@ import javax.interceptor.Interceptors;
 import pl.lodz.ssbd.entities.PoprzednieHaslo;
 import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
+import pl.lodz.ssbd.exceptions.PoprzednieHasloException;
 import pl.lodz.ssbd.exceptions.PoziomDostepuException;
 import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
@@ -149,7 +150,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
 
     @Override
     @RolesAllowed({"ModyfikowanieDanychSwojegoKonta","ModyfikowanieDanychCudzegoKonta"}) 
-    public void zapiszKontoPoEdycji(Uzytkownik uzytkownik, boolean zmianaHasla) throws UzytkownikException {
+    public void zapiszKontoPoEdycji(Uzytkownik uzytkownik, boolean zmianaHasla) throws UzytkownikException, PoprzednieHasloException {
         if (null == uzytkownikEdycja) {
             throw new IllegalArgumentException("Brak wczytanego uzytkownika do modyfikacji");
         }
@@ -160,7 +161,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
             if (!hasloPrzedEdycja.equals(uzytkownikEdycja.getHasloMd5())) {
                 for(PoprzednieHaslo poprzednieHaslo: uzytkownikEdycja.getPoprzednieHasloList()){
                     if(uzytkownikEdycja.getHasloMd5().equals(poprzednieHaslo.getStareHasloMd5())){
-                        throw new IllegalArgumentException("Haslo to juz bylo wykorzystywane");
+                        throw new PoprzednieHasloException("exceptions.poprzedniehaslo.wykorzystywane");
                     }
                 }
                 PoprzednieHaslo popHaslo = new PoprzednieHaslo();
@@ -168,7 +169,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
                 popHaslo.setStareHasloMd5(hasloPrzedEdycja);
                 uzytkownik.getPoprzednieHasloList().add(popHaslo);
             } else {
-                throw new IllegalArgumentException("Zmiana na to samo hasło");
+                throw new PoprzednieHasloException("exceptions.poprzedniehaslo.aktualne");
             }
         }
         uzytkownikFacade.edit(uzytkownikEdycja);

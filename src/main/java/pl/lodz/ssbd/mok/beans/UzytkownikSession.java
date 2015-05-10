@@ -7,6 +7,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
+import pl.lodz.ssbd.exceptions.PoprzednieHasloException;
 import pl.lodz.ssbd.exceptions.PoziomDostepuException;
 import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.mok.endpoints.MOKEndpointLocal;
@@ -94,7 +95,7 @@ public class UzytkownikSession implements Serializable {
         uzytkownikMenu = MOKEndpoint.pobierzUzytkownika(login);
     }
 
-    public void zapiszUzytkownikaPoEdycji(boolean zmianaHasla) throws UzytkownikException {
+    public void zapiszUzytkownikaPoEdycji(boolean zmianaHasla) throws UzytkownikException, PoprzednieHasloException {
         MOKEndpoint.zapiszKontoPoEdycji(uzytkownikEdycja, zmianaHasla);
     }
 
