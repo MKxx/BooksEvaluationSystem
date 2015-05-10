@@ -14,6 +14,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.OptimisticLockException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import pl.lodz.ssbd.entities.Uzytkownik;
@@ -21,21 +22,29 @@ import pl.lodz.ssbd.exceptions.SSBD05Exception;
 import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.facades.AbstractFacade;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
+
 /**
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Stateless(name = "mokU")
-@TransactionAttribute(TransactionAttributeType.MANDATORY)        
+@TransactionAttribute(TransactionAttributeType.MANDATORY)
 @Interceptors({DziennikZdarzenInterceptor.class})
 public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements UzytkownikFacadeLocal {
 
     @Override
     public void create(Uzytkownik entity) throws UzytkownikException {
-        try{
-        super.create(entity); //To change body of generated methods, choose Tools | Templates.
-        } catch(SSBD05Exception ex){
-            throw new UzytkownikException(ex.getMessage());
+        try {
+            super.create(entity); //To change body of generated methods, choose Tools | Templates.
+        } catch (SSBD05Exception ex) {
+            if (ex.getMessage() != null && ex.getMessage().contains("Klucz (email)")) {
+                throw new UzytkownikException("exceptions.uzytkownik.email");
+            }
+            if (ex.getMessage() != null && ex.getMessage().contains("Klucz (login)")) {
+                throw new UzytkownikException("exceptions.uzytkownik.login");
+            } else {
+                throw new UzytkownikException("exceptions.uzytkownik.unknown");
+            }
         }
     }
 
@@ -55,7 +64,7 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
     }
 
     @Override
-    @RolesAllowed({"AutoryzacjaKonta","BlokowanieOdblokowanieUzytkownia"})
+    @RolesAllowed({"AutoryzacjaKonta", "BlokowanieOdblokowanieUzytkownia"})
     public Uzytkownik find(Object id) {
         return super.find(id); //To change body of generated methods, choose Tools | Templates.
     }
@@ -66,12 +75,12 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
     }
 
     @Override
-    @RolesAllowed({"ModyfikowanieDanychSwojegoKonta","ModyfikowanieDanychCudzegoKonta"})
+    @RolesAllowed({"ModyfikowanieDanychSwojegoKonta", "ModyfikowanieDanychCudzegoKonta"})
     public void edit(Uzytkownik entity) throws UzytkownikException {
         try {
             super.edit(entity); //To change body of generated methods, choose Tools | Templates.
         } catch (SSBD05Exception ex) {
-            throw new UzytkownikException(ex.getMessage());
+            throw new UzytkownikException("exceptions.uzytkownik.concurrent");
         }
     }
 
@@ -106,7 +115,7 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
             return findAll();
         }
         Query q = em.createQuery("SELECT u FROM Uzytkownik u WHERE LOWER(u.imie) LIKE :wartosc OR LOWER(u.nazwisko) LIKE :wartosc ");
-        q.setParameter("wartosc", "%"+wartosc.toLowerCase()+"%");
+        q.setParameter("wartosc", "%" + wartosc.toLowerCase() + "%");
         return q.getResultList();
     }
 }

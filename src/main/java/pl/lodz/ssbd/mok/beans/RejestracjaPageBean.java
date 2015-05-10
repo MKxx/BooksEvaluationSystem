@@ -5,6 +5,7 @@
  */
 package pl.lodz.ssbd.mok.beans;
 
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Named;
@@ -14,6 +15,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.exceptions.UzytkownikException;
+import pl.lodz.ssbd.utils.Bundle;
 
 /**
  *
@@ -57,10 +59,13 @@ public class RejestracjaPageBean {
         }
         try {
             uzytkownikSession.rejestrujUzytkownika(uzytkownik);
+            return "sukces";
         } catch (UzytkownikException ex) {
-            Logger.getLogger(RejestracjaPageBean.class.getName()).log(Level.SEVERE, null, ex);
+            FacesContext fctx = FacesContext.getCurrentInstance();
+            Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+            FacesMessage fmsg = new FacesMessage(Bundle.internalizuj(ex.getMessage(), locale));
+            fctx.addMessage(null, fmsg);
             return null;
         }
-        return "sukces";
     }
 }

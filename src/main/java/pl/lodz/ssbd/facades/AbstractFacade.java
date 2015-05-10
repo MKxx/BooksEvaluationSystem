@@ -31,7 +31,7 @@ public abstract class AbstractFacade<T> {
             getEntityManager().persist(entity);
             getEntityManager().flush();
         } catch (PersistenceException ex) {
-            throw new SSBD05Exception();
+            throw new SSBD05Exception(ex.getMessage());
         }
     }
 
@@ -40,7 +40,7 @@ public abstract class AbstractFacade<T> {
             getEntityManager().merge(entity);
             getEntityManager().flush();
         } catch (OptimisticLockException ex) {
-            throw new SSBD05Exception();
+            throw new SSBD05Exception(ex.getMessage());
         }
 
     }
