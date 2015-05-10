@@ -17,6 +17,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import pl.lodz.ssbd.entities.Uzytkownik;
+import pl.lodz.ssbd.exceptions.SSBD05Exception;
+import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.facades.AbstractFacade;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 /**
@@ -27,6 +29,15 @@ import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 @TransactionAttribute(TransactionAttributeType.MANDATORY)        
 @Interceptors({DziennikZdarzenInterceptor.class})
 public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements UzytkownikFacadeLocal {
+
+    @Override
+    public void create(Uzytkownik entity) throws UzytkownikException {
+        try{
+        super.create(entity); //To change body of generated methods, choose Tools | Templates.
+        } catch(SSBD05Exception ex){
+            throw new UzytkownikException(ex.getMessage());
+        }
+    }
 
     @Override
     public int count() {
@@ -56,14 +67,12 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
 
     @Override
     @RolesAllowed({"ModyfikowanieDanychSwojegoKonta","ModyfikowanieDanychCudzegoKonta"})
-    public void edit(Uzytkownik entity) {
-        super.edit(entity); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    @PermitAll
-    public void create(Uzytkownik entity) {
-        super.create(entity); //To change body of generated methods, choose Tools | Templates.
+    public void edit(Uzytkownik entity) throws UzytkownikException {
+        try {
+            super.edit(entity); //To change body of generated methods, choose Tools | Templates.
+        } catch (SSBD05Exception ex) {
+            throw new UzytkownikException(ex.getMessage());
+        }
     }
 
     @PersistenceContext(unitName = "ssbd05mok")

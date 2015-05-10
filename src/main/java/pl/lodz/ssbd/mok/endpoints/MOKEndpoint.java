@@ -26,6 +26,8 @@ import javax.interceptor.Interceptors;
 import pl.lodz.ssbd.entities.PoprzednieHaslo;
 import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
+import pl.lodz.ssbd.exceptions.PoziomDostepuException;
+import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 import pl.lodz.ssbd.mok.facades.PoziomDostepuFacadeLocal;
 import pl.lodz.ssbd.mok.facades.UzytkownikFacadeLocal;
@@ -61,7 +63,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
 
     @Override
     @PermitAll
-    public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik) {
+    public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik) throws UzytkownikException {
         String[] role = {rbl.getString("rola.admin"), rbl.getString("rola.user"), rbl.getString("rola.moderator")};
         for(String rola : role){
             PoziomDostepu poziomDost = new PoziomDostepu();
@@ -146,8 +148,8 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     }
 
     @Override
-    @RolesAllowed({"ModyfikowanieDanychSwojegoKonta","ModyfikowanieDanychCudzegoKonta"})
-    public void zapiszKontoPoEdycji(Uzytkownik uzytkownik, boolean zmianaHasla) {
+    @RolesAllowed({"ModyfikowanieDanychSwojegoKonta","ModyfikowanieDanychCudzegoKonta"}) 
+    public void zapiszKontoPoEdycji(Uzytkownik uzytkownik, boolean zmianaHasla) throws UzytkownikException {
         if (null == uzytkownikEdycja) {
             throw new IllegalArgumentException("Brak wczytanego uzytkownika do modyfikacji");
         }
@@ -175,7 +177,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
 
     @Override
     @RolesAllowed("NadanieOdebraniePoziomuDostepu")
-    public void nadajPoziom(PoziomDostepu poziom) {
+    public void nadajPoziom(PoziomDostepu poziom) throws PoziomDostepuException {
         poziom.setAktywny(true);
         poziomDostepuFacade.edit(poziom);
 
@@ -183,7 +185,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
 
     @Override
     @RolesAllowed("NadanieOdebraniePoziomuDostepu")
-    public void odbierzPoziom(PoziomDostepu poziom) {
+    public void odbierzPoziom(PoziomDostepu poziom) throws PoziomDostepuException {
         poziom.setAktywny(false);
         poziomDostepuFacade.edit(poziom);
     }

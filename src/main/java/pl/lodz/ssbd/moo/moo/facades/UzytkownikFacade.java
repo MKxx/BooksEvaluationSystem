@@ -12,6 +12,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pl.lodz.ssbd.entities.Uzytkownik;
+import pl.lodz.ssbd.exceptions.SSBD05Exception;
+import pl.lodz.ssbd.exceptions.UzytkownikException;
 
 /**
  *
@@ -29,6 +31,24 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
 
     public UzytkownikFacade() {
         super(Uzytkownik.class);
+    }
+    
+       @Override
+    public void edit(Uzytkownik entity) throws UzytkownikException {
+        try {
+            super.edit(entity); //To change body of generated methods, choose Tools | Templates.
+        } catch (SSBD05Exception ex) {
+            throw new UzytkownikException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public void create(Uzytkownik entity) throws UzytkownikException {
+        try{
+        super.create(entity); //To change body of generated methods, choose Tools | Templates.
+        } catch(SSBD05Exception ex){
+            throw new UzytkownikException(ex.getMessage());
+        }
     }
     
 }

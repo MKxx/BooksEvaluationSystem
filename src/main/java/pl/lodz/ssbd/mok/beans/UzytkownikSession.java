@@ -7,6 +7,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
+import pl.lodz.ssbd.exceptions.PoziomDostepuException;
+import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.mok.endpoints.MOKEndpointLocal;
 import pl.lodz.ssbd.utils.MD5;
 import pl.lodz.ssbd.utils.Mailer;
@@ -39,8 +41,8 @@ public class UzytkownikSession implements Serializable {
         return uzytkownikEdycja;
     }
 
-    public void rejestrujUzytkownika(Uzytkownik uzytkownik, String powtorzHaslo) {
-                Uzytkownik nowyUzytkownik = new Uzytkownik();
+    public void rejestrujUzytkownika(Uzytkownik uzytkownik) throws UzytkownikException {
+        Uzytkownik nowyUzytkownik = new Uzytkownik();
         nowyUzytkownik.setLogin(uzytkownik.getLogin());
         nowyUzytkownik.setHasloMd5(MD5.hash(uzytkownik.getHasloMd5()));
         nowyUzytkownik.setImie(uzytkownik.getImie());
@@ -92,7 +94,7 @@ public class UzytkownikSession implements Serializable {
         uzytkownikMenu = MOKEndpoint.pobierzUzytkownika(login);
     }
 
-    public void zapiszUzytkownikaPoEdycji(boolean zmianaHasla) {
+    public void zapiszUzytkownikaPoEdycji(boolean zmianaHasla) throws UzytkownikException {
         MOKEndpoint.zapiszKontoPoEdycji(uzytkownikEdycja, zmianaHasla);
     }
 
@@ -100,11 +102,11 @@ public class UzytkownikSession implements Serializable {
         uzytkownikEdycja = MOKEndpoint.pobierzUzytkownikaDoEdycji(uzytkownik.getLogin());
     }
 
-    public void nadajPoziom(PoziomDostepu poziom) {
+    public void nadajPoziom(PoziomDostepu poziom) throws PoziomDostepuException {
         MOKEndpoint.nadajPoziom(poziom);
     }
 
-    public void odbierzPoziom(PoziomDostepu poziom) {
+    public void odbierzPoziom(PoziomDostepu poziom) throws PoziomDostepuException {
         MOKEndpoint.odbierzPoziom(poziom);
     }
     

@@ -5,6 +5,8 @@
  */
 package pl.lodz.ssbd.moo.moo2.facades;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pl.lodz.ssbd.moo.moo2.*;
 import pl.lodz.ssbd.moo.moo.*;
 import pl.lodz.ssbd.moo.*;
@@ -13,6 +15,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pl.lodz.ssbd.entities.Ksiazka;
+import pl.lodz.ssbd.exceptions.KsiazkaException;
+import pl.lodz.ssbd.exceptions.SSBD05Exception;
 
 /**
  *
@@ -31,5 +35,25 @@ public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFac
     public KsiazkaFacade() {
         super(Ksiazka.class);
     }
+          @Override
+    public void edit(Ksiazka entity) throws KsiazkaException {
+        try {
+            super.edit(entity); //To change body of generated methods, choose Tools | Templates.
+        } catch (SSBD05Exception ex) {
+            Logger.getLogger(pl.lodz.ssbd.moks.facades.OcenaFacade.class.getName()).log(Level.SEVERE, null, ex);
+            throw new KsiazkaException();
+        }
+    }
+
+    @Override
+    public void create(Ksiazka entity) throws KsiazkaException {
+        try {
+            super.create(entity); //To change body v generated methods, choose Tools | Templates.
+        } catch (SSBD05Exception ex) {
+            Logger.getLogger(pl.lodz.ssbd.moks.facades.OcenaFacade.class.getName()).log(Level.SEVERE, null, ex);
+            throw new KsiazkaException();
+        }
+    }
+    
     
 }

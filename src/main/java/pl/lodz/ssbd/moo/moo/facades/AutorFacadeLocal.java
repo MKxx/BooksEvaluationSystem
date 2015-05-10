@@ -5,12 +5,11 @@
  */
 package pl.lodz.ssbd.moo.moo.facades;
 
-import pl.lodz.ssbd.moo.moo.*;
 import pl.lodz.ssbd.moo.*;
-import pl.lodz.ssbd.facades.*;
 import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Autor;
+import pl.lodz.ssbd.exceptions.AutorException;
 
 /**
  *
@@ -19,9 +18,9 @@ import pl.lodz.ssbd.entities.Autor;
 @Local
 public interface AutorFacadeLocal {
 
-    void create(Autor autor);
+    void create(Autor autor) throws AutorException;
 
-    void edit(Autor autor);
+    void edit(Autor autor) throws AutorException;
 
     void remove(Autor autor);
 

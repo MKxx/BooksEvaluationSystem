@@ -12,6 +12,7 @@ import pl.lodz.ssbd.facades.*;
 import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Ocena;
+import pl.lodz.ssbd.exceptions.OcenaException;
 
 /**
  *
@@ -20,9 +21,9 @@ import pl.lodz.ssbd.entities.Ocena;
 @Local
 public interface OcenaFacadeLocal {
 
-    void create(Ocena ocena);
+    void create(Ocena ocena) throws OcenaException;
 
-    void edit(Ocena ocena);
+    void edit(Ocena ocena) throws OcenaException;
 
     void remove(Ocena ocena);
 

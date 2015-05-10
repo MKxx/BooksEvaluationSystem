@@ -5,12 +5,15 @@
  */
 package pl.lodz.ssbd.mok.beans;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import pl.lodz.ssbd.entities.Uzytkownik;
+import pl.lodz.ssbd.exceptions.UzytkownikException;
 
 /**
  *
@@ -52,7 +55,12 @@ public class RejestracjaPageBean {
             fctx.addMessage(null, fmsg);
             return null;
         }
-        uzytkownikSession.rejestrujUzytkownika(uzytkownik, powtorzHaslo);
+        try {
+            uzytkownikSession.rejestrujUzytkownika(uzytkownik);
+        } catch (UzytkownikException ex) {
+            Logger.getLogger(RejestracjaPageBean.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
         return "sukces";
     }
 }

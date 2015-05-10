@@ -6,9 +6,9 @@
 package pl.lodz.ssbd.mok.facades;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.security.RolesAllowed;
-import pl.lodz.ssbd.mok.*;
-import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -16,13 +16,15 @@ import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pl.lodz.ssbd.entities.PoziomDostepu;
+import pl.lodz.ssbd.exceptions.SSBD05Exception;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
+import pl.lodz.ssbd.facades.AbstractFacade;
 
 /**
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
-@Stateless(name="mokPD")
+@Stateless(name = "mokPD")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 @Interceptors({DziennikZdarzenInterceptor.class})
 public class PoziomDostepuFacade extends AbstractFacade<PoziomDostepu> implements PoziomDostepuFacadeLocal {
@@ -55,12 +57,20 @@ public class PoziomDostepuFacade extends AbstractFacade<PoziomDostepu> implement
     @Override
     @RolesAllowed("NadanieOdebraniePoziomuDostepu")
     public void edit(PoziomDostepu entity) {
-        super.edit(entity); //To change body of generated methods, choose Tools | Templates.
+        try {
+            super.edit(entity); //To change body of generated methods, choose Tools | Templates.
+        } catch (SSBD05Exception ex) {
+            Logger.getLogger(PoziomDostepuFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void create(PoziomDostepu entity) {
-        super.create(entity); //To change body of generated methods, choose Tools | Templates.
+        try {
+            super.create(entity); //To change body of generated methods, choose Tools | Templates.
+        } catch (SSBD05Exception ex) {
+            Logger.getLogger(PoziomDostepuFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     @PersistenceContext(unitName = "ssbd05mok")
     private EntityManager em;
@@ -73,5 +83,5 @@ public class PoziomDostepuFacade extends AbstractFacade<PoziomDostepu> implement
     public PoziomDostepuFacade() {
         super(PoziomDostepu.class);
     }
-    
+
 }

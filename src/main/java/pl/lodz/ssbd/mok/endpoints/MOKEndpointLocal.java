@@ -10,6 +10,8 @@ import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
+import pl.lodz.ssbd.exceptions.PoziomDostepuException;
+import pl.lodz.ssbd.exceptions.UzytkownikException;
 
 /**
  *
@@ -19,7 +21,7 @@ import pl.lodz.ssbd.entities.Uzytkownik;
 public interface MOKEndpointLocal {
     public Uzytkownik pobierzSiebieDoEdycji();
 
-    public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik);
+    public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik) throws UzytkownikException;
     public List<Uzytkownik> pobierzUzytkownikow(String wartosc);
     public void potwierdzUzytkownika(Uzytkownik uzytkownik);
     public void zablokujUzytkownika(Uzytkownik uzytkownik);
@@ -29,16 +31,16 @@ public interface MOKEndpointLocal {
 
     public void zalogujNiepoprawneUwierzytenienie(String username,String IP);
 
-    public void zapiszKontoPoEdycji(Uzytkownik uzytkownikEdycja, boolean zmianaHasla);
+    public void zapiszKontoPoEdycji(Uzytkownik uzytkownikEdycja, boolean zmianaHasla) throws UzytkownikException;
     
     public String pobierzIPOstatniegoPopZalogowania();
     public Date pobierzCzasOstatniegoPopZalogowania();
     public int pobierzIloscNPopZal();
     public Uzytkownik pobierzUzytkownikaDoEdycji(String login);
 
-    public void nadajPoziom(PoziomDostepu poziom);
+    public void nadajPoziom(PoziomDostepu poziom) throws PoziomDostepuException;
 
-    public void odbierzPoziom(PoziomDostepu poziom);
+    public void odbierzPoziom(PoziomDostepu poziom) throws PoziomDostepuException;
     public Uzytkownik pobierzUzytkownika(String login);
 
 }

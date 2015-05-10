@@ -6,6 +6,8 @@
 package pl.lodz.ssbd.mok.beans;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -14,6 +16,7 @@ import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
+import pl.lodz.ssbd.exceptions.PoziomDostepuException;
 
 /**
  *
@@ -47,13 +50,21 @@ public class EdycjaPoziomowPageBean {
     }
     
     public void nadajPoziom(){
-        uzytkownikSession.nadajPoziom(poziomyDataModel.getRowData());
+        try {
+            uzytkownikSession.nadajPoziom(poziomyDataModel.getRowData());
+        } catch (PoziomDostepuException ex) {
+            Logger.getLogger(EdycjaPoziomowPageBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
         uzytkownikSession.pobierzUzytkownikaDoEdycji(uzytkownikSession.getUzytkownikEdycja());
         initModel();
     }
     
     public void odbierzPoziom(){
-        uzytkownikSession.odbierzPoziom(poziomyDataModel.getRowData());
+        try {
+            uzytkownikSession.odbierzPoziom(poziomyDataModel.getRowData());
+        } catch (PoziomDostepuException ex) {
+            Logger.getLogger(EdycjaPoziomowPageBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
         uzytkownikSession.pobierzUzytkownikaDoEdycji(uzytkownikSession.getUzytkownikEdycja());
         initModel();
     }

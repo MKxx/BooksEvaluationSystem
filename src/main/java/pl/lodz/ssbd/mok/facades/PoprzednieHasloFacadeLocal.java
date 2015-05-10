@@ -10,6 +10,7 @@ import pl.lodz.ssbd.facades.*;
 import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.PoprzednieHaslo;
+import pl.lodz.ssbd.exceptions.PoprzednieHasloException;
 
 /**
  *
@@ -18,9 +19,10 @@ import pl.lodz.ssbd.entities.PoprzednieHaslo;
 @Local
 public interface PoprzednieHasloFacadeLocal {
 
-    void create(PoprzednieHaslo poprzednieHaslo);
+    void create(PoprzednieHaslo poprzednieHaslo) throws PoprzednieHasloException;
 
-    void edit(PoprzednieHaslo poprzednieHaslo);
+    void edit(PoprzednieHaslo poprzednieHaslo) throws PoprzednieHasloException;
+
 
     void remove(PoprzednieHaslo poprzednieHaslo);
 

@@ -11,6 +11,7 @@ import pl.lodz.ssbd.facades.*;
 import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Ksiazka;
+import pl.lodz.ssbd.exceptions.KsiazkaException;
 
 /**
  *
@@ -19,9 +20,9 @@ import pl.lodz.ssbd.entities.Ksiazka;
 @Local
 public interface KsiazkaFacadeLocal {
 
-    void create(Ksiazka ksiazka);
+    void create(Ksiazka ksiazka) throws KsiazkaException;
 
-    void edit(Ksiazka ksiazka);
+    void edit(Ksiazka ksiazka) throws KsiazkaException;
 
     void remove(Ksiazka ksiazka);
 

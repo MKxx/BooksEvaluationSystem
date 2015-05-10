@@ -7,13 +7,18 @@ package pl.lodz.ssbd.facades;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.OptimisticLockException;
+import javax.persistence.PersistenceException;
+import pl.lodz.ssbd.exceptions.SSBD05Exception;
 
 /**
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
+ * @param <T>
  */
 public abstract class AbstractFacade<T> {
-    private Class<T> entityClass;
+
+    private final Class<T> entityClass;
 
     public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
@@ -21,12 +26,23 @@ public abstract class AbstractFacade<T> {
 
     protected abstract EntityManager getEntityManager();
 
-    public void create(T entity) {
-        getEntityManager().persist(entity);
+    public void create(T entity) throws SSBD05Exception {
+        try {
+            getEntityManager().persist(entity);
+            getEntityManager().flush();
+        } catch (PersistenceException ex) {
+            throw new SSBD05Exception();
+        }
     }
 
-    public void edit(T entity) {
-        getEntityManager().merge(entity);
+    public void edit(T entity) throws SSBD05Exception {
+        try {
+            getEntityManager().merge(entity);
+            getEntityManager().flush();
+        } catch (OptimisticLockException ex) {
+            throw new SSBD05Exception();
+        }
+
     }
 
     public void remove(T entity) {
@@ -59,5 +75,5 @@ public abstract class AbstractFacade<T> {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
-    
+
 }

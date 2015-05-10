@@ -5,6 +5,8 @@
  */
 package pl.lodz.ssbd.mok.facades;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pl.lodz.ssbd.mok.*;
 import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
@@ -14,7 +16,9 @@ import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pl.lodz.ssbd.entities.PoprzednieHaslo;
+import pl.lodz.ssbd.exceptions.SSBD05Exception;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
+import pl.lodz.ssbd.facades.AbstractFacade;
 
 /**
  *
@@ -35,5 +39,25 @@ public class PoprzednieHasloFacade extends AbstractFacade<PoprzednieHaslo> imple
     public PoprzednieHasloFacade() {
         super(PoprzednieHaslo.class);
     }
+
+    @Override
+    public void edit(PoprzednieHaslo entity) {
+        try {
+            super.edit(entity); //To change body of generated methods, choose Tools | Templates.
+        } catch (SSBD05Exception ex) {
+            Logger.getLogger(PoprzednieHasloFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void create(PoprzednieHaslo entity) {
+        try {
+            super.create(entity); //To change body of generated methods, choose Tools | Templates.
+        } catch (SSBD05Exception ex) {
+            Logger.getLogger(PoprzednieHasloFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
     
 }

@@ -5,6 +5,8 @@
  */
 package pl.lodz.ssbd.mok.beans;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -12,6 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import pl.lodz.ssbd.entities.Uzytkownik;
+import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.utils.MD5;
 
 /**
@@ -72,7 +75,11 @@ public class EdycjaWlasnegoPageBean {
             uzytkownikSession.getUzytkownikEdycja().setHasloMd5(MD5.hash(noweHaslo));
             zmianaHasla = true;
         }
-        uzytkownikSession.zapiszUzytkownikaPoEdycji(zmianaHasla);
+        try {
+            uzytkownikSession.zapiszUzytkownikaPoEdycji(zmianaHasla);
+        } catch (UzytkownikException ex) {
+            Logger.getLogger(EdycjaWlasnegoPageBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return "index";
     }
 }

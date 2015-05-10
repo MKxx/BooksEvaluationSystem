@@ -11,6 +11,7 @@ import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.PoziomDostepu;
+import pl.lodz.ssbd.exceptions.PoziomDostepuException;
 
 /**
  *
@@ -19,9 +20,9 @@ import pl.lodz.ssbd.entities.PoziomDostepu;
 @Local
 public interface PoziomDostepuFacadeLocal {
 
-    void create(PoziomDostepu poziomDostepu);
+    void create(PoziomDostepu poziomDostepu) throws PoziomDostepuException;
     
-    void edit(PoziomDostepu poziomDostepu);
+    void edit(PoziomDostepu poziomDostepu) throws PoziomDostepuException;
 
     void remove(PoziomDostepu poziomDostepu);
 

@@ -10,6 +10,7 @@ import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Uzytkownik;
+import pl.lodz.ssbd.exceptions.UzytkownikException;
 
 /**
  *
@@ -18,9 +19,9 @@ import pl.lodz.ssbd.entities.Uzytkownik;
 @Local
 public interface UzytkownikFacadeLocal {
 
-    void create(Uzytkownik uzytkownik);
+    void create(Uzytkownik uzytkownik) throws UzytkownikException;
 
-    void edit(Uzytkownik uzytkownik);
+    void edit(Uzytkownik uzytkownik) throws UzytkownikException;
 
     void remove(Uzytkownik uzytkownik);
 
