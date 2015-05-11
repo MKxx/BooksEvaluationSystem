@@ -79,9 +79,9 @@ public class Ksiazka implements Serializable {
     @JoinTable(name = "ksiazka_autor", joinColumns = {
         @JoinColumn(name = "id_ksiazka", referencedColumnName = "id_ksiazka")}, inverseJoinColumns = {
         @JoinColumn(name = "id_autor", referencedColumnName = "id_autor")})
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
     private List<Autor> autorList = new ArrayList<>();
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idKsiazka")
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
     private List<Ocena> ocenaList = new ArrayList<>();
 
     public Ksiazka() {
