@@ -40,14 +40,14 @@
                 <h:panelGroup>
                     (*) #{msg["form.haslo"]}<br></br>
                     <h:inputSecret id="haslo" value="#{rejestracjaPageBean.haslo}" >
-                        <f:validateRegex pattern="((?=.*[^\s]).{6,})" />
+                        <f:validateRegex pattern="([\S]{6,})" />
                     </h:inputSecret>
                     <h:message for="haslo" class="blad"/>
                 </h:panelGroup>
                 <h:panelGroup>
                     (*) #{msg["form.powt_haslo"]} <br></br>
                     <h:inputSecret id="hasloPowt" value="#{rejestracjaPageBean.powtorzHaslo}" >
-                        <f:validateRegex pattern="((?=.*[^\s]).{6,})" />
+                        <f:validateRegex pattern="([\S]{6,})" />
                     </h:inputSecret>
                     <h:message for="hasloPowt" class="blad"/>
                     <h:message for="" class="blad"/>
