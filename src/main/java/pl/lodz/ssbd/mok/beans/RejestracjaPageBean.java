@@ -21,6 +21,23 @@ import pl.lodz.ssbd.entities.Uzytkownik;
 public class RejestracjaPageBean {
 
     private String powtorzHaslo;
+    private String haslo;
+
+    public String getHaslo() {
+        return haslo;
+    }
+
+    public void setHaslo(String haslo) {
+        this.haslo = haslo;
+    }
+
+    public UzytkownikSession getUzytkownikSession() {
+        return uzytkownikSession;
+    }
+
+    public void setUzytkownikSession(UzytkownikSession uzytkownikSession) {
+        this.uzytkownikSession = uzytkownikSession;
+    }
 
     public void setPowtorzHaslo(String powtorzHaslo) {
         this.powtorzHaslo = powtorzHaslo;
@@ -46,13 +63,13 @@ public class RejestracjaPageBean {
     }
 
     public String rejestrujUzytkownika() {
-        if (!powtorzHaslo.equals(uzytkownik.getHasloMd5())) {
+        if (!powtorzHaslo.equals(haslo)) {
             FacesContext fctx = FacesContext.getCurrentInstance();
             FacesMessage fmsg = new FacesMessage("Hasła się nie zgadzają");
             fctx.addMessage(null, fmsg);
             return null;
         }
-        uzytkownikSession.rejestrujUzytkownika(uzytkownik, powtorzHaslo);
+        uzytkownikSession.rejestrujUzytkownika(uzytkownik, haslo);
         return "sukces";
     }
 }
