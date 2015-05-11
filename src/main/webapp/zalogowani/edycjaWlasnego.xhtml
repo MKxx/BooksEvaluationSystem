@@ -31,12 +31,12 @@ and open the template in the editor.
                 <h:message for="email" class="blad"/>
             </p>
             <p>#{msg["form.haslo"]} <h:inputSecret id="haslo" value="#{edycjaWlasnegoPageBean.noweHaslo}">
-                <f:validateRegex pattern="({0}|(?=.*[^\s]).{6,})" />
+                <f:validateRegex pattern="(({0})|([\S]{6,}))" />
                 </h:inputSecret>
                 <h:message for="haslo" class="blad"/>
             </p>
             <p>#{msg["form.powt_haslo"]} <h:inputSecret id="hasloPowt" value="#{edycjaWlasnegoPageBean.powtorzHaslo}">
-                <f:validateRegex pattern="({0}|(?=.*[^\s]).{6,})" />
+                <f:validateRegex pattern="(({0})|([\S]{6,}))" />
                 </h:inputSecret>
                 <h:message for="hasloPowt" class="blad"/>
                 <h:message for="" class="blad"/>
