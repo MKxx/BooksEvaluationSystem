@@ -63,7 +63,7 @@ public class PoziomDostepu implements Serializable {
     @Version
     private long wersjaEncji;
     @JoinColumn(name = "id_uzytkownik", referencedColumnName = "id_uzytkownik", nullable = false)
-    @ManyToOne(optional = false, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+    @ManyToOne(optional = false, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private Uzytkownik idUzytkownik;
 
     public PoziomDostepu() {

@@ -71,7 +71,7 @@ public class Autor implements Serializable {
     @Column(name = "wersja_encji", nullable = false)
     @Version
     private long wersjaEncji;
-    @ManyToMany(mappedBy = "autorList", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+    @ManyToMany(mappedBy = "autorList", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private List<Ksiazka> ksiazkaList = new ArrayList<>();
 
     public Autor() {

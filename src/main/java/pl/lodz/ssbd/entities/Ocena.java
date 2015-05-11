@@ -57,10 +57,10 @@ public class Ocena implements Serializable {
     @Version
     private long wersjaEncji;
     @JoinColumn(name = "id_ksiazka", referencedColumnName = "id_ksiazka", nullable = false)
-    @ManyToOne(optional = false, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+    @ManyToOne(optional = false, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private Ksiazka idKsiazka;
     @JoinColumn(name = "id_uzytkownik", referencedColumnName = "id_uzytkownik", nullable = false)
-    @ManyToOne(optional = false, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+    @ManyToOne(optional = false, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private Uzytkownik idUzytkownik;
 
     public Ocena() {
