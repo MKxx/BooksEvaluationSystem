@@ -13,6 +13,10 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
+<servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout> 30 </session-timeout>
     </session-config>
@@ -127,14 +131,15 @@
     </login-config>
     <error-page>
         <error-code>404</error-code>
-        <location>/errors/404.html</location>
+        <location>/errors/404.xhtml</location>
     </error-page> 
     <error-page>
         <error-code>403</error-code>
-        <location>/errors/403.html</location>
+        <location>/errors/403.xhtml</location>
     </error-page> 
-    <error-page>
+     <error-page>
         <error-code>500</error-code>
-        <location>/errors/500.html</location>
+        <location>/errors/500.xhtml</location>
     </error-page> 
+   
 </web-app>
