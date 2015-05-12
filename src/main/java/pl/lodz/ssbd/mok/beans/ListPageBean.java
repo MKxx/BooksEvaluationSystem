@@ -7,8 +7,10 @@ package pl.lodz.ssbd.mok.beans;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Locale;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
@@ -16,6 +18,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import pl.lodz.ssbd.entities.Uzytkownik;
+import pl.lodz.ssbd.exceptions.UzytkownikException;
+import pl.lodz.ssbd.utils.Bundle;
 import pl.lodz.ssbd.utils.UzytkownikComparator;
 
 /**
@@ -62,8 +66,16 @@ public class ListPageBean implements Serializable {
     }
     
     public void potwierdzUzytkownika(){
+        try{
         uzytkownikSession.potwierdzUzytkownika(uzytkownikDataModel.getRowData());
         initModel();
+        }
+        catch(UzytkownikException ex){
+            FacesContext fctx = FacesContext.getCurrentInstance();
+            Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+            FacesMessage fmsg = new FacesMessage(Bundle.internalizuj(ex.getMessage(), locale));
+            fctx.addMessage(null, fmsg);
+        }
     }
     
     public void zablokujUzytkownika(){
