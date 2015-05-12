@@ -19,7 +19,7 @@ and open the template in the editor.
     </ui:define>
 
     <ui:define name="content">
-        <p>Edytuj swoje konto</p>
+        <p>#{msg['edit.self']}</p>
         <h:form>
             <p>#{msg["form.imie"]} <h:inputText id="imie" value="#{edycjaWlasnegoPageBean.uzytkownikEdycja.imie}"/>
                 <h:message for="imie" class="blad"/>

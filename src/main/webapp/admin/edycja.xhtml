@@ -6,7 +6,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="top">
-        <p>${msg["main.page"]}/${msg["pa.edytuj"]}</p>
+        <p>${msg["main.page"]}/${msg["menu.adminpanel"]}/${msg["pa.edytuj"]}</p>
     </ui:define>
 
     <ui:define name="left">
@@ -14,7 +14,7 @@
     </ui:define>
 
     <ui:define name="content">
-        <p>Edytuj konto</p>
+        #{msg['edit.konto']}: <h:outputLabel value="#{edycjaPoziomowPageBean.uzytkownikEdycja.login}" />
         <h:form>
             <p>#{msg["form.imie"]} <h:inputText id="imie" value="#{edycjaCudzegoPageBean.uzytkownikEdycja.imie}"/>
                 <h:message for="imie" class="blad"/>

@@ -14,15 +14,14 @@
     </ui:define>
 
     <ui:define name="content">
-        Logowanie zakonczone sukcesem<br/>
-        Ostatnie udane logowanie 
+        <p>#{msg['login.success']}</p>
+        <p>#{msg['login.last']}
         <h:outputText value="#{curruzytkownikPageBean.pobierzCzasPopZal()}" id="czasp" />
-        z adresu ip <h:outputText value="#{curruzytkownikPageBean.pobierzIPPopZal()}" id="ipp" /> <br/>
-        Ostatnie nie udane logowanie         
-        <h:outputText value="#{curruzytkownikPageBean.pobierzCzasNPopZal()}" id="iln" />
- <br/>
-        <h:outputText value="#{curruzytkownikPageBean.pobierzIloscNPopZal()}" id="iln2" />
-        nieudanych logowań <br/>
-        <h:link value="Powrót do strony głównej" outcome="index.xhtml" />
+        #{msg['login.ip']} <h:outputText value="#{curruzytkownikPageBean.pobierzIPPopZal()}" id="ipp" /> </p>
+        <p>#{msg['login.bad']}        
+            <h:outputText value="#{curruzytkownikPageBean.pobierzCzasNPopZal()}" id="iln" /></p>
+        <p><h:outputText value="#{curruzytkownikPageBean.pobierzIloscNPopZal()}" id="iln2" />
+        #{msg['login.count']}   </p>
+        <h:link value="${msg['powrot.glowna']}" outcome="index.xhtml" />
     </ui:define>
 </ui:composition>

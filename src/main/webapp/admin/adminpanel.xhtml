@@ -57,9 +57,9 @@ and open the template in the editor.
                     <f:facet name="header">#{msg["pa.stan"]}</f:facet>
                     <h:panelGrid columns="2">
                         <h:selectBooleanCheckbox id="potwierdzone" value="#{row.potwierdzony}" disabled="true"/>    
-                        <h:outputLabel for="potwierdzone" value="potwierdzone" />    
+                        <h:outputLabel for="potwierdzone" value="${msg['pa.potw']}" />    
                         <h:selectBooleanCheckbox id="aktywne" value="#{row.aktywny}" disabled="true"/>    
-                        <h:outputLabel for="aktywne" value="aktywne" />    
+                        <h:outputLabel for="aktywne" value="${msg['pa.aktyw']}" />    
                     </h:panelGrid>
                 </h:column>
                 <h:column id="poziomy">
