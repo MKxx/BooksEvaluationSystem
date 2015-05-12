@@ -5,11 +5,8 @@
  */
 package pl.lodz.ssbd.moo.moo.facades;
 
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.security.DenyAll;
-import javax.annotation.security.PermitAll;
 import pl.lodz.ssbd.moo.moo.*;
 import pl.lodz.ssbd.moo.*;
 import pl.lodz.ssbd.facades.*;
@@ -40,56 +37,24 @@ public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFac
         super(Ksiazka.class);
     }
     
-    @Override
-    @DenyAll
+      @Override
     public void edit(Ksiazka entity) throws KsiazkaException {
         try {
             super.edit(entity); //To change body of generated methods, choose Tools | Templates.
         } catch (SSBD05Exception ex) {
-            Logger.getLogger(pl.lodz.ssbd.moo.moo.facades.OcenaFacade.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(pl.lodz.ssbd.moks.facades.OcenaFacade.class.getName()).log(Level.SEVERE, null, ex);
             throw new KsiazkaException();
         }
     }
 
     @Override
-    @DenyAll
     public void create(Ksiazka entity) throws KsiazkaException {
         try {
             super.create(entity); //To change body v generated methods, choose Tools | Templates.
         } catch (SSBD05Exception ex) {
-            Logger.getLogger(pl.lodz.ssbd.moo.moo.facades.OcenaFacade.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(pl.lodz.ssbd.moks.facades.OcenaFacade.class.getName()).log(Level.SEVERE, null, ex);
             throw new KsiazkaException();
         }
-    }
-
-    @Override
-    @DenyAll
-    public int count() {
-        return super.count(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    @DenyAll
-    public List<Ksiazka> findRange(int[] range) {
-        return super.findRange(range); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    @PermitAll
-    public List<Ksiazka> findAll() {
-        return super.findAll(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    @DenyAll
-    public Ksiazka find(Object id) {
-        return super.find(id); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    @DenyAll
-    public void remove(Ksiazka entity) {
-        super.remove(entity); //To change body of generated methods, choose Tools | Templates.
     }
     
     

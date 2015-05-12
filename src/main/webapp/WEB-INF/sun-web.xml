@@ -13,9 +13,6 @@
     <role-name>UZYTKOWNIK</role-name>
     <group-name>UZYTKOWNIK</group-name>
   </security-role-mapping>
-  
-  <!-- ===========MOK=================== -->
-  
   <security-role-mapping>
     <role-name>AutoryzacjaKonta</role-name>
     <group-name>ADMINISTRATOR</group-name>
@@ -52,65 +49,6 @@
     <group-name>MODERATOR</group-name>
     <group-name>UZYTKOWNIK</group-name>
   </security-role-mapping>
-  
-  <!-- ===========MOKS=================== -->
-  
-  <security-role-mapping>
-    <role-name>DodanieKsiazki</role-name>
-    <group-name>ADMINISTRATOR</group-name>
-    <group-name>MODERATOR</group-name>
-  </security-role-mapping>
-  <security-role-mapping>
-    <role-name>ModyfikacjaKsiazki</role-name>
-    <group-name>ADMINISTRATOR</group-name>
-    <group-name>MODERATOR</group-name>
-  </security-role-mapping>
-  <security-role-mapping>
-    <role-name>OznaczenieJakoNieaktywna</role-name>
-    <group-name>ADMINISTRATOR</group-name>
-  </security-role-mapping>
-  <security-role-mapping>
-    <role-name>PrzegladanieKsiazekModeratorski</role-name>
-    <group-name>ADMINISTRATOR</group-name>
-    <group-name>MODERATOR</group-name>
-  </security-role-mapping> 
-  <security-role-mapping>
-    <role-name>WyswietlenieUlubionych</role-name>
-    <group-name>UZYTKOWNIK</group-name>
-  </security-role-mapping> 
-  <security-role-mapping>
-    <role-name>WyswietlenieNieaktywnych</role-name>
-    <group-name>ADMINISTRATOR</group-name>
-  </security-role-mapping> 
-    
-  <!-- ===========MOA=================== -->
-      
-  <security-role-mapping>
-    <role-name>DodanieAutora</role-name>
-    <group-name>ADMINISTRATOR</group-name>
-    <group-name>MODERATOR</group-name>
-  </security-role-mapping>
-  <security-role-mapping>
-    <role-name>ModyfikacjaAutora</role-name>
-    <group-name>ADMINISTRATOR</group-name>
-    <group-name>MODERATOR</group-name>
-  </security-role-mapping>       
-      
-  <!-- ===========MOO=================== -->
-  
-  <security-role-mapping>
-    <role-name>DodanieOceny</role-name>
-    <group-name>UZYTKOWNIK</group-name>
-  </security-role-mapping> 
-  <security-role-mapping>
-    <role-name>ZmianaOceny</role-name>
-    <group-name>UZYTKOWNIK</group-name>
-  </security-role-mapping>
-  <security-role-mapping>
-    <role-name>DodanieDoUlubionych</role-name>
-    <group-name>UZYTKOWNIK</group-name>
-  </security-role-mapping> 
-  
   <class-loader delegate="true"/>
   <jsp-config>
     <property name="keepgenerated" value="true">

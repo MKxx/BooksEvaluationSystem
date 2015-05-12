@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.lodz.ssbd.moks.facades;
+package pl.lodz.ssbd.moo.moo.facades;
 
-import pl.lodz.ssbd.moks.*;
+import pl.lodz.ssbd.moo.moo.*;
+import pl.lodz.ssbd.moo.*;
 import pl.lodz.ssbd.facades.*;
 import java.util.List;
 import javax.ejb.Local;
