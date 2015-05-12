@@ -3,7 +3,8 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns="http://www.w3.org/1999/xhtml"
       template="./templates/Template.xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <ui:define name="top">
         <p>${msg["main.page"]}/${msg["menu.rejestracja"]}</p>
@@ -15,30 +16,41 @@
 
     <ui:define name="content">
         <h:form id="rejestracja" >
-            <h:panelGrid columns="2">
+            <h:panelGrid columns="1">
                 <h:panelGroup>
                     (*) #{msg["form.imie"]}<br></br>
-                    <h:inputText value="#{rejestracjaPageBean.uzytkownik.imie}" />
+                    <h:inputText id="imie" value="#{rejestracjaPageBean.uzytkownik.imie}" />
+                    <h:message for="imie" class="blad"/>
                 </h:panelGroup>
                 <h:panelGroup>
                     (*) #{msg["form.nazwisko"]}<br></br>
-                    <h:inputText value="#{rejestracjaPageBean.uzytkownik.nazwisko}" />
+                    <h:inputText id="nazwisko" value="#{rejestracjaPageBean.uzytkownik.nazwisko}" />
+                    <h:message for="nazwisko" class="blad"/>
                 </h:panelGroup>
                 <h:panelGroup>
                     (*) #{msg["form.login"]}<br></br>
-                    <h:inputText value="#{rejestracjaPageBean.uzytkownik.login}" />
+                    <h:inputText id="login" value="#{rejestracjaPageBean.uzytkownik.login}" />
+                    <h:message for="login" class="blad"/>
                 </h:panelGroup>
                 <h:panelGroup>
                     (*) #{msg["form.email"]}<br></br>
-                    <h:inputText value="#{rejestracjaPageBean.uzytkownik.email}" />
+                    <h:inputText id="email" value="#{rejestracjaPageBean.uzytkownik.email}" />
+                    <h:message for="email" class="blad"/>
                 </h:panelGroup>
                 <h:panelGroup>
                     (*) #{msg["form.haslo"]}<br></br>
-                    <h:inputSecret value="#{rejestracjaPageBean.uzytkownik.hasloMd5}" /> 
+                    <h:inputSecret id="haslo" value="#{rejestracjaPageBean.haslo}" >
+                        <f:validateRegex pattern="([\S]{6,})" />
+                    </h:inputSecret>
+                    <h:message for="haslo" class="blad"/>
                 </h:panelGroup>
                 <h:panelGroup>
                     (*) #{msg["form.powt_haslo"]} <br></br>
-                    <h:inputSecret value="#{rejestracjaPageBean.powtorzHaslo}" /> 
+                    <h:inputSecret id="hasloPowt" value="#{rejestracjaPageBean.powtorzHaslo}" >
+                        <f:validateRegex pattern="([\S]{6,})" />
+                    </h:inputSecret>
+                    <h:message for="hasloPowt" class="blad"/>
+                    <h:message for="" class="blad"/>
                 </h:panelGroup>
             </h:panelGrid>
             <h:commandButton action="#{rejestracjaPageBean.rejestrujUzytkownika()}" value="${msg['reg.zarejestruj']}" />

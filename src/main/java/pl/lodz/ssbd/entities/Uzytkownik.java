@@ -61,17 +61,17 @@ public class Uzytkownik implements Serializable {
     private Long idUzytkownik;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 2, max = 50)
+    @Size(min = 2, max = 50, message = "Imie musi miec od 2 do 50 znakow")
     @Column(nullable = false, length = 50)
     private String imie;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 2, max = 70)
+    @Size(min = 2, max = 70, message = "Nazwisko musi miec od 2 do 70 znakow")
     @Column(nullable = false, length = 70)
     private String nazwisko;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 50, message = "Login musi miec od 1 do 50 znakow")
     @Column(unique = true, nullable = false, length = 50)
     private String login;
     @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "Invalid email")//if the field contains email address consider using this annotation to enforce field validation
@@ -91,7 +91,7 @@ public class Uzytkownik implements Serializable {
     private Date czasNPopZal;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 6, max = 32)
+    @Size(min = 32, max = 32)
     @Column(name = "haslo_md5", length = 32)
     private String hasloMd5;
     @Basic(optional = false)

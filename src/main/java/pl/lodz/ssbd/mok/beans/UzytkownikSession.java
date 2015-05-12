@@ -42,10 +42,10 @@ public class UzytkownikSession implements Serializable {
         return uzytkownikEdycja;
     }
 
-    public void rejestrujUzytkownika(Uzytkownik uzytkownik) throws UzytkownikException {
+    public void rejestrujUzytkownika(Uzytkownik uzytkownik, String haslo) throws UzytkownikException {
         Uzytkownik nowyUzytkownik = new Uzytkownik();
         nowyUzytkownik.setLogin(uzytkownik.getLogin());
-        nowyUzytkownik.setHasloMd5(MD5.hash(uzytkownik.getHasloMd5()));
+        nowyUzytkownik.setHasloMd5(MD5.hash(haslo));
         nowyUzytkownik.setImie(uzytkownik.getImie());
         nowyUzytkownik.setNazwisko(uzytkownik.getNazwisko());
         nowyUzytkownik.setEmail(uzytkownik.getEmail());
