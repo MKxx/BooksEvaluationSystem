@@ -5,6 +5,9 @@
  */
 package pl.lodz.ssbd.moo.moo2.facades;
 
+import java.util.List;
+import javax.annotation.security.DenyAll;
+import javax.annotation.security.RolesAllowed;
 import pl.lodz.ssbd.moo.moo2.*;
 import pl.lodz.ssbd.moo.moo.*;
 import pl.lodz.ssbd.facades.*;
