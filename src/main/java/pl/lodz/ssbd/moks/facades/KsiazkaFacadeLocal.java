@@ -29,6 +29,10 @@ public interface KsiazkaFacadeLocal {
     List<Ksiazka> findAll();
 
     List<Ksiazka> findRange(int[] range);
+    
+    List<Ksiazka> findUlubione(int id_uzytkownik);
+    
+    List<Ksiazka> findNieaktywne();
 
     int count();
     

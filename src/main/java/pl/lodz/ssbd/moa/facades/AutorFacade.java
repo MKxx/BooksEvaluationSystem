@@ -5,7 +5,6 @@
  */
 package pl.lodz.ssbd.moa.facades;
 
-import pl.lodz.ssbd.moa.*;
 import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
