@@ -11,6 +11,8 @@ import java.util.logging.Logger;
 import pl.lodz.ssbd.moks.*;
 import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pl.lodz.ssbd.entities.Autor;
@@ -24,6 +26,7 @@ import pl.lodz.ssbd.exceptions.SSBD05Exception;
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Stateless
+@TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFacadeLocal {
     @PersistenceContext(unitName = "ssbd05moks")
     private EntityManager em;

@@ -9,13 +9,19 @@ import java.util.List;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateful;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import pl.lodz.ssbd.entities.Autor;
+import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 
 /**
  *
  * @author Maciej
  */
 @Stateful
+@Interceptors({DziennikZdarzenInterceptor.class})
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class MOAEndpoint implements MOAEndpointLocal {
 
     @Override

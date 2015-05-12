@@ -9,6 +9,8 @@ import pl.lodz.ssbd.moo.moo.*;
 import pl.lodz.ssbd.moo.*;
 import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pl.lodz.ssbd.entities.Uzytkownik;
@@ -19,7 +21,8 @@ import pl.lodz.ssbd.exceptions.UzytkownikException;
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
-//@Stateless
+@Stateless
+@TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements UzytkownikFacadeLocal {
     @PersistenceContext(unitName = "ssbd05moo")
     private EntityManager em;

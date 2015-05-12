@@ -8,6 +8,9 @@ package pl.lodz.ssbd.moo.moo2.facades;
 import java.util.List;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.RolesAllowed;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import pl.lodz.ssbd.moo.moo2.*;
 import pl.lodz.ssbd.moo.moo.*;
 import pl.lodz.ssbd.facades.*;
@@ -21,7 +24,8 @@ import pl.lodz.ssbd.exceptions.UzytkownikException;
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
-//@Stateless
+@Stateless
+@TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements UzytkownikFacadeLocal {
 
     @PersistenceContext(unitName = "ssbd05moo2")
