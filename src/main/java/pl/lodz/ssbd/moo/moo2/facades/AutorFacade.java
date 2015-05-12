@@ -5,8 +5,11 @@
  */
 package pl.lodz.ssbd.moo.moo2.facades;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.security.DenyAll;
+import javax.annotation.security.RolesAllowed;
 import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -33,7 +36,8 @@ public class AutorFacade extends AbstractFacade<Autor> implements AutorFacadeLoc
         super(Autor.class);
     }
     
-        @Override
+    @Override
+    @RolesAllowed({"DodanieOceny","ZmianaOceny"})
     public void edit(Autor entity) throws AutorException  {
         try {
             super.edit(entity); //To change body of generated methods, choose Tools | Templates.
@@ -43,12 +47,43 @@ public class AutorFacade extends AbstractFacade<Autor> implements AutorFacadeLoc
     }
 
     @Override
+    @DenyAll
     public void create(Autor entity) throws AutorException  {
         try {
             super.create(entity); //To change body of generated methods, choose Tools | Templates.
         } catch (SSBD05Exception ex) {
             Logger.getLogger(pl.lodz.ssbd.moa.facades.AutorFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    @DenyAll
+    public int count() {
+        return super.count(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    @DenyAll
+    public List<Autor> findRange(int[] range) {
+        return super.findRange(range); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    @DenyAll
+    public List<Autor> findAll() {
+        return super.findAll(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    @RolesAllowed({"DodanieOceny","ZmianaOceny"})
+    public Autor find(Object id) {
+        return super.find(id); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    @DenyAll
+    public void remove(Autor entity) {
+        super.remove(entity); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

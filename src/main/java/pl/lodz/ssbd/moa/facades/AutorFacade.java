@@ -5,9 +5,12 @@
  */
 package pl.lodz.ssbd.moa.facades;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import pl.lodz.ssbd.moa.*;
+import javax.annotation.security.DenyAll;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -35,6 +38,7 @@ public class AutorFacade extends AbstractFacade<Autor> implements AutorFacadeLoc
     }
 
     @Override
+    @RolesAllowed("ModyfikacjaAutora")
     public void edit(Autor entity) throws AutorException  {
         try {
             super.edit(entity); //To change body of generated methods, choose Tools | Templates.
@@ -44,6 +48,37 @@ public class AutorFacade extends AbstractFacade<Autor> implements AutorFacadeLoc
     }
 
     @Override
+    @DenyAll
+    public int count() {
+        return super.count(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    @DenyAll
+    public List<Autor> findRange(int[] range) {
+        return super.findRange(range); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    @PermitAll
+    public List<Autor> findAll() {
+        return super.findAll(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    @PermitAll
+    public Autor find(Object id) {
+        return super.find(id); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    @DenyAll
+    public void remove(Autor entity) {
+        super.remove(entity); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    @RolesAllowed("DodanieAutora")
     public void create(Autor entity) throws AutorException  {
         try {
             super.create(entity); //To change body of generated methods, choose Tools | Templates.
