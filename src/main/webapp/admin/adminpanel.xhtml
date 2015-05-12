@@ -21,10 +21,12 @@ and open the template in the editor.
     <ui:define name="content">
         <h2>#{msg["pa.lista"]}</h2>
         <h:form id="listaUzytkownikowForm">
-            <h:inputText value="#{listPageBean.wartosc}" maxlength="70" >
+            <h:inputText id="wyszukaj" value="#{listPageBean.wartosc}">
+                <f:validateRegex pattern="(^[\S]{0,70}$)" />
             </h:inputText>
             <h:commandButton value="#{msg['pa.wyszukaj']}" action="#{listPageBean.odswiez()}" >
             </h:commandButton>
+            <h:message for="wyszukaj" class="blad" />
             <h:dataTable id="listaUzytkownikow" var="row" value="#{listPageBean.uzytkownikDataModel}">
                 <h:column id="login">
                     <f:facet name="header">#{msg["form.login"]}</f:facet>
