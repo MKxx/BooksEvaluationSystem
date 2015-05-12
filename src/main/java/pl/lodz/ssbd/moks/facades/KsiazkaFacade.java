@@ -5,6 +5,7 @@
  */
 package pl.lodz.ssbd.moks.facades;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pl.lodz.ssbd.moks.*;
@@ -34,6 +35,16 @@ public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFac
 
     public KsiazkaFacade() {
         super(Ksiazka.class);
+    }
+
+    @Override
+    public List<Ksiazka> findUlubione(int id_uzytkownik) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Ksiazka> findNieaktywne() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
         @Override
