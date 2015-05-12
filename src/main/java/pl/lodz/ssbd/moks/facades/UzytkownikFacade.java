@@ -5,10 +5,12 @@
  */
 package pl.lodz.ssbd.moks.facades;
 
-import javax.annotation.security.RolesAllowed;
-import pl.lodz.ssbd.moks.*;
+import pl.lodz.ssbd.moo.moo.*;
+import pl.lodz.ssbd.moo.*;
 import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pl.lodz.ssbd.entities.Uzytkownik;
@@ -19,9 +21,10 @@ import pl.lodz.ssbd.exceptions.UzytkownikException;
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
-//@Stateless
+@Stateless
+@TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements UzytkownikFacadeLocal {
-    @PersistenceContext(unitName = "ssbd05moks")
+    @PersistenceContext(unitName = "ssbd05moo")
     private EntityManager em;
 
     @Override
@@ -33,21 +36,20 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
         super(Uzytkownik.class);
     }
     
-     @Override
-    public void create(Uzytkownik entity) throws UzytkownikException {
-        try{
-        super.create(entity); //To change body of generated methods, choose Tools | Templates.
-        } catch(SSBD05Exception ex){
-            throw new UzytkownikException(ex.getMessage());
-        }
-    }
-    
-    
-      @Override
+       @Override
     public void edit(Uzytkownik entity) throws UzytkownikException {
         try {
             super.edit(entity); //To change body of generated methods, choose Tools | Templates.
         } catch (SSBD05Exception ex) {
+            throw new UzytkownikException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public void create(Uzytkownik entity) throws UzytkownikException {
+        try{
+        super.create(entity); //To change body of generated methods, choose Tools | Templates.
+        } catch(SSBD05Exception ex){
             throw new UzytkownikException(ex.getMessage());
         }
     }
