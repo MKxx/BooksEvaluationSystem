@@ -111,11 +111,11 @@ public class Uzytkownik implements Serializable {
     @NotNull
     @Column(name = "ilosc_n_pop_zal", nullable = false)
     private int iloscNPopZal;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUzytkownik")
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "idUzytkownik")
     private List<PoprzednieHaslo> poprzednieHasloList = new ArrayList<>();
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUzytkownik")
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "idUzytkownik")
     private List<PoziomDostepu> poziomDostepuList = new ArrayList<>();
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUzytkownik")
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "idUzytkownik")
     private List<Ocena> ocenaList = new ArrayList<>();
 
     public Uzytkownik() {

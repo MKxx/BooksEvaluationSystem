@@ -57,7 +57,7 @@ public class PoprzednieHaslo implements Serializable {
     @Version
     private long wersjaEncji;
     @JoinColumn(name = "id_uzytkownik", referencedColumnName = "id_uzytkownik", nullable = false, updatable = false)
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private Uzytkownik idUzytkownik;
 
     public PoprzednieHaslo() {
