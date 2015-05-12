@@ -5,7 +5,8 @@
  */
 package pl.lodz.ssbd.moks.facades;
 
-import pl.lodz.ssbd.moks.*;
+import pl.lodz.ssbd.moo.moo.*;
+import pl.lodz.ssbd.moo.*;
 import pl.lodz.ssbd.facades.*;
 import java.util.List;
 import javax.ejb.Local;
