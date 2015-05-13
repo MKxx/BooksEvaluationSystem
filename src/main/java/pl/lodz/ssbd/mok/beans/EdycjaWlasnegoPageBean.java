@@ -90,6 +90,6 @@ public class EdycjaWlasnegoPageBean implements Serializable {
             fctx.addMessage(null, fmsg);
             return null;
         }
-        return "index";
+        return "sukcesEdycja";
     }
 }
