@@ -7,13 +7,9 @@ package pl.lodz.ssbd.mok.beans;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
@@ -21,7 +17,6 @@ import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.exceptions.UzytkownikException;
-import pl.lodz.ssbd.utils.Bundle;
 import pl.lodz.ssbd.utils.UzytkownikComparator;
 
 /**
@@ -79,14 +74,26 @@ public class ListPageBean implements Serializable {
         return null;
     }
     
-    public void zablokujUzytkownika(){
-        uzytkownikSession.zablokujUzytkownika(uzytkownikDataModel.getRowData());
-        initModel();
+    public String zablokujUzytkownika(){
+        try{
+            uzytkownikSession.zablokujUzytkownika(uzytkownikDataModel.getRowData());
+            initModel();
+        }catch (UzytkownikException ex){
+            Logger.getLogger(ListPageBean.class.getName()).log(Level.SEVERE, null, ex);
+            return "nieaktualnedane";
+        }
+        return null;
     }
     
-    public void odblokujUzytkownika(){
-        uzytkownikSession.odblokujUzytkownika(uzytkownikDataModel.getRowData());
-        initModel();
+    public String odblokujUzytkownika(){
+         try{
+            uzytkownikSession.odblokujUzytkownika(uzytkownikDataModel.getRowData());
+            initModel();
+        }catch (UzytkownikException ex){
+            Logger.getLogger(ListPageBean.class.getName()).log(Level.SEVERE, null, ex);
+            return "nieaktualnedane";
+        }
+        return null;
     }
     
     public String edytujUzytkownika(){
