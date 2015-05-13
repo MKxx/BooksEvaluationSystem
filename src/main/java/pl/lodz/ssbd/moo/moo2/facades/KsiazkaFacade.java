@@ -27,7 +27,7 @@ import pl.lodz.ssbd.exceptions.SSBD05Exception;
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
-@Stateless
+@Stateless(name="moo2Ksiazka")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFacadeLocal {
     @PersistenceContext(unitName = "ssbd05moo2")

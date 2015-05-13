@@ -15,6 +15,8 @@ import pl.lodz.ssbd.moo.moo.*;
 import pl.lodz.ssbd.moo.*;
 import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pl.lodz.ssbd.entities.Ocena;
@@ -25,7 +27,8 @@ import pl.lodz.ssbd.exceptions.SSBD05Exception;
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
-@Stateless
+@Stateless(name="mooOcena")
+@TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class OcenaFacade extends AbstractFacade<Ocena> implements OcenaFacadeLocal {
     @PersistenceContext(unitName = "ssbd05moo")
     private EntityManager em;

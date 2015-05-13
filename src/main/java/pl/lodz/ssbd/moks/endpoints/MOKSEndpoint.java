@@ -7,12 +7,15 @@ package pl.lodz.ssbd.moks.endpoints;
 
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
+import pl.lodz.ssbd.moks.facades.KsiazkaFacadeLocal;
+import pl.lodz.ssbd.moks.facades.UzytkownikFacadeLocal;
 
 /**
  *
@@ -22,6 +25,12 @@ import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 @Interceptors({DziennikZdarzenInterceptor.class})
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class MOKSEndpoint implements MOKSEndpointLocal {
+    
+    @EJB(beanName = "moksKsiazka")
+    private KsiazkaFacadeLocal KsiazkaFacade;
+    @EJB(beanName = "moksUzytkownik")
+    private UzytkownikFacadeLocal UzytkownikFacade;
+    
 
     @Override
     @RolesAllowed("PrzegladanieKsiazekModeratorski")

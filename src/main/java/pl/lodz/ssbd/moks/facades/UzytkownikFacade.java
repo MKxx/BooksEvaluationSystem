@@ -21,7 +21,7 @@ import pl.lodz.ssbd.exceptions.UzytkownikException;
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
-@Stateless
+@Stateless(name="moksUzytkownik")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements UzytkownikFacadeLocal {
     @PersistenceContext(unitName = "ssbd05moo")
