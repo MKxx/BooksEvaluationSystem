@@ -54,7 +54,7 @@ public class EdycjaPoziomowPageBean {
             uzytkownikSession.nadajPoziom(poziomyDataModel.getRowData());
         } catch (PoziomDostepuException ex) {
             Logger.getLogger(EdycjaPoziomowPageBean.class.getName()).log(Level.SEVERE, null, ex);
-            return "bladpoziom";
+            return "nieaktualnedane";
         }
         uzytkownikSession.pobierzUzytkownikaDoEdycji(uzytkownikSession.getUzytkownikEdycja());
         initModel();
