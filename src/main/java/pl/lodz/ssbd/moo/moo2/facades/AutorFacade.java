@@ -24,7 +24,7 @@ import pl.lodz.ssbd.exceptions.SSBD05Exception;
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
-@Stateless
+@Stateless(name="moo2Autor")
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class AutorFacade extends AbstractFacade<Autor> implements AutorFacadeLocal {
     @PersistenceContext(unitName = "ssbd05moo2")
