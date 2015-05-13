@@ -103,9 +103,9 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
 
     @Override
     @RolesAllowed("BlokowanieOdblokowanieUzytkownia")
-    public void odblokujUzytkownika(Uzytkownik uzytkownik) {
-        Uzytkownik u = uzytkownikFacade.find(uzytkownik.getIdUzytkownik());
-        u.setAktywny(true);
+    public void odblokujUzytkownika(Uzytkownik uzytkownik) throws UzytkownikException {
+        uzytkownik.setAktywny(true);
+        uzytkownikFacade.edit(uzytkownik);
     }
 
     @Override
