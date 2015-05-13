@@ -57,7 +57,7 @@ public class UzytkownikSession implements Serializable {
         return MOKEndpoint.pobierzUzytkownikow(wartosc);
     }
 
-    public void potwierdzUzytkownika(Uzytkownik uzytkownik) {
+    public void potwierdzUzytkownika(Uzytkownik uzytkownik) throws UzytkownikException{
         MOKEndpoint.potwierdzUzytkownika(uzytkownik);
         Mailer.wyslijPoAktywacji(uzytkownik.getEmail(),uzytkownik.getLogin());
     }

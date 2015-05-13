@@ -89,9 +89,9 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
 
     @Override
     @RolesAllowed("AutoryzacjaKonta")
-    public void potwierdzUzytkownika(Uzytkownik uzytkownik) {
-        Uzytkownik u = uzytkownikFacade.find(uzytkownik.getIdUzytkownik());
-        u.setPotwierdzony(true);
+    public void potwierdzUzytkownika(Uzytkownik uzytkownik) throws UzytkownikException{
+        uzytkownik.setPotwierdzony(true);
+        uzytkownikFacade.edit(uzytkownik);
     }
 
     @Override
