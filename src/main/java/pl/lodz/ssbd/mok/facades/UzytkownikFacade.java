@@ -6,6 +6,7 @@
 package pl.lodz.ssbd.mok.facades;
 
 import java.util.List;
+import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
@@ -64,7 +65,7 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
     }
 
     @Override
-    @RolesAllowed({"AutoryzacjaKonta", "BlokowanieOdblokowanieUzytkownia"})
+    @DenyAll
     public Uzytkownik find(Object id) {
         return super.find(id); //To change body of generated methods, choose Tools | Templates.
     }
@@ -75,7 +76,7 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
     }
 
     @Override
-    @RolesAllowed({"ModyfikowanieDanychSwojegoKonta", "ModyfikowanieDanychCudzegoKonta"})
+    @RolesAllowed({"ModyfikowanieDanychSwojegoKonta", "ModyfikowanieDanychCudzegoKonta", "BlokowanieOdblokowanieUzytkownia", "AutoryzacjaKonta"})
     public void edit(Uzytkownik entity) throws UzytkownikException {
         try {
             super.edit(entity); //To change body of generated methods, choose Tools | Templates.

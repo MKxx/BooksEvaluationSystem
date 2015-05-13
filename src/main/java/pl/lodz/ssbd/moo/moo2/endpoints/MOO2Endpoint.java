@@ -43,7 +43,7 @@ public class MOO2Endpoint implements MOO2EndpointLocal {
     }
 
     @Override
-    @RolesAllowed("DodanieOceny")
+    @RolesAllowed("ZmianaOceny")
     public void zmienOcene(Ksiazka ksiazka) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
