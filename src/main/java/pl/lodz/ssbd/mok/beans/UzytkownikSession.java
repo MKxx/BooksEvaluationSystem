@@ -62,12 +62,12 @@ public class UzytkownikSession implements Serializable {
         Mailer.wyslijPoAktywacji(uzytkownik.getEmail(),uzytkownik.getLogin());
     }
 
-    public void zablokujUzytkownika(Uzytkownik uzytkownik) {
+    public void zablokujUzytkownika(Uzytkownik uzytkownik)throws UzytkownikException {
         MOKEndpoint.zablokujUzytkownika(uzytkownik);
         Mailer.wyslijPoZablokowaniu(uzytkownik.getEmail(),uzytkownik.getLogin());
     }
 
-    public void odblokujUzytkownika(Uzytkownik uzytkownik) {
+    public void odblokujUzytkownika(Uzytkownik uzytkownik) throws UzytkownikException{
         MOKEndpoint.odblokujUzytkownika(uzytkownik);
     }
 
