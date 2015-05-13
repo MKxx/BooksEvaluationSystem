@@ -23,7 +23,9 @@ public class DziennikZdarzenInterceptor {
     public Object logujWywolanie(InvocationContext invocationContext) throws Exception {
         StringBuilder log = new StringBuilder();
         log.append(simpleDateHere.format(new Date()));
-        log.append(" ||Metoda: ");
+        log.append(" ||Klasa:Metoda: ");
+        log.append(invocationContext.getMethod().getDeclaringClass().getSimpleName());
+        log.append(":");
         log.append(invocationContext.getMethod().getName());
         log.append(" | Użytkownik: ");
         log.append(sessionContext.getCallerPrincipal().getName());
