@@ -49,23 +49,27 @@ public class EdycjaPoziomowPageBean {
         return uzytkownikSession.getUzytkownikEdycja();
     }
     
-    public void nadajPoziom(){
+    public String nadajPoziom(){
         try {
             uzytkownikSession.nadajPoziom(poziomyDataModel.getRowData());
         } catch (PoziomDostepuException ex) {
             Logger.getLogger(EdycjaPoziomowPageBean.class.getName()).log(Level.SEVERE, null, ex);
+            return "bladpoziom";
         }
         uzytkownikSession.pobierzUzytkownikaDoEdycji(uzytkownikSession.getUzytkownikEdycja());
         initModel();
+        return null;
     }
     
-    public void odbierzPoziom(){
+    public String odbierzPoziom(){
         try {
             uzytkownikSession.odbierzPoziom(poziomyDataModel.getRowData());
         } catch (PoziomDostepuException ex) {
             Logger.getLogger(EdycjaPoziomowPageBean.class.getName()).log(Level.SEVERE, null, ex);
+            return "bladpoziom";
         }
         uzytkownikSession.pobierzUzytkownikaDoEdycji(uzytkownikSession.getUzytkownikEdycja());
         initModel();
+        return null;
     }
 }
