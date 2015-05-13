@@ -25,9 +25,6 @@ public interface MOKEndpointLocal {
     public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik) throws UzytkownikException;
     public List<Uzytkownik> pobierzUzytkownikow(String wartosc);
     public void potwierdzUzytkownika(Uzytkownik uzytkownik) throws UzytkownikException;
-    public void zablokujUzytkownika(Uzytkownik uzytkownik);
-    public void odblokujUzytkownika(Uzytkownik uzytkownik);
-    public void potwierdzUzytkownika(Uzytkownik uzytkownik);
     public void zablokujUzytkownika(Uzytkownik uzytkownik)throws UzytkownikException;
     public void odblokujUzytkownika(Uzytkownik uzytkownik)throws UzytkownikException;
 
