@@ -7,7 +7,6 @@ package pl.lodz.ssbd.mok.facades;
 
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -16,7 +15,9 @@ import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import pl.lodz.ssbd.entities.PoziomDostepu;
+import pl.lodz.ssbd.exceptions.PoziomDostepuException;
 import pl.lodz.ssbd.exceptions.SSBD05Exception;
+import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 import pl.lodz.ssbd.facades.AbstractFacade;
 
@@ -56,11 +57,11 @@ public class PoziomDostepuFacade extends AbstractFacade<PoziomDostepu> implement
 
     @Override
     @RolesAllowed("NadanieOdebraniePoziomuDostepu")
-    public void edit(PoziomDostepu entity) {
+    public void edit(PoziomDostepu entity) throws PoziomDostepuException{
         try {
             super.edit(entity); //To change body of generated methods, choose Tools | Templates.
         } catch (SSBD05Exception ex) {
-            Logger.getLogger(PoziomDostepuFacade.class.getName()).log(Level.SEVERE, null, ex);
+            throw new PoziomDostepuException("exceptions.poziomdostepu.blad");
         }
     }
 
@@ -69,7 +70,6 @@ public class PoziomDostepuFacade extends AbstractFacade<PoziomDostepu> implement
         try {
             super.create(entity); //To change body of generated methods, choose Tools | Templates.
         } catch (SSBD05Exception ex) {
-            Logger.getLogger(PoziomDostepuFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     @PersistenceContext(unitName = "ssbd05mok")
