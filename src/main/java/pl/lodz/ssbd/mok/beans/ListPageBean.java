@@ -74,7 +74,7 @@ public class ListPageBean implements Serializable {
         }
         catch(UzytkownikException ex){
            Logger.getLogger(ListPageBean.class.getName()).log(Level.SEVERE, null, ex);
-           return "bladaktywacji";
+           return "nieaktualnedane";
         }
         return null;
     }
