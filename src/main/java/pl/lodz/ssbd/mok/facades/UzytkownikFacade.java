@@ -113,9 +113,10 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
     @RolesAllowed("WyswietlaniePaneluAdmina")
     public List<Uzytkownik> findByImieiNazwisko(String wartosc) {
         if (wartosc == null || "".equals(wartosc)) {
-            return findAll();
+            Query q = em.createNamedQuery("Uzytkownik.findAll", Uzytkownik.class);
+            return q.getResultList();
         }
-        Query q = em.createQuery("SELECT u FROM Uzytkownik u WHERE LOWER(u.imie) LIKE :wartosc OR LOWER(u.nazwisko) LIKE :wartosc ");
+        Query q = em.createQuery("SELECT DISTINCT u FROM Uzytkownik u JOIN FETCH u.poziomDostepuList WHERE LOWER(u.imie) LIKE :wartosc OR LOWER(u.nazwisko) LIKE :wartosc ");
         q.setParameter("wartosc", "%" + wartosc.toLowerCase() + "%");
         return q.getResultList();
     }
