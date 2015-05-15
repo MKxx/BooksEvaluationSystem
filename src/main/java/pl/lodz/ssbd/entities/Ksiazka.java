@@ -41,7 +41,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Ksiazka.findByTytul", query = "SELECT k FROM Ksiazka k WHERE k.tytul = :tytul"),
     @NamedQuery(name = "Ksiazka.findByRokPierwszegoWydania", query = "SELECT k FROM Ksiazka k WHERE k.rokPierwszegoWydania = :rokPierwszegoWydania"),
     @NamedQuery(name = "Ksiazka.findBySredniaOcen", query = "SELECT k FROM Ksiazka k WHERE k.sredniaOcen = :sredniaOcen"),
-    @NamedQuery(name = "Ksiazka.findByAktywne", query = "SELECT k FROM Ksiazka k WHERE k.aktywne = :aktywne"),
+    @NamedQuery(name = "Ksiazka.findByAktywne", query = "SELECT DISTINCT k FROM Ksiazka k JOIN FETCH k.autorList WHERE k.aktywne = :aktywne"),
     @NamedQuery(name = "Ksiazka.findByWersjaEncji", query = "SELECT k FROM Ksiazka k WHERE k.wersjaEncji = :wersjaEncji"),
     @NamedQuery(name = "Ksiazka.findByIloscAutorow", query = "SELECT k FROM Ksiazka k WHERE k.iloscAutorow = :iloscAutorow")})
 public class Ksiazka implements Serializable {

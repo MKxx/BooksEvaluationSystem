@@ -11,7 +11,7 @@
     
     <h:panelGrid id="WSZYSCY">
         <h:link outcome="/index.xhtml" value="#{msg['menu.stronaglowna']}" />
-        <h:link outcome="/listaksiazek.xhtml" value="#{msg['menu.listaksiazek']}" />
+        <h:link outcome="/listaKsiazek.xhtml" value="#{msg['menu.listaksiazek']}" />
         <h:link outcome="/listauatorow.xhtml" value="#{msg['menu.listaautorow']}" />
     </h:panelGrid>
     
@@ -29,6 +29,7 @@
     <h:panelGrid id="MODERATOR" rendered="#{menuPageBean.isModerator or menuPageBean.isAdmin}">
         <h:link outcome="/moderator/dodajksiazke.xhtml" value="#{msg['menu.dodajksiazke']}" />
         <h:link outcome="/moderator/dodajksiazke.xhtml" value="#{msg['menu.dodajautora']}" />
+        <h:link outcome="/moderator/listaksiazek.xhtml" value="#{msg['menu.listaksiazek']}" />
     </h:panelGrid>
     
     <h:panelGrid id="UZYTKOWNIK" rendered="#{menuPageBean.isUzytkownik}">

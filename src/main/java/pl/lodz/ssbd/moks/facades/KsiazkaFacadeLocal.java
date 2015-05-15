@@ -36,5 +36,7 @@ public interface KsiazkaFacadeLocal {
     List<Ksiazka> findNieaktywne();
 
     int count();
+
+    public List<Ksiazka> findAktywne();
     
 }

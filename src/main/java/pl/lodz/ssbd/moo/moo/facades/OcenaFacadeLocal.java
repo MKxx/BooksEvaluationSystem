@@ -33,5 +33,7 @@ public interface OcenaFacadeLocal {
     List<Ocena> findRange(int[] range);
 
     int count();
+
+    public List<Ocena> findOcenyInitalized();
     
 }

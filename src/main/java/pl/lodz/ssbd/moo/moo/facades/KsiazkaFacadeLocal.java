@@ -33,5 +33,7 @@ public interface KsiazkaFacadeLocal {
     List<Ksiazka> findRange(int[] range);
 
     int count();
+
+    public List<Ksiazka> findAktywne();
     
 }

@@ -35,7 +35,7 @@ public class MOKSEndpoint implements MOKSEndpointLocal {
     @Override
     @RolesAllowed("PrzegladanieKsiazekModeratorski")
     public List<Ksiazka> pobierzKsiazki() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return KsiazkaFacade.findAktywne();
     }
 
     @Override

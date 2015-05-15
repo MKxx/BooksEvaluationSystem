@@ -18,6 +18,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import pl.lodz.ssbd.entities.Ocena;
 import pl.lodz.ssbd.exceptions.OcenaException;
 import pl.lodz.ssbd.exceptions.SSBD05Exception;
@@ -89,6 +90,12 @@ public class OcenaFacade extends AbstractFacade<Ocena> implements OcenaFacadeLoc
     @DenyAll
     public void remove(Ocena entity) {
         super.remove(entity); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Ocena> findOcenyInitalized() {
+        TypedQuery<Ocena> query = em.createNamedQuery("Ocena.findAll", Ocena.class);
+        return query.getResultList();
     }
     
 }

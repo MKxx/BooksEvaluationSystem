@@ -6,21 +6,17 @@
 package pl.lodz.ssbd.moo.moo.facades;
 
 import java.util.List;
-import java.util.logging.Level;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
-import pl.lodz.ssbd.moo.moo.*;
-import pl.lodz.ssbd.moo.*;
 import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import pl.lodz.ssbd.entities.Ksiazka;
-import pl.lodz.ssbd.entities.Ocena;
 import pl.lodz.ssbd.exceptions.KsiazkaException;
-import pl.lodz.ssbd.exceptions.OcenaException;
 import pl.lodz.ssbd.exceptions.SSBD05Exception;
 
 /**
@@ -90,6 +86,13 @@ public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFac
     @DenyAll
     public void remove(Ksiazka entity) {
         super.remove(entity); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Ksiazka> findAktywne() {
+        TypedQuery<Ksiazka> query = em.createNamedQuery("Ksiazka.findByAktywne", Ksiazka.class);
+        query.setParameter("aktywne", true);
+        return query.getResultList();
     }
     
     
