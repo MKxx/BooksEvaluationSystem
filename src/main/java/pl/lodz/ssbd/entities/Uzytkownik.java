@@ -37,7 +37,7 @@ import javax.validation.constraints.Size;
 @Table(name = "uzytkownik")
 @TableGenerator(name = "UzytkownikIdGen", table = "generator", pkColumnName = "nazwa_klasy", valueColumnName = "ost_id", pkColumnValue = "uzytkownik")
 @NamedQueries({
-    @NamedQuery(name = "Uzytkownik.findAll", query = "SELECT u FROM Uzytkownik u"),
+    @NamedQuery(name = "Uzytkownik.findAll", query = "SELECT DISTINCT u FROM Uzytkownik u JOIN FETCH u.poziomDostepuList"),
     @NamedQuery(name = "Uzytkownik.findByIdUzytkownik", query = "SELECT u FROM Uzytkownik u WHERE u.idUzytkownik = :idUzytkownik"),
     @NamedQuery(name = "Uzytkownik.findByImie", query = "SELECT u FROM Uzytkownik u WHERE u.imie = :imie"),
     @NamedQuery(name = "Uzytkownik.findByNazwisko", query = "SELECT u FROM Uzytkownik u WHERE u.nazwisko = :nazwisko"),
