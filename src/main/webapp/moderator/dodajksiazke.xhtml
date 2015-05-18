@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns="http://www.w3.org/1999/xhtml"
-      template="./../templates/Template.xhtml">
+      template="./../templates/Template.xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <ui:define name="top">
         <p>${msg["main.page"]}/${msg["menu.dodajksiazke"]}</p>
@@ -12,7 +14,28 @@
         <ui:include src="./../templates/Menu.xhtml" />
     </ui:define>
 
-    <ui:define name="content">
-    </ui:define>>
+        <ui:define name="content">
+        <h:form id="rejestracja" >
+            <h:panelGrid columns="1">
+                <h:panelGroup>
+                    (*) #{msg["ksiazka.tytul"]}<br></br>
+                    <h:inputText id="tytul" value="#{dodaniePageBean.ksiazka.tytul}" />
+                    <h:message for="tytul" class="blad"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    (*) #{msg["ksiazka.rok"]}<br></br>
+                    <h:inputText id="rok" value="#{dodaniePageBean.ksiazka.rokPierwszegoWydania}" />
+                    <h:message for="rok" class="blad"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    (*) #{msg["ksiazka.autorzy"]}<br></br>
+                    <h:selectManyListbox value="#{dodaniePageBean.wybraniAutorzy}">
+   			<f:selectItems value="#{dodaniePageBean.autorzy}" />
+                    </h:selectManyListbox>
+                </h:panelGroup>
+            </h:panelGrid>
+            <h:commandButton action="#{dodaniePageBean.stworzKsiazke()}" value="${msg['reg.zarejestruj']}" />
+        </h:form>
+    </ui:define>
 </ui:composition>
 

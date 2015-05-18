@@ -7,6 +7,7 @@ package pl.lodz.ssbd.moks.endpoints;
 
 import java.util.List;
 import javax.ejb.Local;
+import pl.lodz.ssbd.entities.Autor;
 import pl.lodz.ssbd.entities.Ksiazka;
 
 /**
@@ -18,8 +19,10 @@ public interface MOKSEndpointLocal {
     public List<Ksiazka> pobierzKsiazki();
     public Ksiazka pobierzKsiazkeDoEdycji();
     public void edytujKsiazke(Ksiazka ksiazka);
-    public void dodajKsiazke(Ksiazka ksiazka);
+    public void dodajKsiazke(Ksiazka ksiazka, List<String> wybraniAutorzy);
     public void oznaczKsiazkeJakoNieaktywna(Ksiazka ksiazka);
     public List<Ksiazka> pobierzKsiazkiNieaktywne();
     public List<Ksiazka> pobierzKsiazkiUlubione();
+
+    public List<Autor> pobierzAutorow();
 }

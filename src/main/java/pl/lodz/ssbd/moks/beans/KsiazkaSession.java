@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
+import pl.lodz.ssbd.entities.Autor;
 import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.moks.endpoints.MOKSEndpointLocal;
 
@@ -41,6 +42,14 @@ public class KsiazkaSession implements Serializable {
     public List<Ksiazka> pobierzKsiazki(){
         return MOKSEndpoint.pobierzKsiazki();
         
+    }
+
+    List<Autor> pobierzAutorow() {
+        return MOKSEndpoint.pobierzAutorow();
+    }
+
+    void stworzKsiazke(Ksiazka ksiazka, List<String> wybraniAutorzy) {
+        MOKSEndpoint.dodajKsiazke(ksiazka, wybraniAutorzy);
     }
     
 }
