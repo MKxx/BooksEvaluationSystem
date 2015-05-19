@@ -8,6 +8,8 @@ package pl.lodz.ssbd.moo.moo.endpoints;
 import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Ksiazka;
+import pl.lodz.ssbd.entities.Ocena;
+import pl.lodz.ssbd.entities.Uzytkownik;
 
 /**
  *
@@ -15,7 +17,7 @@ import pl.lodz.ssbd.entities.Ksiazka;
  */
 @Local
 public interface MOOEndpointLocal {
-    public List<Ksiazka> pobierzKsiazki();
+    public List<Ksiazka> pobierzUlubione(String login);
     public void dodajDoUlubionych(Ksiazka ksiazka);
     
 }

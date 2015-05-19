@@ -14,6 +14,8 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import pl.lodz.ssbd.entities.Ksiazka;
+import pl.lodz.ssbd.entities.Ocena;
+import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 import pl.lodz.ssbd.moo.moo.facades.KsiazkaFacadeLocal;
 import pl.lodz.ssbd.moo.moo.facades.OcenaFacadeLocal;
@@ -33,9 +35,9 @@ public class MOOEndpoint implements MOOEndpointLocal {
     private OcenaFacadeLocal OcenaFacade;
 
     @Override
-    @PermitAll
-    public List<Ksiazka> pobierzKsiazki() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @RolesAllowed("WyswietlanieListyUlubionych")
+    public List<Ksiazka> pobierzUlubione(String login) {
+        return KsiazkaFacade.findUlubione(login);
     }
 
     @Override

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="./../templates/Template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <ui:define name="top">
+        <p>${msg["main.page"]}/${msg["menu.ulubionalist"]}</p>
+    </ui:define>
+
+    <ui:define name="left">
+        <ui:include src="./../templates/Menu.xhtml" />
+    </ui:define>
+
+    <ui:define name="content">
+        <h2>#{msg["pa.ulublist"]}</h2>
+        <h:form id="listaUlubionychForm">
+            <h:dataTable id="listaUlubKsiazek" var="ksiazka" value="#{listaulubionychPageBean.ulubioneDataModel}">
+                <h:column id="tytul">
+                    <p id="tytul">
+                        <f:facet name="header">#{msg["pa.tytul"]}</f:facet>
+                        <h:outputText value="#{ksiazka.tytul}" /></p>
+                </h:column>
+                <h:column id="rok">
+                    <p id="rok">
+                        <f:facet name="header">#{msg["pa.rok"]}</f:facet>
+
+                        <h:outputText value="#{ksiazka.rokPierwszegoWydania}"/></p>
+                </h:column>
+                <h:column id="autorzy">
+                    <p id="autorzy">
+                        <f:facet name="header">#{msg["pa.autorzy"]}</f:facet>
+
+                        <h:dataTable id="listaAutorow" var="autor" value="#{ksiazka.autorList}">
+                            <h:column id="autorzy">
+                                <h:outputText value="#{autor.imie} #{autor.nazwisko}"/>
+                            </h:column>
+                        </h:dataTable>  
+
+                    </p>
+
+                </h:column>
+
+            </h:dataTable>
+
+
+
+
+
+        </h:form>
+
+    </ui:define>
+</ui:composition>
