@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns="http://www.w3.org/1999/xhtml"
+      template="./../templates/Template.xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="top">
+        <p>${msg["main.page"]}/${msg["menu.listaksiazek"]}</p>
+    </ui:define>
+
+    <ui:define name="left">
+       <ui:include src="./../templates/Menu.xhtml" />
+    </ui:define>
+
+    <ui:define name="content">
+        <h:dataTable id="listaKsiazek" var="ksiazka" value="#{listaNieaktywnychKsiazekPageBean.ksiazki}">
+            <h:column>
+                <f:facet name="header">tytul</f:facet>
+                <h:outputText value="#{ksiazka.tytul}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Rok pierwszego wydania</f:facet>
+                <h:outputText value="#{ksiazka.rokPierwszegoWydania}"/>
+            </h:column>
+            <h:column>
+            <h:dataTable id="listaAutorow" var="autor" value="#{ksiazka.autorList}">
+                    <h:column id="autorzy">
+                        <f:facet name="header">Autorzy:</f:facet>
+                        <h:outputText value="#{autor.imie} #{autor.nazwisko}"/>
+                    </h:column>
+            </h:dataTable>
+            </h:column>
+          </h:dataTable>
+    </ui:define>
+</ui:composition>

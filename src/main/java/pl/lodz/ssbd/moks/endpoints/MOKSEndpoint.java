@@ -68,7 +68,7 @@ public class MOKSEndpoint implements MOKSEndpointLocal {
     @Override
     @RolesAllowed("WyswietlenieNieaktywnych")
     public List<Ksiazka> pobierzKsiazkiNieaktywne() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return KsiazkaFacade.findNieaktywne();
     }
 
     @Override

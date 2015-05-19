@@ -24,6 +24,7 @@
     
     <h:panelGrid id="ADMINISTRATOR" rendered="#{menuPageBean.isAdmin}">
         <h:link outcome="/admin/adminpanel.xhtml" value="#{msg['menu.adminpanel']}"/>
+        <h:link outcome="/admin/listaNieaktywnychKsiazek.xhtml" value="#{msg['menu.inactivebooks']}" />
     </h:panelGrid>
     
     <h:panelGrid id="MODERATOR" rendered="#{menuPageBean.isModerator or menuPageBean.isAdmin}">

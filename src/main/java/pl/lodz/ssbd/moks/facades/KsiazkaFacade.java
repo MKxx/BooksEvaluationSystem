@@ -75,8 +75,11 @@ public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFac
     }
 
     @Override
+    @RolesAllowed("WyswietlenieNieaktywnych")
     public List<Ksiazka> findNieaktywne() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TypedQuery<Ksiazka> query = em.createNamedQuery("Ksiazka.findByAktywne", Ksiazka.class);
+        query.setParameter("aktywne", false);
+        return query.getResultList();
     }
     
         @Override
