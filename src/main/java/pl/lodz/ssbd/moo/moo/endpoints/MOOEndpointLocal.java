@@ -9,6 +9,7 @@ import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.entities.Ocena;
+import pl.lodz.ssbd.exceptions.OcenaException;
 
 /**
  *
@@ -17,7 +18,7 @@ import pl.lodz.ssbd.entities.Ocena;
 @Local
 public interface MOOEndpointLocal {
     public List<Ksiazka> pobierzKsiazki();
-    public void dodajDoUlubionych(Ksiazka ksiazka);
+    public void dodajDoUlubionych(Ocena ocena) throws OcenaException;
 
     public List<Ocena> pobierzOceny();
     

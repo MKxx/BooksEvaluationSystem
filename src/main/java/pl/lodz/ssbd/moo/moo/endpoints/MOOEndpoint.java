@@ -15,6 +15,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.entities.Ocena;
+import pl.lodz.ssbd.exceptions.OcenaException;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 import pl.lodz.ssbd.moo.moo.facades.KsiazkaFacadeLocal;
 import pl.lodz.ssbd.moo.moo.facades.OcenaFacadeLocal;
@@ -41,8 +42,9 @@ public class MOOEndpoint implements MOOEndpointLocal {
 
     @Override
     @RolesAllowed("DodanieDoUlubionych")
-    public void dodajDoUlubionych(Ksiazka ksiazka) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void dodajDoUlubionych(Ocena ocena) throws OcenaException{
+      ocena.setUlubiona(true);
+      ocenaFacade.edit(ocena);
     }
 
     // Add business logic below. (Right-click in editor and choose
