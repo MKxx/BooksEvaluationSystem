@@ -13,6 +13,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import pl.lodz.ssbd.entities.Ksiazka;
+import pl.lodz.ssbd.exceptions.KsiazkaException;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 import pl.lodz.ssbd.moks.facades.KsiazkaFacadeLocal;
 import pl.lodz.ssbd.moks.facades.UzytkownikFacadeLocal;
@@ -58,8 +59,9 @@ public class MOKSEndpoint implements MOKSEndpointLocal {
 
     @Override
     @RolesAllowed("OznaczenieJakoNieaktywna")
-    public void oznaczKsiazkeJakoNieaktywna(Ksiazka ksiazka) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void oznaczKsiazkeJakoNieaktywna(Ksiazka ksiazka) throws KsiazkaException{
+        ksiazka.setAktywne(false);
+        KsiazkaFacade.edit(ksiazka);
     }
 
     // Add business logic below. (Right-click in editor and choose

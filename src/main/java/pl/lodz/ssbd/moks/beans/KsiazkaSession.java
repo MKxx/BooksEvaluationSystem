@@ -12,6 +12,7 @@ import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import pl.lodz.ssbd.entities.Ksiazka;
+import pl.lodz.ssbd.exceptions.KsiazkaException;
 import pl.lodz.ssbd.moks.endpoints.MOKSEndpointLocal;
 
 /**
@@ -46,5 +47,7 @@ public class KsiazkaSession implements Serializable {
     public List<Ksiazka> pobierzNieaktywneKsiazki(){
         return MOKSEndpoint.pobierzKsiazkiNieaktywne();
     }
-    
+    public void oznaczJakoNieaktywna(Ksiazka ksiazka) throws KsiazkaException{
+        MOKSEndpoint.oznaczKsiazkeJakoNieaktywna(ksiazka);
+    }
 }

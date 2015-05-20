@@ -8,6 +8,7 @@ package pl.lodz.ssbd.moks.endpoints;
 import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Ksiazka;
+import pl.lodz.ssbd.exceptions.KsiazkaException;
 
 /**
  *
@@ -19,7 +20,7 @@ public interface MOKSEndpointLocal {
     public Ksiazka pobierzKsiazkeDoEdycji();
     public void edytujKsiazke(Ksiazka ksiazka);
     public void dodajKsiazke(Ksiazka ksiazka);
-    public void oznaczKsiazkeJakoNieaktywna(Ksiazka ksiazka);
+    public void oznaczKsiazkeJakoNieaktywna(Ksiazka ksiazka) throws KsiazkaException;
     public List<Ksiazka> pobierzKsiazkiNieaktywne();
     public List<Ksiazka> pobierzKsiazkiUlubione();
 }
