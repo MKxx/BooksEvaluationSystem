@@ -92,8 +92,8 @@ public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFac
         if (login == null || "".equals(login)) {
             return findAll();
         }
-        Query q = em.createQuery("SELECT k FROM Ocena o JOIN o.idKsiazka k JOIN o.idUzytkownik u WHERE u.login LIKE :login AND o.ulubiona = true");
-        q.setParameter("login", "%" + login + "%");
+        Query q = em.createQuery("SELECT k FROM Ocena o JOIN o.idKsiazka k JOIN o.idUzytkownik u WHERE u.login = :login AND o.ulubiona = true");
+        q.setParameter("login",login);
 
         return q.getResultList();
 
