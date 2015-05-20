@@ -114,19 +114,21 @@ public class ListaKsiazekPageBean implements Serializable {
     @RolesAllowed("DodanieDoUlubionych")
     public String dodajDoUlub(long idKsiazki) {
         if (sprawdzCzyOceniona(ksiazkiDataModel.getRowData().getIdKsiazka()) == true) {
-            try {
-                String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-               for(Ocena ocena : ocenyList){
-            if(ocena.getIdKsiazka().getIdKsiazka()==idKsiazki&&ocena.getIdUzytkownik().getLogin().equals(login)){
-                ocenaSession.dodajDoUlub(ocena);
-                return null;
-            }
 
+            String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+            for (Ocena ocena : ocenyList) {
+                if (ocena.getIdKsiazka().getIdKsiazka() == idKsiazki && ocena.getIdUzytkownik().getLogin().equals(login)) {
+                    try {
+                        ocenaSession.dodajDoUlub(ocena);
+
+                    } catch (OcenaException o) {
+                        return null;
+                    }
+                    return null;
                 }
 
-            } catch (OcenaException o) {
-                return null;
             }
+
         }
         return null;
 
