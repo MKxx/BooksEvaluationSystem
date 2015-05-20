@@ -24,7 +24,7 @@ import pl.lodz.ssbd.entities.Ksiazka;
  */
 @Named(value = "listaulubionychPageBean")
 @RequestScoped
-public class ListaUlubionychPageBean implements Serializable {
+public class ListaUlubionychPageBean  {
 
     @Inject
     private KsiazkaSession ocenaSession;
