@@ -88,9 +88,9 @@ public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFac
     
     @Override
     @RolesAllowed("WyswietlanieListyUlubionych")
-    public List<Ksiazka> findUlubione(String login) {
+    public List<Ksiazka> findUlubione(String login) throws KsiazkaException{
         if (login == null || "".equals(login)) {
-            return findAll();
+            throw new KsiazkaException();
         }
         Query q = em.createQuery("SELECT k FROM Ocena o JOIN o.idKsiazka k JOIN o.idUzytkownik u WHERE u.login = :login AND o.ulubiona = true");
         q.setParameter("login",login);

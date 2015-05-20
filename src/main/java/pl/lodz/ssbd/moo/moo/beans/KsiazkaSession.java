@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import pl.lodz.ssbd.entities.Ksiazka;
+import pl.lodz.ssbd.exceptions.KsiazkaException;
 import pl.lodz.ssbd.moo.moo.endpoints.MOOEndpointLocal;
 
 /**
@@ -26,7 +27,12 @@ public class KsiazkaSession implements Serializable {
 
     @RolesAllowed("WyswietlanieListyUlubionych")
     public List<Ksiazka> pobierzUlubione(String login) {
+        try {
         return MOOEndpoint.pobierzUlubione(login);
+        }
+        catch (KsiazkaException a){
+            return null;
+        }
     }
 
 }
