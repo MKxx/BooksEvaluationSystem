@@ -13,12 +13,12 @@ import pl.lodz.ssbd.moo.moo.endpoints.MOOEndpointLocal;
  * @author Kuba
  */
 @SessionScoped
-public class UlubioneSession implements Serializable {
+public class KsiazkaSession implements Serializable {
 
     /**
      * Creates a new instance of UzytkownikSession
      */
-    public UlubioneSession() {
+    public KsiazkaSession() {
     }
 
     @EJB

@@ -9,10 +9,10 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.security.RolesAllowed;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import pl.lodz.ssbd.entities.Ksiazka;
@@ -26,11 +26,11 @@ import pl.lodz.ssbd.utils.UzytkownikComparator;
  * @author Kuba
  */
 @Named(value = "listaulubionychPageBean")
-@ViewScoped
+@RequestScoped
 public class ListaUlubionychPageBean implements Serializable {
 
     @Inject
-    private UlubioneSession ocenaSession;
+    private KsiazkaSession ocenaSession;
 
     // DataModel jest reprezentacja listy obiektow potrzebna do pelnego dzialania
     // tabeli (DataTable)
