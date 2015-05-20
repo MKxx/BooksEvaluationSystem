@@ -32,7 +32,7 @@ public class MOAEndpoint implements MOAEndpointLocal {
     @Override
     @PermitAll
     public List<Autor> pobierzListeAutorow() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      return AutorFacade.findAll();
     }
 
     @Override
