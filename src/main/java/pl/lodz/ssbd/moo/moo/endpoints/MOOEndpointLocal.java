@@ -5,12 +5,9 @@
  */
 package pl.lodz.ssbd.moo.moo.endpoints;
 
-import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Ksiazka;
-import pl.lodz.ssbd.entities.Ocena;
-import pl.lodz.ssbd.entities.Uzytkownik;
-import pl.lodz.ssbd.exceptions.KsiazkaException;
+
 
 /**
  *
@@ -18,7 +15,6 @@ import pl.lodz.ssbd.exceptions.KsiazkaException;
  */
 @Local
 public interface MOOEndpointLocal {
-    public List<Ksiazka> pobierzUlubione(String login)throws KsiazkaException;
     public void dodajDoUlubionych(Ksiazka ksiazka);
     
 }

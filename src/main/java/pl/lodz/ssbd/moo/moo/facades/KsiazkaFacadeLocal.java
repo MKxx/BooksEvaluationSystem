@@ -32,7 +32,6 @@ public interface KsiazkaFacadeLocal {
 
     List<Ksiazka> findRange(int[] range);
     
-    List<Ksiazka> findUlubione(String login) throws KsiazkaException;
 
     int count();
     

@@ -5,8 +5,7 @@
  */
 package pl.lodz.ssbd.moks.facades;
 
-import pl.lodz.ssbd.moks.*;
-import pl.lodz.ssbd.facades.*;
+
 import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Ksiazka;
@@ -31,7 +30,7 @@ public interface KsiazkaFacadeLocal {
 
     List<Ksiazka> findRange(int[] range);
     
-    List<Ksiazka> findUlubione(int id_uzytkownik);
+    List<Ksiazka> findUlubione(String login) throws KsiazkaException;
     
     List<Ksiazka> findNieaktywne();
 

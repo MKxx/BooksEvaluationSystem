@@ -14,8 +14,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import pl.lodz.ssbd.entities.Ksiazka;
-import pl.lodz.ssbd.entities.Ocena;
-import pl.lodz.ssbd.entities.Uzytkownik;
+
 import pl.lodz.ssbd.exceptions.KsiazkaException;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 import pl.lodz.ssbd.moo.moo.facades.KsiazkaFacadeLocal;
@@ -41,11 +40,7 @@ public class MOOEndpoint implements MOOEndpointLocal {
      * @return
      * @throws KsiazkaException
      */
-    @Override
-    @RolesAllowed("WyswietlanieListyUlubionych")
-    public List<Ksiazka> pobierzUlubione(String login) throws KsiazkaException{
-        return KsiazkaFacade.findUlubione(login);
-    }
+    
 
     @Override
     @RolesAllowed("DodanieDoUlubionych")

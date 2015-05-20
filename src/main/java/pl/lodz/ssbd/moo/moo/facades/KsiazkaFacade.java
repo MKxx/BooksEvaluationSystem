@@ -86,18 +86,7 @@ public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFac
         return super.find(id); //To change body of generated methods, choose Tools | Templates.
     }
     
-    @Override
-    @RolesAllowed("WyswietlanieListyUlubionych")
-    public List<Ksiazka> findUlubione(String login) throws KsiazkaException{
-        if (login == null || "".equals(login)) {
-            throw new KsiazkaException();
-        }
-        Query q = em.createQuery("SELECT k FROM Ocena o JOIN o.idKsiazka k JOIN o.idUzytkownik u WHERE u.login = :login AND o.ulubiona = true");
-        q.setParameter("login",login);
 
-        return q.getResultList();
-
-    }
 
     @Override
     @DenyAll

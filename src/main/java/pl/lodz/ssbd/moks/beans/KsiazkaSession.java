@@ -1,4 +1,4 @@
-package pl.lodz.ssbd.moo.moo.beans;
+package pl.lodz.ssbd.moks.beans;
 
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -7,7 +7,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.exceptions.KsiazkaException;
-import pl.lodz.ssbd.moo.moo.endpoints.MOOEndpointLocal;
+import pl.lodz.ssbd.moks.endpoints.MOKSEndpointLocal;
 
 /**
  *
@@ -23,12 +23,12 @@ public class KsiazkaSession implements Serializable {
     }
 
     @EJB
-    private MOOEndpointLocal MOOEndpoint;
+    private MOKSEndpointLocal MOOEndpoint;
 
     @RolesAllowed("WyswietlanieListyUlubionych")
     public List<Ksiazka> pobierzUlubione(String login) {
         try {
-        return MOOEndpoint.pobierzUlubione(login);
+        return MOOEndpoint.pobierzKsiazkiUlubione(login);
         }
         catch (KsiazkaException a){
             return null;

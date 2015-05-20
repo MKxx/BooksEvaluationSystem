@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.lodz.ssbd.moo.moo.beans;
+package pl.lodz.ssbd.moks.beans;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,10 +16,7 @@ import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 import pl.lodz.ssbd.entities.Ksiazka;
-import pl.lodz.ssbd.entities.Ocena;
-import pl.lodz.ssbd.entities.Uzytkownik;
-import pl.lodz.ssbd.mok.beans.UzytkownikSession;
-import pl.lodz.ssbd.utils.UzytkownikComparator;
+
 
 /**
  *

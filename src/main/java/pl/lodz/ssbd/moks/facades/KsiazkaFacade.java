@@ -6,17 +6,15 @@
 package pl.lodz.ssbd.moks.facades;
 
 import java.util.List;
-import java.util.logging.Level;
-import pl.lodz.ssbd.moks.*;
+import javax.annotation.security.RolesAllowed;
 import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import pl.lodz.ssbd.entities.Autor;
+import javax.persistence.Query;
 import pl.lodz.ssbd.entities.Ksiazka;
-import pl.lodz.ssbd.exceptions.AutorException;
 import pl.lodz.ssbd.exceptions.KsiazkaException;
 import pl.lodz.ssbd.exceptions.SSBD05Exception;
 
@@ -65,8 +63,15 @@ public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFac
     }
 
     @Override
-    public List<Ksiazka> findUlubione(int id_uzytkownik) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @RolesAllowed("WyswietlanieListyUlubionych")
+    public List<Ksiazka> findUlubione(String login) throws KsiazkaException {
+        if (login == null || "".equals(login)) {
+            throw new KsiazkaException();
+        }
+        Query q = em.createQuery("SELECT k FROM Ocena o JOIN o.idKsiazka k JOIN o.idUzytkownik u WHERE u.login = :login AND o.ulubiona = true");
+        q.setParameter("login", login);
+
+        return q.getResultList();
     }
 
     @Override
