@@ -13,9 +13,7 @@
         <ui:include src="./templates/Menu.xhtml" />
     </ui:define>
 
-    <ui:define name="content">
-
-    </ui:define>
+    <ui:define name="content"/>
 
     <ui:define name="left">
         <ui:include src="./templates/Menu.xhtml" />
@@ -31,6 +29,10 @@
                 <f:facet name="header">#{msg["form.imie"]}</f:facet>
                 <h:outputText value="#{row.imie}" />
             </h:column>
+            <h:column id="rokUr">
+                <f:facet name="header">#{msg["form.rokUr"]}</f:facet>
+                <h:outputText value="#{row.rokUr}" />
+            </h:column>
             <h:column id="srOcena">
                 <f:facet name="header">#{msg["form.srOcena"]}</f:facet>
                 <h:outputText value="#{row.srOcena}" />
@@ -38,9 +40,7 @@
             <h:column id="akcje">
                     <f:facet name="header">#{msg["pa.akcje"]}</f:facet>
                     <h:commandButton action="#{listaAutorowPageBean.edytujAutora()}" value="${msg['pa.edytuj']}"/>
-                </h:column>
+            </h:column>
         </h:dataTable>
     </ui:define>
-
-
 </ui:composition>
