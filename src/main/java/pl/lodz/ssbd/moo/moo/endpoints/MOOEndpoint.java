@@ -15,6 +15,8 @@ import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.entities.Ocena;
+
+import pl.lodz.ssbd.exceptions.KsiazkaException;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 import pl.lodz.ssbd.moo.moo.facades.KsiazkaFacadeLocal;
 import pl.lodz.ssbd.moo.moo.facades.OcenaFacadeLocal;
@@ -33,6 +35,12 @@ public class MOOEndpoint implements MOOEndpointLocal {
     @EJB(beanName = "mooOcena")
     private OcenaFacadeLocal ocenaFacade;
 
+    /**
+     *
+     * @param login
+     * @return
+     * @throws KsiazkaException
+     */
     @Override
     @PermitAll
     public List<Ksiazka> pobierzKsiazki() {

@@ -28,6 +28,7 @@ import pl.lodz.ssbd.exceptions.KsiazkaException;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 import pl.lodz.ssbd.mok.endpoints.MOKEndpoint;
 import pl.lodz.ssbd.moks.facades.AutorFacadeLocal;
+import pl.lodz.ssbd.moks.facades.KsiazkaFacade;
 import pl.lodz.ssbd.moks.facades.KsiazkaFacadeLocal;
 import pl.lodz.ssbd.moks.facades.UzytkownikFacadeLocal;
 
@@ -109,10 +110,12 @@ public class MOKSEndpoint implements MOKSEndpointLocal, SessionSynchronization {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+
     @Override
-    @RolesAllowed("WyswietlenieUlubionych")
-    public List<Ksiazka> pobierzKsiazkiUlubione() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @RolesAllowed("WyswietlanieListyUlubionych")
+    public List<Ksiazka> pobierzKsiazkiUlubione(String login) throws KsiazkaException{
+        return ksiazkaFacade.findUlubione(login);
+    
     }
 
     @Override

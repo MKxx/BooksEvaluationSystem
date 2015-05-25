@@ -13,6 +13,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import pl.lodz.ssbd.entities.Autor;
 import pl.lodz.ssbd.entities.Ksiazka;
+import pl.lodz.ssbd.exceptions.KsiazkaException;
 import pl.lodz.ssbd.moks.endpoints.MOKSEndpointLocal;
 
 /**
@@ -51,5 +52,16 @@ public class KsiazkaSession implements Serializable {
     void stworzKsiazke(Ksiazka ksiazka, List<String> wybraniAutorzy) {
         MOKSEndpoint.dodajKsiazke(ksiazka, wybraniAutorzy);
     }
+    
+    @RolesAllowed("WyswietlanieListyUlubionych")
+    public List<Ksiazka> pobierzUlubione(String login) {
+        try {
+        return MOKSEndpoint.pobierzKsiazkiUlubione(login);
+        }
+        catch (KsiazkaException a){
+            return null;
+        }
+    }
+
     
 }
