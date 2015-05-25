@@ -15,6 +15,7 @@ import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import pl.lodz.ssbd.entities.Ksiazka;
+import pl.lodz.ssbd.exceptions.KsiazkaException;
 
 /**
  *
@@ -53,8 +54,16 @@ public class ListaKsiazekPageBean implements Serializable {
         ksiazkiDataModel = new ListDataModel<>(ksiazki);
     }
     
-    public void oznaczJakoNieaktywna(){
-        throw new UnsupportedOperationException();
+    public String oznaczJakoNieaktywna(){
+        try {
+        ksiazkaSession.oznaczJakoNieaktywna(ksiazkiDataModel.getRowData());
+        initModel();
+        return null;
+        }
+        catch (KsiazkaException k)
+        {
+            return "bladksiazka";
+        }
     }
     
     public void edytuj(){

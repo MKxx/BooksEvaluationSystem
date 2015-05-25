@@ -34,7 +34,7 @@
                     </h:selectOneMenu>
                     <h:commandButton action="#{listaKsiazekPageBeanMOO.ocen()}" value="Ocen!" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and not listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
                     <h:commandButton action="#{listaKsiazekPageBeanMOO.zmienOcene()}" value="Zmien Ocene!" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
-                    <h:commandButton action="#{listaKsiazekPageBeanMOO.dodajDoUlub(ksiazka.idKsiazka)}" value="Dodaj do ulubionych!" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
+                    <h:commandButton action="#{listaKsiazekPageBeanMOO.dodajDoUlub()}" value="Dodaj do ulubionych!" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
                 </h:form>
             </h:column>
         </h:dataTable>

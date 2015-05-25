@@ -20,8 +20,8 @@ public interface MOKSEndpointLocal {
     public List<Ksiazka> pobierzKsiazki();
     public Ksiazka pobierzKsiazkeDoEdycji();
     public void edytujKsiazke(Ksiazka ksiazka);
+    public void oznaczKsiazkeJakoNieaktywna(Ksiazka ksiazka) throws KsiazkaException;
     public void dodajKsiazke(Ksiazka ksiazka, List<String> wybraniAutorzy);
-    public void oznaczKsiazkeJakoNieaktywna(Ksiazka ksiazka);
     public List<Ksiazka> pobierzKsiazkiNieaktywne();
     public List<Ksiazka> pobierzKsiazkiUlubione(String login) throws KsiazkaException;
 

@@ -42,7 +42,6 @@ public class KsiazkaSession implements Serializable {
     @RolesAllowed("PrzegladanieKsiazekModeratorski")
     public List<Ksiazka> pobierzKsiazki(){
         return MOKSEndpoint.pobierzKsiazki();
-        
     }
 
     List<Autor> pobierzAutorow() {
@@ -64,4 +63,11 @@ public class KsiazkaSession implements Serializable {
     }
 
     
+    @RolesAllowed("WyswietlenieNieaktywnych")
+    public List<Ksiazka> pobierzNieaktywneKsiazki(){
+        return MOKSEndpoint.pobierzKsiazkiNieaktywne();
+    }
+    public void oznaczJakoNieaktywna(Ksiazka ksiazka) throws KsiazkaException{
+        MOKSEndpoint.oznaczKsiazkeJakoNieaktywna(ksiazka);
+    }
 }

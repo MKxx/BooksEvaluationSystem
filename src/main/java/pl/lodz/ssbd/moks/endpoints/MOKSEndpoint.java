@@ -97,8 +97,9 @@ public class MOKSEndpoint implements MOKSEndpointLocal, SessionSynchronization {
 
     @Override
     @RolesAllowed("OznaczenieJakoNieaktywna")
-    public void oznaczKsiazkeJakoNieaktywna(Ksiazka ksiazka) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void oznaczKsiazkeJakoNieaktywna(Ksiazka ksiazka) throws KsiazkaException{
+        ksiazka.setAktywne(false);
+        ksiazkaFacade.edit(ksiazka);
     }
 
     // Add business logic below. (Right-click in editor and choose
@@ -107,7 +108,7 @@ public class MOKSEndpoint implements MOKSEndpointLocal, SessionSynchronization {
     @Override
     @RolesAllowed("WyswietlenieNieaktywnych")
     public List<Ksiazka> pobierzKsiazkiNieaktywne() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return ksiazkaFacade.findNieaktywne();
     }
 
 

@@ -11,8 +11,8 @@
     
     <h:panelGrid id="WSZYSCY">
         <h:link outcome="/index.xhtml" value="#{msg['menu.stronaglowna']}" />
-        <h:link outcome="/listaksiazek.xhtml" value="#{msg['menu.listaksiazek']}" />
-        <h:link outcome="/listauatorow.xhtml" value="#{msg['menu.listaautorow']}" />
+        <h:link outcome="/lista-ksiazek.xhtml" value="#{msg['menu.listaksiazek']}" />
+        <h:link outcome="/listaAutorow.xhtml" value="#{msg['menu.listaautorow']}" />
     </h:panelGrid>
     
     <h:panelGrid id="Zalogowani" rendered="#{not menuPageBean.isGosc}">
@@ -24,6 +24,7 @@
     
     <h:panelGrid id="ADMINISTRATOR" rendered="#{menuPageBean.isAdmin}">
         <h:link outcome="/admin/adminpanel.xhtml" value="#{msg['menu.adminpanel']}"/>
+        <h:link outcome="/admin/listaNieaktywnychKsiazek.xhtml" value="#{msg['menu.inactivebooks']}" />
     </h:panelGrid>
     
     <h:panelGrid id="MODERATOR" rendered="#{menuPageBean.isModerator or menuPageBean.isAdmin}">
