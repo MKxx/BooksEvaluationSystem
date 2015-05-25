@@ -129,6 +129,28 @@
             <form-error-page>/faces/login/blad.xhtml</form-error-page>
         </form-login-config>
     </login-config>
+    
+    
+    <error-page>
+        <exception-type>javax.ejb.EJBAccessException</exception-type>
+        <location>/errors/ejbException.xhtml</location>
+    </error-page>
+    <error-page>
+        <exception-type>javax.ejb.EJBException</exception-type>
+        <location>/errors/ejbException.xhtml</location>
+    </error-page>
+    <error-page>
+        <exception-type>javax.ejb.EJBTransactionRequiredException</exception-type>
+        <location>/errors/ejbException.xhtml</location>
+    </error-page>
+    <error-page>
+        <exception-type>javax.ejb.EJBTransactionRollbackException</exception-type>
+        <location>/errors/ejbException.xhtml</location>
+    </error-page>
+    <error-page>
+        <exception-type>javax.ejb.NoSuchEJBException</exception-type>
+        <location>/errors/ejbException.xhtml</location>
+    </error-page>
     <error-page>
         <error-code>404</error-code>
         <location>/errors/404.xhtml</location>
