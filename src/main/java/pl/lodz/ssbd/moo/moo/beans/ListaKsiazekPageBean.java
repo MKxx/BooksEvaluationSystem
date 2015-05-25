@@ -10,8 +10,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
@@ -20,6 +23,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.entities.Ocena;
+import pl.lodz.ssbd.exceptions.OcenaException;
+import pl.lodz.ssbd.mok.endpoints.MOKEndpoint;
 import pl.lodz.ssbd.utils.SprawdzaczRoli;
 
 /**
@@ -29,6 +34,7 @@ import pl.lodz.ssbd.utils.SprawdzaczRoli;
 @Named(value = "listaKsiazekPageBeanMOO")
 @ViewScoped
 public class ListaKsiazekPageBean implements Serializable {
+
 
     /**
      * Creates a new instance of listaKsiazekPageBean
@@ -75,7 +81,6 @@ public class ListaKsiazekPageBean implements Serializable {
     public void setKsiazkiDataModel(DataModel<Ksiazka> ksiazkiDataModel) {
         this.ksiazkiDataModel = ksiazkiDataModel;
     }
-    
     public ListaKsiazekPageBean() {
          rbl = ResourceBundle.getBundle("nazwy_rol.role");
     }
@@ -88,7 +93,7 @@ public class ListaKsiazekPageBean implements Serializable {
         ksiazkiDataModel = new ListDataModel<>(ksiazki);
     }
     
-    public boolean sprawdzCzyOceniona(int idKsiazki){
+    public boolean sprawdzCzyOceniona(long idKsiazki){
         String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
         for(Ocena ocena : ocenyList){
             if(ocena.getIdKsiazka().getIdKsiazka()==idKsiazki&&ocena.getIdUzytkownik().getLogin().equals(login)){
@@ -106,10 +111,28 @@ public class ListaKsiazekPageBean implements Serializable {
         throw new UnsupportedOperationException();
     }
     
-    public void dodajDoUlub(){
-        throw new UnsupportedOperationException();
+    @RolesAllowed("DodanieDoUlubionych")
+    public String dodajDoUlub(long idKsiazki) {
+        if (sprawdzCzyOceniona(ksiazkiDataModel.getRowData().getIdKsiazka()) == true) {
+
+            String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+            for (Ocena ocena : ocenyList) {
+                if (ocena.getIdKsiazka().getIdKsiazka() == idKsiazki && ocena.getIdUzytkownik().getLogin().equals(login)) {
+                    try {
+                        ocenaSession.dodajDoUlub(ocena);
+
+                    } catch (OcenaException o) {
+                        return null;
+                    }
+                    return null;
+                }
+
+            }
+
+        }
+        return null;
+
     }
-    
     public void zmienOcene(){
         throw new UnsupportedOperationException();
     }
