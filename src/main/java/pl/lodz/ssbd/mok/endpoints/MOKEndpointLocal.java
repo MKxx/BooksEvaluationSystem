@@ -22,7 +22,7 @@ import pl.lodz.ssbd.exceptions.UzytkownikException;
 public interface MOKEndpointLocal {
     public Uzytkownik pobierzSiebieDoEdycji();
 
-    public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik) throws UzytkownikException;
+    public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik, String haslo) throws UzytkownikException;
     public List<Uzytkownik> pobierzUzytkownikow(String wartosc);
     public void potwierdzUzytkownika(Uzytkownik uzytkownik) throws UzytkownikException;
     public void zablokujUzytkownika(Uzytkownik uzytkownik)throws UzytkownikException;
@@ -32,7 +32,7 @@ public interface MOKEndpointLocal {
 
     public void zalogujNiepoprawneUwierzytenienie(String username,String IP);
 
-    public void zapiszKontoPoEdycji(Uzytkownik uzytkownikEdycja, boolean zmianaHasla) throws UzytkownikException, PoprzednieHasloException;
+    public void zapiszKontoPoEdycji(Uzytkownik uzytkownikEdycja, boolean zmianaHasla, String haslo) throws UzytkownikException, PoprzednieHasloException;
     
     public String pobierzIPOstatniegoPopZalogowania();
     public Date pobierzCzasOstatniegoPopZalogowania();

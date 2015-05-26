@@ -60,11 +60,10 @@ public class EdycjaCudzegoPageBean {
             return null;
         }
         if(!(noweHaslo.equals("") || noweHaslo == null)){
-            uzytkownikSession.getUzytkownikEdycja().setHasloMd5(MD5.hash(noweHaslo));
             zmianaHasla = true;
         }
         try {
-            uzytkownikSession.zapiszUzytkownikaPoEdycji(zmianaHasla);
+            uzytkownikSession.zapiszUzytkownikaPoEdycji(zmianaHasla, noweHaslo);
         } catch (UzytkownikException ex) {
             return "nieaktualnedane";
         } catch (PoprzednieHasloException ex) {

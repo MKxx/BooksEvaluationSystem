@@ -32,6 +32,7 @@ import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 import pl.lodz.ssbd.mok.facades.PoziomDostepuFacadeLocal;
 import pl.lodz.ssbd.mok.facades.UzytkownikFacadeLocal;
+import pl.lodz.ssbd.utils.MD5;
 
 /**
  *
@@ -64,7 +65,8 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
 
     @Override
     @PermitAll
-    public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik) throws UzytkownikException {
+    public void rejestrujUzytkownika(Uzytkownik nowyUzytkownik, String haslo) throws UzytkownikException {
+        nowyUzytkownik.setHasloMd5(MD5.hash(haslo));
         String[] role = {rbl.getString("rola.admin"), rbl.getString("rola.user"), rbl.getString("rola.moderator")};
         for(String rola : role){
             PoziomDostepu poziomDost = new PoziomDostepu();
@@ -150,7 +152,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
 
     @Override
     @RolesAllowed({"ModyfikowanieDanychSwojegoKonta","ModyfikowanieDanychCudzegoKonta"}) 
-    public void zapiszKontoPoEdycji(Uzytkownik uzytkownik, boolean zmianaHasla) throws UzytkownikException, PoprzednieHasloException {
+    public void zapiszKontoPoEdycji(Uzytkownik uzytkownik, boolean zmianaHasla, String haslo) throws UzytkownikException, PoprzednieHasloException {
         if (null == uzytkownikEdycja) {
             throw new IllegalArgumentException("Brak wczytanego uzytkownika do modyfikacji");
         }
@@ -158,6 +160,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
             throw new IllegalArgumentException("Modyfikowany uzytkownik niezgodny z wczytanym");
         }
         if(zmianaHasla){
+            uzytkownikEdycja.setHasloMd5(MD5.hash(haslo));
             if (!hasloPrzedEdycja.equals(uzytkownikEdycja.getHasloMd5())) {
                 for(PoprzednieHaslo poprzednieHaslo: uzytkownikEdycja.getPoprzednieHasloList()){
                     if(uzytkownikEdycja.getHasloMd5().equals(poprzednieHaslo.getStareHasloMd5())){
