@@ -47,6 +47,7 @@ public class MOKSEndpoint implements MOKSEndpointLocal, SessionSynchronization {
     private UzytkownikFacadeLocal uzytkownikFacade;
     @EJB(beanName = "moksAutor")
     private AutorFacadeLocal autorFacade;
+    private Ksiazka edytowanaKsiazka;
     
     private static final Logger loger = Logger.getLogger(MOKSEndpoint.class.getName());
     private long IDTransakcji;
@@ -62,14 +63,22 @@ public class MOKSEndpoint implements MOKSEndpointLocal, SessionSynchronization {
 
     @Override
     @RolesAllowed("ModyfikacjaKsiazki")
-    public Ksiazka pobierzKsiazkeDoEdycji() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Ksiazka pobierzKsiazkeDoEdycji(long id) {
+        edytowanaKsiazka = ksiazkaFacade.find(id);
+        return edytowanaKsiazka;
     }
 
     @Override
     @RolesAllowed("ModyfikacjaKsiazki")
-    public void edytujKsiazke(Ksiazka ksiazka) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void edytujKsiazke(Ksiazka ksiazka) throws KsiazkaException {
+        if (null == ksiazka) {
+            throw new IllegalArgumentException("Wartosc ksiazka rowna null");
+        } else if (!ksiazka.equals(edytowanaKsiazka)) {
+            throw new IllegalArgumentException("Modyfikowana ksiazka niezgodna z wczytaną");
+        }
+        
+        ksiazkaFacade.edit(edytowanaKsiazka);
+        edytowanaKsiazka = null;
     }
 
     @Override

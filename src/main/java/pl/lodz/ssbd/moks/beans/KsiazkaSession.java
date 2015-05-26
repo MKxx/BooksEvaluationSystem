@@ -31,6 +31,15 @@ public class KsiazkaSession implements Serializable {
     
     @EJB
     MOKSEndpointLocal MOKSEndpoint;
+    private Ksiazka edytowanaKsiazka;
+
+    public Ksiazka getEdytowanaKsiazka() {
+        return edytowanaKsiazka;
+    }
+
+    public void setEdytowanaKsiazka(Ksiazka edytowanaKsiazka) {
+        this.edytowanaKsiazka = edytowanaKsiazka;
+    }
     
     public KsiazkaSession() {
     }
@@ -69,5 +78,13 @@ public class KsiazkaSession implements Serializable {
     }
     public void oznaczJakoNieaktywna(Ksiazka ksiazka) throws KsiazkaException{
         MOKSEndpoint.oznaczKsiazkeJakoNieaktywna(ksiazka);
+    }
+
+    void zapiszKsiazkePoEdycji() throws KsiazkaException {
+        MOKSEndpoint.edytujKsiazke(edytowanaKsiazka);
+    }
+
+    void pobierzKsiazkeDoEdycji(long id) {
+        edytowanaKsiazka = MOKSEndpoint.pobierzKsiazkeDoEdycji(id);
     }
 }

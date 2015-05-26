@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns="http://www.w3.org/1999/xhtml"
-      template="./templates/Template.xhtml"
+      template="./../templates/Template.xhtml"
       xmlns:h="http://java.sun.com/jsf/html">
     
     <ui:define name="top">
@@ -10,11 +10,13 @@
     </ui:define>
 
     <ui:define name="left">
-        <ui:include src="./templates/Menu.xhtml" />
+        <ui:include src="./../templates/Menu.xhtml" />
     </ui:define>
 
     <ui:define name="content">
-        <p>#{msg['register.success']}</p>
-        <h:link value="${msg['powrot.glowna']}" outcome="index.xhtml" />
+        <p>#{msg['ksiazka.success']}</p>
+        <p><h:link value="${msg['powrot.glowna']}" outcome="index" /></p>
+        <br />
+        <p><h:link value="${msg['menu.listaksiazek']}" outcome="listaksiazek.xhtml" /></p>
     </ui:define>
 </ui:composition>
