@@ -6,6 +6,8 @@
 package pl.lodz.ssbd.moa.endpoints;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
@@ -14,6 +16,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import pl.lodz.ssbd.entities.Autor;
+import pl.lodz.ssbd.exceptions.AutorException;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 import pl.lodz.ssbd.moa.facades.AutorFacadeLocal;
 
@@ -44,7 +47,12 @@ public class MOAEndpoint implements MOAEndpointLocal {
     @Override
     @RolesAllowed("DodanieAutora")
     public void dodajAutora(Autor autor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            AutorFacade.create(autor);
+            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        } catch (AutorException ex) {
+            Logger.getLogger(MOAEndpoint.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
