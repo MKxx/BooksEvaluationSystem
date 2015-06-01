@@ -55,7 +55,7 @@ public class Ksiazka implements Serializable {
     private Long idKsiazka;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 2, max = 100)
+    @Size(min = 2, max = 100, message = "{message.tytul}")
     @Column(nullable = false, length = 100)
     private String tytul;
     @Column(name = "rok_pierwszego_wydania")

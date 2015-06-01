@@ -66,8 +66,9 @@ public class ListaKsiazekPageBean implements Serializable {
         }
     }
     
-    public void edytuj(){
-        throw new UnsupportedOperationException();
+    public String edytuj(){
+        ksiazkaSession.pobierzKsiazkeDoEdycji(ksiazkiDataModel.getRowData().getIdKsiazka());
+        return "edytujksiazke";
     }
     
 }

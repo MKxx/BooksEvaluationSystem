@@ -18,8 +18,8 @@ import pl.lodz.ssbd.exceptions.KsiazkaException;
 @Local
 public interface MOKSEndpointLocal {
     public List<Ksiazka> pobierzKsiazki();
-    public Ksiazka pobierzKsiazkeDoEdycji();
-    public void edytujKsiazke(Ksiazka ksiazka);
+    public Ksiazka pobierzKsiazkeDoEdycji(long id);
+    public void edytujKsiazke(Ksiazka ksiazka) throws KsiazkaException ;
     public void oznaczKsiazkeJakoNieaktywna(Ksiazka ksiazka) throws KsiazkaException;
     public void dodajKsiazke(Ksiazka ksiazka, List<String> wybraniAutorzy);
     public List<Ksiazka> pobierzKsiazkiNieaktywne();

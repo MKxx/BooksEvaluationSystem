@@ -65,8 +65,9 @@ public class DodaniePageBean implements Serializable {
         return ksiazka;
     }
     
-    public void stworzKsiazke(){
+    public String stworzKsiazke(){
         ksiazkaSession.stworzKsiazke(ksiazka, wybraniAutorzy);
+        return "sukcesStworz";
     }
     
 }
