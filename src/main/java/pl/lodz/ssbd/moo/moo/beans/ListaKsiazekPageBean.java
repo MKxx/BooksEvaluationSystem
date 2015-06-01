@@ -10,21 +10,18 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Named;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.entities.Ocena;
 import pl.lodz.ssbd.exceptions.OcenaException;
-import pl.lodz.ssbd.mok.endpoints.MOKEndpoint;
 import pl.lodz.ssbd.utils.SprawdzaczRoli;
 
 /**
@@ -32,7 +29,7 @@ import pl.lodz.ssbd.utils.SprawdzaczRoli;
  * @author Maciej
  */
 @Named(value = "listaKsiazekPageBeanMOO")
-@ViewScoped
+@RequestScoped
 public class ListaKsiazekPageBean implements Serializable {
 
 

@@ -35,6 +35,8 @@ public class MOOEndpoint implements MOOEndpointLocal {
     private KsiazkaFacadeLocal KsiazkaFacade;
     @EJB(beanName = "mooOcena")
     private OcenaFacadeLocal ocenaFacade;
+    
+    private List<Ksiazka> listaKsiazekDostep;
 
     /**
      *
@@ -45,7 +47,8 @@ public class MOOEndpoint implements MOOEndpointLocal {
     @Override
     @PermitAll
     public List<Ksiazka> pobierzKsiazki() {
-        return KsiazkaFacade.findAktywne();
+        listaKsiazekDostep = KsiazkaFacade.findAktywne();
+        return listaKsiazekDostep;
     }
 
     @Override
