@@ -21,7 +21,9 @@ import javax.inject.Named;
 import javax.inject.Inject;
 import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.entities.Ocena;
+import pl.lodz.ssbd.exceptions.KsiazkaException;
 import pl.lodz.ssbd.exceptions.OcenaException;
+import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.utils.SprawdzaczRoli;
 
 /**
@@ -104,8 +106,9 @@ public class ListaKsiazekPageBean implements Serializable {
         return SprawdzaczRoli.sprawdzRole(rbl.getString("rola.user"));
     }
     
-    public void ocen(){
-        throw new UnsupportedOperationException();
+    public void ocen(long id_ksiazka) throws UzytkownikException, OcenaException{
+        String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+        ocenaSession.ocen(id_ksiazka,ocena, login);
     }
     
     @RolesAllowed("DodanieDoUlubionych")
@@ -130,8 +133,9 @@ public class ListaKsiazekPageBean implements Serializable {
         return null;
 
     }
-    public void zmienOcene(){
-        throw new UnsupportedOperationException();
+    public void zmienOcene(long id_ksiazka) throws OcenaException, KsiazkaException, UzytkownikException{
+        String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+        ocenaSession.zmienOcene(id_ksiazka,ocena, login);
     }
     
 }

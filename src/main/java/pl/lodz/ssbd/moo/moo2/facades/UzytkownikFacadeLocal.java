@@ -30,4 +30,6 @@ public interface UzytkownikFacadeLocal {
 
     int count();
     
+    public Uzytkownik findByLogin(String username) throws UzytkownikException;
+    
 }

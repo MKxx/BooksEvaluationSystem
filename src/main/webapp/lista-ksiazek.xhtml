@@ -32,8 +32,8 @@
                     <h:selectOneMenu value="#{listaKsiazekPageBeanMOO.ocena}">
    			<f:selectItems value="#{listaKsiazekPageBeanMOO.oceny}" />
                     </h:selectOneMenu>
-                    <h:commandButton action="#{listaKsiazekPageBeanMOO.ocen()}" value="Ocen!" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and not listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
-                    <h:commandButton action="#{listaKsiazekPageBeanMOO.zmienOcene()}" value="Zmien Ocene!" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
+                    <h:commandButton action="#{listaKsiazekPageBeanMOO.ocen(ksiazka.idKsiazka)}" value="Ocen!" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and not listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
+                    <h:commandButton action="#{listaKsiazekPageBeanMOO.zmienOcene(ksiazka.idKsiazka)}" value="Zmien Ocene!" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
                     <h:commandButton action="#{listaKsiazekPageBeanMOO.dodajDoUlub()}" value="Dodaj do ulubionych!" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
                 </h:form>
             </h:column>

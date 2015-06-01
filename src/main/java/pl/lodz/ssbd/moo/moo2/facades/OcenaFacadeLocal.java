@@ -11,7 +11,9 @@ import pl.lodz.ssbd.moo.*;
 import pl.lodz.ssbd.facades.*;
 import java.util.List;
 import javax.ejb.Local;
+import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.entities.Ocena;
+import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.exceptions.OcenaException;
 
 /**
@@ -34,5 +36,7 @@ public interface OcenaFacadeLocal {
     List<Ocena> findRange(int[] range);
 
     int count();
+
+    public Ocena findByKsiazkaAndLogin(Ksiazka ksiazka, Uzytkownik uzytkownik);
     
 }
