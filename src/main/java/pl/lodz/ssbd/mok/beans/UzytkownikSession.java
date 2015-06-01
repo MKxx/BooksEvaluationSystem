@@ -45,11 +45,10 @@ public class UzytkownikSession implements Serializable {
     public void rejestrujUzytkownika(Uzytkownik uzytkownik, String haslo) throws UzytkownikException {
         Uzytkownik nowyUzytkownik = new Uzytkownik();
         nowyUzytkownik.setLogin(uzytkownik.getLogin());
-        nowyUzytkownik.setHasloMd5(MD5.hash(haslo));
         nowyUzytkownik.setImie(uzytkownik.getImie());
         nowyUzytkownik.setNazwisko(uzytkownik.getNazwisko());
         nowyUzytkownik.setEmail(uzytkownik.getEmail());
-        MOKEndpoint.rejestrujUzytkownika(nowyUzytkownik);
+        MOKEndpoint.rejestrujUzytkownika(nowyUzytkownik, haslo);
         Mailer.wyslijPoZarejestrowaniu(uzytkownik.getEmail(),uzytkownik.getLogin(),uzytkownik.getHasloMd5());
     }
 
@@ -95,8 +94,8 @@ public class UzytkownikSession implements Serializable {
         uzytkownikMenu = MOKEndpoint.pobierzUzytkownika(login);
     }
 
-    public void zapiszUzytkownikaPoEdycji(boolean zmianaHasla) throws UzytkownikException, PoprzednieHasloException {
-        MOKEndpoint.zapiszKontoPoEdycji(uzytkownikEdycja, zmianaHasla);
+    public void zapiszUzytkownikaPoEdycji(boolean zmianaHasla, String haslo) throws UzytkownikException, PoprzednieHasloException {
+        MOKEndpoint.zapiszKontoPoEdycji(uzytkownikEdycja, zmianaHasla, haslo);
     }
 
     public void pobierzUzytkownikaDoEdycji(Uzytkownik uzytkownik) {
