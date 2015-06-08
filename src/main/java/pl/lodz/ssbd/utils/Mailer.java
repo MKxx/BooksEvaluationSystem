@@ -22,7 +22,16 @@ import java.util.logging.Level;
  * @author Jakub Kępa 180582
  */
 public final class Mailer {
-
+ /**
+       * Wysyła email%
+       * 
+       * @param email
+       *                Adres Email.
+       * @param temat
+       *                Temat wiadomosci.
+       *  @param tresc
+       *                Tresc wiadomosci.
+       */
     private static void wyslij(String email, String temat, String tresc) {
         try {
 
@@ -43,7 +52,16 @@ public final class Mailer {
             Logger.getLogger(Mailer.class.getName()).log(Level.WARNING, null, ex);
         }
     }
-
+ /**
+       * Wysyła maila z informacją o rejestracji%
+       * 
+       * @param email
+       *                Adres Email.
+       * @param login
+       *                Login uzytkownika.
+       *  @param haslo
+       *                Haslo uzytkownika w postaci jawnej.
+       */
     public static void wyslijPoZarejestrowaniu(String email, String login, String haslo) {
         String temat = "Potwierdzenie rejestracji w naszym przecudnym serwisie";
         String tresc = "Dziekujemy za rejestracje! " + System.lineSeparator()
@@ -54,14 +72,28 @@ public final class Mailer {
                 + " co najmniej szczęśliwego nowego roku).";
         wyslij(email, temat, tresc);
     }
-
+ /**
+       * Wysyła maila z informacją o aktywacji konta%
+       * 
+       * @param email
+       *                Adres Email.
+       * @param login
+       *                Login uzytkownika.
+       */
     public static void wyslijPoAktywacji(String email, String login) {
         String temat = "Twoje konto jest już aktywne";
         String tresc = "Twoje konto zostało własnie aktywowane!" + System.lineSeparator()
                 + "Możesz już się zalogować za pomocą loginu " + login + " oraz hasla które podałeś podczas rejestracji";
         wyslij(email, temat, tresc);
     }
-
+ /**
+       * Wysyła maila z informacją o zablokowaniu konta%
+       * 
+       * @param email
+       *                Adres Email.
+       * @param login
+       *                Login uzytkownika.
+       */
     public static void wyslijPoZablokowaniu(String email, String login) {
         String temat = "Twoje konto jest zablokowane";
         String tresc = "Twoje konto zostało właśnie zablokowane" + System.lineSeparator()
