@@ -6,6 +6,7 @@
 package pl.lodz.ssbd.moks.facades;
 
 import java.util.List;
+import javax.annotation.security.DenyAll;
 import javax.annotation.security.RolesAllowed;
 import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
@@ -42,11 +43,13 @@ public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFac
     }
 
     @Override
+    @DenyAll
     public List<Ksiazka> findAll() {
         return super.findAll(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
+    @RolesAllowed("ModyfikacjaKsiazki")
     public Ksiazka find(Object id) {
         return super.find(id); //To change body of generated methods, choose Tools | Templates.
     }
@@ -71,7 +74,8 @@ public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFac
         return query.getResultList();
     }
     
-        @Override
+    @Override
+    @RolesAllowed({"ModyfikacjaKsiazki", "OznaczenieJakoNieaktywna"})
     public void edit(Ksiazka entity) throws KsiazkaException  {
         try {
             super.edit(entity); //To change body of generated methods, choose Tools | Templates.
@@ -80,6 +84,7 @@ public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFac
     }
 
     @Override
+    @RolesAllowed("DodanieKsiazki")
     public void create(Ksiazka entity) throws KsiazkaException  {
         try {
             super.create(entity); //To change body of generated methods, choose Tools | Templates.

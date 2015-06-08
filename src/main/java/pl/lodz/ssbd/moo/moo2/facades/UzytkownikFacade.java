@@ -11,6 +11,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.interceptor.Interceptors;
 import pl.lodz.ssbd.moo.moo2.*;
 import pl.lodz.ssbd.moo.moo.*;
 import pl.lodz.ssbd.facades.*;
@@ -19,12 +20,14 @@ import javax.persistence.PersistenceContext;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.exceptions.SSBD05Exception;
 import pl.lodz.ssbd.exceptions.UzytkownikException;
+import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 
 /**
  *
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Stateless(name="moo2Uzytkownik")
+@Interceptors({DziennikZdarzenInterceptor.class})
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements UzytkownikFacadeLocal {
 

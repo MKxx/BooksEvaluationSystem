@@ -7,7 +7,7 @@ package pl.lodz.ssbd.moo.moo2.endpoints;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
@@ -22,7 +22,7 @@ import pl.lodz.ssbd.moo.moo2.facades.UzytkownikFacadeLocal;
  *
  * @author Maciej
  */
-@Stateless
+@Stateful
 @Interceptors({DziennikZdarzenInterceptor.class})
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class MOO2Endpoint implements MOO2EndpointLocal {
