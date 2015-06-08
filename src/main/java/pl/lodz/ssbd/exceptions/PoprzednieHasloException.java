@@ -19,8 +19,8 @@ public class PoprzednieHasloException extends SSBD05Exception {
     }
 
     /**
-     * Constructs an instance of <code>PoprzednieHasloException</code> with the
-     * specified detail message.
+     * Wyjątek jest rzucany wtedy gdy próbujemy ustawic haslo, na jedno z wczesniej wykorzystywanych hasel.
+     * 
      *
      * @param msg the detail message.
      */

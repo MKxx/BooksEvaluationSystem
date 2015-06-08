@@ -19,8 +19,8 @@ public class UzytkownikException extends SSBD05Exception {
     }
 
     /**
-     * Constructs an instance of <code>UzytkownikException</code> with the
-     * specified detail message.
+     * Wyjątek rzucany, podczas toworzenia lub edycji użytkownika, gdy jeden z parametrów jest nie do przyjęcia.
+     * 
      *
      * @param msg the detail message.
      */

@@ -19,8 +19,7 @@ public class KsiazkaException extends SSBD05Exception {
     }
 
     /**
-     * Constructs an instance of <code>KsiazkaException</code> with the
-     * specified detail message.
+     * Wyjątek rzucay w przypadku problemów z edycją encji książka.
      *
      * @param msg the detail message.
      */

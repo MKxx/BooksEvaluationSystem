@@ -19,8 +19,7 @@ public class PoziomDostepuException extends SSBD05Exception {
     }
 
     /**
-     * Constructs an instance of <code>PoziomDostepuException</code> with the
-     * specified detail message.
+     * Wjątek rzucany w przypadku problemów z edycją poziomu dostępu.
      *
      * @param msg the detail message.
      */

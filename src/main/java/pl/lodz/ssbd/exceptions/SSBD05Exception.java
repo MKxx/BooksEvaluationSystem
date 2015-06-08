@@ -22,8 +22,8 @@ public class SSBD05Exception extends Exception {
     }
 
     /**
-     * Constructs an instance of <code>SSBD05Exception</code> with the specified
-     * detail message.
+     * Klasa bazowa dla wszystkich rzucanych wyjątków.
+     * 
      *
      * @param msg the detail message.
      */
