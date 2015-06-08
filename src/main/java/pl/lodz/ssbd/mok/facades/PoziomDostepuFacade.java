@@ -31,16 +31,6 @@ import pl.lodz.ssbd.facades.AbstractFacade;
 public class PoziomDostepuFacade extends AbstractFacade<PoziomDostepu> implements PoziomDostepuFacadeLocal {
 
     @Override
-    public int count() {
-        return super.count(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<PoziomDostepu> findRange(int[] range) {
-        return super.findRange(range); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List<PoziomDostepu> findAll() {
         return super.findAll(); //To change body of generated methods, choose Tools | Templates.
     }
@@ -49,12 +39,7 @@ public class PoziomDostepuFacade extends AbstractFacade<PoziomDostepu> implement
     public PoziomDostepu find(Object id) {
         return super.find(id); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public void remove(PoziomDostepu entity) {
-        super.remove(entity); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     @Override
     @RolesAllowed("NadanieOdebraniePoziomuDostepu")
     public void edit(PoziomDostepu entity) throws PoziomDostepuException{

@@ -22,19 +22,13 @@ public interface KsiazkaFacadeLocal {
 
     void edit(Ksiazka ksiazka) throws KsiazkaException;
 
-    void remove(Ksiazka ksiazka);
-
     Ksiazka find(Object id);
 
     List<Ksiazka> findAll();
-
-    List<Ksiazka> findRange(int[] range);
     
     List<Ksiazka> findUlubione(String login) throws KsiazkaException;
     
     List<Ksiazka> findNieaktywne();
-
-    int count();
 
     public List<Ksiazka> findAktywne();
     

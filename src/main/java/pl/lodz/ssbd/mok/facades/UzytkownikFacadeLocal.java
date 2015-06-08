@@ -23,15 +23,9 @@ public interface UzytkownikFacadeLocal {
 
     void edit(Uzytkownik uzytkownik) throws UzytkownikException;
 
-    void remove(Uzytkownik uzytkownik);
-
     Uzytkownik find(Object id);
 
     List<Uzytkownik> findAll();
-
-    List<Uzytkownik> findRange(int[] range);
-
-    int count();
 
     public Uzytkownik findByLogin(String username);
 

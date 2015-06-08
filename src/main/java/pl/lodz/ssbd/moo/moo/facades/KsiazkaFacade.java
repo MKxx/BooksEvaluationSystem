@@ -64,18 +64,6 @@ public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFac
     }
 
     @Override
-    @DenyAll
-    public int count() {
-        return super.count(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    @DenyAll
-    public List<Ksiazka> findRange(int[] range) {
-        return super.findRange(range); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List<Ksiazka> findAll() {
         return super.findAll(); //To change body of generated methods, choose Tools | Templates.
     }
@@ -84,14 +72,6 @@ public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFac
     @DenyAll
     public Ksiazka find(Object id) {
         return super.find(id); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-
-
-    @Override
-    @DenyAll
-    public void remove(Ksiazka entity) {
-        super.remove(entity); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

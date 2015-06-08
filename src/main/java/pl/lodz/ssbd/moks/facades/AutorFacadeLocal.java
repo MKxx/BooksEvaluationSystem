@@ -23,14 +23,8 @@ public interface AutorFacadeLocal {
 
     void edit(Autor autor) throws AutorException;
 
-    void remove(Autor autor);
-
     Autor find(Object id);
 
     List<Autor> findAll();
-
-    List<Autor> findRange(int[] range);
-
-    int count();
     
 }

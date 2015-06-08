@@ -55,19 +55,6 @@ public class AutorFacade extends AbstractFacade<Autor> implements AutorFacadeLoc
         } catch (SSBD05Exception ex) {
         }
     }
-
-    @Override
-    @DenyAll
-    public int count() {
-        return super.count(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    @DenyAll
-    public List<Autor> findRange(int[] range) {
-        return super.findRange(range); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     @DenyAll
     public List<Autor> findAll() {
@@ -78,12 +65,6 @@ public class AutorFacade extends AbstractFacade<Autor> implements AutorFacadeLoc
     @RolesAllowed({"DodanieOceny","ZmianaOceny"})
     public Autor find(Object id) {
         return super.find(id); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    @DenyAll
-    public void remove(Autor entity) {
-        super.remove(entity); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

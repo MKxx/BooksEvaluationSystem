@@ -24,16 +24,9 @@ public interface KsiazkaFacadeLocal {
 
     void edit(Ksiazka ksiazka) throws KsiazkaException;
 
-    void remove(Ksiazka ksiazka);
-
     Ksiazka find(Object id);
 
     List<Ksiazka> findAll();
-
-    List<Ksiazka> findRange(int[] range);
-    
-
-    int count();
 
     public List<Ksiazka> findAktywne();
     

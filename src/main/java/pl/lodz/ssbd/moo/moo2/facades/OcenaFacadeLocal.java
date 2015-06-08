@@ -25,14 +25,8 @@ public interface OcenaFacadeLocal {
 
     void edit(Ocena ocena) throws OcenaException;
 
-    void remove(Ocena ocena);
-
     Ocena find(Object id);
 
     List<Ocena> findAll();
-
-    List<Ocena> findRange(int[] range);
-
-    int count();
     
 }

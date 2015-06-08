@@ -63,18 +63,6 @@ public class OcenaFacade extends AbstractFacade<Ocena> implements OcenaFacadeLoc
     }
 
     @Override
-    @DenyAll
-    public int count() {
-        return super.count(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    @DenyAll
-    public List<Ocena> findRange(int[] range) {
-        return super.findRange(range); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     @PermitAll
     public List<Ocena> findAll() {
         return super.findAll(); //To change body of generated methods, choose Tools | Templates.
@@ -84,12 +72,6 @@ public class OcenaFacade extends AbstractFacade<Ocena> implements OcenaFacadeLoc
     @DenyAll
     public Ocena find(Object id) {
         return super.find(id); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    @DenyAll
-    public void remove(Ocena entity) {
-        super.remove(entity); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

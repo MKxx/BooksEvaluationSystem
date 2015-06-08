@@ -24,14 +24,8 @@ public interface PoziomDostepuFacadeLocal {
     
     void edit(PoziomDostepu poziomDostepu) throws PoziomDostepuException;
 
-    void remove(PoziomDostepu poziomDostepu);
-
     PoziomDostepu find(Object id);
 
     List<PoziomDostepu> findAll();
-
-    List<PoziomDostepu> findRange(int[] range);
-
-    int count();
     
 }

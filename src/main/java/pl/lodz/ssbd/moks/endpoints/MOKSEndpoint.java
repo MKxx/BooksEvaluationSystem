@@ -26,11 +26,8 @@ import pl.lodz.ssbd.entities.Autor;
 import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.exceptions.KsiazkaException;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
-import pl.lodz.ssbd.mok.endpoints.MOKEndpoint;
 import pl.lodz.ssbd.moks.facades.AutorFacadeLocal;
-import pl.lodz.ssbd.moks.facades.KsiazkaFacade;
 import pl.lodz.ssbd.moks.facades.KsiazkaFacadeLocal;
-import pl.lodz.ssbd.moks.facades.UzytkownikFacadeLocal;
 
 /**
  *
@@ -43,8 +40,6 @@ public class MOKSEndpoint implements MOKSEndpointLocal, SessionSynchronization {
     
     @EJB(beanName = "moksKsiazka")
     private KsiazkaFacadeLocal ksiazkaFacade;
-    @EJB(beanName = "moksUzytkownik")
-    private UzytkownikFacadeLocal uzytkownikFacade;
     @EJB(beanName = "moksAutor")
     private AutorFacadeLocal autorFacade;
     private Ksiazka edytowanaKsiazka;

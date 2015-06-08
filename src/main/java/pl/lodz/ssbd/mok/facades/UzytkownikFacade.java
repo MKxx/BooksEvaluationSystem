@@ -50,16 +50,6 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
     }
 
     @Override
-    public int count() {
-        return super.count(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Uzytkownik> findRange(int[] range) {
-        return super.findRange(range); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List<Uzytkownik> findAll() {
         return super.findAll(); //To change body of generated methods, choose Tools | Templates.
     }
@@ -68,11 +58,6 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
     @DenyAll
     public Uzytkownik find(Object id) {
         return super.find(id); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void remove(Uzytkownik entity) {
-        super.remove(entity); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
