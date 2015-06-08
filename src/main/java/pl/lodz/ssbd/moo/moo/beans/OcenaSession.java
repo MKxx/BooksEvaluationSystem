@@ -51,7 +51,7 @@ public class OcenaSession implements Serializable {
         MOO2Endpoint.zmienOcene(id_ksiazki, ocena, login);
     }
 
-    void ocen(long id_ksiazka, int ocena, String login) throws UzytkownikException, OcenaException {
+    void ocen(long id_ksiazka, int ocena, String login) throws UzytkownikException, OcenaException, KsiazkaException {
         MOO2Endpoint.ocenKsiazke(id_ksiazka, ocena, login);
     }
 }

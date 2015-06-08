@@ -17,6 +17,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.inject.Inject;
 import pl.lodz.ssbd.entities.Ksiazka;
@@ -31,7 +32,7 @@ import pl.lodz.ssbd.utils.SprawdzaczRoli;
  * @author Maciej
  */
 @Named(value = "listaKsiazekPageBeanMOO")
-@RequestScoped
+@ViewScoped
 public class ListaKsiazekPageBean implements Serializable {
 
 
@@ -106,7 +107,7 @@ public class ListaKsiazekPageBean implements Serializable {
         return SprawdzaczRoli.sprawdzRole(rbl.getString("rola.user"));
     }
     
-    public void ocen(long id_ksiazka) throws UzytkownikException, OcenaException{
+    public void ocen(long id_ksiazka) throws UzytkownikException, OcenaException, KsiazkaException {
         String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
         ocenaSession.ocen(id_ksiazka,ocena, login);
     }
@@ -114,7 +115,6 @@ public class ListaKsiazekPageBean implements Serializable {
     @RolesAllowed("DodanieDoUlubionych")
     public String dodajDoUlub(long idKsiazki) {
         if (sprawdzCzyOceniona(ksiazkiDataModel.getRowData().getIdKsiazka()) == true) {
-
             String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
             for (Ocena ocena : ocenyList) {
                 if (ocena.getIdKsiazka().getIdKsiazka() == idKsiazki && ocena.getIdUzytkownik().getLogin().equals(login)) {

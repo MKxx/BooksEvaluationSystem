@@ -6,6 +6,8 @@
 package pl.lodz.ssbd.moo.moo2.endpoints;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -43,7 +45,8 @@ public class MOO2Endpoint implements MOO2EndpointLocal {
     private UzytkownikFacadeLocal uzytkownikFacade;
 
     @RolesAllowed("DodanieOceny")
-    public void ocenKsiazke(long id_ksiazka, int wartosc, String login) throws UzytkownikException, OcenaException{
+    @Override
+    public void ocenKsiazke(long id_ksiazka, int wartosc, String login) throws UzytkownikException, OcenaException, KsiazkaException {
         Ocena ocena = new Ocena();
         ocena.setIdKsiazka(ksiazkaFacade.find(id_ksiazka));
         ocena.setIdUzytkownik(uzytkownikFacade.findByLogin(login));
@@ -56,15 +59,18 @@ public class MOO2Endpoint implements MOO2EndpointLocal {
         for (Ocena o : ocena.getIdKsiazka().getOcenaList()) {
             suma = suma + o.getOcena();
         }
-        ocena.getIdKsiazka().setSredniaOcen(new BigDecimal(suma / ocena.getIdKsiazka().getOcenaList().size()));
+        ocena.getIdKsiazka().setSredniaOcen(new BigDecimal((double) suma / ocena.getIdKsiazka().getOcenaList().size()));
+        ksiazkaFacade.edit(ocena.getIdKsiazka());
         for (Autor a : ocena.getIdKsiazka().getAutorList()) {
             BigDecimal licznik = BigDecimal.ZERO;
-            double mianownik = 0;
+            BigDecimal mianownik = BigDecimal.ZERO;
             for (Ksiazka k : a.getKsiazkaList()) {
-                mianownik = mianownik + 1 / (k.getIloscAutorow());
-                licznik.add(k.getSredniaOcen().multiply(BigDecimal.valueOf(k.getIloscAutorow())));
+                if (k.getSredniaOcen() != null) {
+                    mianownik = mianownik.add(BigDecimal.valueOf(1.0/(k.getIloscAutorow())));
+                    licznik=licznik.add(k.getSredniaOcen().multiply(BigDecimal.valueOf(1.0/k.getIloscAutorow())));
+                }
             }
-            a.setSrOcena(licznik.divide(BigDecimal.valueOf(mianownik)));
+            a.setSrOcena(licznik.divide(mianownik, new MathContext(10)));
         }
     }
 
@@ -85,12 +91,14 @@ public class MOO2Endpoint implements MOO2EndpointLocal {
         ksiazkaFacade.edit(newOcena.getIdKsiazka());
         for (Autor a : newOcena.getIdKsiazka().getAutorList()) {
             BigDecimal licznik = BigDecimal.ZERO;
-            double mianownik = 0;
+            BigDecimal mianownik = BigDecimal.ZERO;
             for (Ksiazka k : a.getKsiazkaList()) {
-                mianownik = mianownik + 1 / (k.getIloscAutorow());
-                licznik.add(k.getSredniaOcen().multiply(BigDecimal.valueOf(k.getIloscAutorow())));
+                if (k.getSredniaOcen() != null) {
+                     mianownik = mianownik.add(BigDecimal.valueOf(1.0/(k.getIloscAutorow())));
+                     licznik=licznik.add(k.getSredniaOcen().multiply(BigDecimal.valueOf(1.0/k.getIloscAutorow())));
+                }
             }
-            a.setSrOcena(licznik.divide(BigDecimal.valueOf(mianownik)));
+            a.setSrOcena(licznik.divide(mianownik, new MathContext(10)));
         }
     }
 }

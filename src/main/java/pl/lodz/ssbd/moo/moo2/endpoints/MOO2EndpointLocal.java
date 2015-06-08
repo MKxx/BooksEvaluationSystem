@@ -19,5 +19,5 @@ import pl.lodz.ssbd.exceptions.UzytkownikException;
 public interface MOO2EndpointLocal {
     public void zmienOcene(long id_ksiazka, int ocena, String login) throws OcenaException, KsiazkaException, UzytkownikException;
 
-    public void ocenKsiazke(long id_ksiazka, int ocena, String login) throws OcenaException, UzytkownikException;
+    public void ocenKsiazke(long id_ksiazka, int ocena, String login) throws OcenaException, UzytkownikException, KsiazkaException;
 }
