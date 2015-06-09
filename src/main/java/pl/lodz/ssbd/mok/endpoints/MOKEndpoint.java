@@ -48,6 +48,7 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     private UzytkownikFacadeLocal uzytkownikFacade;
     @EJB(beanName = "mokPD")
     private PoziomDostepuFacadeLocal poziomDostepuFacade;
+    private List<Uzytkownik> uzytkownicyDostepowi;
     private Uzytkownik uzytkownikEdycja;
     private String hasloPrzedEdycja;
     private long IDTransakcji;
@@ -86,28 +87,47 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     @Override
     @RolesAllowed("WyswietlaniePaneluAdmina")
     public List<Uzytkownik> pobierzUzytkownikow(String wartosc) {
-        return uzytkownikFacade.findByImieiNazwisko(wartosc);
+        uzytkownicyDostepowi = uzytkownikFacade.findByImieiNazwisko(wartosc);
+        return uzytkownicyDostepowi;
     }
 
     @Override
     @RolesAllowed("AutoryzacjaKonta")
     public void potwierdzUzytkownika(Uzytkownik uzytkownik) throws UzytkownikException{
-        uzytkownik.setPotwierdzony(true);
-        uzytkownikFacade.edit(uzytkownik);
+        Uzytkownik uz = null;
+        if(uzytkownicyDostepowi.contains(uzytkownik)){
+            uz = uzytkownicyDostepowi.get(uzytkownicyDostepowi.indexOf(uzytkownik));
+        } else {
+            throw new IllegalArgumentException("Modyfikowany uzytkownik niezgodny z wczytanym");
+        }
+        uz.setPotwierdzony(true);
+        uzytkownikFacade.edit(uz);
     }
 
     @Override
     @RolesAllowed("BlokowanieOdblokowanieUzytkownia")
     public void zablokujUzytkownika(Uzytkownik uzytkownik) throws UzytkownikException {
-        uzytkownik.setAktywny(false);
-        uzytkownikFacade.edit(uzytkownik);
+        Uzytkownik uz = null;
+        if(uzytkownicyDostepowi.contains(uzytkownik)){
+            uz = uzytkownicyDostepowi.get(uzytkownicyDostepowi.indexOf(uzytkownik));
+        } else {
+            throw new IllegalArgumentException("Modyfikowany uzytkownik niezgodny z wczytanym");
+        }
+        uz.setAktywny(false);
+        uzytkownikFacade.edit(uz);
     }
 
     @Override
     @RolesAllowed("BlokowanieOdblokowanieUzytkownia")
     public void odblokujUzytkownika(Uzytkownik uzytkownik) throws UzytkownikException {
-        uzytkownik.setAktywny(true);
-        uzytkownikFacade.edit(uzytkownik);
+        Uzytkownik uz = null;
+        if(uzytkownicyDostepowi.contains(uzytkownik)){
+            uz = uzytkownicyDostepowi.get(uzytkownicyDostepowi.indexOf(uzytkownik));
+        } else {
+            throw new IllegalArgumentException("Modyfikowany uzytkownik niezgodny z wczytanym");
+        }
+        uz.setAktywny(true);
+        uzytkownikFacade.edit(uz);
     }
 
     @Override
@@ -142,11 +162,10 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     }
 
     @Override
-    @RolesAllowed("ModyfikowanieDanychCudzegoKonta")
+    @RolesAllowed({"ModyfikowanieDanychCudzegoKonta", "NadanieOdebraniePoziomuDostepu"})
     public Uzytkownik pobierzUzytkownikaDoEdycji(String login) {
         uzytkownikEdycja = uzytkownikFacade.findByLogin(login);
         hasloPrzedEdycja = uzytkownikEdycja.getHasloMd5();
-        System.out.println(uzytkownikEdycja.getImie());
         return uzytkownikEdycja;
     }
 
@@ -182,16 +201,28 @@ public class MOKEndpoint implements MOKEndpointLocal, SessionSynchronization {
     @Override
     @RolesAllowed("NadanieOdebraniePoziomuDostepu")
     public void nadajPoziom(PoziomDostepu poziom) throws PoziomDostepuException {
-        poziom.setAktywny(true);
-        poziomDostepuFacade.edit(poziom);
+        PoziomDostepu pd = null;
+        if(uzytkownikEdycja.getPoziomDostepuList().contains(poziom)){
+            pd = uzytkownikEdycja.getPoziomDostepuList().get(uzytkownikEdycja.getPoziomDostepuList().indexOf(poziom));
+        } else {
+            throw new IllegalArgumentException("Modyfikowany poziom niezgodny z wczytanym");
+        }
+        pd.setAktywny(true);
+        poziomDostepuFacade.edit(pd);
 
     }
 
     @Override
     @RolesAllowed("NadanieOdebraniePoziomuDostepu")
     public void odbierzPoziom(PoziomDostepu poziom) throws PoziomDostepuException {
-        poziom.setAktywny(false);
-        poziomDostepuFacade.edit(poziom);
+        PoziomDostepu pd = null;
+        if(uzytkownikEdycja.getPoziomDostepuList().contains(poziom)){
+            pd = uzytkownikEdycja.getPoziomDostepuList().get(uzytkownikEdycja.getPoziomDostepuList().indexOf(poziom));
+        } else {
+            throw new IllegalArgumentException("Modyfikowany poziom niezgodny z wczytanym");
+        }
+        pd.setAktywny(false);
+        poziomDostepuFacade.edit(pd);
     }
 
     @Override
