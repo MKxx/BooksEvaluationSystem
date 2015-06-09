@@ -61,7 +61,7 @@ public class OcenaFacade extends AbstractFacade<Ocena> implements OcenaFacadeLoc
         try {
             super.create(entity); //To change body v generated methods, choose Tools | Templates.
         } catch (SSBD05Exception ex) {
-            throw new OcenaException();
+            throw new OcenaException("exceptions.ocena.istnieje");
         }
     }
 

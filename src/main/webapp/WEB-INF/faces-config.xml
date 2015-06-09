@@ -48,6 +48,27 @@
             <redirect />
         </navigation-case>
     </navigation-rule>
+      <navigation-rule>
+        <navigation-case>
+            <from-outcome>uzytkowniknieistnieje</from-outcome>
+            <to-view-id>uzytkowniknieistnieje.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>ocenaistnieje</from-outcome>
+            <to-view-id>ocenaistnieje.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>ocenanieistnieje</from-outcome>
+            <to-view-id>ocenanieistnieje.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
     <navigation-rule>
         <navigation-case>
             <from-outcome>wylogowano</from-outcome>

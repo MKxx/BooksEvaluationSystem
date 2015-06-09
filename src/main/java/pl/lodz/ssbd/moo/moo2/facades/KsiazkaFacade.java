@@ -46,7 +46,7 @@ public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFac
         try {
             super.edit(entity); //To change body of generated methods, choose Tools | Templates.
         } catch (SSBD05Exception ex) {
-            throw new KsiazkaException();
+            throw new KsiazkaException("exceptions.ksiazka.concurrent");
         }
     }
 
