@@ -110,6 +110,7 @@ public class ListaKsiazekPageBean implements Serializable {
     public void ocen(long id_ksiazka) throws UzytkownikException, OcenaException, KsiazkaException {
         String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
         ocenaSession.ocen(id_ksiazka,ocena, login);
+        initModel();
     }
     
     @RolesAllowed("DodanieDoUlubionych")
@@ -136,6 +137,18 @@ public class ListaKsiazekPageBean implements Serializable {
     public void zmienOcene(long id_ksiazka) throws OcenaException, KsiazkaException, UzytkownikException{
         String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
         ocenaSession.zmienOcene(id_ksiazka,ocena, login);
+        initModel();
+    }
+    
+    public String pokazMojaOcene(long idKsiazki){
+        String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+        for(Ocena ocena : ocenyList){
+            if(ocena.getIdKsiazka().getIdKsiazka()==idKsiazki&&ocena.getIdUzytkownik().getLogin().equals(login)){
+                return String.valueOf(ocena.getOcena());
+            }
+        }
+        return " ---";
+        
     }
     
 }

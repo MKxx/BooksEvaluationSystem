@@ -87,7 +87,7 @@ public class MOO2Endpoint implements MOO2EndpointLocal {
         for (Ocena o : newOcena.getIdKsiazka().getOcenaList()) {
             suma = suma + o.getOcena();
         }
-        newOcena.getIdKsiazka().setSredniaOcen(new BigDecimal(suma / newOcena.getIdKsiazka().getOcenaList().size()));
+        newOcena.getIdKsiazka().setSredniaOcen(new BigDecimal((double) suma / newOcena.getIdKsiazka().getOcenaList().size()));
         ksiazkaFacade.edit(newOcena.getIdKsiazka());
         for (Autor a : newOcena.getIdKsiazka().getAutorList()) {
             BigDecimal licznik = BigDecimal.ZERO;

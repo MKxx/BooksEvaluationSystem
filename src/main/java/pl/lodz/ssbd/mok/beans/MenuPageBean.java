@@ -34,7 +34,6 @@ public class MenuPageBean {
     
     public boolean getIsGosc(){
         if(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser() == null){
-            System.out.println("nie ma usera");
             return true;
         }
         return false;
