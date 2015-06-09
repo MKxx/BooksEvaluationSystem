@@ -10,6 +10,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import pl.lodz.ssbd.entities.Autor;
+import pl.lodz.ssbd.exceptions.AutorException;
 import pl.lodz.ssbd.moa.endpoints.MOAEndpointLocal;
 /**
  *
@@ -20,7 +21,15 @@ public class AutorSession implements Serializable {
     @EJB
     MOAEndpointLocal MOAEndpoint;
     
+    private Autor edytowanyAutor;
     
+    public void setEdytowanyAutor(Autor EdytowanyAutor){
+        this.edytowanyAutor = EdytowanyAutor;
+    }
+    
+    public Autor getEdytowanyAutor(){
+        return this.edytowanyAutor;
+    }
     
     public AutorSession() {
     }
@@ -37,6 +46,14 @@ public class AutorSession implements Serializable {
 
     void dodajAutora(Autor autor) {
          MOAEndpoint.dodajAutora(autor);
+    }
+    
+    void zapiszAutoraDoEdycji() throws AutorException {
+        MOAEndpoint.edytujAutora(edytowanyAutor);
+    }
+
+    void pobierzAutoraDoEdycji(long id) {
+        edytowanyAutor = MOAEndpoint.pobierzAutoraDoEdycji(id);
     }
     
 }
