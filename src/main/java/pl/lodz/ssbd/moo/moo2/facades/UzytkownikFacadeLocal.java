@@ -24,4 +24,10 @@ public interface UzytkownikFacadeLocal {
 
     List<Uzytkownik> findAll();
 
+    List<Uzytkownik> findRange(int[] range);
+
+    int count();
+    
+    public Uzytkownik findByLogin(String username) throws UzytkownikException;
+    
 }

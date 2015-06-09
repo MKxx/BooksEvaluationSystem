@@ -7,6 +7,7 @@ package pl.lodz.ssbd.moo.moo2.facades;
 
 import java.util.List;
 import javax.annotation.security.DenyAll;
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -16,7 +17,9 @@ import pl.lodz.ssbd.moo.moo2.*;
 import pl.lodz.ssbd.moo.moo.*;
 import pl.lodz.ssbd.facades.*;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.exceptions.SSBD05Exception;
 import pl.lodz.ssbd.exceptions.UzytkownikException;
@@ -74,4 +77,27 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
     public Uzytkownik find(Object id) {
         return super.find(id); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    @DenyAll
+    public void remove(Uzytkownik entity) {
+        super.remove(entity); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    @RolesAllowed("ZmianaOceny")
+    public Uzytkownik findByLogin(String login) throws UzytkownikException{
+        Query q = em.createNamedQuery("Uzytkownik.findByLogin");
+        q.setParameter("login", login);
+        try {
+            return (Uzytkownik) q.getSingleResult();
+        } catch (NoResultException ex) {
+            throw new UzytkownikException("exceptions.uzytkownik.brakuzytkownika");
+       }
+    }
+
+    private Exception UzytkownikException(String exceptionsuzytkownikbrakuzytkownika) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

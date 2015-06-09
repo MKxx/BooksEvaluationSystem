@@ -7,6 +7,9 @@ package pl.lodz.ssbd.moo.moo2.endpoints;
 
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Ksiazka;
+import pl.lodz.ssbd.exceptions.KsiazkaException;
+import pl.lodz.ssbd.exceptions.OcenaException;
+import pl.lodz.ssbd.exceptions.UzytkownikException;
 
 /**
  *
@@ -14,7 +17,7 @@ import pl.lodz.ssbd.entities.Ksiazka;
  */
 @Local
 public interface MOO2EndpointLocal {
-    public void ocenKsiazke(Ksiazka ksiazka);
-    public void zmienOcene(Ksiazka ksiazka);
-    
+    public void zmienOcene(long id_ksiazka, int ocena, String login) throws OcenaException, KsiazkaException, UzytkownikException;
+
+    public void ocenKsiazke(long id_ksiazka, int ocena, String login) throws OcenaException, UzytkownikException, KsiazkaException;
 }
