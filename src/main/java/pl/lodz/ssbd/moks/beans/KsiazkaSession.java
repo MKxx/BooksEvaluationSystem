@@ -22,6 +22,9 @@ import pl.lodz.ssbd.moks.endpoints.MOKSEndpointLocal;
  */
 @Named(value = "ksiazkaSession")
 @SessionScoped
+/**
+ * Bean sesyjny dla ksiazki
+ */
 public class KsiazkaSession implements Serializable {
 
     /**
@@ -53,14 +56,28 @@ public class KsiazkaSession implements Serializable {
         return MOKSEndpoint.pobierzKsiazki();
     }
 
+    /**
+     * pobiera liste autorow
+     * @return autorzy
+     */
     List<Autor> pobierzAutorow() {
         return MOKSEndpoint.pobierzAutorow();
     }
 
+    /**
+     * Tworzy książkę
+     * @param ksiazka ksiazka do stworzenia
+     * @param wybraniAutorzy autorzy ksiazki
+     */
     void stworzKsiazke(Ksiazka ksiazka, List<String> wybraniAutorzy) {
         MOKSEndpoint.dodajKsiazke(ksiazka, wybraniAutorzy);
     }
     
+    /**
+     * Pobiera ulubione ksiazki
+     * @param login login uzytkownika
+     * @return lista uulubionych ksiazek badz null w przypadku błędu
+     */
     @RolesAllowed("WyswietlanieListyUlubionych")
     public List<Ksiazka> pobierzUlubione(String login) {
         try {
@@ -71,19 +88,35 @@ public class KsiazkaSession implements Serializable {
         }
     }
 
-    
+    /**
+     * Pobiera nieaktywne ksaizki
+     * @return lista ksiazek nieaktywnych
+     */
     @RolesAllowed("WyswietlenieNieaktywnych")
     public List<Ksiazka> pobierzNieaktywneKsiazki(){
         return MOKSEndpoint.pobierzKsiazkiNieaktywne();
     }
+    /**
+     * oznacza ksiazke jako nieaktywna
+     * @param ksiazka ksiazka do oznaczenia
+     * @throws KsiazkaException wyjatek w przypadku niepowodzenia
+     */
     public void oznaczJakoNieaktywna(Ksiazka ksiazka) throws KsiazkaException{
         MOKSEndpoint.oznaczKsiazkeJakoNieaktywna(ksiazka);
     }
 
+    /**
+     * Edytuje ksiazke
+     * @throws KsiazkaException wyjatek w przypadku niepowodzenia
+     */
     void zapiszKsiazkePoEdycji() throws KsiazkaException {
         MOKSEndpoint.edytujKsiazke(edytowanaKsiazka);
     }
 
+    /**
+     * pobiera ksiazke do edycji i zapisuje w polu edytowanaKsiazka
+     * @param id id ksiazki do edycji
+     */
     void pobierzKsiazkeDoEdycji(long id) {
         edytowanaKsiazka = MOKSEndpoint.pobierzKsiazkeDoEdycji(id);
     }

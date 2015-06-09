@@ -25,6 +25,9 @@ import pl.lodz.ssbd.entities.Ksiazka;
  */
 @Named(value = "listaulubionychPageBean")
 @ViewScoped
+/**
+ * Page Bean dla listy ulubionych ksiazek
+ */
 public class ListaUlubionychPageBean  implements Serializable{
 
     @Inject
@@ -43,6 +46,10 @@ public class ListaUlubionychPageBean  implements Serializable{
     public ListaUlubionychPageBean () {
         
     }
+    
+    /**
+     * Inicjuje liste ksiazek
+     */
     @PostConstruct
     @RolesAllowed("WyswietlanieListyUlubionych")
     public void initModel() {

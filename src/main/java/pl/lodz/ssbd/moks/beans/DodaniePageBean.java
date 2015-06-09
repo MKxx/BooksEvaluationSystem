@@ -24,6 +24,9 @@ import pl.lodz.ssbd.entities.Ksiazka;
  */
 @Named(value = "dodaniePageBean")
 @ViewScoped
+/**
+ * PageBean dla strony dodania ksiazki
+ */
 public class DodaniePageBean implements Serializable {
 
     @Inject
@@ -53,6 +56,9 @@ public class DodaniePageBean implements Serializable {
         
     }
     
+    /**
+     * Funkcja inicjalizujaca liste autorów
+     */
     @PostConstruct
     private void initAutorzy(){
         autorzyTemp= ksiazkaSession.pobierzAutorow();
@@ -65,6 +71,10 @@ public class DodaniePageBean implements Serializable {
         return ksiazka;
     }
     
+    /**
+     * Funkcja tworząca książke
+     * @return String przekierowujacy do strony z komunikatem o powodzeniu
+     */
     public String stworzKsiazke(){
         ksiazkaSession.stworzKsiazke(ksiazka, wybraniAutorzy);
         return "sukcesStworz";

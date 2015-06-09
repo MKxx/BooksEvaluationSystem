@@ -23,6 +23,9 @@ import pl.lodz.ssbd.exceptions.KsiazkaException;
  */
 @Named(value = "listaKsiazekPageBean")
 @RequestScoped
+/**
+ * Page Bean dla listy ksiazek moderatorskich
+ */
 public class ListaKsiazekPageBean implements Serializable {
 
     /**
@@ -47,6 +50,9 @@ public class ListaKsiazekPageBean implements Serializable {
         
     }
     
+    /**
+     * Inicjuje liste ksiazek
+     */
     @PostConstruct
     @RolesAllowed("PrzegladanieKsiazekModeratorski")
     private void initModel(){
@@ -54,6 +60,10 @@ public class ListaKsiazekPageBean implements Serializable {
         ksiazkiDataModel = new ListDataModel<>(ksiazki);
     }
     
+    /**
+     * oznacz ksiazke jako nieaktywna
+     * @return String z wartoscia przekierowania
+     */
     public String oznaczJakoNieaktywna(){
         try {
         ksiazkaSession.oznaczJakoNieaktywna(ksiazkiDataModel.getRowData());
@@ -66,6 +76,10 @@ public class ListaKsiazekPageBean implements Serializable {
         }
     }
     
+    /**
+     * Edytuj ksiazke
+     * @return String z wartoscia przekierowania
+     */
     public String edytuj(){
         ksiazkaSession.pobierzKsiazkeDoEdycji(ksiazkiDataModel.getRowData().getIdKsiazka());
         return "edytujksiazke";
