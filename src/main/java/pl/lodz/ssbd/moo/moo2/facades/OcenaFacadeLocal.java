@@ -31,10 +31,6 @@ public interface OcenaFacadeLocal {
 
     List<Ocena> findAll();
 
-    List<Ocena> findRange(int[] range);
-
-    int count();
-
     public Ocena findByKsiazkaAndLogin(Ksiazka ksiazka, Uzytkownik uzytkownik);
     
 }
