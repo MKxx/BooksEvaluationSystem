@@ -6,7 +6,6 @@
 package pl.lodz.ssbd.moo.moo2.facades;
 
 import java.util.List;
-import java.util.logging.Level;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.RolesAllowed;
 import pl.lodz.ssbd.facades.*;
@@ -78,6 +77,12 @@ public class OcenaFacade extends AbstractFacade<Ocena> implements OcenaFacadeLoc
         return super.find(id); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Metoda znajdująca ocenę dla danego użytkownika i podanej książki
+     * @param ksiazka książka 
+     * @param uzytkownik uzytkownik
+     * @return ocena dla podanej ksiazki dla danego uzytkownika
+     */
     @Override
     @RolesAllowed("ZmianaOceny")
     public Ocena findByKsiazkaAndLogin(Ksiazka ksiazka, Uzytkownik uzytkownik) {

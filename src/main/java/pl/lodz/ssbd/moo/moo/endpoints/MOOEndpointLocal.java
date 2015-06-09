@@ -18,9 +18,24 @@ import pl.lodz.ssbd.exceptions.OcenaException;
  */
 @Local
 public interface MOOEndpointLocal {
+     /**
+     * Metoda zwracająca listę aktywnych książek
+     * @return lista aktywnych książek
+     */
     public List<Ksiazka> pobierzKsiazki();
+
+    /**
+     * Metoda dodająca książkę do ulubionych 
+     * Należy zauważyć, że u nas jest to rozwiązane w dośc oryginaly sposób
+     * @param ocena która zawiera ksiązkę, którą użytkownik chce dodać do ulubionych.
+     * @throws OcenaException 
+     */
     public void dodajDoUlubionych(Ocena ocena) throws OcenaException;
 
+     /**
+     * Metoda pobierająca wszystkie oceny
+     * @return lista wszystkich ocen
+     */
     public List<Ocena> pobierzOceny();
     
 }

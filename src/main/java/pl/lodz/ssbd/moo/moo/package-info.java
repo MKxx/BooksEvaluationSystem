@@ -1,6 +1,4 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Moduł Obsługi Ocen wersja 1 Poziom Izolacji: Read-Commited.
  */
 package pl.lodz.ssbd.moo.moo;

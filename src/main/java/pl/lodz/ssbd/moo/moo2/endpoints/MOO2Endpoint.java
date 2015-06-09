@@ -7,7 +7,6 @@ package pl.lodz.ssbd.moo.moo2.endpoints;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.math.RoundingMode;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
@@ -21,13 +20,12 @@ import pl.lodz.ssbd.exceptions.KsiazkaException;
 import pl.lodz.ssbd.exceptions.OcenaException;
 import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
-import pl.lodz.ssbd.moo.moo2.facades.AutorFacadeLocal;
 import pl.lodz.ssbd.moo.moo2.facades.KsiazkaFacadeLocal;
 import pl.lodz.ssbd.moo.moo2.facades.OcenaFacadeLocal;
 import pl.lodz.ssbd.moo.moo2.facades.UzytkownikFacadeLocal;
 
 /**
- *
+ * Endpoint transakcyjny o poziomie izolacji: Serializable
  * @author Maciej
  */
 @Stateful
@@ -39,11 +37,18 @@ public class MOO2Endpoint implements MOO2EndpointLocal {
     private KsiazkaFacadeLocal ksiazkaFacade;
     @EJB(beanName = "moo2Ocena")
     private OcenaFacadeLocal ocenaFacade;
-    @EJB(beanName = "moo2Autor")
-    private AutorFacadeLocal autorFacade;
     @EJB(beanName = "moo2Uzytkownik")
     private UzytkownikFacadeLocal uzytkownikFacade;
 
+    /**
+     * Metoda dodająca ocenę
+     * @param id_ksiazka id książki wskazanej przez użytkownika
+     * @param wartosc wartość oceny jaką wskazał użytkownia (1-5)
+     * @param login login użytkownika który ocenia książkę.
+     * @throws UzytkownikException jeśli użytkownik nie istnieje
+     * @throws OcenaException jeśli ocena JUŻ istnieje
+     * @throws KsiazkaException  jeśli książka została zmodyfikowana podczas oceny (OptimistickLock).
+     */
     @RolesAllowed("DodanieOceny")
     @Override
     public void ocenKsiazke(long id_ksiazka, int wartosc, String login) throws UzytkownikException, OcenaException, KsiazkaException {
@@ -74,6 +79,15 @@ public class MOO2Endpoint implements MOO2EndpointLocal {
         }
     }
 
+    /**
+     * Metoda zmieniająca ocenę dla danej ksiązki 
+     * @param id_ksiazka id ksiązki wskazanej przez użytkownika
+     * @param ocena wartośc oceny jaką wskazał użytkownik (1-5)
+     * @param login login użytkownika który dokonuje zmiany oceny
+     * @throws OcenaException wyjątek przy jednoczesnej modyfikacji, bądź w przypadku braku oceny.
+     * @throws KsiazkaException wyjątek w przypadku modyfikacji książki
+     * @throws UzytkownikException wyjątek rzucany w przypaku braku użytkownika
+     */
     @Override
     @RolesAllowed("ZmianaOceny")
     public void zmienOcene(long id_ksiazka, int ocena, String login) throws OcenaException, KsiazkaException, UzytkownikException {

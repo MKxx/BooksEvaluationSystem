@@ -23,7 +23,13 @@ public interface UzytkownikFacadeLocal {
     Uzytkownik find(Object id);
 
     List<Uzytkownik> findAll();
-    
+
+    /**
+     * Metoda znajdująca użytkownika o podanym loginie
+     * @param username
+     * @return uzytkownik
+     * @throws UzytkownikException jeśli nie ma takiego użytkownika
+     */
     public Uzytkownik findByLogin(String username) throws UzytkownikException;
     
 }

@@ -6,12 +6,8 @@
 package pl.lodz.ssbd.moo.moo2.facades;
 
 import java.util.List;
-import java.util.logging.Level;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.RolesAllowed;
-import pl.lodz.ssbd.moo.moo2.*;
-import pl.lodz.ssbd.moo.moo.*;
-import pl.lodz.ssbd.moo.*;
 import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -25,7 +21,7 @@ import pl.lodz.ssbd.exceptions.SSBD05Exception;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 
 /**
- *
+ * Fasada dla encji Książka
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @Stateless(name="moo2Ksiazka")

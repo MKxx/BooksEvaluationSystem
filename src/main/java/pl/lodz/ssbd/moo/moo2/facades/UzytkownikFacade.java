@@ -75,11 +75,17 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
         return super.find(id); //To change body of generated methods, choose Tools | Templates.
     }
     
+    /**
+     * Metoda znajdująca użytkownika o podanym loginie
+     * @param username
+     * @return uzytkownik
+     * @throws UzytkownikException jeśli nie ma takiego użytkownika
+     */
     @Override
     @RolesAllowed("ZmianaOceny")
-    public Uzytkownik findByLogin(String login) throws UzytkownikException{
+    public Uzytkownik findByLogin(String username) throws UzytkownikException{
         Query q = em.createNamedQuery("Uzytkownik.findByLogin");
-        q.setParameter("login", login);
+        q.setParameter("login", username);
         try {
             return (Uzytkownik) q.getSingleResult();
         } catch (NoResultException ex) {

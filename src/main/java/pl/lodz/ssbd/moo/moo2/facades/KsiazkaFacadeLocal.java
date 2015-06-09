@@ -5,10 +5,6 @@
  */
 package pl.lodz.ssbd.moo.moo2.facades;
 
-import pl.lodz.ssbd.moo.moo2.*;
-import pl.lodz.ssbd.moo.moo.*;
-import pl.lodz.ssbd.moo.*;
-import pl.lodz.ssbd.facades.*;
 import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Ksiazka;

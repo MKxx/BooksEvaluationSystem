@@ -13,7 +13,6 @@ import java.util.ResourceBundle;
 import javax.annotation.PostConstruct;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
@@ -28,7 +27,7 @@ import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.utils.SprawdzaczRoli;
 
 /**
- *
+ * PageBean do obsługi zdarzeń
  * @author Maciej
  */
 @Named(value = "listaKsiazekPageBeanMOO")
@@ -51,6 +50,9 @@ public class ListaKsiazekPageBean implements Serializable {
     private int ocena;
     private static Map<String, Integer> oceny;
     
+    /**
+     * statyczne dodanie wartości 1,2,3,4 oraz 5 jako ocen.
+     */
     static{
         oceny = new LinkedHashMap<String, Integer>();
         for(int i=1;i<=5;i++){
@@ -84,7 +86,9 @@ public class ListaKsiazekPageBean implements Serializable {
     public ListaKsiazekPageBean() {
          rbl = ResourceBundle.getBundle("nazwy_rol.role");
     }
-    
+    /**
+     * Metoda uruchamiana przy tworzeniu ziarna ( strony )
+     */
     @PostConstruct
     @PermitAll
     private void initModel(){
@@ -93,6 +97,11 @@ public class ListaKsiazekPageBean implements Serializable {
         ksiazkiDataModel = new ListDataModel<>(ksiazki);
     }
     
+    /**
+     * Metoda sprawdzjąca czy dana książka została już oceniona przez aktualnego użytkownika
+     * @param idKsiazki id książki która zostaje sprawdzana 
+     * @return wartość logiczna czy książka została oceniona już
+     */
     public boolean sprawdzCzyOceniona(long idKsiazki){
         String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
         for(Ocena ocena : ocenyList){
@@ -103,15 +112,32 @@ public class ListaKsiazekPageBean implements Serializable {
         return false;
     }
     
+    /**
+     * Metoda zwracająca czy użytkownik posiada rolę rola.user
+     * @return wartość logiczna czy posiada czy nie
+     */
     public boolean isUzytkownik(){
         return SprawdzaczRoli.sprawdzRole(rbl.getString("rola.user"));
     }
     
+    
+    /**
+     * Metoda do refaktoru
+     * @param id_ksiazka
+     * @throws UzytkownikException
+     * @throws OcenaException
+     * @throws KsiazkaException 
+     */
     public void ocen(long id_ksiazka) throws UzytkownikException, OcenaException, KsiazkaException {
         String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
         ocenaSession.ocen(id_ksiazka,ocena, login);
     }
     
+    /**
+     * Metoda dodająca ksiązkę do ulubionych
+     * @param idKsiazki id ksiązki która będzie dodana do ulubionych dla aktualnego użytkownika
+     * @return null
+     */
     @RolesAllowed("DodanieDoUlubionych")
     public String dodajDoUlub(long idKsiazki) {
         if (sprawdzCzyOceniona(ksiazkiDataModel.getRowData().getIdKsiazka()) == true) {
@@ -133,6 +159,14 @@ public class ListaKsiazekPageBean implements Serializable {
         return null;
 
     }
+
+    /**
+     * Metoda do refaktoru i obsługi tych wyjątków
+     * @param id_ksiazka
+     * @throws OcenaException
+     * @throws KsiazkaException
+     * @throws UzytkownikException 
+     */
     public void zmienOcene(long id_ksiazka) throws OcenaException, KsiazkaException, UzytkownikException{
         String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
         ocenaSession.zmienOcene(id_ksiazka,ocena, login);

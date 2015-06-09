@@ -6,12 +6,9 @@
 package pl.lodz.ssbd.moo.moo.facades;
 
 import java.util.List;
-import java.util.logging.Level;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
-import pl.lodz.ssbd.moo.moo.*;
-import pl.lodz.ssbd.moo.*;
 import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -77,6 +74,10 @@ public class OcenaFacade extends AbstractFacade<Ocena> implements OcenaFacadeLoc
         return super.find(id); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Metoda zwracają wszystkie oceny
+     * @return lista ocen
+     */
     @Override
     public List<Ocena> findOcenyInitalized() {
         TypedQuery<Ocena> query = em.createNamedQuery("Ocena.findAll", Ocena.class);
