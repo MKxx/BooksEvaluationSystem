@@ -81,7 +81,7 @@ public class Ksiazka implements Serializable {
         @JoinColumn(name = "id_autor", referencedColumnName = "id_autor")})
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private List<Autor> autorList = new ArrayList<>();
-    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "idKsiazka")
     private List<Ocena> ocenaList = new ArrayList<>();
 
     public Ksiazka() {

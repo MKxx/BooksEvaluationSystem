@@ -19,6 +19,7 @@
                 <f:facet name="header">Ksiazki</f:facet>
                 <p id="tytul"><h:outputText value="#{ksiazka.tytul}" /></p>
                 <p id="rok"><h:outputText value="#{ksiazka.rokPierwszegoWydania}"/></p>
+                <p id="srOcen"><h:outputText value="#{ksiazka.sredniaOcen}"/></p>
                 <h:dataTable id="listaAutorow" var="autor" value="#{ksiazka.autorList}">
                     <h:column id="autorzy">
                         <f:facet name="header">Autorzy:</f:facet>
