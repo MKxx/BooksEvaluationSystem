@@ -16,22 +16,22 @@
     <ui:define name="content">
         <h:dataTable id="listaKsiazek" var="ksiazka" value="#{listaKsiazekPageBean.ksiazkiDataModel}">
             <h:column id="ksiazka">
-                <f:facet name="header">Ksiazki</f:facet>
+                <f:facet name="header">${msg["ksiazka.ksiazki"]}</f:facet>
                 <p id="tytul"><h:outputText value="#{ksiazka.tytul}" /></p>
                 <p id="rok"><h:outputText value="#{ksiazka.rokPierwszegoWydania}"/></p>
                 <h:dataTable id="listaAutorow" var="autor" value="#{ksiazka.autorList}">
                     <h:column id="autorzy">
-                        <f:facet name="header">Autorzy:</f:facet>
+                        <f:facet name="header">${msg["ksiazka.autorzy"]}</f:facet>
                         <h:outputText value="#{autor.imie} #{autor.nazwisko}"/>
                     </h:column>
                 </h:dataTable>
             </h:column>
             <h:column>
-                <f:facet name="header">Akcje:</f:facet>
+                <f:facet name="header">${msg["ksiazka.akcje"]}</f:facet>
                 <h:form>
                     <p><h:commandButton action="#{listaKsiazekPageBean.edytuj}" value="${msg['pa.edytuj']}"/></p>
                     <p><h:commandButton action="#{listaKsiazekPageBean.oznaczJakoNieaktywna()}" 
-                                        value="Oznacz jako nieeaktywna"
+                                        value="${msg["ksiazka.oznacz"]}"
                                         onclick="if (!confirm('Jestes pewny?')) return false"/>
                     </p>
                 </h:form>

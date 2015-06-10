@@ -16,26 +16,26 @@
     <ui:define name="content">
         <h:dataTable id="listaKsiazek" var="ksiazka" value="#{listaKsiazekPageBeanMOO.ksiazkiDataModel}">
             <h:column id="ksiazka">
-                <f:facet name="header">Ksiazki</f:facet>
+                <f:facet name="header">${msg["ksiazka.ksiazki"]}</f:facet>
                 <p id="tytul"><h:outputText value="#{ksiazka.tytul}" /></p>
                 <p id="rok"><h:outputText value="#{ksiazka.rokPierwszegoWydania}"/></p>
                 <p id="srOcen">${msg["listaKs.srednia"]}: <h:outputText value="#{ksiazka.sredniaOcen}"/></p>
                 <h:dataTable id="listaAutorow" var="autor" value="#{ksiazka.autorList}">
                     <h:column id="autorzy">
-                        <f:facet name="header">Autorzy:</f:facet>
+                        <f:facet name="header">${msg["ksiazka.autorzy"]}</f:facet>
                         <h:outputText value="#{autor.imie} #{autor.nazwisko}"/>
                     </h:column>
                 </h:dataTable>
             </h:column>
             <h:column>
-                <f:facet name="header">Akcje:</f:facet>
+                <f:facet name="header">${msg["ksiazka.akcje"]}</f:facet>
                 <h:form>
                     <h:selectOneMenu value="#{listaKsiazekPageBeanMOO.ocena}">
    			<f:selectItems value="#{listaKsiazekPageBeanMOO.oceny}" />
                     </h:selectOneMenu>
-                    <h:commandButton action="#{listaKsiazekPageBeanMOO.ocen(ksiazka.idKsiazka)}" value="Ocen!" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and not listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
-                    <h:commandButton action="#{listaKsiazekPageBeanMOO.zmienOcene(ksiazka.idKsiazka)}" value="Zmien Ocene!" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
-                    <h:commandButton action="#{listaKsiazekPageBeanMOO.dodajDoUlub()}" value="Dodaj do ulubionych!" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka) and listaKsiazekPageBeanMOO.czyUlub(ksiazka.idKsiazka)}"/>
+                    <h:commandButton action="#{listaKsiazekPageBeanMOO.ocen(ksiazka.idKsiazka)}" value="${msg["ksiazka.ocen"]}" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and not listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
+                    <h:commandButton action="#{listaKsiazekPageBeanMOO.zmienOcene(ksiazka.idKsiazka)}" value="${msg["ksiazka.zmienocene"]}" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
+                    <h:commandButton action="#{listaKsiazekPageBeanMOO.dodajDoUlub()}" value="${msg["ksiazka.dodajdoulubionych"]}" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka) and czyUlub(ksiazka.idKsiazka)}"/>
                 </h:form>
                 ${msg["listaKs.ocena"]}: <h:outputText value="#{listaKsiazekPageBeanMOO.pokazMojaOcene(ksiazka.idKsiazka)}"/>
             </h:column>

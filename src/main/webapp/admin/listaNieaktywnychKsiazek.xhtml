@@ -16,17 +16,17 @@
     <ui:define name="content">
         <h:dataTable id="listaKsiazek" var="ksiazka" value="#{listaNieaktywnychKsiazekPageBean.ksiazki}">
             <h:column>
-                <f:facet name="header">tytul</f:facet>
+                <f:facet name="header">${msg["ksiazka.tytul"]}</f:facet>
                 <h:outputText value="#{ksiazka.tytul}" />
             </h:column>
             <h:column>
-                <f:facet name="header">Rok pierwszego wydania</f:facet>
+                <f:facet name="header">${msg["ksiazka.rok"]}</f:facet>
                 <h:outputText value="#{ksiazka.rokPierwszegoWydania}"/>
             </h:column>
             <h:column>
             <h:dataTable id="listaAutorow" var="autor" value="#{ksiazka.autorList}">
                     <h:column id="autorzy">
-                        <f:facet name="header">Autorzy:</f:facet>
+                        <f:facet name="header">${msg["ksiazka.autorzy"]}</f:facet>
                         <h:outputText value="#{autor.imie} #{autor.nazwisko}"/>
                     </h:column>
             </h:dataTable>
