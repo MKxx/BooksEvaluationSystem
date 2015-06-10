@@ -17,8 +17,8 @@ import pl.lodz.ssbd.entities.Autor;
 public interface MOAEndpointLocal {
     
     public List<Autor> pobierzListeAutorow();
-    public Autor pobierzAutoraDoEdycji(int id);
-    public Autor pobierzAutora(int id);
+    public Autor pobierzAutoraDoEdycji(long id);
+    public Autor pobierzAutora(long id);
     public void dodajAutora(Autor autor);
     public void edytujAutora(Autor autor);
     

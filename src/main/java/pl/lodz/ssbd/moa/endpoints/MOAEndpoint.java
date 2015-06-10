@@ -40,8 +40,8 @@ public class MOAEndpoint implements MOAEndpointLocal {
 
     @Override
     @RolesAllowed("ModyfikacjaAutora")
-    public Autor pobierzAutoraDoEdycji(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Autor pobierzAutoraDoEdycji(long id) {
+        return AutorFacade.find(id);
     }
 
     @Override
@@ -49,7 +49,6 @@ public class MOAEndpoint implements MOAEndpointLocal {
     public void dodajAutora(Autor autor) {
         try {
             AutorFacade.create(autor);
-            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         } catch (AutorException ex) {
             Logger.getLogger(MOAEndpoint.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -58,15 +57,17 @@ public class MOAEndpoint implements MOAEndpointLocal {
     @Override
     @RolesAllowed("ModyfikacjaAutora")
     public void edytujAutora(Autor autor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            AutorFacade.edit(autor);
+        }
+        catch(AutorException ex){
+            Logger.getLogger(MOAEndpoint.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
 
     @Override
     @PermitAll
-    public Autor pobierzAutora(int id) {
+    public Autor pobierzAutora(long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
