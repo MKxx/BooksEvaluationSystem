@@ -14,7 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- *
+ * Klasa obslugujacy logowanie uzytkownikow
  * @author Robert Mielczarek 
  */
 @Named(value = "loginPageBean")
@@ -60,7 +60,10 @@ public class LoginPageBean {
      */
     public LoginPageBean() {
     }
-    
+    /**
+     * Logowanie uzytkownika i zapis do bazy podstawowych informacji
+     * @return String przkierowujacy do strony
+     */
     public String zaloguj(){
         try {
             getRequest().login(username, password);

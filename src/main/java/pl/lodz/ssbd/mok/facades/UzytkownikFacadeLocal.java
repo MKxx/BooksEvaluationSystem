@@ -27,7 +27,17 @@ public interface UzytkownikFacadeLocal {
 
     List<Uzytkownik> findAll();
 
+    /**
+     * Znajdz uzytkownika po loginie
+     * @param username login
+     * @return encja uzytkownika
+     */
     public Uzytkownik findByLogin(String username);
 
+    /**
+     * znajdz po imieniu i nazwisku
+     * @param wartosc ciag szukany w imieniu lub nazwisku
+     * @return lista uzytkownikow
+     */
     public List<Uzytkownik> findByImieiNazwisko(String wartosc);
 }

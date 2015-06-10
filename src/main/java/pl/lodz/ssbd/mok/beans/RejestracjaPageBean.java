@@ -18,7 +18,7 @@ import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.utils.Bundle;
 
 /**
- *
+ * Klasa obslugujaca widok rejestracji
  * @author Robert Mielczarek 
  */
 @Named(value = "rejestracjaPageBean")
@@ -66,7 +66,10 @@ public class RejestracjaPageBean {
     public Uzytkownik getUzytkownik() {
         return uzytkownik;
     }
-
+    /**
+     * Rejestracja uzytkowika
+     * @return String przekierowujacy na strone
+     */
     public String rejestrujUzytkownika() {
         if (!powtorzHaslo.equals(haslo)) {
             FacesContext fctx = FacesContext.getCurrentInstance();

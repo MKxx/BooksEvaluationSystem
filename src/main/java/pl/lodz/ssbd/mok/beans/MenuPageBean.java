@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import pl.lodz.ssbd.utils.SprawdzaczRoli;
 
 /**
- *
+ * Klasa obslugujaca widok menu
  * @author Maciej
  */
 @Named(value = "menuPageBean")
@@ -31,7 +31,10 @@ public class MenuPageBean {
     public MenuPageBean() {
         rbl = ResourceBundle.getBundle("nazwy_rol.role");
     }
-    
+    /**
+     * sprawdzenie czy uzytkownik jest gosciem
+     * @return prawda lub falsz
+     */
     public boolean getIsGosc(){
         if(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser() == null){
             return true;
@@ -39,18 +42,34 @@ public class MenuPageBean {
         return false;
     }
     
+    /**
+     * sprawdzenie czy uzytkownik jest administratorem
+     * @return prawda lub falsz
+     */
     public boolean getIsAdmin(){
         return SprawdzaczRoli.sprawdzRole(rbl.getString("rola.admin"));
     }
     
+    /**
+     * sprawdzenie czy uzytkownik jest uzytkownikiem
+     * @return prawda lub falsz
+     */
     public boolean getIsUzytkownik(){
         return SprawdzaczRoli.sprawdzRole(rbl.getString("rola.user"));
     }
     
+    /**
+     * sprawdzenie czy uzytkownik jest moderatorem
+     * @return prawda lub falsz
+     */
     public boolean getIsModerator(){
         return SprawdzaczRoli.sprawdzRole(rbl.getString("rola.moderator"));
     }
     
+    /**
+     * wylogowanie sie
+     * @return String przekierowujacy do strony
+     */
     public String wyloguj(){
         try {
             getRequest().logout();
@@ -60,7 +79,10 @@ public class MenuPageBean {
         getRequest().getSession().invalidate();
         return "wylogowano";
     }
-    
+    /**
+     * metoda zwracajaca Request
+     * @return http servlet request
+     */
      private javax.servlet.http.HttpServletRequest getRequest(){
         return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
      }

@@ -19,7 +19,7 @@ import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.exceptions.PoziomDostepuException;
 
 /**
- *
+ * Klasa obslugujaca widok edycji poziomow dostepu
  * @author Maciej
  */
 @Named(value = "edycjaPoziomowPageBean")
@@ -35,6 +35,9 @@ public class EdycjaPoziomowPageBean {
         return poziomyDataModel;
     }
     
+    /**
+     * Inicjacja listy poziomow dostepu
+     */
     @PostConstruct
     private void initModel(){
         List<PoziomDostepu> poziomy = getUzytkownikEdycja().getPoziomDostepuList();
@@ -49,6 +52,10 @@ public class EdycjaPoziomowPageBean {
         return uzytkownikSession.getUzytkownikEdycja();
     }
     
+    /**
+     * nadanie poziomu 
+     * @return String przekierowujacy na strone
+     */
     public String nadajPoziom(){
         try {
             uzytkownikSession.nadajPoziom(poziomyDataModel.getRowData());
@@ -61,6 +68,10 @@ public class EdycjaPoziomowPageBean {
         return null;
     }
     
+    /**
+     * odebranie poziomu
+     * @return String przekierowujacy na strone
+     */
     public String odbierzPoziom(){
         try {
             uzytkownikSession.odbierzPoziom(poziomyDataModel.getRowData());
