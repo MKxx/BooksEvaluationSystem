@@ -208,5 +208,17 @@ public class ListaKsiazekPageBean implements Serializable {
         return " ---";
         
     }
+    
+    public boolean czyUlub(long idKsiazki){
+        String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+        for(Ocena ocena : ocenyList){
+            if(ocena.getIdKsiazka().getIdKsiazka()==idKsiazki&&ocena.getIdUzytkownik().getLogin().equals(login)){
+                if(ocena.getUlubiona()){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
 }
