@@ -13,7 +13,7 @@ import pl.lodz.ssbd.exceptions.AutorException;
 
 /**
  *
- * @author Robert Mielczarek <180640@edu.p.lodz.pl>
+ * @author Robert Mielczarek 
  */
 @Local
 public interface AutorFacadeLocal {

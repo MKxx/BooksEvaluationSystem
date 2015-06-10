@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Robert Mielczarek <180640@edu.p.lodz.pl>
+ * @author Robert Mielczarek 
  */
 public class MD5 {
   /**

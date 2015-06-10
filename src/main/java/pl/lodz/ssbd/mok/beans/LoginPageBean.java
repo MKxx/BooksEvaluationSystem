@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  *
- * @author Robert Mielczarek <180640@edu.p.lodz.pl>
+ * @author Robert Mielczarek 
  */
 @Named(value = "loginPageBean")
 @RequestScoped

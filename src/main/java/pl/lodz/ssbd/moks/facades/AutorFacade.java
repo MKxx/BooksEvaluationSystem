@@ -21,7 +21,7 @@ import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 
 /**
  *
- * @author Robert Mielczarek <180640@edu.p.lodz.pl>
+ * @author Robert Mielczarek 
  */
 @Stateless(name="moksAutor")
 @Interceptors({DziennikZdarzenInterceptor.class})

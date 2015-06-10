@@ -13,7 +13,7 @@ import pl.lodz.ssbd.exceptions.SSBD05Exception;
 
 /**
  *
- * @author Robert Mielczarek <180640@edu.p.lodz.pl>
+ * @author Robert Mielczarek 
  * @param <T>
  */
 public abstract class AbstractFacade<T> {

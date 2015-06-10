@@ -9,7 +9,7 @@ package pl.lodz.ssbd.exceptions;
  
      * Wyjątek rzucany w przypadku problemów z edycją encji autor.
      *
-     * @author Robert Mielczarek <180640@edu.p.lodz.pl>
+     * @author Robert Mielczarek 
     */
 public class AutorException extends SSBD05Exception {
 

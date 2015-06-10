@@ -127,7 +127,8 @@ public class ListaKsiazekPageBean implements Serializable {
     /**
      * Metoda umożliwiająca ocenę danej książki
      *
-     * @param id_ksiazka id ksiązki którą oceniamy
+     * @param id_ksiazka 
+     *                  id ksiązki którą oceniamy
      * @return 
      */
     public String ocen(long id_ksiazka) {
@@ -148,8 +149,6 @@ public class ListaKsiazekPageBean implements Serializable {
     /**
      * Metoda dodająca ksiązkę do ulubionych
      *
-     * @param idKsiazki id ksiązki która będzie dodana do ulubionych dla
-     * aktualnego użytkownika
      * @return null
      */
     @RolesAllowed("DodanieDoUlubionych")
@@ -176,7 +175,8 @@ public class ListaKsiazekPageBean implements Serializable {
 
     /**
      * Metoda obsługująca zdarenie zmiany oceny wraz z wyjątkami
-     * @param id_ksiazka id ksiązki dla której modyfikujemy ocenę
+     * @param id_ksiazka 
+     *                  id ksiązki dla której modyfikujemy ocenę
      */
     public String zmienOcene(long id_ksiazka) {
         String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
@@ -195,8 +195,10 @@ public class ListaKsiazekPageBean implements Serializable {
     
     /**
      * Funkcja sprawdzajaca jaka ocene uzytkownik nadal ksaizce
-     * @param idKsiazki id ksiazki
-     * @return zwraca ocene wystawiona ksiazce przez uzytkownika badz " --- " w przypadku braku oceny
+     * @param idKsiazki 
+     *                  id ksiazki
+     * @return 
+     *                  zwraca ocene wystawiona ksiazce przez uzytkownika badz " --- " w przypadku braku oceny
      */
     public String pokazMojaOcene(long idKsiazki){
         String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();

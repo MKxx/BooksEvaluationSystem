@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author Robert Mielczarek <180640@edu.p.lodz.pl>
+ * @author Robert Mielczarek 
  */
 @Entity
 @Table(name = "ocena",

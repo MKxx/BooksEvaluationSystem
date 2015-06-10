@@ -22,7 +22,7 @@ import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 
 /**
  * Fasada dla encji Książka
- * @author Robert Mielczarek <180640@edu.p.lodz.pl>
+ * @author Robert Mielczarek 
  */
 @Stateless(name="moo2Ksiazka")
 @Interceptors({DziennikZdarzenInterceptor.class})

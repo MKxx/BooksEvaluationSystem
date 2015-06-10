@@ -19,7 +19,7 @@ import pl.lodz.ssbd.entities.Ksiazka;
 
 /**
  *
- * @author Robert Mielczarek <180640@edu.p.lodz.pl>
+ * @author Robert Mielczarek 
  */
 @Named(value = "listaNieaktywnychKsiazekPageBean")
 @ViewScoped

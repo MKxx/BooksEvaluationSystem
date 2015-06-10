@@ -9,7 +9,7 @@ import javax.ejb.ApplicationException;
 
 /**
  * Klasa bazowa dla wszystkich rzucanych wyjątków.
- * @author Robert Mielczarek <180640@edu.p.lodz.pl>
+ * @author Robert Mielczarek 
  */
 @ApplicationException(rollback = true)
 public class SSBD05Exception extends Exception {

@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 
 /**
  *
- * @author Robert Mielczarek <180640@edu.p.lodz.pl>
+ * @author Robert Mielczarek 
  */
 public class Bundle {
 /**

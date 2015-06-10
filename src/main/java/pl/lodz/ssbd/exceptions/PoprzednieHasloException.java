@@ -7,7 +7,7 @@ package pl.lodz.ssbd.exceptions;
 
 /**
  * Wyjątek jest rzucany wtedy gdy próbujemy ustawic haslo, na jedno z wczesniej wykorzystywanych hasel.
- * @author Robert Mielczarek <180640@edu.p.lodz.pl>
+ * @author Robert Mielczarek 
  */
 public class PoprzednieHasloException extends SSBD05Exception {
 

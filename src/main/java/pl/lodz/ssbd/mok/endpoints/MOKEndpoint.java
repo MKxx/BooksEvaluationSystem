@@ -36,7 +36,7 @@ import pl.lodz.ssbd.utils.MD5;
 
 /**
  *
- * @author Robert Mielczarek <180640@edu.p.lodz.pl>
+ * @author Robert Mielczarek 
  */
 @Stateful
 @Interceptors({DziennikZdarzenInterceptor.class})

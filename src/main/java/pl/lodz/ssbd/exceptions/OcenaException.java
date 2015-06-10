@@ -8,7 +8,7 @@ package pl.lodz.ssbd.exceptions;
 /**
  *
  * Wyjątek rzucany w przypadku problemów z edycją encji ocena.
- * @author Robert Mielczarek <180640@edu.p.lodz.pl>
+ * @author Robert Mielczarek 
  */
 public class OcenaException extends SSBD05Exception {
 
