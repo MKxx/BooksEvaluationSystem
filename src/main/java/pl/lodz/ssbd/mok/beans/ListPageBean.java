@@ -20,7 +20,7 @@ import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.utils.UzytkownikComparator;
 
 /**
- *
+ * Klasa do obslugi widoku panelu admina
  * @author Maciej
  */
 @Named
@@ -52,9 +52,9 @@ public class ListPageBean implements Serializable {
     }
 
     
-    // Metoda wczytuje liste wszystkich kont
-    // Dzieki adnotacji @PostConstruct jest wykonywana automatycznie po zaladowaniu strony,
-    // ponadto odwoluja sie do niej inne metody tego ziarna
+    /**
+     * Inicjacja listy uzytkownikow
+     */
     @PostConstruct
     private void initModel() {
         uzytkownicy = uzytkownikSession.pobierzUzytkownikow(wartosc);
@@ -62,6 +62,10 @@ public class ListPageBean implements Serializable {
         uzytkownikDataModel = new ListDataModel<Uzytkownik>(uzytkownicy);
     }
     
+    /**
+     * potwierdzenie uzytkownika
+     * @return String przkierowujacy do strony
+     */
     public String potwierdzUzytkownika(){
         try{
         uzytkownikSession.potwierdzUzytkownika(uzytkownikDataModel.getRowData());
@@ -73,7 +77,10 @@ public class ListPageBean implements Serializable {
         }
         return null;
     }
-    
+    /**
+     * zablokowanie uzytkownika
+     * @return String przkierowujacy do strony 
+     */
     public String zablokujUzytkownika(){
         try{
             uzytkownikSession.zablokujUzytkownika(uzytkownikDataModel.getRowData());
@@ -85,6 +92,10 @@ public class ListPageBean implements Serializable {
         return null;
     }
     
+    /**
+     * odblokowanie Uzytkownika
+     * @return String przkierowujacy do strony
+     */
     public String odblokujUzytkownika(){
          try{
             uzytkownikSession.odblokujUzytkownika(uzytkownikDataModel.getRowData());
@@ -96,15 +107,27 @@ public class ListPageBean implements Serializable {
         return null;
     }
     
+    /**
+     * Rozpoczecie edycji uzytkowika
+     * @return String przkierowujacy do strony
+     */
     public String edytujUzytkownika(){
         uzytkownikSession.pobierzUzytkownikaDoEdycji(uzytkownikDataModel.getRowData());
         return "edycja";
     }
     
+    /**
+     * rozpoczecie edycji poziomow dostepu
+     * @return String przkierowujacy do strony
+     */
     public String edytujPoziomyDostepu(){
         uzytkownikSession.pobierzUzytkownikaDoEdycji(uzytkownikDataModel.getRowData());
         return "edycjaPoziomow";
     }
+    
+    /**
+     * odswiezenie modelu
+     */
     public void odswiez(){
         initModel();
     }

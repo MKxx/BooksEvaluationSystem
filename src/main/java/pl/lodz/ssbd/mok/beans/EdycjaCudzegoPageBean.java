@@ -15,7 +15,7 @@ import pl.lodz.ssbd.utils.Bundle;
 import pl.lodz.ssbd.utils.MD5;
 
 /**
- *
+ * Klasa obslugujaca widok edycji cudzego konta
  * @author Maciej
  */
 @Named(value = "edycjaCudzegoPageBean")
@@ -51,6 +51,10 @@ public class EdycjaCudzegoPageBean {
         return uzytkownikSession.getUzytkownikEdycja();
     }
 
+    /**
+     * edytuje Uzytkownika
+     * @return String z przkierowaniem do strony po edycji
+     */
     public String edytujUzytkownika() {
         boolean zmianaHasla = false;
         if(!noweHaslo.equals(powtorzHaslo)){

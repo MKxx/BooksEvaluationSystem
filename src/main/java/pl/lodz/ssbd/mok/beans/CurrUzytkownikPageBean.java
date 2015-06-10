@@ -15,7 +15,7 @@ import javax.inject.Named;
 import pl.lodz.ssbd.entities.Uzytkownik;
  
 /**
- *
+ * Klasa zawierająca metody potrzebne do wyświetlenia widoku po logowaniu
  * @author Kuba
  */
 @Named(value = "curruzytkownikPageBean")
@@ -28,12 +28,20 @@ public class CurrUzytkownikPageBean {
  
     public CurrUzytkownikPageBean() {
     }
- 
+    
+    /**
+     * zwraca ip poprawnego zalogowania
+     * @return ip poprawnego zalogowania
+     */
     public String pobierzIPPopZal() {
         return uzytkownikSession.pobierzIPOstatniegoPopZalogowania();
  
     }
- 
+    
+    /**
+     * Zwraca czas poprawnego zalogowania
+     * @return czas poprawnego zalogowania
+     */
     public String pobierzCzasPopZal() {
         if (uzytkownikSession.pobierzCzasOstatniegoPopZalogowania()!= null){
         Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -43,10 +51,18 @@ public class CurrUzytkownikPageBean {
         return "Brak daty";
     }
  
+    /**
+     * Zwraca ilosc niepoprawnych zalogowan
+     * @return ilosc niepoprawnych zalogowan 
+     */
     public int pobierzIloscNPopZal() {
         return uzytkownikSession.pobierzIloscNPopZal();
     }
  
+    /**
+     * Zwraca czas nieporpawnego zlaogowania
+     * @return czas nieporawnego zalogowania
+     */
     public String pobierzCzasNPopZal() {
         String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
         uzytkownikSession.pobierzUzytkownikMenu(login);

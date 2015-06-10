@@ -23,7 +23,7 @@ import pl.lodz.ssbd.utils.MD5;
 import java.io.Serializable;
 
 /**
- *
+ * Klasa obslugujaca widok edycji wlasnego konta
  * @author Marta Chmielecka
  */
 @Named(value = "edycjaWlasnegoPageBean")
@@ -38,6 +38,9 @@ public class EdycjaWlasnegoPageBean implements Serializable {
     public EdycjaWlasnegoPageBean() {
     }
 
+    /**
+     * Pobranie siebie do edycji
+     */
     @PostConstruct
     private void initPage() {
         uzytkownikSession.pobierzSiebieDoEdycji();
@@ -66,7 +69,10 @@ public class EdycjaWlasnegoPageBean implements Serializable {
     public Uzytkownik getUzytkownikEdycja() {
         return uzytkownikSession.getUzytkownikEdycja();
     }
-
+    /**
+     * Edycja swojego konta
+     * @return String przekierowujacy na strone po edycji
+     */
     public String edytujSiebie() {
         boolean zmianaHasla = false;
         if (!noweHaslo.equals(powtorzHaslo)) {
