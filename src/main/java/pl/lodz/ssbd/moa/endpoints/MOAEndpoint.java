@@ -16,9 +16,11 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.Interceptors;
 import pl.lodz.ssbd.entities.Autor;
+import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.exceptions.AutorException;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 import pl.lodz.ssbd.moa.facades.AutorFacadeLocal;
+import pl.lodz.ssbd.moa.facades.KsiazkaFacadeLocal;
 
 /**
  *
@@ -31,7 +33,9 @@ public class MOAEndpoint implements MOAEndpointLocal {
     
     @EJB(beanName = "moaAutor")
     private AutorFacadeLocal AutorFacade;
-
+    @EJB(beanName = "moaKsiazka")
+    private KsiazkaFacadeLocal ksiazkaFacade;
+    
     @Override
     @PermitAll
     public List<Autor> pobierzListeAutorow() {
@@ -46,9 +50,17 @@ public class MOAEndpoint implements MOAEndpointLocal {
 
     @Override
     @RolesAllowed("DodanieAutora")
-    public void dodajAutora(Autor autor) {
+    public void dodajAutora(Autor autor, List<String> wybraneKsiazki) {
         try {
+            if(wybraneKsiazki.size() != 0){
+                for(String ks : wybraneKsiazki){
+                    Ksiazka k = ksiazkaFacade.find(Long.parseLong(ks));
+                    k.getAutorList().add(autor);
+                    autor.getKsiazkaList().add(k);
+                }
+            }
             AutorFacade.create(autor);
+            
         } catch (AutorException ex) {
             Logger.getLogger(MOAEndpoint.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -69,5 +81,10 @@ public class MOAEndpoint implements MOAEndpointLocal {
     @PermitAll
     public Autor pobierzAutora(long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Ksiazka> pobierzKsiazkiNieocenione() {
+        return ksiazkaFacade.findNieocenione();
     }
 }

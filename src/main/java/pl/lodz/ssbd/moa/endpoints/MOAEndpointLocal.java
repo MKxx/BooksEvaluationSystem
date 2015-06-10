@@ -8,6 +8,7 @@ package pl.lodz.ssbd.moa.endpoints;
 import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Autor;
+import pl.lodz.ssbd.entities.Ksiazka;
 
 /**
  *
@@ -19,7 +20,9 @@ public interface MOAEndpointLocal {
     public List<Autor> pobierzListeAutorow();
     public Autor pobierzAutoraDoEdycji(long id);
     public Autor pobierzAutora(long id);
-    public void dodajAutora(Autor autor);
+    public void dodajAutora(Autor autor, List<String> wybraneKsiazki);
     public void edytujAutora(Autor autor);
+
+    public List<Ksiazka> pobierzKsiazkiNieocenione();
     
 }

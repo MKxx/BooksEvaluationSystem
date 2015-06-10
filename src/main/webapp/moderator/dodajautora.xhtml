@@ -32,6 +32,12 @@
                     <h:inputText id="rokUr" value="#{dodajAutoraPageBean.autor.rokUr}" />
                     <h:message for="rokUr" class="blad"/>
                 </h:panelGroup>
+                <h:panelGroup>
+                    #{msg["autor.ksiazki"]}<br></br>
+                    <h:selectManyListbox value="#{dodajAutoraPageBean.wybraneKsiazki}">
+   			<f:selectItems value="#{dodajAutoraPageBean.ksiazki}" />
+                    </h:selectManyListbox>
+                </h:panelGroup>
             </h:panelGrid>
             <h:commandButton action="#{dodajAutoraPageBean.stworzAutor()}" value="${msg['au.dodajautora']}" />
         </h:form>
