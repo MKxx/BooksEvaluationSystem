@@ -6,6 +6,7 @@
 package pl.lodz.ssbd.moo.moo2.endpoints;
 
 import javax.ejb.Local;
+import pl.lodz.ssbd.exceptions.AutorException;
 import pl.lodz.ssbd.exceptions.KsiazkaException;
 import pl.lodz.ssbd.exceptions.OcenaException;
 import pl.lodz.ssbd.exceptions.UzytkownikException;
@@ -26,7 +27,7 @@ public interface MOO2EndpointLocal {
      * @throws KsiazkaException wyjątek w przypadku modyfikacji książki
      * @throws UzytkownikException wyjątek rzucany w przypaku braku użytkownika
      */
-    public void zmienOcene(long id_ksiazka, int ocena, String login) throws OcenaException, KsiazkaException, UzytkownikException;
+    public void zmienOcene(long id_ksiazka, int ocena, String login) throws OcenaException, KsiazkaException, UzytkownikException,AutorException;
 
     
     
@@ -39,6 +40,6 @@ public interface MOO2EndpointLocal {
      * @throws OcenaException jeśli ocena JUŻ istnieje
      * @throws KsiazkaException  jeśli książka została zmodyfikowana podczas oceny (OptimistickLock).
      */
-    public void ocenKsiazke(long id_ksiazka, int wartosc, String login) throws OcenaException, UzytkownikException, KsiazkaException;
+    public void ocenKsiazke(long id_ksiazka, int wartosc, String login) throws OcenaException, UzytkownikException, KsiazkaException,AutorException;
 }
 

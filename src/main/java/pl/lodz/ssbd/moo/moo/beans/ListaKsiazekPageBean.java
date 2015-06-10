@@ -21,6 +21,7 @@ import javax.inject.Named;
 import javax.inject.Inject;
 import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.entities.Ocena;
+import pl.lodz.ssbd.exceptions.AutorException;
 import pl.lodz.ssbd.exceptions.KsiazkaException;
 import pl.lodz.ssbd.exceptions.OcenaException;
 import pl.lodz.ssbd.exceptions.UzytkownikException;
@@ -137,7 +138,7 @@ public class ListaKsiazekPageBean implements Serializable {
             ocenaSession.ocen(id_ksiazka, ocena, login);
             initModel();
             return null;
-        } catch (KsiazkaException ex) {
+        } catch (KsiazkaException | AutorException ex) {
             return "nieaktualnedane";
         } catch (OcenaException ex) {
             return "ocenaistnieje";
@@ -184,7 +185,7 @@ public class ListaKsiazekPageBean implements Serializable {
             ocenaSession.zmienOcene(id_ksiazka, ocena, login);
             initModel();
             return null;
-        } catch (KsiazkaException ex) {
+        } catch (KsiazkaException | AutorException ex) {
             return "nieaktualnedane";
         } catch (OcenaException ex) {
             return "ocenaniesitnieje";
