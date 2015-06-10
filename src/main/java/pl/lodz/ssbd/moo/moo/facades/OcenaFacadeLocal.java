@@ -5,9 +5,6 @@
  */
 package pl.lodz.ssbd.moo.moo.facades;
 
-import pl.lodz.ssbd.moo.moo.*;
-import pl.lodz.ssbd.moo.*;
-import pl.lodz.ssbd.facades.*;
 import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Ocena;
@@ -28,6 +25,10 @@ public interface OcenaFacadeLocal {
 
     List<Ocena> findAll();
 
+     /**
+     * Metoda zwracające wszystkie oceny
+     * @return lista ocen
+     */
     public List<Ocena> findOcenyInitalized();
     
 }

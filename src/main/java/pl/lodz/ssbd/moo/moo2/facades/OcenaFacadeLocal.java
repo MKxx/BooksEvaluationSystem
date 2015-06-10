@@ -5,10 +5,6 @@
  */
 package pl.lodz.ssbd.moo.moo2.facades;
 
-import pl.lodz.ssbd.moo.moo2.*;
-import pl.lodz.ssbd.moo.moo.*;
-import pl.lodz.ssbd.moo.*;
-import pl.lodz.ssbd.facades.*;
 import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Ksiazka;
@@ -31,6 +27,12 @@ public interface OcenaFacadeLocal {
 
     List<Ocena> findAll();
 
+     /**
+     * Metoda znajdująca ocenę dla danego użytkownika i podanej książki
+     * @param ksiazka książka 
+     * @param uzytkownik uzytkownik
+     * @return ocena dla podanej ksiazki dla danego uzytkownika
+     */
     public Ocena findByKsiazkaAndLogin(Ksiazka ksiazka, Uzytkownik uzytkownik);
     
 }

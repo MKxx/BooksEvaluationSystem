@@ -38,11 +38,9 @@ public class MOOEndpoint implements MOOEndpointLocal {
     
     private List<Ksiazka> listaKsiazekDostep;
 
-    /**
-     *
-     * @param login
-     * @return
-     * @throws KsiazkaException
+     /**
+     * Metoda zwracająca listę aktywnych książek
+     * @return lista aktywnych książek
      */
     @Override
     @PermitAll
@@ -51,6 +49,12 @@ public class MOOEndpoint implements MOOEndpointLocal {
         return listaKsiazekDostep;
     }
 
+    /**
+     * Metoda dodająca książkę do ulubionych 
+     * Należy zauważyć, że u nas jest to rozwiązane w dośc oryginaly sposób
+     * @param ocena która zawiera ksiązkę, którą użytkownik chce dodać do ulubionych.
+     * @throws OcenaException 
+     */
     @Override
     @RolesAllowed("DodanieDoUlubionych")
     public void dodajDoUlubionych(Ocena ocena) throws OcenaException{
@@ -61,6 +65,10 @@ public class MOOEndpoint implements MOOEndpointLocal {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 
+    /**
+     * Metoda pobierająca wszystkie oceny
+     * @return lista wszystkich ocen
+     */
     @Override
     public List<Ocena> pobierzOceny() {
         return ocenaFacade.findOcenyInitalized();

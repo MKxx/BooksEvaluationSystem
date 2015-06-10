@@ -5,9 +5,6 @@
  */
 package pl.lodz.ssbd.moo.moo.facades;
 
-import pl.lodz.ssbd.moo.moo.*;
-import pl.lodz.ssbd.moo.*;
-import pl.lodz.ssbd.facades.*;
 import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Ksiazka;
@@ -28,6 +25,10 @@ public interface KsiazkaFacadeLocal {
 
     List<Ksiazka> findAll();
 
+     /**
+     * Metoda zwracające aktywne książki
+     * @return lista aktywnych książek
+     */
     public List<Ksiazka> findAktywne();
     
 }
