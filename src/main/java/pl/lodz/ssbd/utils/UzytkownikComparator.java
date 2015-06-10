@@ -9,7 +9,7 @@ import java.util.Comparator;
 import pl.lodz.ssbd.entities.Uzytkownik;
 
 /**
- *
+ * Klasa odpowiadajaca za porownanie uzytkownikow
  * @author Maciej
  */
 public class UzytkownikComparator implements Comparator<Uzytkownik>{

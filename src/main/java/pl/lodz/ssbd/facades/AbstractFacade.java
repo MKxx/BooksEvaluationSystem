@@ -1,7 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * 
  */
 package pl.lodz.ssbd.facades;
 
@@ -12,13 +10,15 @@ import javax.persistence.PersistenceException;
 import pl.lodz.ssbd.exceptions.SSBD05Exception;
 
 /**
- *
+ * Modul odpowiedzialny za blokady optymistyczne
  * @author Robert Mielczarek 
  * @param <T>
  */
 public abstract class AbstractFacade<T> {
 
     private final Class<T> entityClass;
+    
+    
 
     public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;

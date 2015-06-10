@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ *Klasa odpowiadająca za tworzenie skrotow MD5 hasla.
  * @author Robert Mielczarek 
  */
 public class MD5 {
