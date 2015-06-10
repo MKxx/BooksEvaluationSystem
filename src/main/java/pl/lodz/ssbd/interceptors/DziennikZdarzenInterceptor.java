@@ -9,7 +9,7 @@ import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
 
 /**
- *
+ * Klasa zawierajaca metody do logowania zachowania aplikacji
  * @author Jakub Kępa 180582
  */
 public class DziennikZdarzenInterceptor {
@@ -19,6 +19,7 @@ public class DziennikZdarzenInterceptor {
     private static final Logger logger = Logger.getLogger(DziennikZdarzenInterceptor.class.getName());
     private SimpleDateFormat simpleDateHere = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss (Z)");
 
+    
     @AroundInvoke
     public Object logujWywolanie(InvocationContext invocationContext) throws Exception {
         StringBuilder log = new StringBuilder();

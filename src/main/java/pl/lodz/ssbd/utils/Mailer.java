@@ -18,7 +18,7 @@ import javax.naming.NamingException;
 import java.util.logging.Level;
 
 /**
- *
+ * Klasa odpowiadajaca za wysylanie maili
  * @author Jakub Kępa 180582
  */
 public final class Mailer {

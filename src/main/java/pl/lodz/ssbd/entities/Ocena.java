@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package pl.lodz.ssbd.entities;
 
 import java.io.Serializable;
@@ -19,7 +22,7 @@ import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 /**
- *
+ * Encja Oceny
  * @author Robert Mielczarek 
  */
 @Entity

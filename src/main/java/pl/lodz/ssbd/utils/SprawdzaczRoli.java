@@ -3,7 +3,7 @@ package pl.lodz.ssbd.utils;
 import javax.faces.context.FacesContext;
 
 /**
- *
+ *Klasa odpowia za sprawdzenie roli
  * @author Maciej
  */
 public class SprawdzaczRoli {

@@ -9,7 +9,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
- *
+ * Klasa odpowiadająca za internacjonalizacje
  * @author Robert Mielczarek 
  */
 public class Bundle {
