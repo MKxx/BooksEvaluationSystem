@@ -24,7 +24,6 @@ import javax.inject.Inject;
 import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.entities.Ocena;
 import pl.lodz.ssbd.exceptions.OcenaException;
-import pl.lodz.ssbd.mok.endpoints.MOKEndpoint;
 import pl.lodz.ssbd.utils.SprawdzaczRoli;
 
 /**
@@ -112,12 +111,12 @@ public class ListaKsiazekPageBean implements Serializable {
     }
     
     @RolesAllowed("DodanieDoUlubionych")
-    public String dodajDoUlub(long idKsiazki) {
+    public String dodajDoUlub() {
         if (sprawdzCzyOceniona(ksiazkiDataModel.getRowData().getIdKsiazka()) == true) {
 
             String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
             for (Ocena ocena : ocenyList) {
-                if (ocena.getIdKsiazka().getIdKsiazka() == idKsiazki && ocena.getIdUzytkownik().getLogin().equals(login)) {
+                if (ocena.getIdKsiazka().getIdKsiazka() == ksiazkiDataModel.getRowData().getIdKsiazka() && ocena.getIdUzytkownik().getLogin().equals(login)) {
                     try {
                         ocenaSession.dodajDoUlub(ocena);
 
