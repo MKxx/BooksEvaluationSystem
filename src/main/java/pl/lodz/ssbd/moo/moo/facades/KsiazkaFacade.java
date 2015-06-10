@@ -7,7 +7,6 @@ package pl.lodz.ssbd.moo.moo.facades;
 
 import java.util.List;
 import javax.annotation.security.DenyAll;
-import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -18,6 +17,7 @@ import javax.persistence.TypedQuery;
 import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.exceptions.KsiazkaException;
 import pl.lodz.ssbd.exceptions.SSBD05Exception;
+import pl.lodz.ssbd.facades.AbstractFacade;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 
 /**

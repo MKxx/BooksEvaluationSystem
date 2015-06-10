@@ -5,6 +5,7 @@
  */
 package pl.lodz.ssbd.utils;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -15,7 +16,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import java.util.logging.Level;
 
 /**
  * Klasa odpowiadajaca za wysylanie maili

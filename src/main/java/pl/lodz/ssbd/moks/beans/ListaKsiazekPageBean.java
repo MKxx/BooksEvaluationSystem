@@ -12,8 +12,8 @@ import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
-import javax.inject.Named;
 import javax.inject.Inject;
+import javax.inject.Named;
 import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.exceptions.KsiazkaException;
 

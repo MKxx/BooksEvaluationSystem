@@ -8,10 +8,8 @@ package pl.lodz.ssbd.moa.facades;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
-import pl.lodz.ssbd.facades.*;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -21,6 +19,7 @@ import javax.persistence.PersistenceContext;
 import pl.lodz.ssbd.entities.Autor;
 import pl.lodz.ssbd.exceptions.AutorException;
 import pl.lodz.ssbd.exceptions.SSBD05Exception;
+import pl.lodz.ssbd.facades.AbstractFacade;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 
 /**

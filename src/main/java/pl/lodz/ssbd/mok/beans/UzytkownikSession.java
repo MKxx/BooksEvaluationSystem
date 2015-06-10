@@ -1,17 +1,16 @@
 package pl.lodz.ssbd.mok.beans;
 
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.exceptions.PoprzednieHasloException;
 import pl.lodz.ssbd.exceptions.PoziomDostepuException;
 import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.mok.endpoints.MOKEndpointLocal;
-import pl.lodz.ssbd.utils.MD5;
 import pl.lodz.ssbd.utils.Mailer;
 
 

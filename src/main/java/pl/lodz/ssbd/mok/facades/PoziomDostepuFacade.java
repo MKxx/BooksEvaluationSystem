@@ -18,10 +18,8 @@ import javax.persistence.PersistenceContext;
 import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.exceptions.PoziomDostepuException;
 import pl.lodz.ssbd.exceptions.SSBD05Exception;
-import pl.lodz.ssbd.exceptions.UzytkownikException;
-import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 import pl.lodz.ssbd.facades.AbstractFacade;
-import pl.lodz.ssbd.moa.facades.AutorFacade;
+import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 
 /**
  *

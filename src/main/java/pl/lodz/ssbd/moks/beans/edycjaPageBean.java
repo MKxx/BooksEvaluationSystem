@@ -7,9 +7,9 @@ package pl.lodz.ssbd.moks.beans;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.exceptions.KsiazkaException;
 
