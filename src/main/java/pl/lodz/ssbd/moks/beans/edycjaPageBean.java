@@ -19,6 +19,9 @@ import pl.lodz.ssbd.exceptions.KsiazkaException;
  */
 @Named(value = "edycjaPageBean")
 @RequestScoped
+/**
+ * Page Bean dla edycji ksiazek
+ */
 public class edycjaPageBean {
 
     /**
@@ -28,10 +31,18 @@ public class edycjaPageBean {
     @Inject 
     private KsiazkaSession ksiazkaSession;
     
+    /**
+     * Pobiera ksiazke do edycji
+     * @return Ksiazka do edycji
+     */
     public Ksiazka getKsiazkaEdycja(){
         return ksiazkaSession.getEdytowanaKsiazka();
     }
     
+    /**
+     * Zapisuje ksiazke po edycji
+     * @return String z przekierowaniem do strony
+     */
     public String edytujKsiazke(){
         try {
             ksiazkaSession.zapiszKsiazkePoEdycji();

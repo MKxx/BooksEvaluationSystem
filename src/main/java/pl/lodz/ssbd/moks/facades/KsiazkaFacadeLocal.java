@@ -25,11 +25,22 @@ public interface KsiazkaFacadeLocal {
     Ksiazka find(Object id);
 
     List<Ksiazka> findAll();
-    
+    /**
+     * Pobiera liste ksiazek ulubionych dla danego uzytkownika
+     * @param login login uzytkownika
+     * @return lista ksiazek ulubionych
+     * @throws KsiazkaException Rzucany jest wyjatek gdy wystapi blad
+     */
     List<Ksiazka> findUlubione(String login) throws KsiazkaException;
-    
+    /**
+     * Pobiera liste ksiazek nieaktywnych
+     * @return lista ksiazek nieaktywnych
+     */
     List<Ksiazka> findNieaktywne();
-
+    /**
+     * Pobiera liste ksiazek aktywnych
+     * @return Liste ksiazek aktywnych
+     */
     public List<Ksiazka> findAktywne();
     
 }

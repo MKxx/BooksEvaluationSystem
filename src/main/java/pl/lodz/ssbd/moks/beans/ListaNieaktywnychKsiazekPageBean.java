@@ -23,6 +23,9 @@ import pl.lodz.ssbd.entities.Ksiazka;
  */
 @Named(value = "listaNieaktywnychKsiazekPageBean")
 @ViewScoped
+/**
+ * Page Bean dla listy nieaktywnych ksiazek
+ */
 public class ListaNieaktywnychKsiazekPageBean implements Serializable {
 
     /**
@@ -46,6 +49,9 @@ public class ListaNieaktywnychKsiazekPageBean implements Serializable {
         
     }
     
+    /**
+     * inicjuje liste ksiazek
+     */
     @PostConstruct
     public void initModel(){
         System.out.println(ksiazkaSession.pobierzNieaktywneKsiazki().size());
