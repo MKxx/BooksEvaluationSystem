@@ -6,6 +6,8 @@
 package pl.lodz.ssbd.moks.facades;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.RolesAllowed;
 import pl.lodz.ssbd.facades.*;
@@ -80,6 +82,7 @@ public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFac
         try {
             super.edit(entity); //To change body of generated methods, choose Tools | Templates.
         } catch (SSBD05Exception ex) {
+            Logger.getLogger(pl.lodz.ssbd.moks.facades.KsiazkaFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -89,6 +92,8 @@ public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFac
         try {
             super.create(entity); //To change body of generated methods, choose Tools | Templates.
         } catch (SSBD05Exception ex) {
+            Logger.getLogger(KsiazkaFacade.class.getName()).log(Level.SEVERE, null, ex);
+
         }
     }
 
