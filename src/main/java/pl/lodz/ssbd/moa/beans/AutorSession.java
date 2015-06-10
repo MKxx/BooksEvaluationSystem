@@ -38,11 +38,6 @@ public class AutorSession implements Serializable {
     public List<Autor> pobierzListeAutorow(){
         return MOAEndpoint.pobierzListeAutorow(); 
     }
-    
-  /*  void stworzAutor(Autor autor) {
-        MOAEndpoint.dodajAutora(autor);
-    }
-*/
 
     void dodajAutora(Autor autor) {
          MOAEndpoint.dodajAutora(autor);

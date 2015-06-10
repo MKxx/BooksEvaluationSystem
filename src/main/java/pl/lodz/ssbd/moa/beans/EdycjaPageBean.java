@@ -7,6 +7,7 @@ package pl.lodz.ssbd.moa.beans;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import pl.lodz.ssbd.entities.Autor;
@@ -17,6 +18,7 @@ import pl.lodz.ssbd.exceptions.AutorException;
  * @author Marta
  */
 @Named(value = "AutorEdycjaPageBean")
+@RequestScoped
 public class EdycjaPageBean {
         
     @Inject 

@@ -30,7 +30,6 @@ public class ListaAutorPageBean implements Serializable{
     List<Autor> autor;
     DataModel<Autor> autorDataModel;
     public DataModel<Autor> getAutorDataModel() {
-        System.out.println("aaaa");
         return autorDataModel;
     }
     public void setAutorDataModel(DataModel<Autor> autorDataModel) {

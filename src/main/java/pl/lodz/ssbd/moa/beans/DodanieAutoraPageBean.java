@@ -18,9 +18,9 @@ import pl.lodz.ssbd.entities.Autor;
  * @author Marta
  */
 @Named(value = "dodajAutoraPageBean")
-//@RequestScoped
+@RequestScoped
 //@ViewScoped
-@SessionScoped
+//@SessionScoped
 public class DodanieAutoraPageBean implements Serializable{
 
     @Inject
