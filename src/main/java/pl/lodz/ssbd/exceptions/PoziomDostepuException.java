@@ -6,7 +6,7 @@
 package pl.lodz.ssbd.exceptions;
 
 /**
- *
+ * Wyjątek rzucany w przypadku problemów z edycją poziomu dostępu.
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 public class PoziomDostepuException extends SSBD05Exception {
@@ -19,7 +19,8 @@ public class PoziomDostepuException extends SSBD05Exception {
     }
 
     /**
-     * Wjątek rzucany w przypadku problemów z edycją poziomu dostępu.
+     * Constructs an instance of <code>PoziomDostepuException</code> with the
+     * specified detail message.
      *
      * @param msg the detail message.
      */

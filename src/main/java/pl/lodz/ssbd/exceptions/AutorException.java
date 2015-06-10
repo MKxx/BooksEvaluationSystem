@@ -5,10 +5,12 @@
  */
 package pl.lodz.ssbd.exceptions;
 
-/**
- *
- * @author Robert Mielczarek <180640@edu.p.lodz.pl>
- */
+    /**
+ 
+     * Wyjątek rzucany w przypadku problemów z edycją encji autor.
+     *
+     * @author Robert Mielczarek <180640@edu.p.lodz.pl>
+    */
 public class AutorException extends SSBD05Exception {
 
     /**
@@ -18,8 +20,9 @@ public class AutorException extends SSBD05Exception {
     public AutorException() {
     }
 
-    /**
-     * Wyjątek rzucay w przypadku problemów z edycją encji autor.
+     /**
+     * Constructs an instance of <code>AutorException</code> with the specified
+     * detail message.
      *
      * @param msg the detail message.
      */

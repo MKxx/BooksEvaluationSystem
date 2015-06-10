@@ -6,7 +6,7 @@
 package pl.lodz.ssbd.exceptions;
 
 /**
- *
+ * Wyjątek rzucany, podczas toworzenia lub edycji użytkownika, gdy jeden z parametrów jest nie do przyjęcia.
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 public class UzytkownikException extends SSBD05Exception {
@@ -19,8 +19,8 @@ public class UzytkownikException extends SSBD05Exception {
     }
 
     /**
-     * Wyjątek rzucany, podczas toworzenia lub edycji użytkownika, gdy jeden z parametrów jest nie do przyjęcia.
-     * 
+     * Constructs an instance of <code>UzytkownikException</code> with the
+     * specified detail message.
      *
      * @param msg the detail message.
      */
