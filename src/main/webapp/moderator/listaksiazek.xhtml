@@ -30,7 +30,10 @@
                 <f:facet name="header">Akcje:</f:facet>
                 <h:form>
                     <p><h:commandButton action="#{listaKsiazekPageBean.edytuj}" value="${msg['pa.edytuj']}"/></p>
-                    <p><h:commandButton action="#{listaKsiazekPageBean.oznaczJakoNieaktywna()}" value="Oznacz jako nieeaktywna"/></p>
+                    <p><h:commandButton action="#{listaKsiazekPageBean.oznaczJakoNieaktywna()}" 
+                                        value="Oznacz jako nieeaktywna"
+                                        onclick="if (!confirm('Jestes pewny?')) return false"/>
+                    </p>
                 </h:form>
             </h:column>
         </h:dataTable>

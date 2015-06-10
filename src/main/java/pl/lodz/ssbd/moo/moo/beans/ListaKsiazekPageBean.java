@@ -134,6 +134,7 @@ public class ListaKsiazekPageBean implements Serializable {
         String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
         try {
             ocenaSession.ocen(id_ksiazka, ocena, login);
+            initModel();
             return null;
         } catch (KsiazkaException ex) {
             return "nieaktualnedane";
@@ -152,11 +153,11 @@ public class ListaKsiazekPageBean implements Serializable {
      * @return null
      */
     @RolesAllowed("DodanieDoUlubionych")
-    public String dodajDoUlub(long idKsiazki) {
+    public String dodajDoUlub() {
         if (sprawdzCzyOceniona(ksiazkiDataModel.getRowData().getIdKsiazka()) == true) {
             String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
             for (Ocena ocena : ocenyList) {
-                if (ocena.getIdKsiazka().getIdKsiazka() == idKsiazki && ocena.getIdUzytkownik().getLogin().equals(login)) {
+                if (ocena.getIdKsiazka().getIdKsiazka() == ksiazkiDataModel.getRowData().getIdKsiazka() && ocena.getIdUzytkownik().getLogin().equals(login)) {
                     try {
                         ocenaSession.dodajDoUlub(ocena);
 
@@ -181,6 +182,7 @@ public class ListaKsiazekPageBean implements Serializable {
         String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
         try {
             ocenaSession.zmienOcene(id_ksiazka, ocena, login);
+            initModel();
             return null;
         } catch (KsiazkaException ex) {
             return "nieaktualnedane";
@@ -189,6 +191,22 @@ public class ListaKsiazekPageBean implements Serializable {
         } catch (UzytkownikException ex) {
             return "uzytkowniknieistnieje";
         }
+    }
+    
+    /**
+     * Funkcja sprawdzajaca jaka ocene uzytkownik nadal ksaizce
+     * @param idKsiazki id ksiazki
+     * @return zwraca ocene wystawiona ksiazce przez uzytkownika badz " --- " w przypadku braku oceny
+     */
+    public String pokazMojaOcene(long idKsiazki){
+        String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+        for(Ocena ocena : ocenyList){
+            if(ocena.getIdKsiazka().getIdKsiazka()==idKsiazki&&ocena.getIdUzytkownik().getLogin().equals(login)){
+                return String.valueOf(ocena.getOcena());
+            }
+        }
+        return " ---";
+        
     }
 
 }
