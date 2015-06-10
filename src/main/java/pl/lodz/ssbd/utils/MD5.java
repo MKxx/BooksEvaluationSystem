@@ -16,7 +16,14 @@ import java.util.logging.Logger;
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 public class MD5 {
-
+  /**
+       * Zamienia jawny tekst na hash MD%
+       * 
+       * @param password
+       *                Tekst w postaci jawnej.
+       * 
+       * @return Skrót MD5 wartości parametru.
+       */
     public static String hash(String password) {
         MessageDigest md = null;
         try {
@@ -28,4 +35,5 @@ public class MD5 {
         BigInteger number = new BigInteger(1, messageDigest);
         return String.format("%032x", number);
     }
+
 }
