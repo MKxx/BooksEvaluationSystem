@@ -7,6 +7,7 @@ package pl.lodz.ssbd.mok.facades;
 
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -20,6 +21,7 @@ import pl.lodz.ssbd.exceptions.SSBD05Exception;
 import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
 import pl.lodz.ssbd.facades.AbstractFacade;
+import pl.lodz.ssbd.moa.facades.AutorFacade;
 
 /**
  *
@@ -55,6 +57,7 @@ public class PoziomDostepuFacade extends AbstractFacade<PoziomDostepu> implement
         try {
             super.create(entity); //To change body of generated methods, choose Tools | Templates.
         } catch (SSBD05Exception ex) {
+            Logger.getLogger(PoziomDostepuFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     @PersistenceContext(unitName = "ssbd05mok")

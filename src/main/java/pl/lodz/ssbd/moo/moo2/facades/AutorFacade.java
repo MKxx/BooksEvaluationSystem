@@ -6,6 +6,8 @@
 package pl.lodz.ssbd.moo.moo2.facades;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import pl.lodz.ssbd.facades.*;
@@ -46,6 +48,7 @@ public class AutorFacade extends AbstractFacade<Autor> implements AutorFacadeLoc
         try {
             super.edit(entity); //To change body of generated methods, choose Tools | Templates.
         } catch (SSBD05Exception ex) {
+            Logger.getLogger(AutorFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -67,6 +70,7 @@ public class AutorFacade extends AbstractFacade<Autor> implements AutorFacadeLoc
         try {
             super.create(entity); //To change body of generated methods, choose Tools | Templates.
         } catch (SSBD05Exception ex) {
+            Logger.getLogger(AutorFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

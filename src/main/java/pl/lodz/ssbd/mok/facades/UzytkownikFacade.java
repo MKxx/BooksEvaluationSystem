@@ -6,6 +6,8 @@
 package pl.lodz.ssbd.mok.facades;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -23,6 +25,7 @@ import pl.lodz.ssbd.exceptions.SSBD05Exception;
 import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.facades.AbstractFacade;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
+import pl.lodz.ssbd.moa.facades.AutorFacade;
 
 /**
  *
@@ -90,7 +93,9 @@ public class UzytkownikFacade extends AbstractFacade<Uzytkownik> implements Uzyt
         try {
             return (Uzytkownik) q.getSingleResult();
         } catch (NoResultException ex) {
+            Logger.getLogger(UzytkownikFacade.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+
         }
     }
 
