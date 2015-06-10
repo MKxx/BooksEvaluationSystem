@@ -19,7 +19,7 @@
                 <f:facet name="header">Ksiazki</f:facet>
                 <p id="tytul"><h:outputText value="#{ksiazka.tytul}" /></p>
                 <p id="rok"><h:outputText value="#{ksiazka.rokPierwszegoWydania}"/></p>
-                <p id="srOcen"><h:outputText value="#{ksiazka.sredniaOcen}"/></p>
+                <p id="srOcen">${msg["listaKs.srednia"]}: <h:outputText value="#{ksiazka.sredniaOcen}"/></p>
                 <h:dataTable id="listaAutorow" var="autor" value="#{ksiazka.autorList}">
                     <h:column id="autorzy">
                         <f:facet name="header">Autorzy:</f:facet>
@@ -37,6 +37,7 @@
                     <h:commandButton action="#{listaKsiazekPageBeanMOO.zmienOcene(ksiazka.idKsiazka)}" value="Zmien Ocene!" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
                     <h:commandButton action="#{listaKsiazekPageBeanMOO.dodajDoUlub()}" value="Dodaj do ulubionych!" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
                 </h:form>
+                ${msg["listaKs.ocena"]}: <h:outputText value="#{listaKsiazekPageBeanMOO.pokazMojaOcene(ksiazka.idKsiazka)}"/>
             </h:column>
         </h:dataTable>
     </ui:define>
