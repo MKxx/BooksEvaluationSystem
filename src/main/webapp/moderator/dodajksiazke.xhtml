@@ -23,7 +23,7 @@
                     <h:message for="tytul" class="blad"/>
                 </h:panelGroup>
                 <h:panelGroup>
-                    (*) #{msg["ksiazka.rok"]}<br></br>
+                    #{msg["ksiazka.rok"]}<br></br>
                     <h:inputText id="rok" value="#{dodaniePageBean.ksiazka.rokPierwszegoWydania}" />
                     <h:message for="rok" class="blad"/>
                 </h:panelGroup>
@@ -32,6 +32,7 @@
                     <h:selectManyListbox value="#{dodaniePageBean.wybraniAutorzy}">
    			<f:selectItems value="#{dodaniePageBean.autorzy}" />
                     </h:selectManyListbox>
+                    <h:message for="" class="blad"/>
                 </h:panelGroup>
             </h:panelGrid>
             <h:commandButton action="#{dodaniePageBean.stworzKsiazke()}" value="${msg['reg.zarejestruj']}" />

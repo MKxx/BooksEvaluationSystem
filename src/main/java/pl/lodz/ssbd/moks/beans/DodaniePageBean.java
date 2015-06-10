@@ -10,13 +10,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import pl.lodz.ssbd.entities.Autor;
 import pl.lodz.ssbd.entities.Ksiazka;
+import pl.lodz.ssbd.utils.Bundle;
 
 /**
  *
@@ -76,6 +80,13 @@ public class DodaniePageBean implements Serializable {
      * @return String przekierowujacy do strony z komunikatem o powodzeniu
      */
     public String stworzKsiazke(){
+        if(wybraniAutorzy.isEmpty()){
+            FacesContext fctx = FacesContext.getCurrentInstance();
+            Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+            FacesMessage fmsg = new FacesMessage(Bundle.internalizuj("ksiazka.bladAutor", locale));
+            fctx.addMessage(null, fmsg);
+            return null;
+        }
         ksiazkaSession.stworzKsiazke(ksiazka, wybraniAutorzy);
         return "sukcesStworz";
     }
