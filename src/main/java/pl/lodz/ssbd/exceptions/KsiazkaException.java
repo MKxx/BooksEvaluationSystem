@@ -7,6 +7,7 @@ package pl.lodz.ssbd.exceptions;
 
 /**
  *
+ * Wyjątek rzucany w przypadku problemów z edycją encji książka.
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 public class KsiazkaException extends SSBD05Exception {

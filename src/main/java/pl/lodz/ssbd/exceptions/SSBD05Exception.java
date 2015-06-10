@@ -8,7 +8,7 @@ package pl.lodz.ssbd.exceptions;
 import javax.ejb.ApplicationException;
 
 /**
- *
+ * Klasa bazowa dla wszystkich rzucanych wyjątków.
  * @author Robert Mielczarek <180640@edu.p.lodz.pl>
  */
 @ApplicationException(rollback = true)
@@ -22,8 +22,8 @@ public class SSBD05Exception extends Exception {
     }
 
     /**
-     * Constructs an instance of <code>SSBD05Exception</code> with the specified
-     * detail message.
+     * Constructs an instance of <code>SSBD05Exception</code> with the
+     * specified detail message.
      *
      * @param msg the detail message.
      */
