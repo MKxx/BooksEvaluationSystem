@@ -16,10 +16,12 @@ import javax.interceptor.Interceptors;
 import pl.lodz.ssbd.entities.Autor;
 import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.entities.Ocena;
+import pl.lodz.ssbd.exceptions.AutorException;
 import pl.lodz.ssbd.exceptions.KsiazkaException;
 import pl.lodz.ssbd.exceptions.OcenaException;
 import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
+import pl.lodz.ssbd.moo.moo2.facades.AutorFacadeLocal;
 import pl.lodz.ssbd.moo.moo2.facades.KsiazkaFacadeLocal;
 import pl.lodz.ssbd.moo.moo2.facades.OcenaFacadeLocal;
 import pl.lodz.ssbd.moo.moo2.facades.UzytkownikFacadeLocal;
@@ -37,6 +39,8 @@ public class MOO2Endpoint implements MOO2EndpointLocal {
     private KsiazkaFacadeLocal ksiazkaFacade;
     @EJB(beanName = "moo2Ocena")
     private OcenaFacadeLocal ocenaFacade;
+    @EJB(beanName = "moo2Autor")
+    private AutorFacadeLocal autorFacade;
     @EJB(beanName = "moo2Uzytkownik")
     private UzytkownikFacadeLocal uzytkownikFacade;
 
@@ -51,7 +55,7 @@ public class MOO2Endpoint implements MOO2EndpointLocal {
      */
     @RolesAllowed("DodanieOceny")
     @Override
-    public void ocenKsiazke(long id_ksiazka, int wartosc, String login) throws UzytkownikException, OcenaException, KsiazkaException {
+    public void ocenKsiazke(long id_ksiazka, int wartosc, String login) throws UzytkownikException, OcenaException, KsiazkaException, AutorException {
         Ocena ocena = new Ocena();
         ocena.setIdKsiazka(ksiazkaFacade.find(id_ksiazka));
         ocena.setIdUzytkownik(uzytkownikFacade.findByLogin(login));
@@ -76,6 +80,7 @@ public class MOO2Endpoint implements MOO2EndpointLocal {
                 }
             }
             a.setSrOcena(licznik.divide(mianownik, new MathContext(10)));
+            autorFacade.edit(a);
         }
     }
 
@@ -87,10 +92,11 @@ public class MOO2Endpoint implements MOO2EndpointLocal {
      * @throws OcenaException wyjątek przy jednoczesnej modyfikacji, bądź w przypadku braku oceny.
      * @throws KsiazkaException wyjątek w przypadku modyfikacji książki
      * @throws UzytkownikException wyjątek rzucany w przypaku braku użytkownika
+     * @throws pl.lodz.ssbd.exceptions.AutorException w przypadku modyfikacji autora
      */
     @Override
     @RolesAllowed("ZmianaOceny")
-    public void zmienOcene(long id_ksiazka, int ocena, String login) throws OcenaException, KsiazkaException, UzytkownikException {
+    public void zmienOcene(long id_ksiazka, int ocena, String login) throws OcenaException, KsiazkaException, UzytkownikException, AutorException {
         Ocena newOcena = ocenaFacade.findByKsiazkaAndLogin(ksiazkaFacade.find(id_ksiazka), uzytkownikFacade.findByLogin(login));
         if (newOcena == null) {
             throw new OcenaException("exceptions.ocenanieistnieje");
@@ -113,6 +119,7 @@ public class MOO2Endpoint implements MOO2EndpointLocal {
                 }
             }
             a.setSrOcena(licznik.divide(mianownik, new MathContext(10)));
+            autorFacade.edit(a);
         }
     }
 }

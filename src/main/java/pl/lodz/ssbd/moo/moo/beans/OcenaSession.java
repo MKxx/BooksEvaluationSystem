@@ -8,6 +8,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.entities.Ocena;
+import pl.lodz.ssbd.exceptions.AutorException;
 import pl.lodz.ssbd.exceptions.KsiazkaException;
 import pl.lodz.ssbd.exceptions.OcenaException;
 import pl.lodz.ssbd.exceptions.UzytkownikException;
@@ -63,7 +64,7 @@ public class OcenaSession implements Serializable {
      * @throws KsiazkaException wyjątek w przypadku modyfikacji książki
      * @throws UzytkownikException wyjątek rzucany w przypaku braku użytkownika
      */
-    public void zmienOcene(long id_ksiazki, int wartosc, String login) throws OcenaException, KsiazkaException, UzytkownikException {
+    public void zmienOcene(long id_ksiazki, int wartosc, String login) throws OcenaException, KsiazkaException, UzytkownikException, AutorException {
         MOO2Endpoint.zmienOcene(id_ksiazki, wartosc, login);
     }
 
@@ -76,7 +77,7 @@ public class OcenaSession implements Serializable {
      * @throws OcenaException jeśli ocena JUŻ istnieje
      * @throws KsiazkaException  jeśli książka została zmodyfikowana podczas oceny (OptimistickLock).
      */
-    public void ocen(long id_ksiazka, int wartosc, String login) throws UzytkownikException, OcenaException, KsiazkaException {
+    public void ocen(long id_ksiazka, int wartosc, String login) throws UzytkownikException, OcenaException, KsiazkaException, AutorException {
         MOO2Endpoint.ocenKsiazke(id_ksiazka, wartosc, login);
     }
 }

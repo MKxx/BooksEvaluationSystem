@@ -3,12 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.lodz.ssbd.moa.facades;
+package pl.lodz.ssbd.moo.moo2.facades;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import pl.lodz.ssbd.facades.*;
@@ -27,11 +24,11 @@ import pl.lodz.ssbd.interceptors.DziennikZdarzenInterceptor;
  *
  * @author Robert Mielczarek 
  */
-@Stateless(name="moaAutor")
+@Stateless(name="moo2Autor")
 @Interceptors({DziennikZdarzenInterceptor.class})
 @TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class AutorFacade extends AbstractFacade<Autor> implements AutorFacadeLocal {
-    @PersistenceContext(unitName = "ssbd05moa")
+    @PersistenceContext(unitName = "ssbd05moo2")
     private EntityManager em;
 
     @Override
@@ -49,7 +46,6 @@ public class AutorFacade extends AbstractFacade<Autor> implements AutorFacadeLoc
         try {
             super.edit(entity); //To change body of generated methods, choose Tools | Templates.
         } catch (SSBD05Exception ex) {
-            throw new AutorException("exceptions.autor.concurrent");
         }
     }
 
@@ -71,7 +67,6 @@ public class AutorFacade extends AbstractFacade<Autor> implements AutorFacadeLoc
         try {
             super.create(entity); //To change body of generated methods, choose Tools | Templates.
         } catch (SSBD05Exception ex) {
-            Logger.getLogger(AutorFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
