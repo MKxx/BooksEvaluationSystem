@@ -19,15 +19,27 @@ import pl.lodz.ssbd.exceptions.AutorException;
  */
 @Named(value = "AutorEdycjaPageBean")
 @RequestScoped
+
+/**
+ * PageBean dla edycji autora
+ */
 public class EdycjaPageBean {
         
     @Inject 
     private AutorSession autorSession;
     
+    /**
+     * Pobiera autora do edycji
+     * @return Autor do edycji
+     */
     public Autor getAutorEdycja(){
         return autorSession.getEdytowanyAutor();
     }
     
+     /**
+     * Zapisuje autora po edycji
+     * @return String z przekierowaniem do strony
+     */
     public String edytujAutora(){
         try {
             autorSession.zapiszAutoraDoEdycji();

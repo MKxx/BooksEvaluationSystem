@@ -75,6 +75,10 @@ public class KsiazkaFacade extends AbstractFacade<Ksiazka> implements KsiazkaFac
         }
     }
 
+    /**
+     * Pobiera liste ksiazek nieocenionych
+     * @return lista ksiazek nieocenionych
+     */
     @Override
     public List<Ksiazka> findNieocenione() {
         Query q = em.createQuery("SELECT k FROM Ksiazka k WHERE k.sredniaOcen IS NULL");
