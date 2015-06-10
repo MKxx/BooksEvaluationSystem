@@ -47,4 +47,9 @@ public class ListaAutorPageBean implements Serializable{
         autorSession.pobierzAutoraDoEdycji(autorDataModel.getRowData().getIdAutor());
         return "edytujautora";
     }
+    
+    public String info(){
+        autorSession.pobierzAutoraDoEdycji(autorDataModel.getRowData().getIdAutor());
+        return "informacjeoautorze";
+    }
 }
