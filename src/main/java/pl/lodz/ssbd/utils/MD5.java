@@ -21,7 +21,8 @@ public class MD5 {
        * 
        * @param password
        *                Tekst w postaci jawnej.
-      
+       * 
+       * @return Skrót MD5 wartości parametru.
        */
     public static String hash(String password) {
         MessageDigest md = null;
@@ -34,7 +35,5 @@ public class MD5 {
         BigInteger number = new BigInteger(1, messageDigest);
         return String.format("%032x", number);
     }
-    /**
-       * @return Skrót MD5 wartości parametru.
-       */
+
 }

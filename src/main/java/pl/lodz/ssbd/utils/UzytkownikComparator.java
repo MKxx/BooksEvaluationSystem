@@ -20,12 +20,12 @@ public class UzytkownikComparator implements Comparator<Uzytkownik>{
        *                Uzytkownik pierwszy.
        * @param u2
        *                Uzytkownik drugi.
+       * 
+       * @return 1 jeśli są identyczne, w przeciwnym wypadku 0.
        */
     @Override
     public int compare(Uzytkownik u1, Uzytkownik u2) {
         return u1.getLogin().compareTo(u2.getLogin());
     }
-    /**
-       * @return 1 jeśli są identyczne, w przeciwnym wypadku 0.
-       */
+
 }

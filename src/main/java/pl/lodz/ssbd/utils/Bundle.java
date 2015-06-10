@@ -20,16 +20,13 @@ public class Bundle {
        *                Klucz komunikatu.
        * @param locale
        *                Zbior komunikatow.
+       * 
+       * @return Dany komunikat do wyświetlenia.
        */
     public static String internalizuj(String key, Locale locale) {
         java.util.ResourceBundle rb = ResourceBundle.getBundle("internacjonalizacja/messages", locale);
         return rb.getString(key);
     }
-    /**
-       * @return Dany komunikat do wyświetlenia.
-       */
-//     public static String internalizuj(String key) {
-//        java.util.ResourceBundle rb = ResourceBundle.getBundle("internacjonalizacja/messages", Locale.getDefault());
-//        return rb.getString(key);
-//    }
+
+
 }

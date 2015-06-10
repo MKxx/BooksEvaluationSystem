@@ -12,11 +12,12 @@ public class SprawdzaczRoli {
        * 
        * @param rola
        *                Nazwa roli.
+       * 
+       * @return true jeśli dana rola nalezy do uzytkownika, w przeciwnym razie false.
        */
     public static  boolean sprawdzRole(String rola){
         return FacesContext.getCurrentInstance().getExternalContext().isUserInRole(rola);
     }
     /**
-       * @return true jeśli dana rola nalezy do uzytkownika, w przeciwnym razie false.
        */
 }
