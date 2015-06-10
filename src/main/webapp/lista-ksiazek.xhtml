@@ -35,7 +35,7 @@
                     </h:selectOneMenu>
                     <h:commandButton action="#{listaKsiazekPageBeanMOO.ocen(ksiazka.idKsiazka)}" value="Ocen!" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and not listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
                     <h:commandButton action="#{listaKsiazekPageBeanMOO.zmienOcene(ksiazka.idKsiazka)}" value="Zmien Ocene!" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
-                    <h:commandButton action="#{listaKsiazekPageBeanMOO.dodajDoUlub()}" value="Dodaj do ulubionych!" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
+                    <h:commandButton action="#{listaKsiazekPageBeanMOO.dodajDoUlub()}" value="Dodaj do ulubionych!" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka) and listaKsiazekPageBeanMOO.czyUlub(ksiazka.idKsiazka)}"/>
                 </h:form>
                 ${msg["listaKs.ocena"]}: <h:outputText value="#{listaKsiazekPageBeanMOO.pokazMojaOcene(ksiazka.idKsiazka)}"/>
             </h:column>
