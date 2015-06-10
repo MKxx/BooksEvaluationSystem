@@ -10,6 +10,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import pl.lodz.ssbd.entities.Autor;
+import pl.lodz.ssbd.entities.Ksiazka;
 import pl.lodz.ssbd.exceptions.AutorException;
 import pl.lodz.ssbd.moa.endpoints.MOAEndpointLocal;
 /**
@@ -39,8 +40,8 @@ public class AutorSession implements Serializable {
         return MOAEndpoint.pobierzListeAutorow(); 
     }
 
-    void dodajAutora(Autor autor) {
-         MOAEndpoint.dodajAutora(autor);
+    void dodajAutora(Autor autor, List<String> wybraneKsiazki) {
+         MOAEndpoint.dodajAutora(autor, wybraneKsiazki);
     }
     
     void zapiszAutoraDoEdycji() throws AutorException {
@@ -49,6 +50,10 @@ public class AutorSession implements Serializable {
 
     void pobierzAutoraDoEdycji(long id) {
         edytowanyAutor = MOAEndpoint.pobierzAutoraDoEdycji(id);
+    }
+
+    List<Ksiazka> pobierzKsiazki() {
+        return MOAEndpoint.pobierzKsiazkiNieocenione();
     }
     
 }
