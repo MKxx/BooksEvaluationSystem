@@ -37,6 +37,12 @@
                 <f:facet name="header">#{msg["form.srOcena"]}</f:facet>
                 <h:outputText value="#{row.srOcena}" />
             </h:column>
+            <h:column id="akcje">
+                    <f:facet name="header">#{msg["pa.akcje"]}</f:facet>
+                    <h:form>
+                        <h:commandButton action="#{listaAutorowPageBean.info()}" value="${msg['pa.info']}"/>
+                    </h:form>
+            </h:column>
         </h:dataTable>
     </ui:define>
 </ui:composition>
