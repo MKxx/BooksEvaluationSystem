@@ -15,6 +15,7 @@
     </ui:define>
 
      <ui:define name="content">
+         <h:form>
             <h:panelGrid columns="1">
                 <h:panelGroup>
                     #{msg["form.imie"]}<br></br>
@@ -30,7 +31,7 @@
                 </h:panelGroup>
             </h:panelGrid> 
                     
-            <h:commandButton value="#{msg['powroc']}" action="index" /> 
+            <h:commandButton value="#{msg['powroc']}" action="listaAutorow" /> 
         </h:form>
     </ui:define>
 </ui:composition>
