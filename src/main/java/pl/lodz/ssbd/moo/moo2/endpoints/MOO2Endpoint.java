@@ -7,8 +7,17 @@ package pl.lodz.ssbd.moo.moo2.endpoints;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.ejb.SessionContext;
+import javax.ejb.SessionSynchronization;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -33,7 +42,7 @@ import pl.lodz.ssbd.moo.moo2.facades.UzytkownikFacadeLocal;
 @Stateful
 @Interceptors({DziennikZdarzenInterceptor.class})
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-public class MOO2Endpoint implements MOO2EndpointLocal {
+public class MOO2Endpoint implements MOO2EndpointLocal, SessionSynchronization {
 
     @EJB(beanName = "moo2Ksiazka")
     private KsiazkaFacadeLocal ksiazkaFacade;
@@ -43,6 +52,11 @@ public class MOO2Endpoint implements MOO2EndpointLocal {
     private AutorFacadeLocal autorFacade;
     @EJB(beanName = "moo2Uzytkownik")
     private UzytkownikFacadeLocal uzytkownikFacade;
+    private long IDTransakcji;
+    @Resource
+    private SessionContext sessionContext;
+    private SimpleDateFormat simpleDateHere = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss (Z)");
+    private static final Logger loger = Logger.getLogger(MOO2Endpoint.class.getName());
 
     /**
      * Metoda dodająca ocenę
@@ -121,5 +135,28 @@ public class MOO2Endpoint implements MOO2EndpointLocal {
             a.setSrOcena(licznik.divide(mianownik, new MathContext(10)));
             autorFacade.edit(a);
         }
+    }
+    
+    @Override
+    public void afterBegin() throws EJBException, RemoteException {
+        IDTransakcji = System.currentTimeMillis();
+        loger.log(Level.INFO, simpleDateHere.format(new Date()).toString()+" || Transakcja o ID: " 
+                + IDTransakcji + " zostala rozpoczeta ,przez użytkownika "
+                + sessionContext.getCallerPrincipal().getName());
+    }
+
+    @Override
+    public void beforeCompletion() throws EJBException, RemoteException {
+        loger.log(Level.INFO, simpleDateHere.format(new Date()).toString()+" || Transakcja o ID: " + IDTransakcji 
+                + " przed zakonczeniem przez użytownka "
+                + sessionContext.getCallerPrincipal().getName());
+    }
+
+    @Override
+    public void afterCompletion(boolean committed) throws EJBException, RemoteException {
+        loger.log(Level.INFO, simpleDateHere.format(new Date()).toString()+" || Transakcja o ID: " + IDTransakcji 
+                + " zostala zakonczona przez: "
+                + (committed ? "zatwierdzenie" : "wycofanie") + " przez użytkownia"
+                + sessionContext.getCallerPrincipal().getName());
     }
 }
