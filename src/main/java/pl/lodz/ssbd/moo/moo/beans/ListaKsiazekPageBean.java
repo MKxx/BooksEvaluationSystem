@@ -109,7 +109,7 @@ public class ListaKsiazekPageBean implements Serializable {
     public boolean sprawdzCzyOceniona(long idKsiazki) {
         String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
         for (Ocena ocena : ocenyList) {
-            if (ocena.getIdKsiazka().getIdKsiazka() == idKsiazki && ocena.getIdUzytkownik().getLogin().equals(login)) {
+            if (ocena.getIdKsiazka().getIdKsiazka().equals(idKsiazki) && ocena.getIdUzytkownik().getLogin().equals(login)) {
                 return true;
             }
         }
@@ -157,7 +157,7 @@ public class ListaKsiazekPageBean implements Serializable {
         if (sprawdzCzyOceniona(ksiazkiDataModel.getRowData().getIdKsiazka()) == true) {
             String login = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
             for (Ocena ocena : ocenyList) {
-                if (ocena.getIdKsiazka().getIdKsiazka() == ksiazkiDataModel.getRowData().getIdKsiazka() && ocena.getIdUzytkownik().getLogin().equals(login)) {
+                if (ocena.getIdKsiazka().getIdKsiazka().equals(ksiazkiDataModel.getRowData().getIdKsiazka()) && ocena.getIdUzytkownik().getLogin().equals(login)) {
                     try {
                         ocenaSession.dodajDoUlub(ocena);
 
