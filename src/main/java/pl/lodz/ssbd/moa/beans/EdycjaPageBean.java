@@ -12,8 +12,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import pl.lodz.ssbd.entities.Autor;
 import pl.lodz.ssbd.exceptions.AutorException;
-import pl.lodz.ssbd.exceptions.KsiazkaException;
-import pl.lodz.ssbd.moks.beans.edycjaPageBean;
 
 /**
  *

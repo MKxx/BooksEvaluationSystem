@@ -5,7 +5,6 @@
  */
 package pl.lodz.ssbd.mok.beans;
  
-import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import javax.enterprise.context.RequestScoped;

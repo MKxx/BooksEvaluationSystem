@@ -6,8 +6,6 @@
 package pl.lodz.ssbd.mok.facades;
 
 import java.util.List;
-import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.exceptions.UzytkownikException;

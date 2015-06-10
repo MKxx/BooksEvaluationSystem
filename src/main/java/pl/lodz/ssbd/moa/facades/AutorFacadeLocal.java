@@ -5,7 +5,6 @@
  */
 package pl.lodz.ssbd.moa.facades;
 
-import pl.lodz.ssbd.moa.*;
 import java.util.List;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.Autor;

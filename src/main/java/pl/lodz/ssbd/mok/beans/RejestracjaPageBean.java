@@ -6,13 +6,11 @@
 package pl.lodz.ssbd.mok.beans;
 
 import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 import pl.lodz.ssbd.entities.Uzytkownik;
 import pl.lodz.ssbd.exceptions.UzytkownikException;
 import pl.lodz.ssbd.utils.Bundle;

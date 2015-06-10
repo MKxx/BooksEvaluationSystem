@@ -5,10 +5,7 @@
  */
 package pl.lodz.ssbd.mok.facades;
 
-import pl.lodz.ssbd.mok.*;
-import pl.lodz.ssbd.facades.*;
 import java.util.List;
-import javax.annotation.security.RolesAllowed;
 import javax.ejb.Local;
 import pl.lodz.ssbd.entities.PoziomDostepu;
 import pl.lodz.ssbd.exceptions.PoziomDostepuException;
