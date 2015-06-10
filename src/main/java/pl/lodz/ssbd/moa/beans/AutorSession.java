@@ -18,6 +18,10 @@ import pl.lodz.ssbd.moa.endpoints.MOAEndpointLocal;
  * @author Marta
  */
 @SessionScoped
+
+/**
+ * Bean sesyjny dla autora
+ */
 public class AutorSession implements Serializable {
     @EJB
     MOAEndpointLocal MOAEndpoint;
@@ -35,23 +39,43 @@ public class AutorSession implements Serializable {
     public AutorSession() {
     }
  
+    /**
+     * Pobiera liste autorow 
+     * @return lista autorow 
+     */
     @RolesAllowed("PrzegladanieAutorow")
     public List<Autor> pobierzListeAutorow(){
         return MOAEndpoint.pobierzListeAutorow(); 
     }
 
+    /**
+     * dodaje autora
+     * @param autor nowy autor
+     */
     void dodajAutora(Autor autor, List<String> wybraneKsiazki) {
          MOAEndpoint.dodajAutora(autor, wybraneKsiazki);
     }
     
+    /**
+     * edytuje autora
+     * @throws AutorException wyjatek w przypadku niepowodzenia
+     */
     void zapiszAutoraDoEdycji() throws AutorException {
         MOAEndpoint.edytujAutora(edytowanyAutor);
     }
 
+    /**
+     * pobiera autora do edycji i zapisuje w polu edytowanyAutor
+     * @param id id autora do edycji
+     */
     void pobierzAutoraDoEdycji(long id) {
         edytowanyAutor = MOAEndpoint.pobierzAutoraDoEdycji(id);
     }
 
+     /**
+     * Pobiera ksiazki 
+     * @return ksiazki nieocenione
+     */
     List<Ksiazka> pobierzKsiazki() {
         return MOAEndpoint.pobierzKsiazkiNieocenione();
     }

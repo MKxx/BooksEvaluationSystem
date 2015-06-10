@@ -16,13 +16,33 @@ import pl.lodz.ssbd.entities.Ksiazka;
  */
 @Local
 public interface MOAEndpointLocal {
-    
+     /**
+     * Przeglądanie autorow 
+     * @return lista autorow
+     */
     public List<Autor> pobierzListeAutorow();
+     /**
+     * Pobiera autora do edycji
+     * @param id id autora
+     * @return autor do edycji
+     */
     public Autor pobierzAutoraDoEdycji(long id);
     public Autor pobierzAutora(long id);
+     /**
+     * Dodanie nowego autora
+     * @param autor autor do dodania
+     * @param wybraneKsiazki ksiazki autora
+     */
     public void dodajAutora(Autor autor, List<String> wybraneKsiazki);
+     /**
+     * Edycja autora
+     * @param autor edytowany autor
+     */
     public void edytujAutora(Autor autor);
-
+    /**
+     * Wyświetlenie listy książek które nie zostały do tej pory ocenione
+     * @return ksiazki nieocenione
+     */
     public List<Ksiazka> pobierzKsiazkiNieocenione();
     
 }

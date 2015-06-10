@@ -22,6 +22,10 @@ import pl.lodz.ssbd.entities.Autor;
  */
 @Named(value="listaAutorowPageBean")
 @ViewScoped
+
+/**
+ * PageBean dla listy autorow
+ */
 public class ListaAutorPageBean implements Serializable{
     
     @Inject
@@ -36,6 +40,9 @@ public class ListaAutorPageBean implements Serializable{
         this.autorDataModel = autorDataModel;
     }
     
+    /**
+     * Inicjuje liste autorow
+     */
     @PostConstruct
     @RolesAllowed("PrzegladanieAutorow")
     private void initModel(){
@@ -43,11 +50,19 @@ public class ListaAutorPageBean implements Serializable{
         autorDataModel = new ListDataModel<>(autor);
     }
     
+     /**
+     * Edytuj autora
+     * @return String z wartoscia przekierowania
+     */
     public String edytuj(){
         autorSession.pobierzAutoraDoEdycji(autorDataModel.getRowData().getIdAutor());
         return "edytujautora";
     }
     
+     /**
+     * Informacja o autorze
+     * @return String z wartoscia przekierowania
+     */
     public String info(){
         autorSession.pobierzAutoraDoEdycji(autorDataModel.getRowData().getIdAutor());
         return "informacjeoautorze";

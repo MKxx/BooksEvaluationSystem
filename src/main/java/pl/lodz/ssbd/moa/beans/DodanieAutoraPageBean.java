@@ -26,6 +26,10 @@ import pl.lodz.ssbd.entities.Ksiazka;
 //@RequestScoped
 @ViewScoped
 //@SessionScoped
+
+/**
+ * PageBean dla strony dodania autora
+ */
 public class DodanieAutoraPageBean implements Serializable{
 
     @Inject
@@ -62,6 +66,9 @@ public class DodanieAutoraPageBean implements Serializable{
     public DodanieAutoraPageBean() {
     }
     
+     /**
+     * Funkcja inicjalizujaca liste autorów
+     */
     @PostConstruct
     private void initAutorzy(){
         ksiazkiTemp= autorSession.pobierzKsiazki();
@@ -70,6 +77,9 @@ public class DodanieAutoraPageBean implements Serializable{
         }
     }
     
+      /**
+     * Funkcja tworząca autora
+     */
     public void stworzAutor(){
         autorSession.dodajAutora(autor, wybraneKsiazki);    
     }
