@@ -6,6 +6,7 @@
 package pl.lodz.ssbd.utils;
 
 import java.math.BigInteger;
+import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
@@ -31,7 +32,8 @@ public class MD5 {
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(MD5.class.getName()).log(Level.SEVERE, null, ex);
         }
-        byte[] messageDigest = md.digest(password.getBytes());
+        byte[] messageDigest;
+        messageDigest = md.digest(password.getBytes(Charset.forName("UTF-8")));
         BigInteger number = new BigInteger(1, messageDigest);
         return String.format("%032x", number);
     }
