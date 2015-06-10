@@ -33,9 +33,9 @@
                     <h:selectOneMenu value="#{listaKsiazekPageBeanMOO.ocena}">
    			<f:selectItems value="#{listaKsiazekPageBeanMOO.oceny}" />
                     </h:selectOneMenu>
-                    <h:commandButton action="#{listaKsiazekPageBeanMOO.ocen(ksiazka.idKsiazka)}" value="${msg["ksiazka.ocen"]}" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and not listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
-                    <h:commandButton action="#{listaKsiazekPageBeanMOO.zmienOcene(ksiazka.idKsiazka)}" value="${msg["ksiazka.zmienocene"]}" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
-                    <h:commandButton action="#{listaKsiazekPageBeanMOO.dodajDoUlub()}" value="${msg["ksiazka.dodajdoulubionych"]}" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka) and czyUlub(ksiazka.idKsiazka)}"/>
+                    <h:commandButton action="#{listaKsiazekPageBeanMOO.ocen(ksiazka.idKsiazka)}" value="${msg['ksiazka.ocen']}" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and not listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
+                    <h:commandButton action="#{listaKsiazekPageBeanMOO.zmienOcene(ksiazka.idKsiazka)}" value="${msg['ksiazka.zmienocene']}" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka)}"/>
+                    <h:commandButton action="#{listaKsiazekPageBeanMOO.dodajDoUlub()}" value="${msg['ksiazka.dodajdoulubionych']}" rendered="#{listaKsiazekPageBeanMOO.isUzytkownik() and listaKsiazekPageBeanMOO.sprawdzCzyOceniona(ksiazka.idKsiazka) and listaKsiazekPageBeanMOO.czyUlub(ksiazka.idKsiazka)}"/>
                 </h:form>
                 ${msg["listaKs.ocena"]}: <h:outputText value="#{listaKsiazekPageBeanMOO.pokazMojaOcene(ksiazka.idKsiazka)}"/>
             </h:column>
